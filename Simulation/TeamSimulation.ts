@@ -2,10 +2,10 @@ class TeamSimulation {
 
     private name :string;
     private teamConfig :any;
-    private backlogConfig :BacklogCofig;
+    private backlogConfig :BacklogConfig;
     private intervalSize :number;
 
-    constructor(name :string, teamConfig :any, backlogConfig :BacklogCofig,  intervalSize :number) {
+    constructor(name :string, teamConfig :any, backlogConfig :BacklogConfig,  intervalSize :number) {
       this.name = name;
       this.intervalSize = intervalSize;
       this.teamConfig = teamConfig;
@@ -32,7 +32,7 @@ class TeamSimulation {
       return teamMembers;
     }
   
-    private generateBacklog(teamMembers : Array<MemberConfig>, backlogConfig :BacklogCofig) : Backlog {  
+    private generateBacklog(teamMembers : Array<MemberConfig>, backlogConfig :BacklogConfig) : Backlog {  
       let stories = new Array<Story>();
       let memberStats = new Array<MemberStats>();
 

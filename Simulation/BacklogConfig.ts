@@ -1,4 +1,4 @@
-class BacklogCofig {
+class BacklogConfig {
     
     readonly NumberOfStories :number;
     readonly DependenciesFrequency :number;

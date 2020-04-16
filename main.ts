@@ -18,8 +18,8 @@ let teamConfig = {
    ]
   }
 
-  let backlogConfig = new BacklogCofig(10, 1/10, 1/10, 30);
+  let backlogConfig = new BacklogConfig(10, 1/10, 1/10, 30);
 
-  var teamSimulation = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
-  var results = teamSimulation.Run();
+  let teamSimulation = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
+  let results = teamSimulation.Run();
   console.log(results);
