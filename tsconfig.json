@@ -1,8 +1,12 @@
 {
     "compilerOptions": {
       "target": "es5",
-      "module": "commonjs",
       "outDir": "out",
-      "sourceMap": true
-    }
+      "sourceMap": true,
+      "outFile": "./out/simulation.js"
+    },
+    "include": [
+      "Simulation/*.ts",
+      "*.ts"
+    ]
   }

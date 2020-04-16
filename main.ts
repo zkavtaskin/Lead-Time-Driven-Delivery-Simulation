@@ -1,0 +1,25 @@
+
+let teamConfig = {
+    Members : [
+        new MemberConfig("Product Owner", 10/37, 8/10, 10/100),
+        new MemberConfig("UX", 10/37, 2/10, 5/100),
+        new MemberConfig("Architecture", 5/37, 2/10, 5/100),
+        new MemberConfig("Back-End", 37/37, 8/10, 35/100),
+        new MemberConfig("Front-End", 37/37, 8/10, 35/100),
+        new MemberConfig("Test", 37/37, 10/10, 10/100)
+    ],
+    Graph : [
+      [0, 1/5, 1/10, 1/5,   1/5, 1/10],
+      [1, 0,   1/10,   0,   1/5, 1/10],
+      [1, 0,      0, 1/5,  1/10,    0],
+      [1, 0,      1,   0,   1/2,  1/2],
+      [1, 1,      1,   0,     0,  1/2],
+      [0, 0,      0,   1,     1,    0]
+   ]
+  }
+
+  let backlogConfig = new BacklogCofig(10, 1/10, 1/10, 30);
+
+  var teamSimulation = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
+  var results = teamSimulation.Run();
+  console.log(results);
