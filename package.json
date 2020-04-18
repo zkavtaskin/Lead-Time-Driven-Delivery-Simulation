@@ -1,0 +1,5 @@
+{
+    "scripts": {
+        "tests": "mocha --require ts-node/register test/**/*.ts"
+    }
+}
