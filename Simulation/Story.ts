@@ -1,3 +1,6 @@
+import { Task } from "./Task";
+import { Clock } from "./Clock";
+
 export class Story {
 
     private id: number;

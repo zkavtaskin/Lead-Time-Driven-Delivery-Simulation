@@ -1,3 +1,6 @@
+import { MemberConfig } from "./Simulation/MemberConfig";
+import { BacklogConfig } from "./Simulation/BacklogConfig";
+import { TeamSimulation } from "./Simulation/TeamSimulation";
 
 let teamConfig = {
     Members : [

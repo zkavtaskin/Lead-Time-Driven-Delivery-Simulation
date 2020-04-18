@@ -1,3 +1,8 @@
+import { Backlog } from "./Backlog";
+import { Clock } from "./Clock";
+import { TeamMember } from "./TeamMember";
+import { BacklogConfig } from "./BacklogConfig";
+
 export class TeamSimulation {
 
     private name :string;
@@ -14,15 +19,15 @@ export class TeamSimulation {
   
     public Run() {
       let clock:Clock = new Clock(this.intervalSize);
-      let work = this.generateBacklog(teamConfig.Members, backlogConfig);
-      let teamMembers:Array<TeamMember> = this.setupTeamMembers(teamConfig, clock);
-      this.calibrateGraphFeedback(teamConfig.Graph, work.Stats, clock);
+      let backlog = Backlog.Generate(this.teamConfig.Members, this.backlogConfig);
+      let teamMembers:Array<TeamMember> = this.setupTeamMembers(this.teamConfig, clock);
+      this.calibrateGraphFeedback(this.teamConfig.Graph, backlog.Stats, clock);
   
-      for(let completed:number = 0; work.Stories.length != completed; clock.Tick()) {
-        teamMembers.forEach((member) => completed += member.DoWork(work.Stories, clock).length);
+      for(let completed:number = 0; backlog.Stories.length != completed; clock.Tick()) {
+        teamMembers.forEach((member) => completed += member.DoWork(backlog.Stories, clock).length);
       }
   
-      return work;
+      return backlog;
     }
   
     private setupTeamMembers(teamConfig, clock :Clock) : Array<TeamMember> {
@@ -30,47 +35,6 @@ export class TeamSimulation {
       teamConfig.Members.forEach((member, index) => 
           teamMembers.push(new TeamMember(index, member, teamConfig.Graph)));
       return teamMembers;
-    }
-  
-    private generateBacklog(teamMembers : Array<MemberConfig>, backlogConfig :BacklogConfig) : Backlog {  
-      let stories = new Array<Story>();
-      let memberStats = new Array<MemberStats>();
-
-      teamMembers.forEach((member, index) => memberStats[index] = new MemberStats());
-  
-      for(let id:number = 0; id < backlogConfig.NumberOfStories; id++) {
-        let hasDeadline:boolean = false;
-        if(Math.random() <= backlogConfig.DeadlinesFrequency) {
-          hasDeadline = true;
-        }
-  
-        let prerequisiteStoryId:number | null = null;
-        if(Math.random() <= backlogConfig.DependenciesFrequency) {
-          while(prerequisiteStoryId == null || prerequisiteStoryId == id)
-            prerequisiteStoryId = Math.floor(Math.random() * backlogConfig.NumberOfStories);
-        }
-  
-        let tasks = new Array<Task>();
-        teamMembers.forEach((member :MemberConfig, index:number) => {
-          if(Math.random() <= member.BacklogFrequency) {
-            let effort:number = Math.ceil(Math.random() * member.BacklogContribution * backlogConfig.StorySize);
-            tasks.push(new Task(effort));
-            memberStats[index].AverageValue += effort;
-            memberStats[index].NumberOfStories++;
-  
-          } else {
-            tasks.push(null);
-          }
-        });
-  
-        stories.push(new Story(id, hasDeadline, prerequisiteStoryId, tasks));
-      }
-  
-      teamMembers.forEach((member :MemberConfig, index :number) => {
-        memberStats[index].AverageValue = memberStats[index].AverageValue / memberStats[index].NumberOfStories;
-      });
-
-      return new Backlog(stories, memberStats);
     }
   
     private calibrateGraphFeedback(graph :any, stats :any, clock :Clock) :void {

@@ -1,3 +1,6 @@
+import { Story } from "./Story";
+import { Clock } from "./Clock";
+
 export class TeamMember {
   
     private id: number;
