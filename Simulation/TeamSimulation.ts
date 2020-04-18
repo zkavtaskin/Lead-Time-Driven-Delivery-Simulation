@@ -1,4 +1,4 @@
-class TeamSimulation {
+export class TeamSimulation {
 
     private name :string;
     private teamConfig :any;

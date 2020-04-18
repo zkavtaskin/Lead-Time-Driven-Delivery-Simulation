@@ -1,4 +1,4 @@
-class Story {
+export class Story {
 
     private id: number;
     private deadline:boolean;

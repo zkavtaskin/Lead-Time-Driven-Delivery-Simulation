@@ -1,4 +1,4 @@
-class MemberConfig {
+export class MemberConfig {
 
     readonly Name :string;
     readonly Capacity :number;

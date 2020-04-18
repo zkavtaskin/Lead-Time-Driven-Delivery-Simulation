@@ -1,4 +1,4 @@
-class Backlog {
+export class Backlog {
     readonly Stories :Array<Story>;
     readonly Stats :Array<MemberStats>;
 

@@ -1,4 +1,4 @@
-class Task {
+export class Task {
 
     private original: number;
     private remaining: number;

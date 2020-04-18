@@ -1,4 +1,4 @@
-class BacklogConfig {
+export class BacklogConfig {
     
     readonly NumberOfStories :number;
     readonly DependenciesFrequency :number;

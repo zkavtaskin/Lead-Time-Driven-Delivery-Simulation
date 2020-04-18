@@ -1,4 +1,4 @@
-class TeamMember {
+export class TeamMember {
   
     private id: number;
     private member: any;

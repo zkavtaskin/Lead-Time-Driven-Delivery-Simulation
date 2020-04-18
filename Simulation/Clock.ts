@@ -1,4 +1,4 @@
-class Clock {
+export class Clock {
 
     private intervalSize : number;
     private ticks : number = 0;
