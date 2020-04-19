@@ -13,10 +13,29 @@ class MemberStats {
 export class Backlog {
     readonly Stories :Array<Story>;
     readonly Stats :Array<MemberStats>;
+    private storiesCompleted: number = 0;
+    private completedStreakIndex :number = 0;
 
     constructor(stories :Array<Story>, stats :Array<MemberStats>) {
         this.Stories = stories;
         this.Stats = stats;
+    }
+
+    get IsCompleted() : boolean {
+      return this.storiesCompleted == this.Stories.length;
+    }
+
+    *Next() : IterableIterator<Story> {
+      let onStreak = true;
+      for(let i = this.completedStreakIndex; i < this.Stories.length; i++) {
+          if(this.Stories[i].IsCompleted && onStreak) {
+            this.storiesCompleted++;
+            this.completedStreakIndex = i;
+            continue;
+          } 
+          onStreak = false;
+          yield this.Stories[i];
+        }
     }
 
     public static Generate(teamMembers : Array<MemberConfig>, backlogConfig :BacklogConfig) : Backlog {
@@ -26,15 +45,19 @@ export class Backlog {
         teamMembers.forEach((member, index) => memberStats[index] = new MemberStats());
     
         for(let id:number = 0; id < backlogConfig.NumberOfStories; id++) {
+
           let hasDeadline:boolean = false;
           if(Math.random() <= backlogConfig.DeadlinesFrequency) {
             hasDeadline = true;
           }
     
+          //forward only dependency
           let prerequisiteStoryId:number | null = null;
-          if(Math.random() <= backlogConfig.DependenciesFrequency && backlogConfig.NumberOfStories > 1) {
-            while(prerequisiteStoryId == null || prerequisiteStoryId == id)
-              prerequisiteStoryId = Math.floor(Math.random() * backlogConfig.NumberOfStories);
+          let numberOfStoriesUpFront = backlogConfig.NumberOfStories - (id + 1);
+          if(Math.random() <= backlogConfig.DependenciesFrequency && numberOfStoriesUpFront > 0) {
+            while(prerequisiteStoryId == null || prerequisiteStoryId == id) {
+              prerequisiteStoryId = (id + 1) + Math.floor(Math.random() * numberOfStoriesUpFront);
+            }
           }
     
           let tasks = new Array<Task>();

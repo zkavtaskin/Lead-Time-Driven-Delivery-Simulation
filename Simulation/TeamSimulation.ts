@@ -20,15 +20,16 @@ export class TeamSimulation {
     public Run() {
       let clock:Clock = new Clock(this.intervalSize);
       let backlog = Backlog.Generate(this.teamConfig.Members, this.backlogConfig);
-      
+
       let teamMembers:Array<TeamMember> = new Array<TeamMember>();
       this.teamConfig.Members.forEach((member, index) => 
           teamMembers.push(new TeamMember(index, member, this.teamConfig.Graph)));
 
       this.calibrateGraphFeedback(this.teamConfig.Graph, backlog.Stats, clock);
   
-      for(let completed:number = 0; backlog.Stories.length != completed; clock.Tick()) {
-        teamMembers.forEach((member) => completed += member.DoWork(backlog.Stories, clock).length);
+      while(!backlog.IsCompleted) {
+        teamMembers.forEach(member => member.DoWork(backlog.Stories, clock));
+        clock.Tick();
       }
   
       return backlog;
