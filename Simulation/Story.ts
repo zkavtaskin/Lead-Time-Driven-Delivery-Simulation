@@ -32,6 +32,10 @@ export class Story {
     get Tasks() : Array<Task> {
       return this.tasks;
     }
+
+    get StartedTick() : number {
+      return this.startedTick;
+    }
     
     get CycleTime() : number | null {
         if(this.completedTick && this.startedTick)
@@ -41,7 +45,7 @@ export class Story {
     }
   
     Activate(teamMemberId : number, clock : Clock) : void {
-      if(this.Tasks[teamMemberId].Remaining == this.Tasks[teamMemberId].Original && this.startedTick == null) {
+      if(this.Tasks[teamMemberId] != null && this.Tasks[teamMemberId].Remaining == this.Tasks[teamMemberId].Original && this.startedTick == null) {
         this.startedTick = clock.Ticks;
       }
     }
