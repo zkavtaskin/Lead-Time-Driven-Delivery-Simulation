@@ -4,40 +4,54 @@ import { BacklogConfig } from "./BacklogConfig";
 import { Task } from "./Task";
 
 class MemberStats {
-
     AverageValue :number | null = 0;
     NumberOfStories :number  = 0;
-
 }
 
 export class Backlog {
-    readonly Stories :Array<Story>;
+
     readonly Stats :Array<MemberStats>;
+
+    private stories :Array<Story>;
+    private storiesMap : Map<number, Story> = new Map<number, Story>();
     private storiesCompleted: number = 0;
     private nextStreakIndex :number = 0;
 
     constructor(stories :Array<Story>, stats :Array<MemberStats>) {
-        this.Stories = stories;
+        this.stories = stories;
+
+        for(let i = 0; i < stories.length; i++) {
+          this.storiesMap.set(stories[i].Id, stories[i]);
+        }
+
         this.Stats = stats;
     }
 
     get IsCompleted() : boolean {
-      return this.storiesCompleted == this.Stories.length;
+      return this.storiesCompleted == this.stories.length;
+    }
+
+    get Length() : number {
+      return this.stories.length;
     }
 
     *Iterator() : IterableIterator<Story> {
       let onStreak = true;
-      for(let i = this.nextStreakIndex; i < this.Stories.length; i++) {
-          if(this.Stories[i].IsCompleted() && onStreak) {
+      for(let i = this.nextStreakIndex; i < this.stories.length; i++) {
+          if(this.stories[i].IsCompleted() && onStreak) {
             this.nextStreakIndex = i + 1;
             continue;
           } 
           onStreak = false;
-          yield this.Stories[i];
-          if(this.Stories[i].IsCompleted) {
+          yield this.stories[i];
+          if(this.stories[i].IsCompleted) {
             this.storiesCompleted++;
           }
         }
+    }
+
+    Find(id:number) :Story {
+      return this.storiesMap.get(id);
     }
 
     public static Generate(teamMembers : Array<MemberConfig>, backlogConfig :BacklogConfig) : Backlog {
@@ -53,7 +67,6 @@ export class Backlog {
             hasDeadline = true;
           }
     
-          //forward only dependency
           let prerequisiteStoryId:number | null = null;
           let numberOfStoriesUpFront = backlogConfig.NumberOfStories - (id + 1);
           if(Math.random() <= backlogConfig.DependenciesFrequency && numberOfStoriesUpFront > 0) {

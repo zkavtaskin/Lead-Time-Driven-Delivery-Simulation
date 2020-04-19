@@ -24,7 +24,7 @@ export class TeamMember {
         if(!story.HasWork(this.id))
           continue;
 
-        if(!this.myTurnToPickUp(story) || (story.HasPrerequisite() && this.prerequisiteIsNotComplete(story, backlog)))
+        if(!this.myTurnToPickUp(story) || (story.HasPrerequisite() && !backlog.Find(story.PrerequisiteId).IsCompleted))
           continue;
 
         story.Activate(this.id, clock);
@@ -52,15 +52,6 @@ export class TeamMember {
           return false;
       }
       return true;
-    }
-  
-    private prerequisiteIsNotComplete(story :Story, backlog :Backlog) :boolean {
-      //will move to a hashmap 
-      for(let backlogIndex:number = 0; backlogIndex < backlog.Stories.length; backlogIndex++) {
-        if(backlog.Stories[backlogIndex].Id == story.PrerequisiteId) {
-          return backlog.Stories[backlogIndex].IsCompleted();
-        }
-      }
     }
     
   }
