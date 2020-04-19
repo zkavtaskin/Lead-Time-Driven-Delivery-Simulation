@@ -1,5 +1,6 @@
 import { Story } from "./Story";
 import { Clock } from "./Clock";
+import { Backlog } from "./Backlog";
 
 export class TeamMember {
   
@@ -13,28 +14,26 @@ export class TeamMember {
       this.teamGraph = teamGraph;
     }
   
-    public DoWork(backlog :Array<Story>, clock :Clock) :Array<Story> {
-      var storiesCompleted = new Array<Story>();
-      for(let backlogIndex :number = 0, timeRemaining :number = this.member.Capacity * clock.IntervalSize; timeRemaining != 0 && backlogIndex < backlog.length; backlogIndex++) {
-          
-          let story :Story = backlog[backlogIndex];
-  
-          if(!story.HasWork(this.id))
-            continue;
-  
-          if(!this.myTurnToPickUp(story) || (story.HasPrerequisite() && this.prerequisiteIsNotComplete(story, backlog)))
-            continue;
-  
-          story.Activate(this.id, clock);
-          timeRemaining = story.Contribute(this.id, timeRemaining);
-  
-          this.giveTeamMembersFeedback(story);
-  
-          if(story.Complete(clock.Ticks)) {
-            storiesCompleted.push(story);
-          }
+    public DoWork(backlog :Backlog, clock :Clock) : void{
+      let timeRemaining :number = this.member.Capacity * clock.IntervalSize;
+      for(let story of backlog.Iterator()){
+
+        if(timeRemaining == 0)
+          break;
+
+        if(!story.HasWork(this.id))
+          continue;
+
+        if(!this.myTurnToPickUp(story) || (story.HasPrerequisite() && this.prerequisiteIsNotComplete(story, backlog)))
+          continue;
+
+        story.Activate(this.id, clock);
+        timeRemaining = story.Contribute(this.id, timeRemaining);
+
+        this.giveTeamMembersFeedback(story);
+
+        story.Complete(clock.Ticks);
       }
-      return storiesCompleted;
     }
   
     private giveTeamMembersFeedback(story :Story) :void {
@@ -55,11 +54,11 @@ export class TeamMember {
       return true;
     }
   
-    private prerequisiteIsNotComplete(story :Story, backlog :Array<Story>) :boolean {
+    private prerequisiteIsNotComplete(story :Story, backlog :Backlog) :boolean {
       //will move to a hashmap 
-      for(let backlogIndex:number = 0; backlogIndex < backlog.length; backlogIndex++) {
-        if(backlog[backlogIndex].Id == story.PrerequisiteId) {
-          return backlog[backlogIndex].IsCompleted();
+      for(let backlogIndex:number = 0; backlogIndex < backlog.Stories.length; backlogIndex++) {
+        if(backlog.Stories[backlogIndex].Id == story.PrerequisiteId) {
+          return backlog.Stories[backlogIndex].IsCompleted();
         }
       }
     }

@@ -28,7 +28,7 @@ export class TeamSimulation {
       this.calibrateGraphFeedback(this.teamConfig.Graph, backlog.Stats, clock);
   
       while(!backlog.IsCompleted) {
-        teamMembers.forEach(member => member.DoWork(backlog.Stories, clock));
+        teamMembers.forEach(member => member.DoWork(backlog, clock));
         clock.Tick();
       }
   

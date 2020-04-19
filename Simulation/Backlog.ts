@@ -14,7 +14,7 @@ export class Backlog {
     readonly Stories :Array<Story>;
     readonly Stats :Array<MemberStats>;
     private storiesCompleted: number = 0;
-    private completedStreakIndex :number = 0;
+    private nextStreakIndex :number = 0;
 
     constructor(stories :Array<Story>, stats :Array<MemberStats>) {
         this.Stories = stories;
@@ -25,16 +25,18 @@ export class Backlog {
       return this.storiesCompleted == this.Stories.length;
     }
 
-    *Next() : IterableIterator<Story> {
+    *Iterator() : IterableIterator<Story> {
       let onStreak = true;
-      for(let i = this.completedStreakIndex; i < this.Stories.length; i++) {
-          if(this.Stories[i].IsCompleted && onStreak) {
-            this.storiesCompleted++;
-            this.completedStreakIndex = i;
+      for(let i = this.nextStreakIndex; i < this.Stories.length; i++) {
+          if(this.Stories[i].IsCompleted() && onStreak) {
+            this.nextStreakIndex = i + 1;
             continue;
           } 
           onStreak = false;
           yield this.Stories[i];
+          if(this.Stories[i].IsCompleted) {
+            this.storiesCompleted++;
+          }
         }
     }
 
