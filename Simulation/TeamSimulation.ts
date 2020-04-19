@@ -20,7 +20,11 @@ export class TeamSimulation {
     public Run() {
       let clock:Clock = new Clock(this.intervalSize);
       let backlog = Backlog.Generate(this.teamConfig.Members, this.backlogConfig);
-      let teamMembers:Array<TeamMember> = this.setupTeamMembers(this.teamConfig, clock);
+      
+      let teamMembers:Array<TeamMember> = new Array<TeamMember>();
+      this.teamConfig.Members.forEach((member, index) => 
+          teamMembers.push(new TeamMember(index, member, this.teamConfig.Graph)));
+
       this.calibrateGraphFeedback(this.teamConfig.Graph, backlog.Stats, clock);
   
       for(let completed:number = 0; backlog.Stories.length != completed; clock.Tick()) {
@@ -29,13 +33,7 @@ export class TeamSimulation {
   
       return backlog;
     }
-  
-    private setupTeamMembers(teamConfig, clock :Clock) : Array<TeamMember> {
-      var teamMembers = new Array<TeamMember>();
-      teamConfig.Members.forEach((member, index) => 
-          teamMembers.push(new TeamMember(index, member, teamConfig.Graph)));
-      return teamMembers;
-    }
+
   
     private calibrateGraphFeedback(graph :any, stats :any, clock :Clock) :void {
       graph.forEach((row, rowIndex) => {

@@ -40,8 +40,8 @@ export class Story {
         return null;
     }
   
-    Activate(taskIndex : number, clock : Clock) : void {
-      if(this.Tasks[taskIndex].Remaining == this.Tasks[taskIndex].Original && this.startedTick == null) {
+    Activate(teamMemberId : number, clock : Clock) : void {
+      if(this.Tasks[teamMemberId].Remaining == this.Tasks[teamMemberId].Original && this.startedTick == null) {
         this.startedTick = clock.Ticks;
       }
     }
@@ -58,24 +58,24 @@ export class Story {
       return false;
     }
   
-    HasWork(agentIndex : number) : boolean {
-      return this.tasks[agentIndex] != null && this.tasks[agentIndex].Remaining > 0;
+    HasWork(teamMemberId : number) : boolean {
+      return this.tasks[teamMemberId] != null && this.tasks[teamMemberId].Remaining > 0;
     }
   
-    Contribute(agentIndex : number, effort : number) : number {
-      this.tasks[agentIndex].Remaining -= effort;
-      if(0 > this.tasks[agentIndex].Remaining) {
-        effort = -this.tasks[agentIndex].Remaining;
-        this.tasks[agentIndex].Remaining = 0;
+    Contribute(teamMemberId : number, effort : number) : number {
+      this.tasks[teamMemberId].Remaining -= effort;
+      if(0 > this.tasks[teamMemberId].Remaining) {
+        effort = -this.tasks[teamMemberId].Remaining;
+        this.tasks[teamMemberId].Remaining = 0;
       } else {
         effort = 0;
       }
       return effort;
     }
   
-    AddWork(agentIndex : number, effort : number) : void {
-      this.tasks[agentIndex].Remaining += effort;
-      this.tasks[agentIndex].Actual += effort;
+    AddWork(teamMemberId : number, effort : number) : void {
+      this.tasks[teamMemberId].Remaining += effort;
+      this.tasks[teamMemberId].Actual += effort;
     }
   
     IsCompleted() : boolean{
