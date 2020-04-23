@@ -13,6 +13,7 @@ describe('Story', () => {
         expect(story.Deadline).to.equal(false);
         expect(story.Tasks.length).to.equal(0);
     }),
+
     it('HasWork, no task for team member, there is no work', () => {
         let story = new Story(1, false, 2, new Array<Task>());
         expect(story.HasWork(0)).to.equal(false);
@@ -21,6 +22,26 @@ describe('Story', () => {
         let story = new Story(1, false, 2, new Array<Task>(new Task(2)));
         expect(story.HasWork(0)).to.equal(true);
     }),
+
+    it('HasPrerequisite, there is no prerequisite, false', () => {
+        let story = new Story(1, false, null, new Array<Task>());
+        expect(story.HasPrerequisite()).to.equal(false);
+    }),
+    it('HasPrerequisite, there is prerequisite, true', () => {
+        let story = new Story(1, false, 2, new Array<Task>());
+        expect(story.HasPrerequisite()).to.equal(true);
+    }),
+
+    it('IsCompleted, is completed at zero ticks, true', () => {
+        let story = new Story(1, false, 2, new Array<Task>(new Task(0)));
+        story.Complete(0);
+        expect(story.IsCompleted()).to.equal(true);
+    }),
+    it('IsCompleted, is not completed, false', () => {
+        let story = new Story(1, false, 2, new Array<Task>(new Task(0)));
+        expect(story.IsCompleted()).to.equal(false);
+    }),
+
     it('Activate, there is no such team member, does not activate', () => {
         let story = new Story(1, false, 2, new Array<Task>(new Task(2)));
         story.Activate(1, new Clock(0));
@@ -38,5 +59,20 @@ describe('Story', () => {
         clock.Tick();
         story.Activate(1, clock);
         expect(story.StartedTick).to.equal(0);
+    }),
+
+    it('Complete, tasks are not at zero, false', () => {
+        let story = new Story(1, false, 2, new Array<Task>(new Task(1)));
+        expect(story.Complete(0)).to.equal(false);
+    }),
+    it('Complete, tasks are  at zero, true', () => {
+        let story = new Story(1, false, 2, new Array<Task>(new Task(0)));
+        expect(story.Complete(0)).to.equal(true);
+    }),
+    it('Complete, story is already completed, does not complete again', () => {
+        let story = new Story(1, false, 2, new Array<Task>(new Task(0)));
+        story.Complete(0);
+        expect(story.Complete(1)).to.equal(false);
     })
+
 });

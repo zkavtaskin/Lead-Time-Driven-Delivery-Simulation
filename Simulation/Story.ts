@@ -55,11 +55,15 @@ export class Story {
     }
   
     Complete(ticks : number) : boolean {
-      if(this.allTasksCompleted()) {
-        this.completedTick = ticks;
-        return true;
-      } 
-      return false;
+      if(this.completedTick != null)
+        return false;
+
+      for(var i = 0; i < this.tasks.length; i++) {
+        if(this.tasks[i] != null && this.tasks[i].Remaining > 0)
+          return false;
+      }
+      this.completedTick = ticks;
+      return true;
     }
   
     HasWork(teamMemberId : number) : boolean {
@@ -84,13 +88,5 @@ export class Story {
   
     IsCompleted() : boolean{
       return this.completedTick != null;
-    }
-  
-    allTasksCompleted() : boolean {
-      for(var i = 0; i < this.tasks.length; i++) {
-        if(this.tasks[i] != null && this.tasks[i].Remaining > 0)
-          return false;
-      }
-      return true;
     }
   }
