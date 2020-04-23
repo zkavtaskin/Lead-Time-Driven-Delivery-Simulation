@@ -21,37 +21,33 @@ export class TeamMember {
         if(timeRemaining == 0)
           break;
 
-        if(!story.HasWork(this.id))
+        //make sure dependencies are completed
+        if((story.HasPrerequisite() && !backlog.Find(story.PrerequisiteId).IsCompleted))
           continue;
 
-        if(!this.myTurnToPickUp(story) || (story.HasPrerequisite() && !backlog.Find(story.PrerequisiteId).IsCompleted))
+        //ensure it is team members turn
+        for(let priorTeamMemberId:number = 0; priorTeamMemberId < this.id; priorTeamMemberId++) {
+          if(this.teamGraph[this.id][priorTeamMemberId] == 1 && story.HasWork(priorTeamMemberId))
+            continue;
+        }
+
+        if(!story.HasWork(this.id))
           continue;
 
         story.Activate(this.id, clock.Ticks);
         timeRemaining = story.Contribute(this.id, timeRemaining);
 
-        this.giveTeamMembersFeedback(story);
+        //give upstream team members feedback
+        for(let priorTeamMemberId:number = this.id-1; priorTeamMemberId >= 0; priorTeamMemberId--) {
+          let feedbackRatio = this.teamGraph[priorTeamMemberId][this.id];
+          if(story.Tasks[priorTeamMemberId] != null && Math.random() <= feedbackRatio) {
+            let extraEffort:number = Math.ceil(Math.random() * 0.2 * story.Tasks[priorTeamMemberId].Original);
+            story.AddWork(priorTeamMemberId, extraEffort);
+          }
+        }
 
         story.Complete(clock.Ticks);
       }
-    }
-  
-    private giveTeamMembersFeedback(story :Story) :void {
-      for(let priorTeamMemberId:number = this.id-1; priorTeamMemberId >= 0; priorTeamMemberId--) {
-        let feedbackRatio = this.teamGraph[priorTeamMemberId][this.id];
-        if(story.Tasks[priorTeamMemberId] != null && Math.random() <= feedbackRatio) {
-          let extraEffort:number = Math.ceil(Math.random() * 0.2 * story.Tasks[priorTeamMemberId].Original);
-          story.AddWork(priorTeamMemberId, extraEffort);
-        }
-      }
-    }
-  
-    private myTurnToPickUp(story :Story) :boolean {
-      for(let priorTeamMemberId:number = 0; priorTeamMemberId < this.id; priorTeamMemberId++) {
-        if(this.teamGraph[this.id][priorTeamMemberId] == 1 && story.HasWork(priorTeamMemberId))
-          return false;
-      }
-      return true;
     }
     
   }
