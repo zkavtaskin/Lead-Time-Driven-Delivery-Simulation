@@ -38,23 +38,25 @@ export class Story {
     }
     
     get CycleTime() : number | null {
-        if(this.completedTick && this.startedTick)
-            return this.completedTick - this.startedTick;
-
+      if(this.completedTick == null || this.startedTick == null)
         return null;
+
+      return this.completedTick - this.startedTick;
     }
   
-    Activate(teamMemberId : number, clock : Clock) : void {
-      if(this.Tasks[teamMemberId] != null && this.Tasks[teamMemberId].Remaining == this.Tasks[teamMemberId].Original && this.startedTick == null) {
-        this.startedTick = clock.Ticks;
+    Activate(teamMemberId : number, clockTicks : number) : boolean {
+      if(this.tasks[teamMemberId] != null && this.tasks[teamMemberId].Remaining == this.tasks[teamMemberId].Original && this.startedTick == null) {
+        this.startedTick = clockTicks;
+        return true;
       }
+      return false;
     }
   
     HasPrerequisite() : boolean {
       return this.prerequisiteId != null;
     }
   
-    Complete(ticks : number) : boolean {
+    Complete(clockTicks : number) : boolean {
       if(this.completedTick != null)
         return false;
 
@@ -62,7 +64,7 @@ export class Story {
         if(this.tasks[i] != null && this.tasks[i].Remaining > 0)
           return false;
       }
-      this.completedTick = ticks;
+      this.completedTick = clockTicks;
       return true;
     }
   
@@ -71,6 +73,10 @@ export class Story {
     }
   
     Contribute(teamMemberId : number, effort : number) : number {
+
+      if(this.tasks[teamMemberId] == null)
+        throw new Error("no such team member");
+
       this.tasks[teamMemberId].Remaining -= effort;
       if(0 > this.tasks[teamMemberId].Remaining) {
         effort = -this.tasks[teamMemberId].Remaining;
@@ -81,9 +87,14 @@ export class Story {
       return effort;
     }
   
-    AddWork(teamMemberId : number, effort : number) : void {
+    AddWork(teamMemberId : number, effort : number) : Task {
+  
+      if(this.tasks[teamMemberId] == null)
+        throw new Error("no such team member");
+
       this.tasks[teamMemberId].Remaining += effort;
       this.tasks[teamMemberId].Actual += effort;
+      return this.tasks[teamMemberId];
     }
   
     IsCompleted() : boolean{

@@ -42,22 +42,21 @@ describe('Story', () => {
         expect(story.IsCompleted()).to.equal(false);
     }),
 
+    //TODO test bool
     it('Activate, there is no such team member, does not activate', () => {
         let story = new Story(1, false, 2, new Array<Task>(new Task(2)));
-        story.Activate(1, new Clock(0));
+        expect(story.Activate(1, 0)).to.equal(false);
         expect(story.StartedTick).to.equal(null);
     }),
     it('Activate, this is the first time story is picked up, story is activated', () => {
         let story = new Story(1, false, 2, new Array<Task>(new Task(2)));
-        story.Activate(0, new Clock(0));
+        expect(story.Activate(0, 0)).to.equal(true);
         expect(story.StartedTick).to.equal(0);
     }),
     it('Activate, secod time story is picked up, story is not re-activated', () => {
         let story = new Story(1, false, 2, new Array<Task>(new Task(2), new Task(5)));
-        let clock = new Clock(0);
-        story.Activate(0, clock);
-        clock.Tick();
-        story.Activate(1, clock);
+        expect(story.Activate(0, 0)).to.equal(true);
+        expect(story.Activate(1, 1)).to.equal(false);
         expect(story.StartedTick).to.equal(0);
     }),
 
@@ -73,6 +72,52 @@ describe('Story', () => {
         let story = new Story(1, false, 2, new Array<Task>(new Task(0)));
         story.Complete(0);
         expect(story.Complete(1)).to.equal(false);
+    }),
+
+    it('Contribute, no such team member, throw an error', () => {
+        let story = new Story(1, false, 2, new Array<Task>(new Task(10)));
+        expect(() => story.Contribute(1, 5)).to.throw();
+    }),
+    it('Contribute, remaining effort is greater then effort contributed, returns zero', () => {
+        let story = new Story(1, false, 2, new Array<Task>(new Task(10)));
+        expect(story.Contribute(0, 1)).to.equal(0);
+    }),
+    it('Contribute, remaining effort is same as effort contributed, returns zero', () => {
+        let story = new Story(1, false, 2, new Array<Task>(new Task(10)));
+        expect(story.Contribute(0, 10)).to.equal(0);
+    }),
+    it('Contribute, remaining effort is less then  effort contributed, returns remainder', () => {
+        let story = new Story(1, false, 2, new Array<Task>(new Task(10)));
+        expect(story.Contribute(0, 20)).to.equal(10);
+    }),
+
+
+    it('AddWork, no such team member, throw an error', () => {
+        let story = new Story(1, false, 2, new Array<Task>(new Task(10)));
+        expect(() => story.AddWork(2, 2)).to.throw();
+    }),
+    it('AddWork, added one hours, remaining and actual are updated with extra hour, original will remain the same', () => {
+        let story = new Story(1, false, 2, new Array<Task>(new Task(1)));
+        let task = story.AddWork(0, 1);
+        expect(task.Remaining).to.equal(2);
+        expect(task.Actual).to.equal(2);
+        expect(task.Original).to.equal(1);
+    }),
+
+    it('CycleTime, story not started not completed, returns null', () => {
+        let story = new Story(1, false, 2, new Array<Task>(new Task(1)));
+        expect(story.CycleTime).to.equal(null);
+    }),
+    it('CycleTime, story started but not completed, returns null', () => {
+        let story = new Story(1, false, 2, new Array<Task>(new Task(1)));
+        story.Activate(0, 0);
+        expect(story.CycleTime).to.equal(null);
+    }),
+    it('CycleTime, story started and completed, it took 2 ticks', () => {
+        let story = new Story(1, false, 2, new Array<Task>(new Task(0)));
+        story.Activate(0, 0);
+        story.Complete(2);
+        expect(story.CycleTime).to.equal(2);
     })
 
 });
