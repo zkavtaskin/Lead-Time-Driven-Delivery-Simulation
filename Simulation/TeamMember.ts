@@ -27,7 +27,7 @@ export class TeamMember {
         if(!this.myTurnToPickUp(story) || (story.HasPrerequisite() && !backlog.Find(story.PrerequisiteId).IsCompleted))
           continue;
 
-        story.Activate(this.id, clock);
+        story.Activate(this.id, clock.Ticks);
         timeRemaining = story.Contribute(this.id, timeRemaining);
 
         this.giveTeamMembersFeedback(story);
