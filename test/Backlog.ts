@@ -7,7 +7,7 @@ import { Story } from '../Simulation/Story';
 describe('Backlog', () => {
     it('Generate backlog with 1 story for 1 team member, contains 1 story for 1 team member', () => {
         let members = [new MemberConfig("PO", 1, 1, 1) ];
-        let config = new BacklogConfig(1, 1, 1, 10);
+        let config = new BacklogConfig(1, 1, 1, 10, 0);
         let backlog =  Backlog.Generate(members, config);
 
         let iterator = backlog.Iterator();
@@ -19,7 +19,7 @@ describe('Backlog', () => {
     
     it('Generate backlog with 1 story for 1 team member, story has no prerequisite as it is the only story', () => {
         let members = [new MemberConfig("PO", 1, 1, 1) ];
-        let config = new BacklogConfig(1, 1, 1, 10);
+        let config = new BacklogConfig(1, 1, 1, 10, 0);
         let backlog =  Backlog.Generate(members, config);
 
         let iterator = backlog.Iterator();
@@ -30,7 +30,7 @@ describe('Backlog', () => {
 
     it('Generate backlog with 2 stories for 1 team member, first story has a dependency on the second, but second not on the first.', () => {
         let members = [new MemberConfig("PO", 1, 1, 1) ];
-        let config = new BacklogConfig(2, 1, 1, 10);
+        let config = new BacklogConfig(2, 1, 1, 10, 0);
         let backlog =  Backlog.Generate(members, config);
 
         let iterator = backlog.Iterator();
@@ -43,7 +43,7 @@ describe('Backlog', () => {
 
     it('Generate backlog with 1 story for 1 team member, story has deadline', () => {
         let members = [new MemberConfig("PO", 1, 1, 1) ];
-        let config = new BacklogConfig(1, 1, 1, 10);
+        let config = new BacklogConfig(1, 1, 1, 10, 0);
         let backlog =  Backlog.Generate(members, config);
 
         let iterator = backlog.Iterator();
@@ -54,7 +54,7 @@ describe('Backlog', () => {
 
     it('Generate backlog with 1 story for 1 team member, task has work', () => {
         let members = [new MemberConfig("PO", 1, 1, 1) ];
-        let config = new BacklogConfig(1, 1, 1, 10);
+        let config = new BacklogConfig(1, 1, 1, 10, 0);
         let backlog =  Backlog.Generate(members, config);
 
 
@@ -66,7 +66,7 @@ describe('Backlog', () => {
 
     it('Iterator, backlog with 2 stories, 2 stories are returned, third story is undefined', () => {
         let members = [new MemberConfig("PO", 1, 1, 1) ];
-        let config = new BacklogConfig(2, 1, 1, 10);
+        let config = new BacklogConfig(2, 1, 1, 10, 0);
         let backlog =  Backlog.Generate(members, config);
 
         let iterator = backlog.Iterator();
@@ -81,7 +81,7 @@ describe('Backlog', () => {
 
     it('Iterator, backlog with 2 stories, 1 story is completed, returns second story next time', () => {
         let members = [new MemberConfig("PO", 1, 1, 1) ];
-        let config = new BacklogConfig(2, 1, 1, 10);
+        let config = new BacklogConfig(2, 1, 1, 10, 0);
         let backlog =  Backlog.Generate(members, config);
 
         let iteratorBeforeComplete = backlog.Iterator();
@@ -97,7 +97,7 @@ describe('Backlog', () => {
 
     it('IsCompleted, backlog with 2 stories, none of the stories are completed, not completed', () => {
         let members = [new MemberConfig("PO", 1, 1, 1) ];
-        let config = new BacklogConfig(2, 1, 1, 10);
+        let config = new BacklogConfig(2, 1, 1, 10, 0);
         let backlog =  Backlog.Generate(members, config);
 
         expect(backlog.IsCompleted).to.equal(false);
@@ -105,7 +105,7 @@ describe('Backlog', () => {
 
     it('IsCompleted, backlog with 2 stories, one of the stories is completed, not completed', () => {
         let members = [new MemberConfig("PO", 1, 1, 1) ];
-        let config = new BacklogConfig(2, 1, 1, 10);
+        let config = new BacklogConfig(2, 1, 1, 10, 0);
         let backlog =  Backlog.Generate(members, config);
 
         let iterator = backlog.Iterator();
@@ -118,7 +118,7 @@ describe('Backlog', () => {
 
     it('IsCompleted, backlog with 2 stories, two of the stories are completed, completed', () => {
         let members = [new MemberConfig("PO", 1, 1, 1) ];
-        let config = new BacklogConfig(2, 1, 1, 10);
+        let config = new BacklogConfig(2, 1, 1, 10, 0);
         let backlog =  Backlog.Generate(members, config);
 
         for(let story of backlog.Iterator()){
@@ -131,7 +131,7 @@ describe('Backlog', () => {
 
     it('Find, backlog with 10 stories, story exists, returns story', () => {
         let members = [new MemberConfig("PO", 1, 1, 1) ];
-        let config = new BacklogConfig(10, 1, 1, 10);
+        let config = new BacklogConfig(10, 1, 1, 10, 0);
         let backlog =  Backlog.Generate(members, config);
 
         let story = backlog.Find(5);
@@ -141,7 +141,7 @@ describe('Backlog', () => {
 
     it('Find, backlog with 10 stories, story does not exist, returns undefined', () => {
         let members = [new MemberConfig("PO", 1, 1, 1) ];
-        let config = new BacklogConfig(10, 1, 1, 10);
+        let config = new BacklogConfig(10, 1, 1, 10, 0);
         let backlog =  Backlog.Generate(members, config);
 
         let story = backlog.Find(11);

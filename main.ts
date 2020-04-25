@@ -21,7 +21,7 @@ let teamConfig = {
    ]
   }
 
-  let backlogConfig = new BacklogConfig(10, 1/10, 1/10, 30);
+  let backlogConfig = new BacklogConfig(10, 1/10, 1/10, 1, 30);
 
   let teamSimulation = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
   let results = teamSimulation.Run();

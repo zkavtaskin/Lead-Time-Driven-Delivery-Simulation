@@ -44,7 +44,7 @@ export class Backlog {
           } 
           onStreak = false;
           yield this.stories[i];
-          if(this.stories[i].IsCompleted) {
+          if(this.stories[i].IsCompleted()) {
             this.storiesCompleted++;
           }
         }
@@ -78,7 +78,7 @@ export class Backlog {
           let tasks = new Array<Task>();
           memberConfig.forEach((member :MemberConfig, index:number) => {
             if(Math.random() <= member.BacklogFrequency) {
-              let effort:number = Math.ceil(Math.random() * member.BacklogContribution * backlogConfig.StorySize);
+              let effort:number = backlogConfig.MinStorySize + Math.ceil(Math.random() * member.BacklogContribution * backlogConfig.MaxStorySize);
               tasks.push(new Task(effort));
               memberStats[index].AverageValue += effort;
               memberStats[index].NumberOfStories++;
