@@ -18,22 +18,23 @@ export class TeamMember {
       let timeRemaining :number = this.member.Capacity * clock.IntervalSize;
       for(let story of backlog.Iterator()){
 
-        if(timeRemaining == 0)
-          break;
+        if(timeRemaining == 0) break;
 
         //make sure dependencies are completed
-        if((story.HasPrerequisite() && !backlog.Find(story.PrerequisiteId).IsCompleted))
-          continue;
+        if((story.HasPrerequisite() && !backlog.Find(story.PrerequisiteId).IsCompleted)) continue;
 
         //ensure it is team members turn
+        let storyHasUpstreamwork = false;
         for(let priorTeamMemberId:number = 0; priorTeamMemberId < this.id; priorTeamMemberId++) {
-          if(this.teamGraph[this.id][priorTeamMemberId] == 1 && story.HasWork(priorTeamMemberId))
-            continue;
+          if(this.teamGraph[this.id][priorTeamMemberId] == 1 && story.HasWork(priorTeamMemberId)) {
+            storyHasUpstreamwork = true;
+            break;
+          }
         }
+        if(storyHasUpstreamwork) continue;
 
-        if(!story.HasWork(this.id))
-          continue;
-
+        if(!story.HasWork(this.id)) continue;
+        
         story.Activate(this.id, clock.Ticks);
         timeRemaining = story.Contribute(this.id, timeRemaining);
 
