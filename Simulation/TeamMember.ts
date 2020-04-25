@@ -1,14 +1,14 @@
-import { Story } from "./Story";
 import { Clock } from "./Clock";
 import { Backlog } from "./Backlog";
+import { MemberConfig } from "./MemberConfig";
 
 export class TeamMember {
   
     private id: number;
-    private member: any;
-    private teamGraph: any;
+    private member: MemberConfig;
+    private teamGraph: Array<Array<number>>;
 
-    constructor(id :number, member:any, teamGraph:any) {
+    constructor(id :number, member:MemberConfig, teamGraph: Array<Array<number>>) {
       this.id = id;
       this.member = member;
       this.teamGraph = teamGraph;

@@ -54,11 +54,11 @@ export class Backlog {
       return this.storiesMap.get(id);
     }
 
-    public static Generate(teamMembers : Array<MemberConfig>, backlogConfig :BacklogConfig) : Backlog {
+    public static Generate(memberConfig : Array<MemberConfig>, backlogConfig :BacklogConfig) : Backlog {
         let stories = new Array<Story>();
         let memberStats = new Array<MemberStats>();
   
-        teamMembers.forEach((member, index) => memberStats[index] = new MemberStats());
+        memberConfig.forEach((member, index) => memberStats[index] = new MemberStats());
     
         for(let id:number = 0; id < backlogConfig.NumberOfStories; id++) {
 
@@ -76,7 +76,7 @@ export class Backlog {
           }
     
           let tasks = new Array<Task>();
-          teamMembers.forEach((member :MemberConfig, index:number) => {
+          memberConfig.forEach((member :MemberConfig, index:number) => {
             if(Math.random() <= member.BacklogFrequency) {
               let effort:number = Math.ceil(Math.random() * member.BacklogContribution * backlogConfig.StorySize);
               tasks.push(new Task(effort));
@@ -91,7 +91,7 @@ export class Backlog {
           stories.push(new Story(id, hasDeadline, prerequisiteStoryId, tasks));
         }
     
-        teamMembers.forEach((member :MemberConfig, index :number) => {
+        memberConfig.forEach((member :MemberConfig, index :number) => {
           memberStats[index].AverageValue = memberStats[index].AverageValue / memberStats[index].NumberOfStories;
         });
   
