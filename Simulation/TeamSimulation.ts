@@ -2,46 +2,40 @@ import { Backlog } from "./Backlog";
 import { Clock } from "./Clock";
 import { TeamMember } from "./TeamMember";
 import { BacklogConfig } from "./BacklogConfig";
+import { TeamConfig } from "./TeamConfig";
 
 export class TeamSimulation {
 
     private name :string;
-    private teamConfig :any;
-    private backlogConfig :BacklogConfig;
-    private intervalSize :number;
+    private clock :Clock;
+    private backlog :Backlog;
+    private teamMembers :Array<TeamMember>;
 
-    constructor(name :string, teamConfig :any, backlogConfig :BacklogConfig,  intervalSize :number) {
+    constructor(name :string, teamConfig :TeamConfig, backlogConfig :BacklogConfig,  intervalSize :number) {
       this.name = name;
-      this.intervalSize = intervalSize;
-      this.teamConfig = teamConfig;
-      this.backlogConfig = backlogConfig;
-    }
-  
-    public Run() {
-      let clock:Clock = new Clock(this.intervalSize);
-      let backlog = Backlog.Generate(this.teamConfig.Members, this.backlogConfig);
 
-      let teamMembers:Array<TeamMember> = new Array<TeamMember>();
-      this.teamConfig.Members.forEach((member, index) => 
-          teamMembers.push(new TeamMember(index, member, this.teamConfig.Graph)));
+      let clock:Clock = new Clock(intervalSize);
+      this.backlog = Backlog.Generate(teamConfig.Members, backlogConfig);
 
-      this.calibrateGraphFeedback(this.teamConfig.Graph, backlog.Stats, clock);
-  
-      while(!backlog.IsCompleted) {
-        teamMembers.forEach(member => member.DoWork(backlog, clock));
-        clock.Tick();
-      }
-  
-      return backlog;
-    }
-
-  
-    private calibrateGraphFeedback(graph :any, stats :any, clock :Clock) :void {
-      graph.forEach((row, rowIndex) => {
-        for(let columnIndex:number = rowIndex; columnIndex < graph.lenght; columnIndex++) {
-          graph[rowIndex][columnIndex] = (clock.IntervalSize / stats[rowIndex].Value) * graph[rowIndex][columnIndex];
+      this.teamMembers= new Array<TeamMember>();
+      teamConfig.Members.forEach((member, index) => 
+          this.teamMembers.push(new TeamMember(index, member, teamConfig.Graph)));
+        
+      //Graph calibration
+      teamConfig.Graph.forEach((row, rowTeamMemberId) => {
+        for(let columnTeamMemberId:number = rowTeamMemberId; columnTeamMemberId < teamConfig.Graph.length; columnTeamMemberId++) {
+          teamConfig.Graph[rowTeamMemberId][columnTeamMemberId] = (clock.IntervalSize / this.backlog.Stats[rowTeamMemberId].AverageValue) * teamConfig.Graph[rowTeamMemberId][columnTeamMemberId];
         }
       });
+    }
+  
+    public Run() : Backlog {
+      while(!this.backlog.IsCompleted) {
+        this.teamMembers.forEach(member => member.DoWork(this.backlog, this.clock));
+        this.clock.Tick();
+      }
+  
+      return this.backlog;
     }
   
   }
