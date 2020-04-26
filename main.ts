@@ -20,8 +20,13 @@ let teamConfig = new TeamConfig([
         ]
 );
 
-  let backlogConfig = new BacklogConfig(10, 1/10, 1/10, 1, 30);
+/*
+TODO: 
+        1. change lower bound and upper bound implementation for story size.
+        2. change the prerequisite approach to work backwards and not forwards.   
+*/
+let backlogConfig = new BacklogConfig(10, 1/10, 1/10, 1, 30);
 
-  let teamSimulation = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
-  let results = teamSimulation.Run();
-  console.log(results);
+let teamSimulation = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
+let results = teamSimulation.Run();
+console.log(results);

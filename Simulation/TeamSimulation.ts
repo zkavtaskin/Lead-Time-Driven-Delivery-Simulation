@@ -14,17 +14,17 @@ export class TeamSimulation {
     constructor(name :string, teamConfig :TeamConfig, backlogConfig :BacklogConfig,  intervalSize :number) {
       this.name = name;
 
-      let clock:Clock = new Clock(intervalSize);
+      this.clock = new Clock(intervalSize);
       this.backlog = Backlog.Generate(teamConfig.Members, backlogConfig);
 
       this.teamMembers= new Array<TeamMember>();
       teamConfig.Members.forEach((member, index) => 
           this.teamMembers.push(new TeamMember(index, member, teamConfig.Graph)));
         
-      //Graph calibration
+      //Graph feedback interval normalisation 
       teamConfig.Graph.forEach((row, rowTeamMemberId) => {
         for(let columnTeamMemberId:number = rowTeamMemberId; columnTeamMemberId < teamConfig.Graph.length; columnTeamMemberId++) {
-          let ratioOfStoryDoneOnAvg = clock.IntervalSize / this.backlog.Stats[rowTeamMemberId].AverageValue;
+          let ratioOfStoryDoneOnAvg = this.clock.IntervalSize / this.backlog.Stats[rowTeamMemberId].AverageValue;
           teamConfig.Graph[rowTeamMemberId][columnTeamMemberId] = ratioOfStoryDoneOnAvg * teamConfig.Graph[rowTeamMemberId][columnTeamMemberId];
         }
       });
