@@ -24,7 +24,8 @@ export class TeamSimulation {
       //Graph calibration
       teamConfig.Graph.forEach((row, rowTeamMemberId) => {
         for(let columnTeamMemberId:number = rowTeamMemberId; columnTeamMemberId < teamConfig.Graph.length; columnTeamMemberId++) {
-          teamConfig.Graph[rowTeamMemberId][columnTeamMemberId] = (clock.IntervalSize / this.backlog.Stats[rowTeamMemberId].AverageValue) * teamConfig.Graph[rowTeamMemberId][columnTeamMemberId];
+          let ratioOfStoryDoneOnAvg = clock.IntervalSize / this.backlog.Stats[rowTeamMemberId].AverageValue;
+          teamConfig.Graph[rowTeamMemberId][columnTeamMemberId] = ratioOfStoryDoneOnAvg * teamConfig.Graph[rowTeamMemberId][columnTeamMemberId];
         }
       });
     }
