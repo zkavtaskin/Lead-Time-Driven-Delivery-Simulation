@@ -22,7 +22,6 @@ let teamConfig = new TeamConfig([
 
 /*
 TODO: 
-        1. change lower bound and upper bound implementation for story size.
         2. change the prerequisite approach to work backwards and not forwards.   
 */
 let backlogConfig = new BacklogConfig(10, 1/10, 1/10, 1, 30);

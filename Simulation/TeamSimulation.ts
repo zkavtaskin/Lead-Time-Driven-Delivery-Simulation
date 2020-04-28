@@ -11,20 +11,20 @@ export class TeamSimulation {
     private backlog :Backlog;
     private teamMembers :Array<TeamMember>;
 
-    constructor(name :string, teamConfig :TeamConfig, backlogConfig :BacklogConfig,  intervalSize :number) {
+    constructor(name :string, teamConfig :TeamConfig, backlogConfig :BacklogConfig,  effortSizePerTick :number) {
       this.name = name;
 
-      this.clock = new Clock(intervalSize);
+      this.clock = new Clock(effortSizePerTick);
       this.backlog = Backlog.Generate(teamConfig.Members, backlogConfig);
 
       this.teamMembers= new Array<TeamMember>();
       teamConfig.Members.forEach((member, index) => 
           this.teamMembers.push(new TeamMember(index, member, teamConfig.Graph)));
         
-      //Graph feedback interval normalisation 
+      //Graph feedback tick normalisation 
       teamConfig.Graph.forEach((row, rowTeamMemberId) => {
         for(let columnTeamMemberId:number = rowTeamMemberId; columnTeamMemberId < teamConfig.Graph.length; columnTeamMemberId++) {
-          let ratioOfStoryDoneOnAvg = this.clock.IntervalSize / this.backlog.Stats[rowTeamMemberId].AverageValue;
+          let ratioOfStoryDoneOnAvg = this.clock.EffortSize / this.backlog.Stats[rowTeamMemberId].AverageValue;
           teamConfig.Graph[rowTeamMemberId][columnTeamMemberId] = ratioOfStoryDoneOnAvg * teamConfig.Graph[rowTeamMemberId][columnTeamMemberId];
         }
       });

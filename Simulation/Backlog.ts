@@ -75,10 +75,11 @@ export class Backlog {
             }
           }
     
+          let storySize = backlogConfig.MinStorySize + (Math.random() * (backlogConfig.MaxStorySize - backlogConfig.MinStorySize));
           let tasks = new Array<Task>();
           memberConfig.forEach((member :MemberConfig, index:number) => {
             if(Math.random() <= member.BacklogFrequency) {
-              let effort:number = backlogConfig.MinStorySize + Math.ceil(Math.random() * member.BacklogContribution * backlogConfig.MaxStorySize);
+              let effort:number = member.BacklogContribution * storySize;
               tasks.push(new Task(effort));
               memberStats[index].AverageValue += effort;
               memberStats[index].NumberOfStories++;

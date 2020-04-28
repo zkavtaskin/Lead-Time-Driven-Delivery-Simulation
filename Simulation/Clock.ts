@@ -1,14 +1,14 @@
 export class Clock {
 
-    private intervalSize : number;
+    private effortSize : number;
     private ticks : number = 0;
 
-    constructor(intervalSize : number) {
-      this.intervalSize = intervalSize;
+    constructor(effortSize : number) {
+      this.effortSize = effortSize;
     }
   
-    get IntervalSize() : number {
-      return this.intervalSize;
+    get EffortSize() : number {
+      return this.effortSize;
     }
   
     get Ticks() : number {

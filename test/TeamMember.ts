@@ -13,7 +13,7 @@ describe('TeamMember', () => {
         let membersConfig = [
                 new MemberConfig("DEV", 1, 1, 1/2)
         ]
-        let backlogConfig = new BacklogConfig(1, 0, 0, 1, 0);
+        let backlogConfig = new BacklogConfig(1, 0, 0, 1);
         let backlog = Backlog.Generate(membersConfig, backlogConfig);
         let clock = new Clock(1);
 
@@ -28,7 +28,7 @@ describe('TeamMember', () => {
         let membersConfig = [
                 new MemberConfig("DEV", 1, 1, 1/2)
         ]
-        let backlogConfig = new BacklogConfig(1, 0, 0, 10, 0);
+        let backlogConfig = new BacklogConfig(1, 0, 0, 10);
         let backlog = Backlog.Generate(membersConfig, backlogConfig);
         let clock = new Clock(1);
 
@@ -43,7 +43,7 @@ describe('TeamMember', () => {
         let membersConfig = [
                 new MemberConfig("DEV", 1, 1, 1/2)
         ]
-        let backlogConfig = new BacklogConfig(1, 0, 0, 10, 0);
+        let backlogConfig = new BacklogConfig(1, 0, 0, 10);
         let backlog = Backlog.Generate(membersConfig, backlogConfig);
         let clock = new Clock(5);
 
@@ -57,9 +57,9 @@ describe('TeamMember', () => {
             [0]
         ]
         let membersConfig = [
-                new MemberConfig("DEV", 1, 1, 1/2)
+                new MemberConfig("DEV", 1, 1, 1)
         ]
-        let backlogConfig = new BacklogConfig(2, 1, 0, 1, 0);
+        let backlogConfig = new BacklogConfig(2, 1, 0, 1);
         let backlog = Backlog.Generate(membersConfig, backlogConfig);
         let clock = new Clock(1);
 
@@ -74,7 +74,7 @@ describe('TeamMember', () => {
         let membersConfig = [
                 new MemberConfig("DEV", 1, 1, 1/2)
         ]
-        let backlogConfig = new BacklogConfig(2, 1, 0, 1, 0);
+        let backlogConfig = new BacklogConfig(2, 1, 0, 1);
         let backlog = Backlog.Generate(membersConfig, backlogConfig);
         let clock = new Clock(1);
 
@@ -93,7 +93,7 @@ describe('TeamMember', () => {
                 new MemberConfig("PO", 1, 1, 1/2),
                 new MemberConfig("DEV", 1, 1, 1/2)
         ]
-        let backlogConfig = new BacklogConfig(1, 0, 0, 5, 0);
+        let backlogConfig = new BacklogConfig(1, 0, 0, 5);
         let backlog = Backlog.Generate(membersConfig, backlogConfig);
         let clock = new Clock(5);
 
@@ -113,7 +113,7 @@ describe('TeamMember', () => {
                 new MemberConfig("PO", 1, 1, 1/2),
                 new MemberConfig("DEV", 1, 1, 1/2)
         ]
-        let backlogConfig = new BacklogConfig(1, 0, 0, 5, 0);
+        let backlogConfig = new BacklogConfig(1, 0, 0, 5);
         let backlog = Backlog.Generate(membersConfig, backlogConfig);
         let clock = new Clock(5);
 
@@ -133,7 +133,7 @@ describe('TeamMember', () => {
                 new MemberConfig("PO", 1, 1, 1/2),
                 new MemberConfig("DEV", 1, 1, 1/2)
         ]
-        let backlogConfig = new BacklogConfig(1, 0, 0, 5, 0);
+        let backlogConfig = new BacklogConfig(1, 0, 0, 5);
         let backlog = Backlog.Generate(membersConfig, backlogConfig);
         let clock = new Clock(5);
 
@@ -144,6 +144,27 @@ describe('TeamMember', () => {
 
         expect(backlog.IsCompleted).to.equal(false);
         expect(backlog.Find(0).Tasks[0].Actual > backlog.Find(0).Tasks[0].Original).to.equal(true);
-    })
+    }),
+    it('DEV found a problem and gave feedback to the PO, feedback is given only once for 1 story in a single tick', () => {
+        let teamGraph = [
+            [0, 1],
+            [1, 0]
+        ];
+        let membersConfig = [
+                new MemberConfig("PO", 1, 1, 1/2),
+                new MemberConfig("DEV", 1, 1, 1/2)
+        ]
+        let backlogConfig = new BacklogConfig(2, 0, 0, 5);
+        let backlog = Backlog.Generate(membersConfig, backlogConfig);
+        let clock = new Clock(10);
 
+        let POTeamMember = new TeamMember(0, membersConfig[0], teamGraph);
+        POTeamMember.DoWork(backlog, clock);
+        let DevTeamMember = new TeamMember(1, membersConfig[1], teamGraph);
+        DevTeamMember.DoWork(backlog, clock);
+
+        expect(backlog.IsCompleted).to.equal(false);
+        expect(backlog.Find(0).Tasks[0].Actual > backlog.Find(0).Tasks[0].Original).to.equal(true);
+        expect(backlog.Find(1).Tasks[0].Actual > backlog.Find(0).Tasks[0].Original).to.equal(false);
+    })
 });
