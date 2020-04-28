@@ -84,13 +84,18 @@ describe('Backlog', () => {
         let config = new BacklogConfig(2, 1, 1, 10, 10);
         let backlog =  Backlog.Generate(members, config);
 
-        let iteratorBeforeComplete = backlog.Iterator();
-        let firstStory = iteratorBeforeComplete.next().value as Story;
-        firstStory.Contribute(0, firstStory.Tasks[0].Remaining);
-        firstStory.Complete(0);
+        for(let story of backlog.Iterator()){
+            story.Contribute(0, story.Tasks[0].Remaining);
+            story.Complete(0);
+            break;
+        }
 
-        let iteratorAfterComplete = backlog.Iterator();
-        let secondStory = iteratorAfterComplete.next().value as Story;
+        let secondStory:Story;
+        for(let story of backlog.Iterator()){
+            secondStory = story;
+            story.Contribute(0, story.Tasks[0].Remaining);
+            story.Complete(0);
+        }
 
         expect(secondStory.Id).to.equal(1);
     }),

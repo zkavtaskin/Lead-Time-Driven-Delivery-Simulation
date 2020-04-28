@@ -20,10 +20,6 @@ let teamConfig = new TeamConfig([
         ]
 );
 
-/*
-TODO: 
-        2. change the prerequisite approach to work backwards and not forwards.   
-*/
 let backlogConfig = new BacklogConfig(10, 1/10, 1/10, 1, 30);
 
 let teamSimulation = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);

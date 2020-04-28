@@ -28,7 +28,7 @@ export class Backlog {
     }
 
     get IsCompleted() : boolean {
-      return this.storiesCompleted == this.stories.length;
+      return this.nextStreakIndex === this.stories.length;
     }
 
     get Length() : number {
@@ -38,15 +38,12 @@ export class Backlog {
     *Iterator() : IterableIterator<Story> {
       let onStreak = true;
       for(let i = this.nextStreakIndex; i < this.stories.length; i++) {
+          yield this.stories[i];
           if(this.stories[i].IsCompleted() && onStreak) {
             this.nextStreakIndex = i + 1;
             continue;
           } 
           onStreak = false;
-          yield this.stories[i];
-          if(this.stories[i].IsCompleted()) {
-            this.storiesCompleted++;
-          }
         }
     }
 
