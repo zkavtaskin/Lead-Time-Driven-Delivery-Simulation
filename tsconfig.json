@@ -11,5 +11,5 @@
     "Simulation/*.ts",
     "*.ts"
   ],
-  "exclude": ["node_modules", "test"]
+  "exclude": ["node_modules", "SimulationTest"]
 }

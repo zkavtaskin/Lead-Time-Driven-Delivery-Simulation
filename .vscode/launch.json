@@ -7,7 +7,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Run Simulation",
             "program": "${workspaceFolder}/main.ts",
             "preLaunchTask": "tsc: build - tsconfig.json",
             "outFiles": ["${workspaceFolder}/out/**/*.js"]
@@ -24,7 +24,7 @@
                 "999999",
                 "--colors",
                 "--recursive",
-                "${workspaceFolder}/test/**/*.ts"
+                "${workspaceFolder}/SimulationTest/**/*.ts"
             ],
             "internalConsoleOptions": "openOnSessionStart"
         }
