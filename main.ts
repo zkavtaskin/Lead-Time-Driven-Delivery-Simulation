@@ -28,4 +28,5 @@ console.log(results);
 
 /*
 TODO: Update stats to include fitness metrics for optimisation algos
+        It seems by addding simple stats it has removed the other lib, need to fix this
 */

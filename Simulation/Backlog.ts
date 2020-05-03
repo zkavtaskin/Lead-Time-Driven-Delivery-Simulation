@@ -2,29 +2,21 @@ import { Story } from "./Story";
 import { MemberConfig } from "./MemberConfig";
 import { BacklogConfig } from "./BacklogConfig";
 import { Task } from "./Task";
-
-class MemberStats {
-    AverageValue :number | null = 0;
-    NumberOfStories :number  = 0;
-}
+import { BacklogStats } from "./BacklogStats";
 
 export class Backlog {
-
-    readonly Stats :Array<MemberStats>;
 
     private stories :Array<Story>;
     private storiesMap : Map<number, Story> = new Map<number, Story>();
     private storiesCompleted: number = 0;
     private nextStreakIndex :number = 0;
 
-    constructor(stories :Array<Story>, stats :Array<MemberStats>) {
+    constructor(stories :Array<Story>) {
         this.stories = stories;
 
         for(let i = 0; i < stories.length; i++) {
           this.storiesMap.set(stories[i].Id, stories[i]);
         }
-
-        this.Stats = stats;
     }
 
     get IsCompleted() : boolean {
@@ -51,11 +43,12 @@ export class Backlog {
       return this.storiesMap.get(id);
     }
 
+    GetStats() : BacklogStats {
+      return new BacklogStats(this.stories);
+    }
+
     public static Generate(memberConfig : Array<MemberConfig>, backlogConfig :BacklogConfig) : Backlog {
         let stories = new Array<Story>();
-        let memberStats = new Array<MemberStats>();
-  
-        memberConfig.forEach((member, index) => memberStats[index] = new MemberStats());
     
         for(let id:number = 0; id < backlogConfig.NumberOfStories; id++) {
 
@@ -77,8 +70,6 @@ export class Backlog {
             if(Math.random() <= member.BacklogFrequency) {
               let effort:number = member.BacklogContribution * storySize;
               tasks.push(new Task(effort));
-              memberStats[index].AverageValue += effort;
-              memberStats[index].NumberOfStories++;
     
             } else {
               tasks.push(null);
@@ -87,12 +78,8 @@ export class Backlog {
     
           stories.push(new Story(id, hasDeadline, prerequisiteStoryId, tasks));
         }
-    
-        memberConfig.forEach((member :MemberConfig, index :number) => {
-          memberStats[index].AverageValue = memberStats[index].AverageValue / memberStats[index].NumberOfStories;
-        });
   
-        return new Backlog(stories, memberStats);
+        return new Backlog(stories);
     }
 
 }

@@ -21,10 +21,11 @@ export class TeamSimulation {
       teamConfig.Members.forEach((member, index) => 
           this.teamMembers.push(new TeamMember(index, member, teamConfig.Graph)));
         
-      //Graph feedback tick normalisation 
+      //Graph feedback tick normalisation
+      let backlogStats = this.backlog.GetStats(); 
       teamConfig.Graph.forEach((row, rowTeamMemberId) => {
         for(let columnTeamMemberId:number = rowTeamMemberId; columnTeamMemberId < teamConfig.Graph.length; columnTeamMemberId++) {
-          let ratioOfStoryDoneOnAvg = this.clock.EffortSize / this.backlog.Stats[rowTeamMemberId].AverageValue;
+          let ratioOfStoryDoneOnAvg = this.clock.EffortSize / backlogStats.TeamMembers[rowTeamMemberId].Mean;
           teamConfig.Graph[rowTeamMemberId][columnTeamMemberId] = ratioOfStoryDoneOnAvg * teamConfig.Graph[rowTeamMemberId][columnTeamMemberId];
         }
       });
