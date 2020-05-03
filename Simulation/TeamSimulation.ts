@@ -25,7 +25,7 @@ export class TeamSimulation {
       let backlogStats = this.backlog.GetStats(); 
       teamConfig.Graph.forEach((row, rowTeamMemberId) => {
         for(let columnTeamMemberId:number = rowTeamMemberId; columnTeamMemberId < teamConfig.Graph.length; columnTeamMemberId++) {
-          let ratioOfStoryDoneOnAvg = this.clock.EffortSize / backlogStats.TeamMembers[rowTeamMemberId].Mean;
+          let ratioOfStoryDoneOnAvg = this.clock.EffortSize / backlogStats.TeamMembersOriginal[rowTeamMemberId].Mean;
           teamConfig.Graph[rowTeamMemberId][columnTeamMemberId] = ratioOfStoryDoneOnAvg * teamConfig.Graph[rowTeamMemberId][columnTeamMemberId];
         }
       });

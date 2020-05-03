@@ -20,13 +20,8 @@ let teamConfig = new TeamConfig([
         ]
 );
 
-let backlogConfig = new BacklogConfig(10, 1/10, 1/10, 1, 30);
+let backlogConfig = new BacklogConfig(100, 1/10, 1/10, 1, 30);
 
 let teamSimulation = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
-let results = teamSimulation.Run();
-console.log(results);
-
-/*
-TODO: Update stats to include fitness metrics for optimisation algos
-        It seems by addding simple stats it has removed the other lib, need to fix this
-*/
+let stats = teamSimulation.Run().GetStats();
+console.log(stats);
