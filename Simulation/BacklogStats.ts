@@ -9,50 +9,48 @@ export class BacklogStats {
     readonly LeadTime : Summary;
 
     constructor(stories: Array<Story>) {
-        if(0 > stories.length)
-            return;
 
-        if(0 > stories[0].Tasks.length)
-            return;
+        if(stories == null || 0 >= stories.length)
+            throw new Error("Stories need to be provided");
 
-        let cycleTime = Array<number>();
-        let leadTime = Array<number>();
+        if(0 >= stories[0].Tasks.length)
+            throw new Error("Tasks need to be provided");
+
+        let numOfMembers = stories[0].Tasks.length;
+        this.TeamMembersOriginal = new Array<Summary>(numOfMembers);
+        this.TeamMembersActual = new Array<Summary>(numOfMembers); 
+
+        let cycleTime = Array<number>(), 
+            leadTime = Array<number>(), 
+            teamMembersOriginal = new Array<Array<number>>(numOfMembers).fill(new Array<number>()),
+            teamMembersActual = new Array<Array<number>>(numOfMembers).fill(new Array<number>());
+            
         stories.forEach(story => {
             cycleTime.push(story.CycleTime);
             leadTime.push(story.CycleTime + story.StartedTick);
+
+            story.Tasks.forEach((task, index) => {
+                if(task != null) {
+                    teamMembersOriginal[index].push(task.Original);
+                    teamMembersActual[index].push(task.Actual);
+                }
+            });
+
         });
         this.CycleTime = this.getSummary(cycleTime);
         this.LeadTime = this.getSummary(leadTime);
 
-        this.TeamMembersOriginal = new Array<Summary>(stories[0].Tasks.length);
-        this.TeamMembersActual = new Array<Summary>(stories[0].Tasks.length);
-        for(let i : number = 0; i < stories[0].Tasks.length; i++) {
-            this.TeamMembersOriginal[i] = new Summary();
-            this.TeamMembersActual[i] = new Summary();
+        for(let i = 0; i < stories[0].Tasks.length; i++) {
+            this.TeamMembersOriginal[i] = this.getSummary(teamMembersOriginal[i]);
+            this.TeamMembersActual[i] = this.getSummary(teamMembersActual[i]);
         }
 
-        for(let i : number = 0; i < stories.length; i++) {
-            for(let j : number = 0; j < stories[i].Tasks.length; j++) {
-
-                if(stories[i].Tasks[j] == null) 
-                    continue;
-
-                this.TeamMembersOriginal[j].Sum +=  stories[i].Tasks[j].Original;
-                this.TeamMembersOriginal[j].Count++;
-                this.TeamMembersOriginal[j].Mean = this.TeamMembersOriginal[j].Sum / this.TeamMembersOriginal[j].Count
-                
-
-                this.TeamMembersActual[j].Sum +=  stories[i].Tasks[j].Actual;
-                this.TeamMembersActual[j].Count++;
-                this.TeamMembersActual[j].Mean = this.TeamMembersActual[j].Sum / this.TeamMembersActual[j].Count
-            }
-        }
     }
 
     private getSummary(numbers : Array<number>) {
         let summary = new Summary();
         summary.Count = numbers.length;
-        summary.Mean = simplestats.mean(numbers);
+        summary.Mean = Math.round((simplestats.mean(numbers) + Number.EPSILON) * 10) / 10;
         summary.Median = simplestats.median(numbers);
         summary.Sum = simplestats.sum(numbers);
         summary.Min = simplestats.min(numbers);
@@ -62,12 +60,21 @@ export class BacklogStats {
 
 }
 
+export class Summary {
+    Count :number;
+    Sum   :number;
+    Min : number;
+    Max : number;
+    Mean :number;
+    Median : number;
 
-class Summary {
-    Sum   :number = 0;
-    Mean :number = 0;
-    Count :number  = 0;
-    Median : number = 0;
-    Min : number = 0;
-    Max : number = 0;
+    constructor(count : number = 0, sum : number = 0, min : number = 0, max : number = 0, mean : number = 0, median : number = 0) {
+        this.Count = count;
+        this.Sum = sum;
+        this.Min = min;
+        this.Max = max;
+        this.Mean = mean;
+        this.Median = median;
+    }
+
 }
