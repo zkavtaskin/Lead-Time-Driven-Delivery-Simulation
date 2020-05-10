@@ -47,15 +47,39 @@ export class BacklogStats {
 
     }
 
+
+    public static GetSignificance(sampleMean : number, sampleStd : number, sampleCount : number, expectationMean : number, alpha  : number = 0.05) : boolean | null {
+    
+        let z = (sampleMean - expectationMean) / (sampleStd / Math.sqrt(sampleCount));
+        let zAbs = Math.abs(z);
+        //zTable regression approximation
+        let p = 0.5-(-0.0109+0.4913*zAbs-0.1567*Math.pow(zAbs,2)+0.0165*Math.pow(zAbs,3));
+
+        if(z > 0 && alpha > p)
+            return true;
+        
+        if(z < 0 && alpha > p)
+            return false;
+
+        return null;
+    }
+
     private getSummary(numbers : Array<number>) {
         let summary = new Summary();
         summary.Count = numbers.length;
-        summary.Mean = Math.round((simplestats.mean(numbers) + Number.EPSILON) * 10) / 10;
+        summary.Mean = this.toDecimalPlace(simplestats.mean(numbers));
         summary.Median = simplestats.median(numbers);
         summary.Sum = simplestats.sum(numbers);
         summary.Min = simplestats.min(numbers);
         summary.Max = simplestats.max(numbers);
+        summary.Std =  this.toDecimalPlace(simplestats.standardDeviation(numbers));
+        simplestats
         return summary;
+    }
+
+    private toDecimalPlace(value : number, decimalPlaces : number = 1) : number {
+        let diviser =  Math.pow(10, decimalPlaces);
+        return Math.round((value + Number.EPSILON) * diviser) / diviser;
     }
 
 }
@@ -67,14 +91,16 @@ export class Summary {
     Max : number;
     Mean :number;
     Median : number;
+    Std : number;
 
-    constructor(count : number = 0, sum : number = 0, min : number = 0, max : number = 0, mean : number = 0, median : number = 0) {
+    constructor(count : number = 0, sum : number = 0, min : number = 0, max : number = 0, mean : number = 0, median : number = 0, std : number = 0) {
         this.Count = count;
         this.Sum = sum;
         this.Min = min;
         this.Max = max;
         this.Mean = mean;
         this.Median = median;
+        this.Std = std;
     }
 
 }

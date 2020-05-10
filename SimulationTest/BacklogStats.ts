@@ -30,8 +30,8 @@ describe('BacklogStats', () => {
         storyThree.Complete(120);
 
         let actual = new BacklogStats(new Array<Story>(storyOne, storyTwo, storyThree));
-        let leadTimeExpected = new Summary(3, 132, 2, 120, 44, 10);
-        let cycleTimeExpected = new Summary(3, 26, 1, 20, 8.7, 5);
+        let leadTimeExpected = new Summary(3, 132, 2, 120, 44, 10, 53.8);
+        let cycleTimeExpected = new Summary(3, 26, 1, 20, 8.7, 5, 8.2);
 
         expect(actual.LeadTime).to.eql(leadTimeExpected);
         expect(actual.CycleTime).to.eql(cycleTimeExpected);
@@ -43,10 +43,23 @@ describe('BacklogStats', () => {
         let storyThree = new Story(2, false, null, new Array<Task>(new Task(10)));
 
         let actual = new BacklogStats(new Array<Story>(storyOne, storyTwo, storyThree));
-        let originalExpected = new Summary(3, 16, 1, 10, 5.3, 5);
-        let actualExpected = new Summary(3, 17, 2, 10, 5.7, 5);
+        let originalExpected = new Summary(3, 16, 1, 10, 5.3, 5, 3.7);
+        let actualExpected = new Summary(3, 17, 2, 10, 5.7, 5, 3.3);
 
         expect(actual.TeamMembersOriginal[0]).to.eql(originalExpected);
         expect(actual.TeamMembersActual[0]).to.eql(actualExpected);
-    })
+    }),
+
+    it('Null hypothesis, numbers are with in the same mean range, returns null', () => {
+        let actual = BacklogStats.GetSignificance(4.2, 2.89, 21, 4.8)
+        expect(actual).to.equal(null);
+    }),
+    it('Positive significance, numbers are not in the same mean range, retuns true', () => {
+        let actual = BacklogStats.GetSignificance(15.5, 3.02, 11, 5.5)
+        expect(actual).to.equal(true);
+    }),
+    it('Negative significance, numbers are not in the same mean range, retuns false', () => {
+        let actual = BacklogStats.GetSignificance(5.5, 3.02, 11, 15.5)
+        expect(actual).to.equal(false);
+    });
 });

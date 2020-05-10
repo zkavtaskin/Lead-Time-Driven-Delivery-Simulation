@@ -20,13 +20,13 @@ let teamConfig = new TeamConfig([
         ]
 );
 
-let backlogConfig = new BacklogConfig(100, 1/10, 1/10, 1, 30);
+let backlogConfig = new BacklogConfig(1000, 1/10, 1/10, 1, 30);
 
 let teamSimulation = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
 let stats = teamSimulation.Run().GetStats();
 console.log(stats);
 
-/*
- Write the stats test
- start working on the optimisation algo
+/* TODO
+ 1. create significance test
+ 2. start working on the optimisation algo
 */

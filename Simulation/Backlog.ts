@@ -8,7 +8,6 @@ export class Backlog {
 
     private stories :Array<Story>;
     private storiesMap : Map<number, Story> = new Map<number, Story>();
-    private storiesCompleted: number = 0;
     private nextStreakIndex :number = 0;
 
     constructor(stories :Array<Story>) {
