@@ -27,6 +27,5 @@ let stats = teamSimulation.Run().GetStats();
 console.log(stats);
 
 /* TODO
- 1. create significance test
- 2. start working on the optimisation algo
+ 1. start working on the optimisation using genetic algo
 */
