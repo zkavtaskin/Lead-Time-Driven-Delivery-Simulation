@@ -78,6 +78,10 @@ export class Backlog {
           stories.push(new Story(id, hasDeadline, prerequisiteStoryId, tasks));
         }
   
+        if(backlogConfig.StorySort != null) {
+          new Backlog(stories.sort(backlogConfig.StorySort));
+        }
+
         return new Backlog(stories);
     }
 
