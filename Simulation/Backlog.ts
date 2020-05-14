@@ -79,7 +79,7 @@ export class Backlog {
         }
   
         if(backlogConfig.StorySort != null) {
-          new Backlog(stories.sort(backlogConfig.StorySort));
+          stories.sort(backlogConfig.StorySort);
         }
 
         return new Backlog(stories);
