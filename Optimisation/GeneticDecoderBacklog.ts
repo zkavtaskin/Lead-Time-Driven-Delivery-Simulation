@@ -11,7 +11,16 @@ export class GeneticDecoderBacklog {
 
     constructor(teamConfig : TeamConfig) {
 
-        this.decodeMap.set(0, (a, b) => { return a.PrerequisiteId-b.PrerequisiteId; });
+        this.decodeMap.set(0, (a, b) => { 
+
+            if(!a.HasPrerequisite())
+                return -1;
+            
+            if(!b.HasPrerequisite())
+                return 1;
+
+            return a.PrerequisiteId-b.PrerequisiteId; 
+        });
         for(let i = 0; i < teamConfig.Members.length; i++) {
             this.decodeMap.set(i + 1, (a, b) => { return a.Tasks[i].Remaining-b.Tasks[i].Remaining; })
         }
@@ -51,14 +60,14 @@ export class GeneticDecoderBacklog {
         chromosOrdered.forEach(chromoOrdered => {
             const chromoHeadIndex = chromoOrdered[0];
             if(lambda == null) {
-                lambda = this.decodeMap[chromoHeadIndex];
+                lambda = this.decodeMap.get(chromoHeadIndex);
             } else {
                 lambda = (a : Story, b : Story) => {
                     const sortCompare = lambda(a, b);
                     if(sortCompare != 0)
                         return sortCompare;
                     
-                    return this.decodeMap[chromoHeadIndex](a, b);
+                    return this.decodeMap.get(chromoHeadIndex)(a, b);
                 }
     
             }
