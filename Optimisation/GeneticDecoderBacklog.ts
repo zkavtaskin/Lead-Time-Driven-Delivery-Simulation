@@ -21,7 +21,19 @@ export class GeneticDecoderBacklog {
     }
 
     public GetRandom() : Array<number> {
-        return Array.from({length: this.GeneLen}, () => Math.round(Math.random()));
+        let currentChromoHeadActive = false;
+        return Array.from({length: this.GeneLen}, (_, i) => { 
+
+            const value = Math.round(Math.random());
+
+            if(i % this.ChromoLen == 0) 
+                currentChromoHeadActive = value != 0;
+
+            if(currentChromoHeadActive) 
+                return value;
+
+            return 0;
+        });
     }
 
     public Decode(gene : Array<number>) : (a : Story, b : Story) => number {
