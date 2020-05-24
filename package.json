@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "tests": "mocha --require ts-node/register SimulationTest/**/*.ts"
+        "tests": "mocha --require ts-node/register *Test/**/*.ts"
     },
     "devDependencies": {
         "@types/chai": "^4.2.11",
