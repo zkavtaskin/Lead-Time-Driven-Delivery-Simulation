@@ -1,4 +1,3 @@
-import { BacklogConfig } from "../Simulation/BacklogConfig";
 import { TeamConfig } from "../Simulation/TeamConfig";
 import { Story } from "../Simulation/Story";
 
@@ -10,19 +9,19 @@ export class GeneticDecoderBacklog {
 
     private decodeMap = new Map<number, (a : Story, b : Story) => number>();
 
-    constructor(teamConfig : TeamConfig, backlogConfig : BacklogConfig) {
+    constructor(teamConfig : TeamConfig) {
 
         this.decodeMap.set(0, (a, b) => { return a.PrerequisiteId-b.PrerequisiteId; });
         for(let i = 0; i < teamConfig.Members.length; i++) {
             this.decodeMap.set(i + 1, (a, b) => { return a.Tasks[i].Remaining-b.Tasks[i].Remaining; })
         }
-        this.ChromoLen = this.decodeMap.keys.length;
+        this.ChromoLen = this.decodeMap.size;
         this.GeneLen = Math.pow(this.ChromoLen, 2);
         this.Population = this.GeneLen * 100;
     }
 
     public GetRandom() : Array<number> {
-        return new Array<number>(this.GeneLen).fill(Math.round(Math.random()));
+        return Array.from({length: this.GeneLen}, () => Math.round(Math.random()));
     }
 
     public Decode(gene : Array<number>) : (a : Story, b : Story) => number {
