@@ -10,30 +10,31 @@ export class Genetic {
     private readonly teamConfig : TeamConfig;
     private readonly backlogConfig : BacklogConfig;
     private readonly effortSize : number;
-    private readonly encoder : GeneticDecoderBacklog;
+    private readonly decoder : GeneticDecoderBacklog;
+    private randomGeneCounter : number = 0;
+    private randomGene : Array<number> = null;
 
     constructor(teamConfig : TeamConfig, backlogConfig : BacklogConfig, effortSize : number = 0.5) {
         this.teamConfig = teamConfig;
         this.backlogConfig = backlogConfig;
         this.effortSize = effortSize;
-        this.encoder = new GeneticDecoderBacklog(teamConfig);
+        this.decoder = new GeneticDecoderBacklog(teamConfig);
     }
 
     *Search() : IterableIterator<Result> {
-
         const geneticPool = new genetic.Darwin<number>({
-            population_size: this.encoder.Population,
-            chromosome_length: this.encoder.ChromoLen,
+            population_size: this.decoder.Population,
+            chromosome_length: this.decoder.ChromoLen,
             rand_gene: (() => {
-                return null; //this.encoder.GetRandom();
+                return this.getRandomGene();
             })
         });
 
         while(true) {
 
             for (const genes of geneticPool.getPopulation()) {
-                this.backlogConfig.StorySort = this.encoder.Decode(genes.getGenes());
-                const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortSize);
+                this.backlogConfig.StorySort = this.decoder.Decode(genes.getGenes());
+                const teamSimulation = new TeamSimulation(genes.getGenes().join(''), this.teamConfig, this.backlogConfig, this.effortSize);
                 const stats = teamSimulation.Run().GetStats();
                 genes.setFitness(stats.LeadTime.Mean);
             }
@@ -41,8 +42,15 @@ export class Genetic {
             yield new Result(geneticPool.getFittest().getFitness(), geneticPool.getFittest().getGenes(), geneticPool.getAverageFitness());
             geneticPool.mate();
         }
-        
+    }
 
+    private getRandomGene() : number {
+        const geneIndex = this.randomGeneCounter % this.decoder.ChromoLen;
+        if(geneIndex == 0) {
+            this.randomGene = this.decoder.GetRandom();
+        }
+        this.randomGeneCounter++;
+        return this.randomGene[geneIndex];
     }
 
 }

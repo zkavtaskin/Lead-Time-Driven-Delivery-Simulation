@@ -3,9 +3,9 @@ import { Story } from "../Simulation/Story";
 
 export class GeneticDecoderBacklog {
 
-    public readonly GeneLen : number;
-    public readonly Population : number;
     public readonly ChromoLen : number;
+    public readonly Population : number;
+    public readonly GeneLen : number;
 
     private decodeMap = new Map<number, (a : Story, b : Story) => number>();
 
@@ -27,21 +27,21 @@ export class GeneticDecoderBacklog {
         for(let i = 0; i < teamConfig.Members.length; i++) {
             this.decodeMap.set(i + 1, (a, b) => { return a.Tasks[i].Remaining-b.Tasks[i].Remaining; })
         }
-        this.ChromoLen = this.decodeMap.size;
-        this.GeneLen = Math.pow(this.ChromoLen, 2);
-        this.Population = this.GeneLen * 100;
+        this.GeneLen = this.decodeMap.size;
+        this.ChromoLen = Math.pow(this.GeneLen, 2);
+        this.Population = this.ChromoLen * 100;
     }
 
     public GetRandom() : Array<number> {
-        let currentChromoHeadActive = false;
-        return Array.from({length: this.GeneLen}, (_, i) => { 
+        let currentGeneHeadActive = false;
+        return Array.from({length: this.ChromoLen}, (v, i) => { 
 
             const value = Math.round(Math.random());
 
-            if(i % this.ChromoLen == 0) 
-                currentChromoHeadActive = value != 0;
+            if(i % this.GeneLen == 0) 
+                currentGeneHeadActive = value != 0;
 
-            if(currentChromoHeadActive) 
+            if(currentGeneHeadActive) 
                 return value;
 
             return 0;
@@ -50,20 +50,20 @@ export class GeneticDecoderBacklog {
 
     public Decode(gene : Array<number>) : (a : Story, b : Story) => number {
 
-        let chromosOrdered = new Array<[number, number]>();
-        for(let chromoIndex = 0, chromoHead = chromoIndex * this.ChromoLen; chromoIndex < this.ChromoLen; chromoIndex++, chromoHead = chromoIndex * this.ChromoLen) {
-            if(gene[chromoHead] == 1) {
-                const order = parseInt(gene.slice(chromoHead+1, chromoHead + this.ChromoLen).reverse().join(''), 2);
-                chromosOrdered.push([chromoIndex, order]);
+        let genesOrdered = new Array<[number, number]>();
+        for(let i = 0, head = i * this.GeneLen; i < this.GeneLen; i++, head = i * this.GeneLen) {
+            if(gene[head] == 1) {
+                const order = parseInt(gene.slice(head+1, head + this.GeneLen).reverse().join(''), 2);
+                genesOrdered.push([i, order]);
             }
         }
-        chromosOrdered.sort((a, b) => { return b[1]-a[1]});
+        genesOrdered.sort((a, b) => { return b[1]-a[1]});
 
         const lambda = (a : Story, b : Story, index : number) => {  
             if(index < 0) return;
-            return this.decodeMap.get(chromosOrdered[index][0])(a, b) || lambda(a, b, index-1);
+            return this.decodeMap.get(genesOrdered[index][0])(a, b) || lambda(a, b, index-1);
         }
 
-       return (a, b) => lambda(a, b, chromosOrdered.length-1);
+       return (a, b) => lambda(a, b, genesOrdered.length-1);
     }
 }

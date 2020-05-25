@@ -6,24 +6,24 @@ import { Story } from '../Simulation/Story';
 import { Task } from '../Simulation/Task';
 
 describe('GeneticDecoderBacklog', () => {
-    it('Init, given 2 team members and 1 field (PrerequisiteId), 3 will be used for optimisation and chromosome length is 3', () => {
+    it('Init, given 2 team members and 1 field (PrerequisiteId), 3 will be used for optimisation and gene length is 3', () => {
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)], null);
         const decoder = new GeneticDecoderBacklog(teamConfig);
-        expect(decoder.ChromoLen).to.equal(teamConfig.Members.length + 1);
+        expect(decoder.GeneLen).to.equal(teamConfig.Members.length + 1);
     }),
 
-    it('GetRandom, chromosome length is 6, random gene sequence is issued that is 6^2 length and one of the heads is active', () => {
+    it('GetRandom, gene length is 6, random chromo sequence is issued that is 6^2 length and one of the heads is active', () => {
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)],  null);
         const decoder = new GeneticDecoderBacklog(teamConfig);
-        const geneLen = decoder.GetRandom();
-        const chromosActive = geneLen.reduce((accumulator, currentValue, currentIndex) => { 
+        const chromoLen = decoder.GetRandom();
+        const genesActive = chromoLen.reduce((accumulator, currentValue, currentIndex) => { 
             if(currentIndex % decoder.ChromoLen == 0 && currentValue == 1) 
                 return ++accumulator;
 
             return accumulator;
         });
-        expect(geneLen.length).to.equal(36);
-        expect(chromosActive).to.be.gt(0);
+        expect(chromoLen.length).to.equal(36);
+        expect(genesActive).to.be.gt(0);
     }),
 
     it('Decode, stories have dependency, gene is set to prioritise prerequisiteId only', () => {
@@ -35,6 +35,7 @@ describe('GeneticDecoderBacklog', () => {
 
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)],  null);
         const decoder = new GeneticDecoderBacklog(teamConfig);
+
         const lambda = decoder.Decode([1, 0, 0, 0, 0, 0, 0, 0, 0]);
         const actual = stories.sort(lambda).map(story => story.Id);
         const expected = [0, 2, 1];
@@ -53,6 +54,7 @@ describe('GeneticDecoderBacklog', () => {
 
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)],  null);
         const decoder = new GeneticDecoderBacklog(teamConfig);
+
         const lambda = decoder.Decode([1, 0, 0, 0, 0, 0, 0, 0, 0]);
         const actual = stories.sort(lambda).map(story => story.Id);
         const expected = [0, 1, 4, 3, 2, 5];
@@ -71,6 +73,7 @@ describe('GeneticDecoderBacklog', () => {
 
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)],  null);
         const decoder = new GeneticDecoderBacklog(teamConfig);
+
         const lambda = decoder.Decode([0, 0, 0, 1, 0, 0, 0, 0, 0]);
         const actual = stories.sort(lambda).map(story => story.Id);
         const expected = [5, 4, 3, 2, 1, 0];
@@ -89,6 +92,7 @@ describe('GeneticDecoderBacklog', () => {
 
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)],  null);
         const decoder = new GeneticDecoderBacklog(teamConfig);
+        
         const lambda = decoder.Decode([1, 0, 0, 1, 1, 0, 0, 0, 0]);
         const actual = stories.sort(lambda).map(story => story.Id);
         const expected = [0, 1, 4, 3, 2, 5];
