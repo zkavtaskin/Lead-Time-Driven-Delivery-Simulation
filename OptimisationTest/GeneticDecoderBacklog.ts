@@ -26,22 +26,22 @@ describe('GeneticDecoderBacklog', () => {
         expect(chromosActive).to.be.gt(0);
     }),
 
-    it('Decode, stories have 2 dependencies, gene is set to prioritise prerequisiteId only', () => {
+    it('Decode, stories have dependency, gene is set to prioritise prerequisiteId only', () => {
 
         const storyA = new Story(0, false, null, Array<Task>(new Task(0), new Task(0)));
-        const storyB = new Story(1, false, null, Array<Task>(new Task(0), new Task(0)));
-        const storyC = new Story(2, false, 1, Array<Task>(new Task(0), new Task(0)));
+        const storyB = new Story(1, false, 0, Array<Task>(new Task(0), new Task(0)));
+        const storyC = new Story(2, false, null, Array<Task>(new Task(0), new Task(0)));
         const stories = new Array<Story>(storyA, storyB, storyC);
 
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)],  null);
         const decoder = new GeneticDecoderBacklog(teamConfig);
         const lambda = decoder.Decode([1, 0, 0, 0, 0, 0, 0, 0, 0]);
         const actual = stories.sort(lambda).map(story => story.Id);
-        const expected = [1, 0, 2];
+        const expected = [0, 2, 1];
         expect(actual).to.eql(expected)
     }),
 
-    it('Decode, stories have 2 dependencies, gene is set to prioritise prerequisiteId only', () => {
+    it('Decode, stories have dependencies, gene is set to prioritise prerequisiteId only', () => {
 
         const storyA = new Story(0, false, null, Array<Task>(new Task(0), new Task(0)));
         const storyB = new Story(1, false, null, Array<Task>(new Task(0), new Task(0)));
@@ -55,7 +55,7 @@ describe('GeneticDecoderBacklog', () => {
         const decoder = new GeneticDecoderBacklog(teamConfig);
         const lambda = decoder.Decode([1, 0, 0, 0, 0, 0, 0, 0, 0]);
         const actual = stories.sort(lambda).map(story => story.Id);
-        const expected = [4, 1, 0, 3, 2, 5];
+        const expected = [0, 1, 4, 3, 2, 5];
         expect(actual).to.eql(expected)
     }),
 
@@ -74,6 +74,24 @@ describe('GeneticDecoderBacklog', () => {
         const lambda = decoder.Decode([0, 0, 0, 1, 0, 0, 0, 0, 0]);
         const actual = stories.sort(lambda).map(story => story.Id);
         const expected = [5, 4, 3, 2, 1, 0];
+        expect(actual).to.eql(expected)
+    }),
+
+    it('Decode, stories have dependencies, gene is set to prioritise by prerequisiteId first and then single team member', () => {
+
+        const storyA = new Story(0, false, null, Array<Task>(new Task(1), new Task(0)));
+        const storyB = new Story(1, false, null, Array<Task>(new Task(4), new Task(0)));
+        const storyC = new Story(2, false, 1, Array<Task>(new Task(5), new Task(0)));
+        const storyD = new Story(3, false, 0, Array<Task>(new Task(4), new Task(0)));
+        const storyE = new Story(4, false, null, Array<Task>(new Task(7), new Task(0)));
+        const storyF = new Story(5, false, 2, Array<Task>(new Task(2), new Task(0)));
+        const stories = new Array<Story>(storyA, storyB, storyC, storyD, storyE, storyF);
+
+        const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)],  null);
+        const decoder = new GeneticDecoderBacklog(teamConfig);
+        const lambda = decoder.Decode([1, 0, 0, 1, 1, 0, 0, 0, 0]);
+        const actual = stories.sort(lambda).map(story => story.Id);
+        const expected = [0, 1, 4, 3, 2, 5];
         expect(actual).to.eql(expected)
     })
 

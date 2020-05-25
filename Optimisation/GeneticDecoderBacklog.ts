@@ -13,6 +13,9 @@ export class GeneticDecoderBacklog {
 
         this.decodeMap.set(0, (a, b) => { 
 
+            if(!a.HasPrerequisite() && !b.HasPrerequisite())
+                return 0;
+
             if(!a.HasPrerequisite())
                 return -1;
             
@@ -50,28 +53,27 @@ export class GeneticDecoderBacklog {
         let chromosOrdered = new Array<[number, number]>();
         for(let chromoIndex = 0, chromoHead = chromoIndex * this.ChromoLen; chromoIndex < this.ChromoLen; chromoIndex++, chromoHead = chromoIndex * this.ChromoLen) {
             if(gene[chromoHead] == 1) {
-                const order = parseInt(gene.slice(chromoHead+1, this.ChromoLen-1).join(''), 2);
+                const order = parseInt(gene.slice(chromoHead+1, chromoHead + this.ChromoLen).reverse().join(''), 2);
                 chromosOrdered.push([chromoIndex, order]);
             }
         }
-        chromosOrdered.sort((a, b) => { return a[1]-b[1] });
-        
-        let lambda : (a : Story, b : Story) => number = null;
-        chromosOrdered.forEach(chromoOrdered => {
-            const chromoHeadIndex = chromoOrdered[0];
-            if(lambda == null) {
-                lambda = this.decodeMap.get(chromoHeadIndex);
-            } else {
-                lambda = (a : Story, b : Story) => {
-                    const sortCompare = lambda(a, b);
-                    if(sortCompare != 0)
-                        return sortCompare;
-                    
-                    return this.decodeMap.get(chromoHeadIndex)(a, b);
-                }
-    
+        chromosOrdered.sort((a, b) => { return b[1]-a[1]});
+
+        const lambda = (a : Story, b : Story, index : number) => {  
+            if(index < 0) return;
+            return this.decodeMap.get(chromosOrdered[index][0])(a, b) || lambda(a, b, index-1);
+        }
+        /*
+        return (a : Story, b : Story) => {
+            let sortCompare = 0;
+            for(let i = 0; i < chromosOrdered.length; i++) {
+                sortCompare = this.decodeMap.get(chromosOrdered[i][0])(a, b);
+                if(sortCompare != 0)
+                    break;
             }
-        });
-        return lambda;
+            return sortCompare;
+        };
+        */
+       return (a, b) => lambda(a, b, chromosOrdered.length-1);
     }
 }
