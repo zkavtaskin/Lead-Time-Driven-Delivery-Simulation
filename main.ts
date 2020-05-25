@@ -3,7 +3,7 @@ import { BacklogConfig } from "./Simulation/BacklogConfig";
 import { TeamSimulation } from "./Simulation/TeamSimulation";
 import { TeamConfig } from "./Simulation/TeamConfig";
 import { GeneticBacklog } from "./Optimisation/GeneticBacklog";
-import * as genetic from "charles.darwin"
+import { BacklogStats } from "./Simulation/BacklogStats";
 
 let teamConfig = new TeamConfig([
                 new MemberConfig("Product Owner", 10/37, 8/10, 10/100),
@@ -25,10 +25,15 @@ let teamConfig = new TeamConfig([
 let backlogConfig = new BacklogConfig(1000, 1/10, 1/10, 1, 30);
 
 console.log("Direct simulation")
-let teamSimulation = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
-let stats = teamSimulation.Run().GetStats();
-console.log(JSON.stringify(stats));
+let teamSimulationDirect = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
+let statsDirect = teamSimulationDirect.Run().GetStats();
+console.log(JSON.stringify(statsDirect));
 
+console.log("Null Hypothesis Test");
+let teamSimulationDirect2 = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
+let statsDirect2 = teamSimulationDirect2.Run().GetStats();
+let nullHypothesis = BacklogStats.GetSignificance(statsDirect.CycleTime.Mean, statsDirect.CycleTime.Std, statsDirect.CycleTime.Count, statsDirect2.CycleTime.Mean, 0.01);
+console.log(nullHypothesis);
 /*
 
 console.log("Backlog optimised simulation")
