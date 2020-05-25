@@ -3,27 +3,27 @@ import { TeamConfig } from "../Simulation/TeamConfig";
 import { TeamSimulation } from "../Simulation/TeamSimulation";
 import { Result } from "./Result"
 import * as genetic from "charles.darwin"
-import { GeneticEncoderBacklog } from "./GeneticEncoderBacklog";
+import { GeneticDecoderBacklog } from "./GeneticDecoderBacklog";
 
 export class Genetic {
 
     private readonly teamConfig : TeamConfig;
     private readonly backlogConfig : BacklogConfig;
     private readonly effortSize : number;
-    private readonly encoder : GeneticEncoderBacklog;
+    private readonly encoder : GeneticDecoderBacklog;
 
     constructor(teamConfig : TeamConfig, backlogConfig : BacklogConfig, effortSize : number = 0.5) {
         this.teamConfig = teamConfig;
         this.backlogConfig = backlogConfig;
         this.effortSize = effortSize;
-        this.encoder = new GeneticEncoderBacklog(teamConfig, backlogConfig);
+        this.encoder = new GeneticDecoderBacklog(teamConfig);
     }
 
     *Search() : IterableIterator<Result> {
 
         const geneticPool = new genetic.Darwin<number>({
             population_size: this.encoder.Population,
-            chromosome_length: this.encoder.ChromosomeLength,
+            chromosome_length: this.encoder.ChromoLen,
             rand_gene: (() => {
                 return null; //this.encoder.GetRandom();
             })
