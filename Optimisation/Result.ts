@@ -2,11 +2,11 @@
 export class Result {
     public readonly BestScore : number;
     public readonly BestEncoding : Array<number>
-    public readonly AverageScore : number;
+    public readonly BestEncodingDecoded : Array<string>
 
-    constructor(bestScore : number, bestEncoding : Array<number>, averageScore : number) {
+    constructor(bestScore : number, bestEncoding : Array<number>, bestEncodingDecoded : Array<string>) {
         this.BestScore = bestScore;
         this.BestEncoding = bestEncoding;
-        this.AverageScore = averageScore;
+        this.BestEncodingDecoded = bestEncodingDecoded;
     }
 }

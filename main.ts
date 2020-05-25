@@ -30,6 +30,7 @@ let statsDirect = teamSimulationDirect.Run().GetStats();
 console.log(JSON.stringify(statsDirect));
 
 console.log("Null Hypothesis Test");
+//both simulations are with same configurations, this means results should not be significantly differnet 
 let teamSimulationDirect2 = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
 let statsDirect2 = teamSimulationDirect2.Run().GetStats();
 let nullHypothesis = BacklogStats.GetSignificance(statsDirect.CycleTime.Mean, statsDirect.CycleTime.Std, statsDirect.CycleTime.Count, statsDirect2.CycleTime.Mean, 0.01);

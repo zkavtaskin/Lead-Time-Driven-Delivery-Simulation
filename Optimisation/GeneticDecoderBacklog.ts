@@ -8,6 +8,7 @@ export class GeneticDecoderBacklog {
     public readonly GeneLen : number;
 
     private decodeMap = new Map<number, (a : Story, b : Story) => number>();
+    private decodeHumanMap = new Map<number, string>();
 
     constructor(teamConfig : TeamConfig) {
 
@@ -24,6 +25,8 @@ export class GeneticDecoderBacklog {
 
             return a.PrerequisiteId-b.PrerequisiteId; 
         });
+        this.decodeHumanMap.set(0, "PrerequisiteId");
+
         for(let i = 0; i < teamConfig.Members.length; i++) {
             this.decodeMap.set(i + 1, (a, b) => { 
                 if(a.Tasks[i] == null && b.Tasks[i] == null)
@@ -36,7 +39,8 @@ export class GeneticDecoderBacklog {
                     return 1;
 
                 return a.Tasks[i].Remaining-b.Tasks[i].Remaining; 
-            })
+            });
+            this.decodeHumanMap.set(i + 1, teamConfig.Members[i].Name);
         }
         this.GeneLen = this.decodeMap.size;
         this.ChromoLen = Math.pow(this.GeneLen, 2);
@@ -62,14 +66,7 @@ export class GeneticDecoderBacklog {
 
     public Decode(gene : Array<number>) : (a : Story, b : Story) => number {
 
-        let genesOrdered = new Array<[number, number]>();
-        for(let i = 0, head = i * this.GeneLen; i < this.GeneLen; i++, head = i * this.GeneLen) {
-            if(gene[head] == 1) {
-                const order = parseInt(gene.slice(head+1, head + this.GeneLen).reverse().join(''), 2);
-                genesOrdered.push([i, order]);
-            }
-        }
-        genesOrdered.sort((a, b) => { return b[1]-a[1]});
+        const genesOrdered = this.breakUpAndOrder(gene);
 
         const lambda = (a : Story, b : Story, index : number) => {  
             if(index < 0) return;
@@ -77,5 +74,25 @@ export class GeneticDecoderBacklog {
         }
 
        return (a, b) => lambda(a, b, genesOrdered.length-1);
+    }
+
+    public DecodeHuman(gene : Array<number>) : Array<string> {
+        const genesOrdered = this.breakUpAndOrder(gene);
+        const decoded = new Array<string>();
+        for(let i = genesOrdered.length-1; i >= 0; i--) {
+            decoded.push( this.decodeHumanMap.get(genesOrdered[i][0]));
+        }
+        return decoded;
+    }
+
+    private breakUpAndOrder(gene : Array<number>) : Array<[number, number]> {
+        let genesOrdered = new Array<[number, number]>();
+        for(let i = 0, head = i * this.GeneLen; i < this.GeneLen; i++, head = i * this.GeneLen) {
+            if(gene[head] == 1) {
+                const order = parseInt(gene.slice(head+1, head + this.GeneLen).reverse().join(''), 2);
+                genesOrdered.push([i, order]);
+            }
+        }
+        return genesOrdered.sort((a, b) => { return b[1]-a[1]});
     }
 }

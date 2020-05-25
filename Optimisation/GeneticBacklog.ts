@@ -39,7 +39,7 @@ export class GeneticBacklog {
                 genes.setFitness(-stats.LeadTime.Mean);
             }
 
-            yield new Result(-geneticPool.getFittest().getFitness(), geneticPool.getFittest().getGenes(), -geneticPool.getAverageFitness());
+            yield new Result(-geneticPool.getFittest().getFitness(), geneticPool.getFittest().getGenes(), this.decoder.DecodeHuman(geneticPool.getFittest().getGenes()));
             geneticPool.mate();
         }
     }
