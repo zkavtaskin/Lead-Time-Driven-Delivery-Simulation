@@ -8,8 +8,7 @@
     "preserveConstEnums": true,
   },
   "include": [
-    "Simulation/*.ts",
     "*.ts"
   ],
-  "exclude": ["node_modules", "SimulationTest"]
+  "exclude": ["node_modules", "*Test"]
 }
