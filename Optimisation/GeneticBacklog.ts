@@ -5,7 +5,7 @@ import { Result } from "./Result"
 import * as genetic from "charles.darwin"
 import { GeneticDecoderBacklog } from "./GeneticDecoderBacklog";
 
-export class Genetic {
+export class GeneticBacklog {
 
     private readonly teamConfig : TeamConfig;
     private readonly backlogConfig : BacklogConfig;
