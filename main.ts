@@ -2,6 +2,7 @@ import { MemberConfig } from "./Simulation/MemberConfig";
 import { BacklogConfig } from "./Simulation/BacklogConfig";
 import { TeamSimulation } from "./Simulation/TeamSimulation";
 import { TeamConfig } from "./Simulation/TeamConfig";
+import { GeneticBacklog } from "./Optimisation/GeneticBacklog";
 
 let teamConfig = new TeamConfig([
                 new MemberConfig("Product Owner", 10/37, 8/10, 10/100),
@@ -22,8 +23,14 @@ let teamConfig = new TeamConfig([
 
 let backlogConfig = new BacklogConfig(1000, 1/10, 1/10, 1, 30);
 
+console.log("Direct simulation")
 let teamSimulation = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
 let stats = teamSimulation.Run().GetStats();
 console.log(stats);
 
 
+console.log("Backlog optimised simulation")
+let geneticBacklog = new GeneticBacklog(teamConfig, backlogConfig, 0.5);
+for(let result of geneticBacklog.Search()) {
+        console.log(result);
+}
