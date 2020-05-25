@@ -63,17 +63,7 @@ export class GeneticDecoderBacklog {
             if(index < 0) return;
             return this.decodeMap.get(chromosOrdered[index][0])(a, b) || lambda(a, b, index-1);
         }
-        /*
-        return (a : Story, b : Story) => {
-            let sortCompare = 0;
-            for(let i = 0; i < chromosOrdered.length; i++) {
-                sortCompare = this.decodeMap.get(chromosOrdered[i][0])(a, b);
-                if(sortCompare != 0)
-                    break;
-            }
-            return sortCompare;
-        };
-        */
+
        return (a, b) => lambda(a, b, chromosOrdered.length-1);
     }
 }
