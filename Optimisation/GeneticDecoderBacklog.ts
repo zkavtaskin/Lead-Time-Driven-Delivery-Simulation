@@ -25,11 +25,23 @@ export class GeneticDecoderBacklog {
             return a.PrerequisiteId-b.PrerequisiteId; 
         });
         for(let i = 0; i < teamConfig.Members.length; i++) {
-            this.decodeMap.set(i + 1, (a, b) => { return a.Tasks[i].Remaining-b.Tasks[i].Remaining; })
+            this.decodeMap.set(i + 1, (a, b) => { 
+                if(a.Tasks[i] == null && b.Tasks[i] == null)
+                    return 0;
+
+                if(a.Tasks[i] == null)
+                    return -1;
+
+                if(b.Tasks[i] == null)
+                    return 1;
+
+                return a.Tasks[i].Remaining-b.Tasks[i].Remaining; 
+            })
         }
         this.GeneLen = this.decodeMap.size;
         this.ChromoLen = Math.pow(this.GeneLen, 2);
-        this.Population = this.ChromoLen * 100;
+        //TODO; find optimal number
+        this.Population = this.ChromoLen * 2;
     }
 
     public GetRandom() : Array<number> {

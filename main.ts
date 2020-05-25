@@ -34,11 +34,20 @@ let teamSimulationDirect2 = new TeamSimulation("*", teamConfig, backlogConfig, 0
 let statsDirect2 = teamSimulationDirect2.Run().GetStats();
 let nullHypothesis = BacklogStats.GetSignificance(statsDirect.CycleTime.Mean, statsDirect.CycleTime.Std, statsDirect.CycleTime.Count, statsDirect2.CycleTime.Mean, 0.01);
 console.log(nullHypothesis);
-/*
+
 
 console.log("Backlog optimised simulation")
 let geneticBacklog = new GeneticBacklog(teamConfig, backlogConfig, 0.5);
+let lastBestScore = null, attempts = 0;
 for(let result of geneticBacklog.Search()) {
         console.log(JSON.stringify(result));
+        if(lastBestScore == null) {
+                lastBestScore =  result.BestScore;
+        } else {
+                const improvement = (lastBestScore - result.BestScore) / lastBestScore;
+                console.log(`improvement: ${(improvement*100).toFixed(1)}%`);
+                lastBestScore = result.BestScore;
+                if(improvement < 0.05 && attempts++ >= 5)
+                        break;
+        }
 }
-*/

@@ -36,10 +36,10 @@ export class GeneticBacklog {
                 this.backlogConfig.StorySort = this.decoder.Decode(genes.getGenes());
                 const teamSimulation = new TeamSimulation(genes.getGenes().join(''), this.teamConfig, this.backlogConfig, this.effortSize);
                 const stats = teamSimulation.Run().GetStats();
-                genes.setFitness(stats.LeadTime.Mean);
+                genes.setFitness(-stats.LeadTime.Mean);
             }
 
-            yield new Result(geneticPool.getFittest().getFitness(), geneticPool.getFittest().getGenes(), geneticPool.getAverageFitness());
+            yield new Result(-geneticPool.getFittest().getFitness(), geneticPool.getFittest().getGenes(), -geneticPool.getAverageFitness());
             geneticPool.mate();
         }
     }

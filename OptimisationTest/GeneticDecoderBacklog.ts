@@ -26,6 +26,22 @@ describe('GeneticDecoderBacklog', () => {
         expect(genesActive).to.be.gt(0);
     }),
 
+    it('Decode, stories have have tasks with nulls, sort puts nulls first and then in asc order', () => {
+
+        const storyA = new Story(0, false, null, Array<Task>(null, new Task(0)));
+        const storyB = new Story(1, false, null, Array<Task>(new Task(10), new Task(0)));
+        const storyC = new Story(2, false, null, Array<Task>(new Task(2), new Task(0)));
+        const stories = new Array<Story>(storyA, storyB, storyC);
+
+        const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)],  null);
+        const decoder = new GeneticDecoderBacklog(teamConfig);
+
+        const lambda = decoder.Decode([0, 0, 0, 1, 0, 0, 0, 0, 0]);
+        const actual = stories.sort(lambda).map(story => story.Id);
+        const expected = [0, 2, 1];
+        expect(actual).to.eql(expected)
+    }),
+    
     it('Decode, stories have dependency, gene is set to prioritise prerequisiteId only', () => {
 
         const storyA = new Story(0, false, null, Array<Task>(new Task(0), new Task(0)));

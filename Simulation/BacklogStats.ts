@@ -68,10 +68,10 @@ export class BacklogStats {
         let summary = new Summary();
         summary.Count = numbers.length;
         summary.Mean = this.toDecimalPlace(simplestats.mean(numbers));
-        summary.Median = simplestats.median(numbers);
-        summary.Sum = simplestats.sum(numbers);
-        summary.Min = simplestats.min(numbers);
-        summary.Max = simplestats.max(numbers);
+        summary.Median = this.toDecimalPlace(simplestats.median(numbers));
+        summary.Sum = this.toDecimalPlace(simplestats.sum(numbers));
+        summary.Min = this.toDecimalPlace(simplestats.min(numbers));
+        summary.Max = this.toDecimalPlace(simplestats.max(numbers));
         summary.Std =  this.toDecimalPlace(simplestats.standardDeviation(numbers));
         simplestats
         return summary;
