@@ -35,14 +35,9 @@ export class GeneticBacklog {
             for (const genes of geneticPool.getPopulation()) {
 
                 this.backlogConfig.StorySort = this.decoder.Decode(genes.getGenes());
-
-                let sampleMean = 0;
-                for(let i = 0; i < this.numberOfSamples; i++) {
-                    const teamSimulation = new TeamSimulation(genes.getGenes().join(''), this.teamConfig, this.backlogConfig, this.effortSize);
-                    sampleMean += teamSimulation.Run().GetStats().LeadTime.Mean;
-                }
-
-                genes.setFitness(-(sampleMean / this.numberOfSamples));
+                const teamSimulation = new TeamSimulation(genes.getGenes().join(''), this.teamConfig, this.backlogConfig, this.effortSize);
+                const teamSimulationStats = teamSimulation.Run().GetStats();
+                genes.setFitness(-teamSimulationStats.LeadTime.Mean);
             }
 
             yield new Result(-geneticPool.getFittest().getFitness(), geneticPool.getFittest().getGenes(), this.decoder.DecodeHuman(geneticPool.getFittest().getGenes()));

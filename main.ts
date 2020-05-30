@@ -26,23 +26,27 @@ let backlogConfig = new BacklogConfig(100, 1/10, 1/10, 1, 30);
 
 
 console.log("\n#Sampling")
-let numberOfSamplesToGet = 10, sampleAverage = 0;
+let numberOfSamplesToGet = 10, sampleMean = 0, sampleStd = 0, sampleCount = 0;
 for(let i = 0; i < numberOfSamplesToGet; i++) {
-        let teamSimulationDirect = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
-        let statsDirect = teamSimulationDirect.Run().GetStats();
-        console.log(`Getting sample ${i}, lead time mean: ${statsDirect.LeadTime.Mean}`);
-        sampleAverage += statsDirect.LeadTime.Mean;
+        let teamSimulationSample = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
+        let sample = teamSimulationSample.Run().GetStats();
+        console.log(`Getting sample ${i}, lead time mean: ${sample.LeadTime.Mean}`);
+        sampleMean += sample.LeadTime.Mean;
+        sampleStd += sample.LeadTime.Std;
+        sampleCount += sample.LeadTime.Count;
 }
-sampleAverage = sampleAverage / numberOfSamplesToGet;
-console.log(`Sample average: ${sampleAverage}`);
+sampleMean = sampleMean / numberOfSamplesToGet;
+sampleStd = sampleStd / numberOfSamplesToGet;
+sampleCount = sampleCount / numberOfSamplesToGet;
+console.log(`->Sample mean: ${sampleMean}, std: ${sampleStd}, count: ${sampleCount} <-`);
 
 
 console.log("\n#Random Null Hypothesis Test");
-let teamSimulationDirect = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
-let statsDirect = teamSimulationDirect.Run().GetStats();
-console.log(`Random sample: ${statsDirect.LeadTime.Mean}`);
-let nullHypothesis = BacklogStats.GetSignificance(statsDirect.LeadTime.Mean, statsDirect.LeadTime.Std, statsDirect.LeadTime.Count, sampleAverage, 0.05);
-console.log(nullHypothesis);
+let teamSimulationRandom = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
+let statsRandom = teamSimulationRandom.Run().GetStats();
+console.log(`Random sample mean: ${statsRandom.LeadTime.Mean} std: ${statsRandom.LeadTime.Std}, count: ${statsRandom.LeadTime.Count}`);
+let nullHypothesis = BacklogStats.GetSignificance(sampleMean, sampleStd, sampleCount, statsRandom.LeadTime.Mean, 0.05);
+console.log(`->Null Hypothesis:${nullHypothesis}<-`);
 
 
 console.log("\n#Looking for optimial backlog sort")
@@ -69,7 +73,7 @@ for(let result of geneticBacklog.Search()) {
 console.log(`->Final best score: ${bestScore}, sort: ${bestScoreDecoded}<-`);
 
 console.log("\n#Running Null Hypothesis Test for optimised solution");
-console.log(`Testing original mean ${statsDirect.LeadTime.Mean} against optimised mean ${bestScore}.`)
-let nullHypothesisOptimised = BacklogStats.GetSignificance(statsDirect.LeadTime.Mean, statsDirect.LeadTime.Std, statsDirect.LeadTime.Count, bestScore, 0.01);
-console.log(`Null Hypothesis:${nullHypothesisOptimised}`);
+console.log(`Testing original mean ${statsRandom.LeadTime.Mean} against optimised mean ${bestScore}.`)
+let nullHypothesisOptimised = BacklogStats.GetSignificance(sampleMean, sampleStd, sampleCount, bestScore, 0.05);
+console.log(`->Null Hypothesis:${nullHypothesisOptimised}<-`);
 
