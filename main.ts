@@ -64,7 +64,7 @@ for(let result of geneticBacklog.Search()) {
                         bestScoreDecoded = result.BestEncodingDecoded;
                 }
                 
-                if(improvement < 0.01 && attempts++ >= 5)
+                if(improvement < 0.01 && attempts++ >= 5) 
                         break;
         }
 }

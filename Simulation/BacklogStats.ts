@@ -16,7 +16,7 @@ export class BacklogStats {
         if(0 >= stories[0].Tasks.length)
             throw new Error("Tasks need to be provided");
 
-        let numOfMembers = stories[0].Tasks.length;
+        const numOfMembers = stories[0].Tasks.length;
         this.TeamMembersOriginal = new Array<Summary>(numOfMembers);
         this.TeamMembersActual = new Array<Summary>(numOfMembers); 
 
@@ -50,10 +50,10 @@ export class BacklogStats {
 
     public static GetSignificance(sampleMean : number, sampleStd : number, numberOfSamples : number, expectationMean : number, alpha  : number = 0.05) : boolean | null {
     
-        let z = (sampleMean - expectationMean) / (sampleStd / Math.sqrt(numberOfSamples));
-        let zAbs = Math.abs(z);
+        const z = (sampleMean - expectationMean) / (sampleStd / Math.sqrt(numberOfSamples));
+        const zAbs = Math.abs(z);
         //zTable regression approximation
-        let p = 0.5-(-0.0109+0.4913*zAbs-0.1567*Math.pow(zAbs,2)+0.0165*Math.pow(zAbs,3));
+        const p = 0.5-(-0.0109+0.4913*zAbs-0.1567*Math.pow(zAbs,2)+0.0165*Math.pow(zAbs,3));
 
         if(z > 0 && alpha > p)
             return true;
@@ -65,7 +65,7 @@ export class BacklogStats {
     }
 
     private getSummary(numbers : Array<number>) {
-        let summary = new Summary();
+        const summary = new Summary();
         summary.Count = numbers.length;
         summary.Mean = this.toDecimalPlace(simplestats.mean(numbers));
         summary.Median = this.toDecimalPlace(simplestats.median(numbers));
@@ -78,7 +78,7 @@ export class BacklogStats {
     }
 
     private toDecimalPlace(value : number, decimalPlaces : number = 1) : number {
-        let diviser =  Math.pow(10, decimalPlaces);
+        const diviser =  Math.pow(10, decimalPlaces);
         return Math.round((value + Number.EPSILON) * diviser) / diviser;
     }
 
