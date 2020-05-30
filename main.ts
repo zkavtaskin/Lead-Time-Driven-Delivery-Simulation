@@ -25,7 +25,7 @@ let teamConfig = new TeamConfig([
 let backlogConfig = new BacklogConfig(100, 1/10, 1/10, 1, 30);
 
 
-console.log("# Sampling")
+console.log("\n#Sampling")
 let numberOfSamplesToGet = 10, sampleAverage = 0;
 for(let i = 0; i < numberOfSamplesToGet; i++) {
         let teamSimulationDirect = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
@@ -37,7 +37,7 @@ sampleAverage = sampleAverage / numberOfSamplesToGet;
 console.log(`Sample average: ${sampleAverage}`);
 
 
-console.log("# Random Null Hypothesis Test");
+console.log("\n#Random Null Hypothesis Test");
 let teamSimulationDirect = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
 let statsDirect = teamSimulationDirect.Run().GetStats();
 console.log(`Random sample: ${statsDirect.LeadTime.Mean}`);
@@ -45,17 +45,17 @@ let nullHypothesis = BacklogStats.GetSignificance(statsDirect.LeadTime.Mean, sta
 console.log(nullHypothesis);
 
 
-console.log("# Looking for optimial backlog sort")
+console.log("\n#Looking for optimial backlog sort")
 let geneticBacklog = new GeneticBacklog(teamConfig, backlogConfig, 0.5);
 let bestScore = null, bestScoreDecoded = null, attempts = 0;
 for(let result of geneticBacklog.Search()) {
-        console.log(JSON.stringify(result));
+        console.log(`Score: ${result.BestScore}, Sort: ${result.BestEncodingDecoded}`);
         if(bestScore == null) {
                 bestScore =  result.BestScore;
                 bestScoreDecoded = result.BestEncodingDecoded;
         } else {
                 const improvement = (bestScore - result.BestScore) / bestScore;
-                console.log(`improvement from best score: ${(improvement*100).toFixed(1)}%`);
+                console.log(` ->improvement from best score: ${(improvement*100).toFixed(1)}%`);
 
                 if(bestScore > result.BestScore) {
                         bestScore = result.BestScore;
@@ -66,9 +66,9 @@ for(let result of geneticBacklog.Search()) {
                         break;
         }
 }
-console.log(`Best score: ${bestScore}, Decoded: ${bestScoreDecoded}`);
+console.log(`->Final best score: ${bestScore}, sort: ${bestScoreDecoded}<-`);
 
-console.log("# Running Null Hypothesis Test for optimised solution");
+console.log("\n#Running Null Hypothesis Test for optimised solution");
 console.log(`Testing original mean ${statsDirect.LeadTime.Mean} against optimised mean ${bestScore}.`)
 let nullHypothesisOptimised = BacklogStats.GetSignificance(statsDirect.LeadTime.Mean, statsDirect.LeadTime.Std, statsDirect.LeadTime.Count, bestScore, 0.01);
 console.log(`Null Hypothesis:${nullHypothesisOptimised}`);
