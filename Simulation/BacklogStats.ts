@@ -48,9 +48,9 @@ export class BacklogStats {
     }
 
 
-    public static GetSignificance(sampleMean : number, sampleStd : number, sampleCount : number, expectationMean : number, alpha  : number = 0.05) : boolean | null {
+    public static GetSignificance(sampleMean : number, sampleStd : number, numberOfSamples : number, expectationMean : number, alpha  : number = 0.05) : boolean | null {
     
-        let z = (sampleMean - expectationMean) / (sampleStd / Math.sqrt(sampleCount));
+        let z = (sampleMean - expectationMean) / (sampleStd / Math.sqrt(numberOfSamples));
         let zAbs = Math.abs(z);
         //zTable regression approximation
         let p = 0.5-(-0.0109+0.4913*zAbs-0.1567*Math.pow(zAbs,2)+0.0165*Math.pow(zAbs,3));

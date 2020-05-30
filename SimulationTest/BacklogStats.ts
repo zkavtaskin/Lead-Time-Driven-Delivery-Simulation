@@ -61,5 +61,6 @@ describe('BacklogStats', () => {
     it('Negative significance, numbers are not in the same mean range, retuns false', () => {
         let actual = BacklogStats.GetSignificance(5.5, 3.02, 11, 15.5)
         expect(actual).to.equal(false);
-    });
+    })
+
 });

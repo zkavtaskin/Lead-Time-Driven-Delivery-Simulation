@@ -26,26 +26,24 @@ let backlogConfig = new BacklogConfig(100, 1/10, 1/10, 1, 30);
 
 
 console.log("\n#Sampling")
-let numberOfSamplesToGet = 10, sampleMean = 0, sampleStd = 0, sampleCount = 0;
+let numberOfSamplesToGet = 10, sampleMean = 0, sampleStd = 0;
 for(let i = 0; i < numberOfSamplesToGet; i++) {
         let teamSimulationSample = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
         let sample = teamSimulationSample.Run().GetStats();
         console.log(`Getting sample ${i}, lead time mean: ${sample.LeadTime.Mean}`);
         sampleMean += sample.LeadTime.Mean;
         sampleStd += sample.LeadTime.Std;
-        sampleCount += sample.LeadTime.Count;
 }
 sampleMean = sampleMean / numberOfSamplesToGet;
 sampleStd = sampleStd / numberOfSamplesToGet;
-sampleCount = sampleCount / numberOfSamplesToGet;
-console.log(`->Sample mean: ${sampleMean}, std: ${sampleStd}, count: ${sampleCount} <-`);
+console.log(`->Sample mean: ${sampleMean}, std: ${sampleStd}<-`);
 
 
 console.log("\n#Random Null Hypothesis Test");
 let teamSimulationRandom = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
 let statsRandom = teamSimulationRandom.Run().GetStats();
-console.log(`Random sample mean: ${statsRandom.LeadTime.Mean} std: ${statsRandom.LeadTime.Std}, count: ${statsRandom.LeadTime.Count}`);
-let nullHypothesis = BacklogStats.GetSignificance(sampleMean, sampleStd, sampleCount, statsRandom.LeadTime.Mean, 0.05);
+console.log(`Random sample mean: ${statsRandom.LeadTime.Mean} std: ${statsRandom.LeadTime.Std}`);
+let nullHypothesis = BacklogStats.GetSignificance(sampleMean, sampleStd, numberOfSamplesToGet, statsRandom.LeadTime.Mean, 0.05);
 console.log(`->Null Hypothesis:${nullHypothesis}<-`);
 
 
@@ -74,6 +72,6 @@ console.log(`->Final best score: ${bestScore}, sort: ${bestScoreDecoded}<-`);
 
 console.log("\n#Running Null Hypothesis Test for optimised solution");
 console.log(`Testing original mean ${statsRandom.LeadTime.Mean} against optimised mean ${bestScore}.`)
-let nullHypothesisOptimised = BacklogStats.GetSignificance(sampleMean, sampleStd, sampleCount, bestScore, 0.05);
+let nullHypothesisOptimised = BacklogStats.GetSignificance(sampleMean, sampleStd, numberOfSamplesToGet, bestScore, 0.05);
 console.log(`->Null Hypothesis:${nullHypothesisOptimised}<-`);
 
