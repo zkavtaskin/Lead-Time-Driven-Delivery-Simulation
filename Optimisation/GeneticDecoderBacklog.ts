@@ -45,7 +45,7 @@ export class GeneticDecoderBacklog {
         this.GeneLen = this.decodeMap.size;
         this.ChromoLen = Math.pow(this.GeneLen, 2);
         //TODO; find optimal number
-        this.Population = this.ChromoLen * 2;
+        this.Population = this.ChromoLen * 10;
     }
 
     public GetRandom() : Array<number> {

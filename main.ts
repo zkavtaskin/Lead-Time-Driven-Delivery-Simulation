@@ -22,33 +22,54 @@ let teamConfig = new TeamConfig([
         ]
 );
 
-let backlogConfig = new BacklogConfig(1000, 1/10, 1/10, 1, 30);
+let backlogConfig = new BacklogConfig(100, 1/10, 1/10, 1, 30);
 
-console.log("Direct simulation")
+
+console.log("# Sampling")
+let numberOfSamplesToGet = 10, sampleAverage = 0;
+for(let i = 0; i < numberOfSamplesToGet; i++) {
+        let teamSimulationDirect = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
+        let statsDirect = teamSimulationDirect.Run().GetStats();
+        console.log(`Getting sample ${i}, lead time mean: ${statsDirect.LeadTime.Mean}`);
+        sampleAverage += statsDirect.LeadTime.Mean;
+}
+sampleAverage = sampleAverage / numberOfSamplesToGet;
+console.log(`Sample average: ${sampleAverage}`);
+
+
+console.log("# Random Null Hypothesis Test");
 let teamSimulationDirect = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
 let statsDirect = teamSimulationDirect.Run().GetStats();
-console.log(JSON.stringify(statsDirect));
-
-console.log("Null Hypothesis Test");
-//both simulations are with same configurations, this means results should not be significantly differnet 
-let teamSimulationDirect2 = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
-let statsDirect2 = teamSimulationDirect2.Run().GetStats();
-let nullHypothesis = BacklogStats.GetSignificance(statsDirect.CycleTime.Mean, statsDirect.CycleTime.Std, statsDirect.CycleTime.Count, statsDirect2.CycleTime.Mean, 0.01);
+console.log(`Random sample: ${statsDirect.LeadTime.Mean}`);
+let nullHypothesis = BacklogStats.GetSignificance(statsDirect.LeadTime.Mean, statsDirect.LeadTime.Std, statsDirect.LeadTime.Count, sampleAverage, 0.05);
 console.log(nullHypothesis);
 
 
-console.log("Backlog optimised simulation")
+console.log("# Looking for optimial backlog sort")
 let geneticBacklog = new GeneticBacklog(teamConfig, backlogConfig, 0.5);
-let lastBestScore = null, attempts = 0;
+let bestScore = null, bestScoreDecoded = null, attempts = 0;
 for(let result of geneticBacklog.Search()) {
         console.log(JSON.stringify(result));
-        if(lastBestScore == null) {
-                lastBestScore =  result.BestScore;
+        if(bestScore == null) {
+                bestScore =  result.BestScore;
+                bestScoreDecoded = result.BestEncodingDecoded;
         } else {
-                const improvement = (lastBestScore - result.BestScore) / lastBestScore;
-                console.log(`improvement: ${(improvement*100).toFixed(1)}%`);
-                lastBestScore = result.BestScore;
-                if(improvement < 0.05 && attempts++ >= 5)
+                const improvement = (bestScore - result.BestScore) / bestScore;
+                console.log(`improvement from best score: ${(improvement*100).toFixed(1)}%`);
+
+                if(bestScore > result.BestScore) {
+                        bestScore = result.BestScore;
+                        bestScoreDecoded = result.BestEncodingDecoded;
+                }
+                
+                if(improvement < 0.01 && attempts++ >= 5)
                         break;
         }
 }
+console.log(`Best score: ${bestScore}, Decoded: ${bestScoreDecoded}`);
+
+console.log("# Running Null Hypothesis Test for optimised solution");
+console.log(`Testing original mean ${statsDirect.LeadTime.Mean} against optimised mean ${bestScore}.`)
+let nullHypothesisOptimised = BacklogStats.GetSignificance(statsDirect.LeadTime.Mean, statsDirect.LeadTime.Std, statsDirect.LeadTime.Count, bestScore, 0.01);
+console.log(`Null Hypothesis:${nullHypothesisOptimised}`);
+
