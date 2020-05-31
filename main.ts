@@ -30,7 +30,7 @@ const backlogConfig = new BacklogConfig(100, 1/10, 1/10, 1, 30);
 console.log("\n#Expected")
 const teamSimulationExpected = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
 const expectedLeadTime = teamSimulationExpected.Run().GetStats().LeadTime;
-console.log(`->Expected mean: ${expectedLeadTime.Mean}<-`);
+console.log(`->Expected mean: ${expectedLeadTime.Mean}, std: ${expectedLeadTime.Std}<-`);
 
 
 console.log("\n#Random Null Hypothesis Test");
