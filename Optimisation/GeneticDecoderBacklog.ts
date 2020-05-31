@@ -8,39 +8,16 @@ export class GeneticDecoderBacklog {
     public readonly GeneLen : number;
 
     private decodeMap = new Map<number, (a : Story, b : Story) => number>();
-    private decodeHumanMap = new Map<number, string>();
+    private decodeReadableMap = new Map<number, string>();
 
     constructor(teamConfig : TeamConfig) {
 
-        this.decodeMap.set(0, (a, b) => { 
+        this.decodeMap.set(0, this.orderByPrerequisite);
+        this.decodeReadableMap.set(0, "PrerequisiteId");
 
-            if(!a.HasPrerequisite() && !b.HasPrerequisite())
-                return 0;
-
-            if(!a.HasPrerequisite())
-                return -1;
-            
-            if(!b.HasPrerequisite())
-                return 1;
-
-            return a.PrerequisiteId-b.PrerequisiteId; 
-        });
-        this.decodeHumanMap.set(0, "PrerequisiteId");
-
-        for(let i = 0; i < teamConfig.Members.length; i++) {
-            this.decodeMap.set(i + 1, (a, b) => { 
-                if(a.Tasks[i] == null && b.Tasks[i] == null)
-                    return 0;
-
-                if(a.Tasks[i] == null)
-                    return -1;
-
-                if(b.Tasks[i] == null)
-                    return 1;
-
-                return a.Tasks[i].Remaining-b.Tasks[i].Remaining; 
-            });
-            this.decodeHumanMap.set(i + 1, teamConfig.Members[i].Name);
+        for(let teamMemberId = 0; teamMemberId < teamConfig.Members.length; teamMemberId++) {
+            this.decodeMap.set(teamMemberId + 1, (a, b) => this.orderByTeamMember(teamMemberId, a, b));
+            this.decodeReadableMap.set(teamMemberId + 1, teamConfig.Members[teamMemberId].Name);
         }
         this.GeneLen = this.decodeMap.size;
         this.ChromoLen = Math.pow(this.GeneLen, 2);
@@ -56,6 +33,7 @@ export class GeneticDecoderBacklog {
 
             if(i % this.GeneLen == 0) 
                 currentGeneHeadActive = value != 0;
+            
 
             if(currentGeneHeadActive) 
                 return value;
@@ -64,28 +42,25 @@ export class GeneticDecoderBacklog {
         });
     }
 
-    public Decode(gene : Array<number>) : (a : Story, b : Story) => number {
-
-        const genesOrdered = this.breakUpAndOrder(gene);
-
+    public Decode(chromosome : Array<number>) : (a : Story, b : Story) => number {
+        const genesOrdered = this.createOrderedGenes(chromosome);
         const lambda = (a : Story, b : Story, index : number) => {  
             if(index < 0) return;
             return this.decodeMap.get(genesOrdered[index][0])(a, b) || lambda(a, b, index-1);
         }
-
        return (a, b) => lambda(a, b, genesOrdered.length-1);
     }
 
-    public DecodeHuman(gene : Array<number>) : Array<string> {
-        const genesOrdered = this.breakUpAndOrder(gene);
+    public DecodeReadable(chromosome : Array<number>) : Array<string> {
+        const genesOrdered = this.createOrderedGenes(chromosome);
         const decoded = new Array<string>();
         for(let i = genesOrdered.length-1; i >= 0; i--) {
-            decoded.push( this.decodeHumanMap.get(genesOrdered[i][0]));
+            decoded.push( this.decodeReadableMap.get(genesOrdered[i][0]));
         }
         return decoded;
     }
 
-    private breakUpAndOrder(gene : Array<number>) : Array<[number, number]> {
+    private createOrderedGenes(gene : Array<number>) : Array<[number, number]> {
         let genesOrdered = new Array<[number, number]>();
         for(let i = 0, head = i * this.GeneLen; i < this.GeneLen; i++, head = i * this.GeneLen) {
             if(gene[head] == 1) {
@@ -94,5 +69,31 @@ export class GeneticDecoderBacklog {
             }
         }
         return genesOrdered.sort((a, b) => { return b[1]-a[1]});
+    }
+
+    private orderByPrerequisite(a : Story, b : Story) : number {
+        if(!a.HasPrerequisite() && !b.HasPrerequisite())
+            return 0;
+
+        if(!a.HasPrerequisite())
+            return -1;
+        
+        if(!b.HasPrerequisite())
+            return 1;
+
+        return a.PrerequisiteId-b.PrerequisiteId; 
+    }
+
+    private orderByTeamMember(teamMemberId : number, a : Story, b : Story) : number {
+        if(a.Tasks[teamMemberId] == null && b.Tasks[teamMemberId] == null)
+        return 0;
+
+        if(a.Tasks[teamMemberId] == null)
+            return -1;
+
+        if(b.Tasks[teamMemberId] == null)
+            return 1;
+
+        return a.Tasks[teamMemberId].Remaining-b.Tasks[teamMemberId].Remaining; 
     }
 }

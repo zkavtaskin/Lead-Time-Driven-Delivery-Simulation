@@ -115,11 +115,11 @@ describe('GeneticDecoderBacklog', () => {
         expect(actual).to.eql(expected)
     }),
 
-    it('Decode human, gene is set to prioritise by prerequisiteId first and then single team member', () => {
+    it('Decode redable, gene is set to prioritise by prerequisiteId first and then single team member', () => {
         const teamConfig = new TeamConfig([new MemberConfig("A", 1, 1, 1), new MemberConfig("B", 1, 1, 1)],  null);
         const decoder = new GeneticDecoderBacklog(teamConfig);
         
-        const actual = decoder.DecodeHuman([1, 0, 0, 1, 1, 0, 0, 0, 0]);
+        const actual = decoder.DecodeReadable([1, 0, 0, 1, 1, 0, 0, 0, 0]);
         const expected = ["PrerequisiteId", "A"];
         expect(actual).to.eql(expected)
     })
