@@ -4,8 +4,10 @@ import { TeamSimulation } from "./Simulation/TeamSimulation";
 import { TeamConfig } from "./Simulation/TeamConfig";
 import { GeneticBacklog } from "./Optimisation/GeneticBacklog";
 import { BacklogStats } from "./Simulation/BacklogStats";
+import { Result } from "./Optimisation/Result";
+import { GeneticDecoderBacklog } from "./Optimisation/GeneticDecoderBacklog";
 
-let teamConfig = new TeamConfig([
+const teamConfig = new TeamConfig([
                 new MemberConfig("Product Owner", 10/37, 8/10, 10/100),
                 new MemberConfig("UX", 10/37, 2/10, 5/100),
                 new MemberConfig("Architecture", 5/37, 2/10, 5/100),
@@ -22,56 +24,53 @@ let teamConfig = new TeamConfig([
         ]
 );
 
-let backlogConfig = new BacklogConfig(100, 1/10, 1/10, 1, 30);
+const backlogConfig = new BacklogConfig(100, 1/10, 1/10, 1, 30);
 
 
 console.log("\n#Sampling")
-let numberOfSamplesToGet = 10, sampleMean = 0, sampleStd = 0;
-for(let i = 0; i < numberOfSamplesToGet; i++) {
-        let teamSimulationSample = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
-        let sample = teamSimulationSample.Run().GetStats();
-        console.log(`Getting sample ${i}, lead time mean: ${sample.LeadTime.Mean}`);
-        sampleMean += sample.LeadTime.Mean;
-        sampleStd += sample.LeadTime.Std;
-}
-sampleMean = sampleMean / numberOfSamplesToGet;
-sampleStd = sampleStd / numberOfSamplesToGet;
-console.log(`->Sample mean: ${sampleMean}, std: ${sampleStd}<-`);
+const teamSimulationExpected = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
+const expectedLeadTime = teamSimulationExpected.Run().GetStats().LeadTime;
+console.log(`->Expected mean: ${expectedLeadTime.Mean}<-`);
 
 
 console.log("\n#Random Null Hypothesis Test");
-let teamSimulationRandom = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
-let statsRandom = teamSimulationRandom.Run().GetStats();
-console.log(`Random sample mean: ${statsRandom.LeadTime.Mean} std: ${statsRandom.LeadTime.Std}`);
-let nullHypothesis = BacklogStats.GetSignificance(sampleMean, sampleStd, numberOfSamplesToGet, statsRandom.LeadTime.Mean, 0.05);
+const teamSimulationRandom = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
+const randomLeadTime = teamSimulationRandom.Run().GetStats().LeadTime;
+console.log(`Random sample mean: ${randomLeadTime.Mean} std: ${randomLeadTime.Std}`);
+const nullHypothesis = BacklogStats.GetSignificance(randomLeadTime.Mean, randomLeadTime.Std, randomLeadTime.Count / expectedLeadTime.Count, expectedLeadTime.Mean, 0.05);
 console.log(`->Null Hypothesis:${nullHypothesis}<-`);
 
 
 console.log("\n#Looking for optimial backlog sort")
-let geneticBacklog = new GeneticBacklog(teamConfig, backlogConfig, 0.5);
-let bestScore = null, bestScoreDecoded = null, attempts = 0;
+const geneticBacklog = new GeneticBacklog(teamConfig, backlogConfig, 0.5);
+let bestScore : number = null, bestScoreResult : Result = null, attempts = 0;
 for(let result of geneticBacklog.Search()) {
         console.log(`Score: ${result.BestScore}, Sort: ${result.BestEncodingDecoded}`);
         if(bestScore == null) {
                 bestScore =  result.BestScore;
-                bestScoreDecoded = result.BestEncodingDecoded;
+                bestScoreResult = result;
         } else {
                 const improvement = (bestScore - result.BestScore) / bestScore;
                 console.log(` ->improvement from best score: ${(improvement*100).toFixed(1)}%`);
 
                 if(bestScore > result.BestScore) {
                         bestScore = result.BestScore;
-                        bestScoreDecoded = result.BestEncodingDecoded;
+                        bestScoreResult = result;
                 }
                 
                 if(improvement < 0.01 && attempts++ >= 5) 
                         break;
         }
 }
-console.log(`->Final best score: ${bestScore}, sort: ${bestScoreDecoded}<-`);
+console.log(`->Final best score: ${bestScore}, sort: ${bestScoreResult.BestEncodingDecoded}<-`);
 
 console.log("\n#Running Null Hypothesis Test for optimised solution");
-console.log(`Testing original mean ${statsRandom.LeadTime.Mean} against optimised mean ${bestScore}.`)
-let nullHypothesisOptimised = BacklogStats.GetSignificance(sampleMean, sampleStd, numberOfSamplesToGet, bestScore, 0.05);
+const geneticDecoderBacklog = new GeneticDecoderBacklog(teamConfig);
+backlogConfig.StorySort = geneticDecoderBacklog.Decode(bestScoreResult.BestEncoding);
+const teamSimulationOptimised = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
+const optimisedLeadTime = teamSimulationRandom.Run().GetStats().LeadTime;
+
+console.log(`Testing expected mean ${expectedLeadTime.Mean} against optimised mean ${optimisedLeadTime.Mean}.`)
+let nullHypothesisOptimised = BacklogStats.GetSignificance(optimisedLeadTime.Mean, optimisedLeadTime.Std, optimisedLeadTime.Count / expectedLeadTime.Count, bestScore, 0.05);
 console.log(`->Null Hypothesis:${nullHypothesisOptimised}<-`);
 

@@ -48,6 +48,15 @@ export class BacklogStats {
     }
 
 
+    /**
+     * t-Test that performs Null Hypothesis test.
+     * @param sampleMean 
+     * @param sampleStd 
+     * @param numberOfSamples 
+     * @param expectationMean 
+     * @param alpha 
+     * @returns false if there is negative significance and true if there is positive significance. Null is returned when Null Hypothesis is true.
+     */
     public static GetSignificance(sampleMean : number, sampleStd : number, numberOfSamples : number, expectationMean : number, alpha  : number = 0.05) : boolean | null {
     
         const z = (sampleMean - expectationMean) / (sampleStd / Math.sqrt(numberOfSamples));
