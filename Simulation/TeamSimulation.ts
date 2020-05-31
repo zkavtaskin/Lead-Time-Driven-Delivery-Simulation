@@ -14,6 +14,10 @@ export class TeamSimulation {
     constructor(name :string, teamConfig :TeamConfig, backlogConfig :BacklogConfig,  effortSizePerTick :number) {
       this.name = name;
 
+      //create own copy to avoid config mutation
+      teamConfig = JSON.parse(JSON.stringify(teamConfig));
+      backlogConfig = JSON.parse(JSON.stringify(backlogConfig));
+
       this.clock = new Clock(effortSizePerTick);
       this.backlog = Backlog.Generate(teamConfig.Members, backlogConfig);
 

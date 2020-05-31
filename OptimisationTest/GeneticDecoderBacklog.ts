@@ -12,20 +12,6 @@ describe('GeneticDecoderBacklog', () => {
         expect(decoder.GeneLen).to.equal(teamConfig.Members.length + 1);
     }),
 
-    it('GetRandom, gene length is 6, random chromo sequence is issued that is 6^2 length and one of the heads is active', () => {
-        const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)],  null);
-        const decoder = new GeneticDecoderBacklog(teamConfig);
-        const chromoLen = decoder.GetRandom();
-        const genesActive = chromoLen.reduce((accumulator, currentValue, currentIndex) => { 
-            if(currentIndex % decoder.ChromoLen == 0 && currentValue == 1) 
-                return ++accumulator;
-
-            return accumulator;
-        });
-        expect(chromoLen.length).to.equal(36);
-        expect(genesActive).to.be.gt(0);
-    }),
-
     it('Decode, stories have have tasks with nulls, sort puts nulls first and then in asc order', () => {
 
         const storyA = new Story(0, false, null, Array<Task>(null, new Task(0)));
