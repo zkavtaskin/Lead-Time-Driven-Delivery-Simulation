@@ -27,7 +27,7 @@ const teamConfig = new TeamConfig([
 const backlogConfig = new BacklogConfig(100, 1/10, 1/10, 1, 30);
 
 
-console.log("\n#Sampling")
+console.log("\n#Expected")
 const teamSimulationExpected = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
 const expectedLeadTime = teamSimulationExpected.Run().GetStats().LeadTime;
 console.log(`->Expected mean: ${expectedLeadTime.Mean}<-`);
@@ -66,9 +66,8 @@ console.log(`->Final best score: ${bestScore}, sort: ${bestScoreResult.BestEncod
 
 console.log("\n#Running Null Hypothesis Test for optimised solution");
 const geneticDecoderBacklog = new GeneticDecoderBacklog(teamConfig);
-backlogConfig.StorySort = geneticDecoderBacklog.Decode(bestScoreResult.BestEncoding);
-const teamSimulationOptimised = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
-const optimisedLeadTime = teamSimulationRandom.Run().GetStats().LeadTime;
+const teamSimulationOptimised = new TeamSimulation("*", teamConfig, backlogConfig, 0.5, geneticDecoderBacklog.Decode(bestScoreResult.BestEncoding));
+const optimisedLeadTime = teamSimulationOptimised.Run().GetStats().LeadTime;
 
 console.log(`Testing expected mean ${expectedLeadTime.Mean} against optimised mean ${optimisedLeadTime.Mean}.`)
 let nullHypothesisOptimised = BacklogStats.GetSignificance(optimisedLeadTime.Mean, optimisedLeadTime.Std, optimisedLeadTime.Count / expectedLeadTime.Count, bestScore, 0.05);

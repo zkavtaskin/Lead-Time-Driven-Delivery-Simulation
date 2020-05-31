@@ -157,10 +157,9 @@ describe('Backlog', () => {
     it('Sort, backlog with 3 stories, reversed by id', () => {
         let members = [new MemberConfig("PO", 1, 1, 1) ];
         let config = new BacklogConfig(3, 1, 1, 10, 10);
-        config.StorySort = (a : Story, b : Story) => { 
+        let backlog =  Backlog.Generate(members, config, (a : Story, b : Story) => { 
             return b.Id - a.Id; 
-        }
-        let backlog =  Backlog.Generate(members, config);
+        });
 
         let expected = [2, 1, 0];
         let actual = Array<number>();

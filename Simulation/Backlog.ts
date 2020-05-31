@@ -46,7 +46,7 @@ export class Backlog {
       return new BacklogStats(this.stories);
     }
 
-    public static Generate(memberConfig : Array<MemberConfig>, backlogConfig :BacklogConfig) : Backlog {
+    public static Generate(memberConfig : Array<MemberConfig>, backlogConfig :BacklogConfig, sortFunc :  (a : Story, b : Story) => number = null) : Backlog {
         let stories = new Array<Story>();
     
         for(let id:number = 0; id < backlogConfig.NumberOfStories; id++) {
@@ -78,8 +78,8 @@ export class Backlog {
           stories.push(new Story(id, hasDeadline, prerequisiteStoryId, tasks));
         }
   
-        if(backlogConfig.StorySort != null) {
-          stories.sort(backlogConfig.StorySort);
+        if(sortFunc != null) {
+          stories.sort(sortFunc);
         }
 
         return new Backlog(stories);
