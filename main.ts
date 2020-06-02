@@ -26,7 +26,7 @@ const teamConfig = new TeamConfig([
 
 const backlogConfig = new BacklogConfig(100, 1/10, 1/10, 1, 30);
 
-
+//move this over to two sample test. 
 console.log("\n#Expected");
 let numberOfSamplesToGet = 10, sampleMean = 0;
 for(let i = 0; i < numberOfSamplesToGet; i++) {

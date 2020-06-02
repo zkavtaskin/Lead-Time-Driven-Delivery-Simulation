@@ -73,6 +73,34 @@ export class BacklogStats {
         return null;
     }
 
+    /**
+     * Two sample t-Test that performs Null Hypothesis for two samples, two samples must be same size.
+     * @param summaryA 
+     * @param summaryB 
+     * @param alpha 
+     * @returns false if there is negative significance and true if there is positive significance. Null is returned when Null Hypothesis is true.
+     */
+    public static TwoSampleTest(summaryA : Summary, summaryB : Summary, alpha : number = 0.05) {
+        if(summaryA.Count != summaryB.Count || summaryA.Count < 1) {
+            throw new Error("count must be the same for summary A and B and count must be greater then 0");
+        }
+
+        const meanDifference = summaryA.Mean - summaryB.Mean;
+        const denominator = Math.sqrt((summaryA.Variance + summaryB.Variance) / 2) * Math.sqrt(2 / summaryA.Count);
+        const z = meanDifference / denominator;
+        const zAbs = Math.abs(z);
+        //zTable regression approximation
+        const p = 0.5-(-0.0109+0.4913*zAbs-0.1567*Math.pow(zAbs,2)+0.0165*Math.pow(zAbs,3));
+        
+        if(z > 0 && alpha > p)
+        return true;
+    
+        if(z < 0 && alpha > p)
+            return false;
+
+        return null;
+    }
+
     private getSummary(numbers : Array<number>) {
         const summary = new Summary();
         summary.Count = numbers.length;
@@ -82,7 +110,7 @@ export class BacklogStats {
         summary.Min = this.toDecimalPlace(simplestats.min(numbers));
         summary.Max = this.toDecimalPlace(simplestats.max(numbers));
         summary.Std =  this.toDecimalPlace(simplestats.standardDeviation(numbers));
-        simplestats
+        summary.Variance = this.toDecimalPlace(simplestats.variance(numbers));
         return summary;
     }
 
@@ -101,8 +129,9 @@ export class Summary {
     Mean :number;
     Median : number;
     Std : number;
+    Variance : number;
 
-    constructor(count : number = 0, sum : number = 0, min : number = 0, max : number = 0, mean : number = 0, median : number = 0, std : number = 0) {
+    constructor(count : number = 0, sum : number = 0, min : number = 0, max : number = 0, mean : number = 0, median : number = 0, std : number = 0, variance : number = 0) {
         this.Count = count;
         this.Sum = sum;
         this.Min = min;
@@ -110,6 +139,7 @@ export class Summary {
         this.Mean = mean;
         this.Median = median;
         this.Std = std;
+        this.Variance = variance;
     }
 
 }
