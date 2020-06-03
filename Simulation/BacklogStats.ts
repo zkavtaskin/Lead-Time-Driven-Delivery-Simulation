@@ -47,55 +47,30 @@ export class BacklogStats {
 
     }
 
-
     /**
-     * t-Test that performs Null Hypothesis test.
-     * @param sampleMean 
-     * @param sampleStd 
-     * @param numberOfSamples 
-     * @param expectationMean 
+     * Two sample t-Test that performs Null Hypothesis for two samples.
+     * @param a 
+     * @param b 
      * @param alpha 
      * @returns false if there is negative significance and true if there is positive significance. Null is returned when Null Hypothesis is true.
      */
-    public static GetSignificance(sampleMean : number, sampleStd : number, numberOfSamples : number, expectationMean : number, alpha  : number = 0.05) : boolean | null {
-    
-        const z = (sampleMean - expectationMean) / (sampleStd / Math.sqrt(numberOfSamples));
-        const zAbs = Math.abs(z);
-        //zTable regression approximation
-        const p = 0.5-(-0.0109+0.4913*zAbs-0.1567*Math.pow(zAbs,2)+0.0165*Math.pow(zAbs,3));
+    public static TwoSampleTest(a : Summary, b : Summary, alpha : number = 0.05, twoTail : boolean = true) {
 
-        if(z > 0 && alpha > p)
-            return true;
-        
-        if(z < 0 && alpha > p)
-            return false;
-
-        return null;
-    }
-
-    /**
-     * Two sample t-Test that performs Null Hypothesis for two samples, two samples must be same size.
-     * @param summaryA 
-     * @param summaryB 
-     * @param alpha 
-     * @returns false if there is negative significance and true if there is positive significance. Null is returned when Null Hypothesis is true.
-     */
-    public static TwoSampleTest(summaryA : Summary, summaryB : Summary, alpha : number = 0.05) {
-        if(summaryA.Count != summaryB.Count || summaryA.Count < 1) {
-            throw new Error("count must be the same for summary A and B and count must be greater then 0");
+        if(30 > a.Count || 30 > b.Count) {
+            throw new Error("Data sample for A and B needs to be greater then 30.");
         }
 
-        const meanDifference = summaryA.Mean - summaryB.Mean;
-        const denominator = Math.sqrt((summaryA.Variance + summaryB.Variance) / 2) * Math.sqrt(2 / summaryA.Count);
-        const z = meanDifference / denominator;
-        const zAbs = Math.abs(z);
-        //zTable regression approximation
-        const p = 0.5-(-0.0109+0.4913*zAbs-0.1567*Math.pow(zAbs,2)+0.0165*Math.pow(zAbs,3));
+        const zScore = (a.Mean - b.Mean) / Math.sqrt( a.Variance / a.Count + b.Variance / b.Count );
+        const zScoreAbs = Math.abs(zScore);
         
-        if(z > 0 && alpha > p)
+        //zTable regression approximation
+        let pValue = 0.5-(-0.0109+0.4913*zScoreAbs-0.1567*Math.pow(zScoreAbs,2)+0.0165*Math.pow(zScoreAbs,3));
+        pValue = twoTail ? 2 * pValue : pValue; 
+
+        if(zScore > 0 && alpha > pValue)
         return true;
     
-        if(z < 0 && alpha > p)
+        if(zScore < 0 && alpha > pValue)
             return false;
 
         return null;

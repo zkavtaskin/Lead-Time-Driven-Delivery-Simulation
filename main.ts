@@ -26,25 +26,18 @@ const teamConfig = new TeamConfig([
 
 const backlogConfig = new BacklogConfig(100, 1/10, 1/10, 1, 30);
 
-//move this over to two sample test. 
 console.log("\n#Expected");
-let numberOfSamplesToGet = 10, sampleMean = 0;
-for(let i = 0; i < numberOfSamplesToGet; i++) {
-        let teamSimulationSample = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
-        let sampleLeadTime = teamSimulationSample.Run().GetStats().LeadTime;
-        sampleMean += sampleLeadTime.Mean;
-        console.log(`Getting sample ${i}, lead time mean: ${sampleLeadTime.Mean}, std: ${sampleLeadTime.Std}`);
-}
-const expectedLeadTime  = sampleMean / numberOfSamplesToGet;
-console.log(`->Expected average mean: ${expectedLeadTime}<-`);
+let teamSimulationExpected = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
+const expectedLeadTime  = teamSimulationExpected.Run().GetStats().LeadTime;
+console.log(`->Expected average mean: ${expectedLeadTime.Mean}<-`);
 
 
 
 console.log("\n#Control, Null Hypothesis Test");
-const teamSimulationRandom = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
-const randomLeadTime = teamSimulationRandom.Run().GetStats().LeadTime;
-console.log(`Random control mean: ${randomLeadTime.Mean} std: ${randomLeadTime.Std}`);
-const nullHypothesis = BacklogStats.GetSignificance(randomLeadTime.Mean, randomLeadTime.Std, randomLeadTime.Count, expectedLeadTime, 0.01);
+const teamSimulationControl = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
+const controlLeadTime = teamSimulationControl.Run().GetStats().LeadTime;
+console.log(`Control mean: ${controlLeadTime.Mean} std: ${controlLeadTime.Std}`);
+const nullHypothesis = BacklogStats.TwoSampleTest(expectedLeadTime, controlLeadTime);
 console.log(`->Null Hypothesis:${nullHypothesis}<-`);
 
 
@@ -76,7 +69,7 @@ const geneticDecoderBacklog = new GeneticDecoderBacklog(teamConfig);
 const teamSimulationOptimised = new TeamSimulation("*", teamConfig, backlogConfig, 0.5, geneticDecoderBacklog.Decode(bestScoreResult.BestEncoding));
 const optimisedLeadTime = teamSimulationOptimised.Run().GetStats().LeadTime;
 
-console.log(`Testing expected mean ${expectedLeadTime} against optimised mean ${optimisedLeadTime.Mean}.`)
-let nullHypothesisOptimised = BacklogStats.GetSignificance(optimisedLeadTime.Mean, optimisedLeadTime.Std, optimisedLeadTime.Count, expectedLeadTime, 0.01);
+console.log(`Testing expected mean ${expectedLeadTime.Mean} against optimised mean ${optimisedLeadTime.Mean}.`)
+let nullHypothesisOptimised = BacklogStats.TwoSampleTest(expectedLeadTime, optimisedLeadTime);
 console.log(`->Null Hypothesis:${nullHypothesisOptimised}<-`);
 

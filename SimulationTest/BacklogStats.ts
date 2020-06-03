@@ -50,25 +50,22 @@ describe('BacklogStats', () => {
         expect(actual.TeamMembersActual[0]).to.eql(actualExpected);
     }),
 
-    it('Null hypothesis, numbers are with in the same mean range, returns null', () => {
+    it('Null hypothesis, numbers are not  with in same range, hypothesis of equal means is negatively rejected', () => {
 
-        const a = new Summary(6, null, null, null, 30.015, null, null, 0.00247);
-        const b = new Summary(6, null, null, null, 29.92, null, null, 0.01164);
+        const a = new Summary(75, null, null, null, 28, null, null, Math.pow(14.1, 2));
+        const b = new Summary(50, null, null, null, 33, null, null, Math.pow(9.5, 2));
+
+        let actual = BacklogStats.TwoSampleTest(a, b, 0.05);
+        expect(actual).to.equal(false);
+    }),
+
+
+    it('Null hypothesis, numbers are in the same range, hypothesis of equal means is accepted', () => {
+
+        const a = new Summary(32, null, null, null, 4.7, null, null, 7.24);
+        const b = new Summary(30, null, null, null, 4.8, null, null, 9.33);
 
         let actual = BacklogStats.TwoSampleTest(a, b, 0.05);
         expect(actual).to.equal(null);
     })
-    /*
-    ,
-    it('Positive significance, numbers are not in the same mean range, retuns true', () => {
-        let actual = BacklogStats.GetSignificance(15.5, 3.02, 11, 5.5)
-        expect(actual).to.equal(true);
-    }),
-    it('Negative significance, numbers are not in the same mean range, retuns false', () => {
-        let actual = BacklogStats.GetSignificance(5.5, 3.02, 11, 15.5)
-        expect(actual).to.equal(false);
-    }), 
-*/
-
-
 });
