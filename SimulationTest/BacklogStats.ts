@@ -50,7 +50,31 @@ describe('BacklogStats', () => {
         expect(actual.TeamMembersActual[0]).to.eql(actualExpected);
     }),
 
-    it('Null hypothesis, numbers are not  with in same range, hypothesis of equal means is negatively rejected', () => {
+    it('TwoSampleTest, summary A is less then 30, thows an error', () => {
+
+        const a = new Summary(15, null, null, null, null, null, null, null);
+        const b = new Summary(50, null, null, null, null, null, null, null);
+
+        expect(() => BacklogStats.TwoSampleTest(a, b, 0.05)).to.throw();
+    }),
+
+    it('TwoSampleTest, summary B is less then 30, thows an error', () => {
+
+        const a = new Summary(30, null, null, null, null, null, null, null);
+        const b = new Summary(15, null, null, null, null, null, null, null);
+
+        expect(() => BacklogStats.TwoSampleTest(a, b, 0.05)).to.throw();
+    }),
+
+    it('TwoSampleTest, summary A and B is less then 30, thows an error', () => {
+
+        const a = new Summary(15, null, null, null, null, null, null, null);
+        const b = new Summary(15, null, null, null, null, null, null, null);
+
+        expect(() => BacklogStats.TwoSampleTest(a, b, 0.05)).to.throw();
+    }),
+
+    it('TwoSampleTest, numbers are not  with in same range, hypothesis of equal means is negatively rejected, returns false', () => {
 
         const a = new Summary(75, null, null, null, 28, null, null, Math.pow(14.1, 2));
         const b = new Summary(50, null, null, null, 33, null, null, Math.pow(9.5, 2));
@@ -59,8 +83,16 @@ describe('BacklogStats', () => {
         expect(actual).to.equal(false);
     }),
 
+    it('TwoSampleTest, numbers are not  with in same range, hypothesis of equal means is positively rejected, returns true', () => {
 
-    it('Null hypothesis, numbers are in the same range, hypothesis of equal means is accepted', () => {
+        const a = new Summary(50, null, null, null, 33, null, null, Math.pow(9.5, 2));
+        const b = new Summary(75, null, null, null, 28, null, null, Math.pow(14.1, 2));
+
+        let actual = BacklogStats.TwoSampleTest(a, b, 0.05);
+        expect(actual).to.equal(true);
+    }),
+
+    it('TwoSampleTest, numbers are in the same range, hypothesis of equal means is accepted, returns null', () => {
 
         const a = new Summary(32, null, null, null, 4.7, null, null, 7.24);
         const b = new Summary(30, null, null, null, 4.8, null, null, 9.33);
