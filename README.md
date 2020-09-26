@@ -2,6 +2,8 @@
 Lead Time Simulation and Optimisation using Operations Research methods.
 
  This repo and blog series is under active development, here is the general outline so far:
+ 
+[Lead Time Driven Delivery - Part 0 - Introduction](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-introduction.html)
 
 [Lead Time Driven Delivery - Part 1 - Learning to see](http://www.zankavtaskin.com/2020/01/applied-software-delivery-system.html)
 
@@ -10,4 +12,6 @@ Lead Time Simulation and Optimisation using Operations Research methods.
 [Lead Time Driven Delivery - Part 3 - Focus on results, not methods](http://www.zankavtaskin.com/2020/08/lead-time-driven-delivery-focus-on.html)
 
 [Lead Time Driven Delivery - Part 4 - Stabilise through embedded testing](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-stabilise-and.html)
+
+[Lead Time Driven Delivery - Part 5 -  Practical and closing thoughts](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-practical-and.html)
 
