@@ -2,19 +2,19 @@ import os
 import pandas as pd
 import numpy as np
 
-def create_blocks(space, start, end, blocks):
+def create_blocks(numbers, start, end, blocks):
     if start == end: return
     
     min_size = None   
     for i in range(start, end):        
-        if(min_size == None or min_size[1] > space[i]):
-            min_size = [i, space[i]]
-            if(space[i] == 0):
+        if(min_size == None or min_size[1] > numbers[i]):
+            min_size = [i, numbers[i]]
+            if(numbers[i] == 0):
                 break
 
     if(min_size[1] != 0):
         for i in range(start, end):
-            space[i] -= min_size[1]
+            numbers[i] -= min_size[1]
 
         for i in range(0, min_size[1]):
             cycle = end-start
@@ -25,8 +25,29 @@ def create_blocks(space, start, end, blocks):
             else:
                 blocks.append([cycle, end])
     
-    create_blocks(space, start, min_size[0], blocks)
-    create_blocks(space, min_size[0]+1, end, blocks)
+    create_blocks(numbers, start, min_size[0], blocks)
+    create_blocks(numbers, min_size[0]+1, end, blocks)
+
+def equalise(numbers):
+    while True:
+        max, max_index = None, None
+        min, min_index = None, None
+        for i, number in enumerate(numbers):
+            if max == None or max < number:
+                max = number
+                max_index = i
+            if min == None or min > number:
+                min = number
+                min_index = i
+
+        if max == min or max == min+1: 
+            break
+        
+        numbers[max_index] -= 1
+        numbers[min_index] += 1
+        
+
+
 
 def shift_left(_hash, arr_to_shift):
     counter = 0
@@ -47,9 +68,9 @@ def shift_in(_hash, arr_to_shift):
         else: 
             _hash[key] = [arr]
 
-def array_to_hash(arr):
+def array_to_hash(array):
     _hash = {}
-    for i, arr in enumerate(arr):
+    for i, arr in enumerate(array):
         key = "{0}:{1}".format(arr[0],arr[1])    
         if key in _hash: 
             _hash[key].append(arr)
