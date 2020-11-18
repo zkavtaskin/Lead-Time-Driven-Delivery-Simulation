@@ -4,7 +4,7 @@ import numpy as np
 
 def create_blocks(numbers, start, end, blocks):
     if start == end: return
-    
+     
     min_size = None   
     for i in range(start, end):        
         if(min_size == None or min_size[1] > numbers[i]):
