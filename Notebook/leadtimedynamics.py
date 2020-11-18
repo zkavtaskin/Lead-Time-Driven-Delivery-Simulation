@@ -42,11 +42,9 @@ def equalise(numbers):
 
         if max == min or max == min+1: 
             break
-        
+
         numbers[max_index] -= 1
         numbers[min_index] += 1
-        
-
 
 
 def shift_left(_hash, arr_to_shift):
