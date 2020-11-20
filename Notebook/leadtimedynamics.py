@@ -96,7 +96,7 @@ def reduce(df):
             row["CycleTime"] -= reduce
             row["LeadTime"]  -= reduce
     return df
-
+  
 def unroll(workitems):
     workitem_split = []
     for workitem in workitems:
