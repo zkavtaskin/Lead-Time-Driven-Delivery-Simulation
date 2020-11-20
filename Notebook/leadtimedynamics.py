@@ -106,6 +106,15 @@ def unroll(workitems):
                 workitem_split.append([1, workitem[1]-i-1])
     return workitem_split
 
+def combination_matrix_to_array(matrix, x_label, y_label):
+    combination_values, combination_labels = [],[]
+    for row_index, row in enumerate(matrix):
+        for cell_index, cell in enumerate(row):
+            combination_labels.append([y_label[cell_index], x_label[row_index]])
+            combination_values.append(cell)
+
+    return np.array(combination_labels), np.array(combination_values)
+
 def leadtime_trail(workitems_unrolled):
     df = pd.DataFrame(workitems_unrolled, columns=['CycleTime', 'LeadTime'])
     tail_agg = df.groupby('LeadTime').agg(Count =('LeadTime', 'count'))
