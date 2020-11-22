@@ -115,6 +115,14 @@ def combination_matrix_to_array(matrix, x_label, y_label):
 
     return np.array(combination_labels), np.array(combination_values)
 
+def combination_matrix_to_probability(matrix):
+    column_row_sum = np.dot(np.full((1,len(matrix.index)), 1), matrix.values)
+    column_row_probability = matrix.values / column_row_sum
+    column_total_sum = np.sum(column_row_sum)
+    column_probability = column_row_sum / column_total_sum
+    return column_row_probability * column_probability
+
+
 def leadtime_trail(workitems_unrolled):
     df = pd.DataFrame(workitems_unrolled, columns=['CycleTime', 'LeadTime'])
     tail_agg = df.groupby('LeadTime').agg(Count =('LeadTime', 'count'))
