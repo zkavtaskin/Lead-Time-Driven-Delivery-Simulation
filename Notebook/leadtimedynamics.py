@@ -87,15 +87,13 @@ def hash_to_array(_hash):
 def array_normalise_size(primary, secondary):
     return np.hstack([secondary, np.zeros(len(primary)-len(secondary), dtype=int)])
 
-def reduce(df):
-    for index, row in df.iterrows():
-        if row["CycleTime"] > 0 and row["LeadTime"] > 1:
-            reduce = np.random.choice([0,1,2], 1, p=[0.15, 0.7, 0.15])
-            if row["CycleTime"] < reduce:
-                r = 1
-            row["CycleTime"] -= reduce
-            row["LeadTime"]  -= reduce
-    return df
+def reduce(workitems):
+    for workitem in workitems:
+        reduce = np.random.choice([0,1,2], 1, p=[0.15, 0.7, 0.15])
+        if workitem[0] >= reduce and workitem[1] > reduce:
+            workitem[0] -= reduce
+            workitem[1] -= reduce
+    return workitems
   
 def unroll(workitems):
     workitem_split = []
