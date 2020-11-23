@@ -122,6 +122,12 @@ def combination_matrix_to_probability(matrix):
     column_probability = column_row_sum / column_total_sum
     return column_row_probability * column_probability
 
+def run_simulation(name, mean, std, events, p):
+    number_of_workitems = np.random.normal(mean, std).astype(int)
+    combinations_indicies = np.random.choice(range(0, len(events)), number_of_workitems, p=p)
+    sprint_workitems = events[combinations_indicies]
+    name_column = np.full((len(sprint_workitems), 1), name)
+    return  np.hstack((name_column, sprint_workitems))
 
 def leadtime_trail(workitems_unrolled):
     df = pd.DataFrame(workitems_unrolled, columns=['CycleTime', 'LeadTime'])
