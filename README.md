@@ -15,3 +15,4 @@ Lead Time Simulation and Optimisation using Operations Research methods.
 
 [Lead Time Driven Delivery - Part 5 -  Practical and closing thoughts](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-practical-and.html)
 
+[Lead Time Driven Delivery - Exploration of Lead Time Dynamics](https://github.com/zkavtaskin/Lead-Time-Driven-Delivery-Simulation/blob/master/Notebook/LeadTimeDynamics.ipynb)
