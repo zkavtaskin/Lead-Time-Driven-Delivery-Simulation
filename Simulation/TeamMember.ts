@@ -25,14 +25,14 @@ export class TeamMember {
         if((story.HasPrerequisite() && !backlog.Find(story.PrerequisiteId).IsCompleted)) continue;
 
         //ensure it is team members turn
-        let storyHasUpstreamwork = false;
+        let storyHasUpstreamWork = false;
         for(let priorTeamMemberId:number = 0; priorTeamMemberId < this.id; priorTeamMemberId++) {
           if(this.teamGraph[this.id][priorTeamMemberId] == 1 && story.HasWork(priorTeamMemberId)) {
-            storyHasUpstreamwork = true;
+            storyHasUpstreamWork = true;
             break;
           }
         }
-        if(storyHasUpstreamwork) continue;
+        if(storyHasUpstreamWork) continue;
 
         if(!story.HasWork(this.id)) continue;
         

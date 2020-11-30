@@ -56,9 +56,8 @@ export class BacklogStats {
      */
     public static TwoSampleTest(a : Summary, b : Summary, alpha : number = 0.05, twoTail : boolean = true) {
 
-        if(30 > a.Count || 30 > b.Count) {
+        if(30 > a.Count || 30 > b.Count) 
             throw new Error("Data sample for A and B needs to be greater then 30.");
-        }
 
         const zScore = (a.Mean - b.Mean) / Math.sqrt( a.Variance / a.Count + b.Variance / b.Count );
         const zScoreAbs = Math.abs(zScore);
@@ -68,7 +67,7 @@ export class BacklogStats {
         pValue = twoTail ? 2 * pValue : pValue; 
 
         if(zScore > 0 && alpha > pValue)
-        return true;
+            return true;
     
         if(zScore < 0 && alpha > pValue)
             return false;
