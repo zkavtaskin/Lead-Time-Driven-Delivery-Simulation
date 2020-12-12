@@ -28,24 +28,6 @@ def create_blocks(numbers, start, end, blocks):
     create_blocks(numbers, start, min_size[0], blocks)
     create_blocks(numbers, min_size[0]+1, end, blocks)
 
-def equalise(numbers):
-    while True:
-        max, max_index = None, None
-        min, min_index = None, None
-        for i, number in enumerate(numbers):
-            if max == None or max < number:
-                max = number
-                max_index = i
-            if min == None or min > number:
-                min = number
-                min_index = i
-
-        if max == min or max == min+1: 
-            break
-
-        numbers[max_index] -= 1
-        numbers[min_index] += 1
-
 
 def shift_left(_hash, arr_to_shift):
     counter = 0
