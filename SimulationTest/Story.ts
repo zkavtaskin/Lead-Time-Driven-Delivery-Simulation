@@ -74,6 +74,16 @@ describe('Story', () => {
         expect(story.Complete(1)).to.equal(false);
     }),
 
+    it('SizeOriginal, new story, there are no tasks, returns 0', () => {
+        let story = new Story(1, false, 2, new Array<Task>());
+        expect(story.SizeOriginal).to.equal(0);
+    }), 
+
+    it('SizeOriginal, new story, there are 2 tasks, returns 5', () => {
+        let story = new Story(1, false, 2, new Array<Task>(new Task(3), new Task(2)));
+        expect(story.SizeOriginal).to.equal(5);
+    }), 
+
     it('Contribute, no such team member, throw an error', () => {
         let story = new Story(1, false, 2, new Array<Task>(new Task(10)));
         expect(() => story.Contribute(1, 5)).to.throw();

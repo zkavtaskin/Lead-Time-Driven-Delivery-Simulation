@@ -33,6 +33,13 @@ export class Story {
       return this.tasks;
     }
 
+    get SizeOriginal() : number {
+      if(this.tasks.length == 0) 
+        return 0;
+        
+      return this.tasks.map((task) => task.Original).reduce((total, value) => total + value);
+    }
+
     get StartedTick() : number {
       return this.startedTick;
     }
