@@ -2,10 +2,10 @@ import { MemberConfig } from "./Simulation/MemberConfig";
 import { BacklogConfig } from "./Simulation/BacklogConfig";
 import { TeamSimulation } from "./Simulation/TeamSimulation";
 import { TeamConfig } from "./Simulation/TeamConfig";
-import { GeneticBacklog } from "./Optimisation/GeneticBacklog";
+import { GeneticBacklog } from "./Optimisation/Genetic/GeneticBacklog";
 import { BacklogStats } from "./Simulation/BacklogStats";
 import { Result } from "./Optimisation/Result";
-import { GeneticDecoderBacklog } from "./Optimisation/GeneticDecoderBacklog";
+import { GeneticDecoderBacklog } from "./Optimisation/Genetic/GeneticDecoderBacklog";
 
 const teamConfig = new TeamConfig([
                 new MemberConfig("Product Owner", 10/37, 8/10, 10/100),

@@ -1,5 +1,5 @@
-import { TeamConfig } from "../Simulation/TeamConfig";
-import { Story } from "../Simulation/Story";
+import { TeamConfig } from "../../Simulation/TeamConfig";
+import { Story } from "../../Simulation/Story";
 
 export class GeneticDecoderBacklog {
 

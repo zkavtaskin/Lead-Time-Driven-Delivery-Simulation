@@ -1,7 +1,7 @@
-import { BacklogConfig } from "../Simulation/BacklogConfig";
-import { TeamConfig } from "../Simulation/TeamConfig";
-import { TeamSimulation } from "../Simulation/TeamSimulation";
-import { Result } from "./Result"
+import { BacklogConfig } from "../../Simulation/BacklogConfig";
+import { TeamConfig } from "../../Simulation/TeamConfig";
+import { TeamSimulation } from "../../Simulation/TeamSimulation";
+import { Result } from "../Result"
 import * as genetic from "charles.darwin"
 import { GeneticDecoderBacklog } from "./GeneticDecoderBacklog";
 

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { TeamConfig } from "../Simulation/TeamConfig";
-import { GeneticDecoderBacklog } from "../Optimisation/GeneticDecoderBacklog";
+import { GeneticDecoderBacklog } from "../Optimisation/Genetic/GeneticDecoderBacklog";
 import { MemberConfig } from '../Simulation/MemberConfig';
 import { Story } from '../Simulation/Story';
 import { Task } from '../Simulation/Task';
