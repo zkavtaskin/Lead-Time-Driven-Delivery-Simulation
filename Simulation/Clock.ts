@@ -14,7 +14,7 @@ export class Clock {
     get Ticks() : number {
       return this.ticks;
     }
-  
+
     Tick() {
       this.ticks++;
     }

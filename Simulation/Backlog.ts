@@ -9,14 +9,7 @@ export class Backlog {
     private stories :Array<Story>;
     private storiesMap : Map<number, Story> = new Map<number, Story>();
     private nextStreakIndex :number = 0;
-
-    constructor(stories :Array<Story>) {
-        this.stories = stories;
-
-        for(let i = 0; i < stories.length; i++) {
-          this.storiesMap.set(stories[i].Id, stories[i]);
-        }
-    }
+    private storiesOriginal :Array<Story>;
 
     get IsCompleted() : boolean {
       return this.nextStreakIndex === this.stories.length;
@@ -24,6 +17,22 @@ export class Backlog {
 
     get Length() : number {
       return this.stories.length;
+    }
+
+    constructor(stories :Array<Story>, sortFunc :  (a : Story, b : Story) => number = null) {
+      this.storiesOriginal = stories.map((s) => s.Copy());
+      this.stories = stories;
+      if(sortFunc != null) {
+        this.stories.sort(sortFunc);
+      }
+
+      for(let i = 0; i < stories.length; i++) {
+        this.storiesMap.set(stories[i].Id, stories[i]);
+      }
+    }
+
+    Recycle(sortFunc :  (a : Story, b : Story) => number = null) : Backlog {
+      return new Backlog(this.storiesOriginal, sortFunc);
     }
 
     *Iterator() : IterableIterator<Story> {
@@ -77,12 +86,8 @@ export class Backlog {
     
           stories.push(new Story(id, hasDeadline, prerequisiteStoryId, tasks));
         }
-  
-        if(sortFunc != null) {
-          stories.sort(sortFunc);
-        }
 
-        return new Backlog(stories);
+        return new Backlog(stories, sortFunc);
     }
 
 }

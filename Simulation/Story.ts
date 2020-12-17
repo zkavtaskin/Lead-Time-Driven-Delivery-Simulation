@@ -107,4 +107,8 @@ export class Story {
     IsCompleted() : boolean{
       return this.completedTick != null;
     }
+
+    Copy() : Story {
+      return new Story(this.id, this.deadline, this.prerequisiteId, this.tasks.map((t) => t.Copy()))
+    }
   }

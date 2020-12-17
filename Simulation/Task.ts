@@ -4,12 +4,6 @@ export class Task {
     private remaining: number;
     private actual: number;
 
-    constructor(effort : number) {
-      this.original = effort;
-      this.remaining = effort;
-      this.actual = effort;
-    }
-  
     get Original() : number {
       return this.original;
     }
@@ -29,4 +23,15 @@ export class Task {
     set Actual(value : number) {
       this.actual = value;
     }
+
+    constructor(effort : number) {
+      this.original = effort;
+      this.remaining = effort;
+      this.actual = effort;
+    }
+
+    Copy() : Task {
+      return new Task(this.original);
+    }
+
   }

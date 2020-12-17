@@ -22,7 +22,7 @@ export class TeamSimulation {
       return this.backlogConfig;
     }
 
-    constructor(name :string, teamConfig :TeamConfig, backlogConfig :BacklogConfig, effortSizePerTick :number, backlogSortFunc : (a : Story, b : Story) => number = null) {
+    constructor(name :string, teamConfig :TeamConfig, backlogConfig :BacklogConfig, effortSizePerTick :number, backlogSortFunc : (a : Story, b : Story) => number = null, backlog:Backlog = null) {
       this.name = name;
 
       //create own copy to avoid config mutation
@@ -30,8 +30,12 @@ export class TeamSimulation {
       this.backlogConfig = JSON.parse(JSON.stringify(backlogConfig));
 
       this.clock = new Clock(effortSizePerTick);
-      this.backlog = Backlog.Generate(this.teamConfig.Members, this.backlogConfig, backlogSortFunc);
 
+      if(backlog == null) 
+        this.backlog = Backlog.Generate(this.teamConfig.Members, this.backlogConfig, backlogSortFunc);
+      else 
+        this.backlog = backlog;
+      
       this.teamMembers = new Array<TeamMember>();
       this.teamConfig.Members.forEach((member, index) => 
           this.teamMembers.push(new TeamMember(index, member, this.teamConfig.Graph)));
@@ -45,7 +49,11 @@ export class TeamSimulation {
         }
       });
     }
-  
+
+    public Recycle(backlogSortFunc : (a : Story, b : Story) => number = null) : TeamSimulation {
+      return new TeamSimulation(this.name, this.teamConfig, null, this.clock.EffortSize, backlogSortFunc, this.backlog.Recycle(backlogSortFunc));
+    }
+
     public Run() : Backlog {
       while(!this.backlog.IsCompleted) {
         this.teamMembers.forEach(member => member.DoWork(this.backlog, this.clock));
@@ -54,5 +62,4 @@ export class TeamSimulation {
   
       return this.backlog;
     }
-  
   }
