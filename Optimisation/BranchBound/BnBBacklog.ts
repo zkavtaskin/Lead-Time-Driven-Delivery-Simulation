@@ -1,5 +1,6 @@
 import { BacklogConfig } from "../../Simulation/BacklogConfig";
 import { TeamConfig } from "../../Simulation/TeamConfig";
+import { TeamSimulation } from "../../Simulation/TeamSimulation";
 import { Result } from "../Result"
 import { BacklogOptimiser } from "../BacklogOptimiser";
 import { BnBBacklogDecoder } from "./BnBBacklogDecoder";
@@ -19,23 +20,37 @@ export class BnBBacklog implements BacklogOptimiser {
     }
 
     Solve() : Result {
-        const bag:Array<number> = new Array(this.decoder.Size);
-        return null;
+        let best = Infinity;
+        let bestPattern = null;
+        let rule = (pattern) => {
+            const teamSimulation = new TeamSimulation(pattern.join(''), this.teamConfig, this.backlogConfig, this.effortSize, this.decoder.Decode(pattern));
+            const teamSimulationStats = teamSimulation.Run().GetStats();
+            if(teamSimulationStats.LeadTime.Mean < best) {
+                best = teamSimulationStats.LeadTime.Mean;
+                bestPattern = pattern;
+                return true
+            }
+            return false
+        }
+        BnBBacklog.generateCombinations(this.decoder.Size, rule)
+        return new Result(best, bestPattern, this.decoder.DecodeReadable(bestPattern));
     }
 
-    static generateCombinations(n:number) {
+    static generateCombinations(n:number, rule:(p : Array<number>) => boolean) {
         const bagOrigin:Array<number> = [...Array(n).keys()];
         const root = [[[...bagOrigin], []]];
         const combinations = []
         let bag = null;
-        while(bag = root.pop()) {
+        while(bag = root.shift()) {
             for(let i:number = 0; i < bag[0].length; i++) {
                 const newBag = [...bag[0]];
                 const newPattern = [...bag[1]];
                 const k = newBag.splice(i, 1)[0];
                 newPattern.push(k);
-                root.push([newBag, newPattern]);
-                combinations.push(newPattern)
+                if(rule == undefined || rule(newPattern)) {
+                    root.push([newBag, newPattern]);
+                    combinations.push(newPattern)
+                }
             }
         } 
         return combinations;
