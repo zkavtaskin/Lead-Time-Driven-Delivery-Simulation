@@ -51,7 +51,7 @@ export class TeamSimulation {
     }
 
     public Recycle(backlogSortFunc : (a : Story, b : Story) => number = null) : TeamSimulation {
-      return new TeamSimulation(this.name, this.teamConfig, null, this.clock.EffortSize, backlogSortFunc, this.backlog.Recycle(backlogSortFunc));
+      return new TeamSimulation(this.name, this.teamConfig, null, this.clock.EffortSize, null, this.backlog.Recycle(backlogSortFunc));
     }
 
     public Run() : Backlog {

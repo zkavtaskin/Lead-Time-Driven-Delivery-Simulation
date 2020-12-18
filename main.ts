@@ -35,7 +35,6 @@ const expectedLeadTime  = teamSimulationExpected.Run().GetStats().LeadTime;
 console.log(`->Expected average mean: ${expectedLeadTime.Mean}<-`);
 
 
-
 console.log("\n#Control, Null Hypothesis Test");
 const teamSimulationControl = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
 const controlLeadTime = teamSimulationControl.Run().GetStats().LeadTime;
@@ -47,6 +46,7 @@ console.log(`->Null Hypothesis:${nullHypothesis}<-`);
 const backlogOptimiser = new BnBBacklog(teamConfig, backlogConfig, 0.5) as BacklogOptimiser;
 const result = backlogOptimiser.Solve();
 console.log(`->Final best score: ${result.BestScore}, sort: ${result.BestEncodingDecoded}<-`);
+
 
 console.log("\n#Experiment, Null Hypothesis Test");
 const backlogDecoder = new BnBBacklogDecoder(teamConfig);

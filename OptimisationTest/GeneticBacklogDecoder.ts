@@ -5,7 +5,7 @@ import { MemberConfig } from '../Simulation/MemberConfig';
 import { Story } from '../Simulation/Story';
 import { Task } from '../Simulation/Task';
 
-describe('GeneticDecoderBacklog', () => {
+describe('GeneticBacklogDecoder', () => {
     it('Init, given 2 team members and 1 field (PrerequisiteId), 3 will be used for optimisation and gene length is 3', () => {
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)], null);
         const decoder = new GeneticBacklogDecoder(teamConfig);

@@ -29,7 +29,7 @@ export class BnBBacklogDecoder {
 
     public Decode(pattern : Array<number>) : (a : Story, b : Story) => number {
         const lambda = (a : Story, b : Story, index : number) => {  
-            if(pattern.length >= index) return;
+            if(pattern.length <= index) return;
             return this.decodeMap.get(pattern[index])(a, b) || lambda(a, b, index+1);
         }
        return (a, b) => lambda(a, b, 0);
