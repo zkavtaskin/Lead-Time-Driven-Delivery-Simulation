@@ -23,7 +23,8 @@ export class BnBBacklog implements BacklogOptimiser {
         let best = Infinity, bestPattern = null;
         const teamSimulation = new TeamSimulation(null, this.teamConfig, this.backlogConfig, this.effortSize);
         let boundary = (pattern) => {
-            const teamSimulationStats = teamSimulation.Recycle(this.decoder.Decode(pattern)).Run().GetStats();
+            teamSimulation.Reset(this.decoder.Decode(pattern));
+            const teamSimulationStats = teamSimulation.Run().GetStats();
             if(teamSimulationStats.LeadTime.Mean < best) {
                 best = teamSimulationStats.LeadTime.Mean;
                 bestPattern = pattern;

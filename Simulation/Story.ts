@@ -37,7 +37,7 @@ export class Story {
       if(this.tasks.length == 0) 
         return 0;
         
-      return this.tasks.map((task) => task.Original).reduce((total, value) => total + value);
+      return this.tasks.map((task) => task ? task.Original : 0).reduce((total, value) => total + value);
     }
 
     get StartedTick() : number {

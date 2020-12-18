@@ -36,7 +36,8 @@ export class GeneticBacklog implements BacklogOptimiser {
         const teamSimulation = new TeamSimulation(null, this.teamConfig, this.backlogConfig, this.effortSize);
         do {
             for (const genes of geneticPool.getPopulation()) {
-                const teamSimulationStats = teamSimulation.Recycle(this.decoder.Decode(genes.getGenes())).Run().GetStats();
+                teamSimulation.Reset(this.decoder.Decode(genes.getGenes()));
+                const teamSimulationStats = teamSimulation.Run().GetStats();
                 genes.setFitness(-teamSimulationStats.LeadTime.Mean);
             }
             geneticPool.mate();

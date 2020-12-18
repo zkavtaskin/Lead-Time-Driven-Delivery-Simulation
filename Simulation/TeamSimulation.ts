@@ -30,11 +30,7 @@ export class TeamSimulation {
       this.backlogConfig = JSON.parse(JSON.stringify(backlogConfig));
 
       this.clock = new Clock(effortSizePerTick);
-
-      if(backlog == null) 
-        this.backlog = Backlog.Generate(this.teamConfig.Members, this.backlogConfig, backlogSortFunc);
-      else 
-        this.backlog = backlog;
+      this.backlog = Backlog.Generate(this.teamConfig.Members, this.backlogConfig, backlogSortFunc);
       
       this.teamMembers = new Array<TeamMember>();
       this.teamConfig.Members.forEach((member, index) => 
@@ -50,8 +46,9 @@ export class TeamSimulation {
       });
     }
 
-    public Recycle(backlogSortFunc : (a : Story, b : Story) => number = null) : TeamSimulation {
-      return new TeamSimulation(this.name, this.teamConfig, null, this.clock.EffortSize, null, this.backlog.Recycle(backlogSortFunc));
+    public Reset(backlogSortFunc : (a : Story, b : Story) => number = null) {
+      this.clock = new Clock(this.clock.EffortSize);
+      this.backlog.Reset(backlogSortFunc);
     }
 
     public Run() : Backlog {

@@ -20,19 +20,25 @@ export class Backlog {
     }
 
     constructor(stories :Array<Story>, sortFunc :  (a : Story, b : Story) => number = null) {
+      this.init(stories, sortFunc);
+    }
+
+    private init(stories :Array<Story>, sortFunc :  (a : Story, b : Story) => number = null) : void {
       this.storiesOriginal = stories.map((s) => s.Copy());
       this.stories = stories;
       if(sortFunc != null) {
         this.stories.sort(sortFunc);
       }
 
+      this.nextStreakIndex = 0;
+      this.storiesMap.clear();
       for(let i = 0; i < stories.length; i++) {
         this.storiesMap.set(stories[i].Id, stories[i]);
       }
     }
 
-    Recycle(sortFunc :  (a : Story, b : Story) => number = null) : Backlog {
-      return new Backlog(this.storiesOriginal, sortFunc);
+    Reset(sortFunc :  (a : Story, b : Story) => number = null) {
+      this.init(this.storiesOriginal, sortFunc);
     }
 
     *Iterator() : IterableIterator<Story> {

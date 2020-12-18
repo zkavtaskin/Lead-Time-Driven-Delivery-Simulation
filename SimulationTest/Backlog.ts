@@ -168,6 +168,20 @@ describe('Backlog', () => {
         }
 
         expect(actual).to.eql(expected);
+    }),
+
+    it('Reset, backlog is complete, after recycle reset back to original', () => {
+        const members = [new MemberConfig("PO", 1, 1, 1) ];
+        const config = new BacklogConfig(2, 1, 1, 10, 10);
+        const backlog =  Backlog.Generate(members, config);
+
+        for(let story of backlog.Iterator()){
+            story.Contribute(0, story.Tasks[0].Remaining);
+            story.Complete(0);
+        }
+
+        backlog.Reset(null);
+        expect(backlog.IsCompleted).to.equal(false);
     })
 
 });
