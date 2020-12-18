@@ -3,14 +3,15 @@ import { TeamConfig } from "../../Simulation/TeamConfig";
 import { TeamSimulation } from "../../Simulation/TeamSimulation";
 import { Result } from "../Result"
 import * as genetic from "charles.darwin"
-import { GeneticDecoderBacklog } from "./GeneticDecoderBacklog";
+import { GeneticBacklogDecoder } from "./GeneticBacklogDecoder";
+import { BacklogOptimiser } from "../BacklogOptimiser";
 
-export class GeneticBacklog {
+export class GeneticBacklog implements BacklogOptimiser {
 
     private readonly teamConfig : TeamConfig;
     private readonly backlogConfig : BacklogConfig;
     private readonly effortSize : number;
-    private readonly decoder : GeneticDecoderBacklog;
+    private readonly decoder : GeneticBacklogDecoder;
     private randomGeneCounter : number = 0;
     private randomGene : Array<number> = null;
     private readonly numberOfSamples = 3;
@@ -19,10 +20,10 @@ export class GeneticBacklog {
         this.teamConfig = teamConfig;
         this.backlogConfig = backlogConfig;
         this.effortSize = effortSize;
-        this.decoder = new GeneticDecoderBacklog(teamConfig);
+        this.decoder = new GeneticBacklogDecoder(teamConfig);
     }
 
-    *Search() : IterableIterator<Result> {
+    Solve() : Result {
         const geneticPool = new genetic.Darwin<number>({
             population_size: this.decoder.Population,
             chromosome_length: this.decoder.ChromoLen,
@@ -31,16 +32,17 @@ export class GeneticBacklog {
             })
         });
 
-        while(true) {
+        let best = Infinity, attempts = 0;
+        const teamSimulation = new TeamSimulation(null, this.teamConfig, this.backlogConfig, this.effortSize);
+        do {
             for (const genes of geneticPool.getPopulation()) {
-                const teamSimulation = new TeamSimulation(genes.getGenes().join(''), this.teamConfig, this.backlogConfig, this.effortSize, this.decoder.Decode(genes.getGenes()));
-                const teamSimulationStats = teamSimulation.Run().GetStats();
+                const teamSimulationStats = teamSimulation.Recycle(this.decoder.Decode(genes.getGenes())).Run().GetStats();
                 genes.setFitness(-teamSimulationStats.LeadTime.Mean);
             }
-
-            yield new Result(-geneticPool.getFittest().getFitness(), geneticPool.getFittest().getGenes(), this.decoder.DecodeReadable(geneticPool.getFittest().getGenes()));
             geneticPool.mate();
-        }
+        } while(-geneticPool.getFittest().getFitness() < best || (-geneticPool.getFittest().getFitness() / best < 0.01 && attempts++ < 5));
+
+        return new Result(-geneticPool.getFittest().getFitness(), geneticPool.getFittest().getGenes(), this.decoder.DecodeReadable(geneticPool.getFittest().getGenes()));
     }
 
     private getRandomGene() : number {

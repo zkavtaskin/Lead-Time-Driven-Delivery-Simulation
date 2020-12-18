@@ -20,10 +20,9 @@ export class BnBBacklog implements BacklogOptimiser {
     }
 
     Solve() : Result {
-        let best = Infinity;
-        let bestPattern = null;
+        let best = Infinity, bestPattern = null;
         const teamSimulation = new TeamSimulation(null, this.teamConfig, this.backlogConfig, this.effortSize);
-        let rule = (pattern) => {
+        let boundary = (pattern) => {
             const teamSimulationStats = teamSimulation.Recycle(this.decoder.Decode(pattern)).Run().GetStats();
             if(teamSimulationStats.LeadTime.Mean < best) {
                 best = teamSimulationStats.LeadTime.Mean;
@@ -32,11 +31,11 @@ export class BnBBacklog implements BacklogOptimiser {
             }
             return false
         }
-        BnBBacklog.generateCombinations(this.decoder.Size, rule)
+        BnBBacklog.generateCombinations(this.decoder.Size, boundary)
         return new Result(best, bestPattern, this.decoder.DecodeReadable(bestPattern));
     }
 
-    static generateCombinations(n:number, rule:(p : Array<number>) => boolean) {
+    static generateCombinations(n:number, boundary:(p : Array<number>) => boolean) {
         const bagOrigin:Array<number> = [...Array(n).keys()];
         const root = [[[...bagOrigin], []]];
         const combinations = []
@@ -47,7 +46,7 @@ export class BnBBacklog implements BacklogOptimiser {
                 const newPattern = [...bag[1]];
                 const k = newBag.splice(i, 1)[0];
                 newPattern.push(k);
-                if(rule == undefined || rule(newPattern)) {
+                if(boundary == undefined || boundary(newPattern)) {
                     root.push([newBag, newPattern]);
                     combinations.push(newPattern)
                 }

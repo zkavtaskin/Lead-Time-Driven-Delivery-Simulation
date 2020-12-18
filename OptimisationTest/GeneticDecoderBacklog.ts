@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { TeamConfig } from "../Simulation/TeamConfig";
-import { GeneticDecoderBacklog } from "../Optimisation/Genetic/GeneticDecoderBacklog";
+import { GeneticBacklogDecoder } from "../Optimisation/Genetic/GeneticBacklogDecoder";
 import { MemberConfig } from '../Simulation/MemberConfig';
 import { Story } from '../Simulation/Story';
 import { Task } from '../Simulation/Task';
@@ -8,7 +8,7 @@ import { Task } from '../Simulation/Task';
 describe('GeneticDecoderBacklog', () => {
     it('Init, given 2 team members and 1 field (PrerequisiteId), 3 will be used for optimisation and gene length is 3', () => {
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)], null);
-        const decoder = new GeneticDecoderBacklog(teamConfig);
+        const decoder = new GeneticBacklogDecoder(teamConfig);
         expect(decoder.GeneLen).to.equal(teamConfig.Members.length + 1);
     }),
 
@@ -20,7 +20,7 @@ describe('GeneticDecoderBacklog', () => {
         const stories = new Array<Story>(storyA, storyB, storyC);
 
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)],  null);
-        const decoder = new GeneticDecoderBacklog(teamConfig);
+        const decoder = new GeneticBacklogDecoder(teamConfig);
 
         const lambda = decoder.Decode([0, 0, 0, 1, 0, 0, 0, 0, 0]);
         const actual = stories.sort(lambda).map(story => story.Id);
@@ -36,7 +36,7 @@ describe('GeneticDecoderBacklog', () => {
         const stories = new Array<Story>(storyA, storyB, storyC);
 
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)],  null);
-        const decoder = new GeneticDecoderBacklog(teamConfig);
+        const decoder = new GeneticBacklogDecoder(teamConfig);
 
         const lambda = decoder.Decode([1, 0, 0, 0, 0, 0, 0, 0, 0]);
         const actual = stories.sort(lambda).map(story => story.Id);
@@ -55,7 +55,7 @@ describe('GeneticDecoderBacklog', () => {
         const stories = new Array<Story>(storyA, storyB, storyC, storyD, storyE, storyF);
 
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)],  null);
-        const decoder = new GeneticDecoderBacklog(teamConfig);
+        const decoder = new GeneticBacklogDecoder(teamConfig);
 
         const lambda = decoder.Decode([1, 0, 0, 0, 0, 0, 0, 0, 0]);
         const actual = stories.sort(lambda).map(story => story.Id);
@@ -74,7 +74,7 @@ describe('GeneticDecoderBacklog', () => {
         const stories = new Array<Story>(storyA, storyB, storyC, storyD, storyE, storyF);
 
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)],  null);
-        const decoder = new GeneticDecoderBacklog(teamConfig);
+        const decoder = new GeneticBacklogDecoder(teamConfig);
 
         const lambda = decoder.Decode([0, 0, 0, 1, 0, 0, 0, 0, 0]);
         const actual = stories.sort(lambda).map(story => story.Id);
@@ -93,7 +93,7 @@ describe('GeneticDecoderBacklog', () => {
         const stories = new Array<Story>(storyA, storyB, storyC, storyD, storyE, storyF);
 
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)],  null);
-        const decoder = new GeneticDecoderBacklog(teamConfig);
+        const decoder = new GeneticBacklogDecoder(teamConfig);
         
         const lambda = decoder.Decode([1, 0, 0, 1, 1, 0, 0, 0, 0]);
         const actual = stories.sort(lambda).map(story => story.Id);
@@ -103,7 +103,7 @@ describe('GeneticDecoderBacklog', () => {
 
     it('Decode redable, gene is set to prioritise by prerequisiteId first and then single team member', () => {
         const teamConfig = new TeamConfig([new MemberConfig("A", 1, 1, 1), new MemberConfig("B", 1, 1, 1)],  null);
-        const decoder = new GeneticDecoderBacklog(teamConfig);
+        const decoder = new GeneticBacklogDecoder(teamConfig);
         
         const actual = decoder.DecodeReadable([1, 0, 0, 1, 1, 0, 0, 0, 0]);
         const expected = ["PrerequisiteId", "A"];

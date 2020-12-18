@@ -3,9 +3,12 @@ import { BacklogConfig } from "./Simulation/BacklogConfig";
 import { TeamSimulation } from "./Simulation/TeamSimulation";
 import { TeamConfig } from "./Simulation/TeamConfig";
 import { GeneticBacklog } from "./Optimisation/Genetic/GeneticBacklog";
+import { BnBBacklog } from "./Optimisation/BranchBound/BnBBacklog";
+import { BnBBacklogDecoder } from "./Optimisation/BranchBound/BnBBacklogDecoder";
+import { BacklogOptimiser } from "./Optimisation/BacklogOptimiser";
 import { BacklogStats } from "./Simulation/BacklogStats";
 import { Result } from "./Optimisation/Result";
-import { GeneticDecoderBacklog } from "./Optimisation/Genetic/GeneticDecoderBacklog";
+import { GeneticBacklogDecoder } from "./Optimisation/Genetic/GeneticBacklogDecoder";
 
 const teamConfig = new TeamConfig([
                 new MemberConfig("Product Owner", 10/37, 8/10, 10/100),
@@ -41,35 +44,17 @@ const nullHypothesis = BacklogStats.TwoSampleTest(expectedLeadTime, controlLeadT
 console.log(`->Null Hypothesis:${nullHypothesis}<-`);
 
 
-console.log("\n#Looking for optimial backlog sort")
-const geneticBacklog = new GeneticBacklog(teamConfig, backlogConfig, 0.5);
-let bestScore : number = null, bestScoreResult : Result = null, attempts = 0;
-for(let result of geneticBacklog.Search()) {
-        console.log(`Score: ${result.BestScore}, Sort: ${result.BestEncodingDecoded}`);
-        if(bestScore == null) {
-                bestScore =  result.BestScore;
-                bestScoreResult = result;
-        } else {
-                const improvement = (bestScore - result.BestScore) / bestScore;
-                console.log(` ->improvement from best score: ${(improvement*100).toFixed(1)}%`);
-
-                if(bestScore > result.BestScore) {
-                        bestScore = result.BestScore;
-                        bestScoreResult = result;
-                }
-                
-                if(improvement < 0.01 && attempts++ >= 5) 
-                        break;
-        }
-}
-console.log(`->Final best score: ${bestScore}, sort: ${bestScoreResult.BestEncodingDecoded}<-`);
+const backlogOptimiser = new BnBBacklog(teamConfig, backlogConfig, 0.5) as BacklogOptimiser;
+const result = backlogOptimiser.Solve();
+console.log(`->Final best score: ${result.BestScore}, sort: ${result.BestEncodingDecoded}<-`);
 
 console.log("\n#Experiment, Null Hypothesis Test");
-const geneticDecoderBacklog = new GeneticDecoderBacklog(teamConfig);
-const teamSimulationOptimised = new TeamSimulation("*", teamConfig, backlogConfig, 0.5, geneticDecoderBacklog.Decode(bestScoreResult.BestEncoding));
+const backlogDecoder = new BnBBacklogDecoder(teamConfig);
+const teamSimulationOptimised = new TeamSimulation("*", teamConfig, backlogConfig, 0.5, backlogDecoder.Decode(result.BestEncoding));
 const optimisedLeadTime = teamSimulationOptimised.Run().GetStats().LeadTime;
 
-console.log(`Testing expected mean ${expectedLeadTime.Mean} against optimised mean ${optimisedLeadTime.Mean}.`)
+
+console.log(`Testing expected mean ${expectedLeadTime.Mean} against optimised mean ${result.BestScore}.`)
 let nullHypothesisOptimised = BacklogStats.TwoSampleTest(expectedLeadTime, optimisedLeadTime);
 console.log(`->Null Hypothesis:${nullHypothesisOptimised}<-`);
 

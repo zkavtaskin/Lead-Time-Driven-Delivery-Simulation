@@ -128,6 +128,17 @@ describe('Story', () => {
         story.Activate(0, 0);
         story.Complete(2);
         expect(story.CycleTime).to.equal(2);
+    }),
+
+    it('Copy, copies story, tasks and properties are set correctly', () => {
+        const storyOriginal = new Story(1, false, 2, new Array<Task>(new Task(1), null, new Task(2)));
+        const storyCopy = storyOriginal.Copy();
+        expect(storyOriginal.Id).to.equal(storyCopy.Id);
+        expect(storyOriginal.PrerequisiteId).to.equal(storyCopy.PrerequisiteId);
+        expect(storyOriginal.Deadline).to.equal(storyCopy.Deadline);
+        expect(storyOriginal.Tasks[0].Original).to.equal(storyCopy.Tasks[0].Original);
+        expect(storyOriginal.Tasks[1]).to.equal(storyCopy.Tasks[1]);
+        expect(storyOriginal.Tasks[2].Original).to.equal(storyCopy.Tasks[2].Original);
     })
 
 });

@@ -10,7 +10,7 @@ export class Story {
     private startedTick:number | null = null;
     private completedTick:number | null = null;
 
-    constructor(id :number, deadline:boolean, prerequisiteId:number, tasks:Array<Task>) {
+    constructor(id :number, deadline:boolean, prerequisiteId:number, tasks:Array<Task> = new Array<Task>()) {
       this.id = id;
       this.deadline = deadline;
       this.prerequisiteId = prerequisiteId;
@@ -109,6 +109,6 @@ export class Story {
     }
 
     Copy() : Story {
-      return new Story(this.id, this.deadline, this.prerequisiteId, this.tasks.map((t) => t.Copy()))
+      return new Story(this.id, this.deadline, this.prerequisiteId, this.tasks.map((t) => t ? t.Copy(): null))
     }
   }

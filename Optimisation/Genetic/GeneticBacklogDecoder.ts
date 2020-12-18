@@ -1,7 +1,7 @@
 import { TeamConfig } from "../../Simulation/TeamConfig";
 import { Story } from "../../Simulation/Story";
 
-export class GeneticDecoderBacklog {
+export class GeneticBacklogDecoder {
 
     public readonly ChromoLen : number;
     public readonly Population : number;
