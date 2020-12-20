@@ -59,20 +59,6 @@ describe('BacklogStats', () => {
         expect(actual.CycleTime).to.eql(cycleTimeExpected);
     }),
 
-    it('Three tasks for single team member with high, mid and low, Team Members Original and Actual matches expectation', () => {
-        let storyOne = new Story(0, false, null, new Array<Task>(new Task(1)));
-        storyOne.AddWork(0, 1);
-        let storyTwo = new Story(1, false, null, new Array<Task>(new Task(5)));
-        let storyThree = new Story(2, false, null, new Array<Task>(new Task(10)));
-
-        let actual = new BacklogStats(new Array<Story>(storyOne, storyTwo, storyThree));
-        let originalExpected = new Summary(3, 16, 1, 10, 5.3, 5, 3.7, 13.6, null);
-        let actualExpected = new Summary(3, 17, 2, 10, 5.7, 5, 3.3, 10.9, null);
-
-        expect(actual.TeamMembersOriginal[0]).to.eql(originalExpected);
-        expect(actual.TeamMembersActual[0]).to.eql(actualExpected);
-    }),
-
 
     it('TwoSampleTest, summary A is less then 30, thows an error', () => {
 

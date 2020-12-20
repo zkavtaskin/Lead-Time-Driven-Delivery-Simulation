@@ -36,14 +36,17 @@ export class TeamSimulation {
       this.teamConfig.Members.forEach((member, index) => 
           this.teamMembers.push(new TeamMember(index, member, this.teamConfig.Graph)));
         
-      //Graph feedback tick normalisation
-      const backlogStats = this.backlog.GetStats(); 
+      /***
+       * Graph "feedback" upstream tick normalisation
+       * To avoid giving feedback to few stories at the same time, feedback ratio
+       * needs to be adjusted for 
+       
       this.teamConfig.Graph.forEach((row, rowTeamMemberId) => {
         for(let columnTeamMemberId:number = rowTeamMemberId; columnTeamMemberId < this.teamConfig.Graph.length; columnTeamMemberId++) {
           let ratioOfStoryDoneOnAvg = this.clock.EffortSize / backlogStats.TeamMembersOriginal[rowTeamMemberId].Mean;
           this.teamConfig.Graph[rowTeamMemberId][columnTeamMemberId] = ratioOfStoryDoneOnAvg * this.teamConfig.Graph[rowTeamMemberId][columnTeamMemberId];
         }
-      });
+      });*/
     }
 
     public Reset(backlogSortFunc : (a : Story, b : Story) => number = null) {

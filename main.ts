@@ -18,12 +18,21 @@ const teamConfig = new TeamConfig([
                 new MemberConfig("Front-End", 37/37, 8/10, 35/100),
                 new MemberConfig("Test", 37/37, 10/10, 10/100)], 
         [
+                //bottom 0 diagonal represents flow downstream dependencies 
+                //top 0 diagonal represents flow "feedback" upstream 
+               //PO  UX   ARCH  BE      FE   TEST <= X-axis is same "mirror" for Y-axis, order is the same as above order
                 [0, 1/5, 1/10, 1/5,   1/5, 1/10],
                 [1, 0,   1/10,   0,   1/5, 1/10],
                 [1, 0,      0, 1/5,  1/10,    0],
                 [1, 0,      1,   0,   1/2,  1/2],
                 [1, 1,      1,   0,     0,  1/2],
                 [0, 0,      0,   1,     1,    0] 
+                /*** 
+                 * With team config and graph this means the following will happen:
+                 * If story contains work for product owner then it will have to travel through product owner before 
+                 * it goes to UX, ARCH, BE, FE and TEST. 
+                 * If story has no product owner involvement and it has UX involvemnt, then it FE has to wait for UX to do their bit.
+                 */
         ]
 );
 
@@ -51,10 +60,10 @@ console.log(`->Final best score: ${result.BestScore}, sort: ${result.BestEncodin
 console.log("\n#Experiment, Null Hypothesis Test");
 const backlogDecoder = new BnBBacklogDecoder(teamConfig);
 const teamSimulationOptimised = new TeamSimulation("*", teamConfig, backlogConfig, 0.5, backlogDecoder.Decode(result.BestEncoding));
-const optimisedLeadTime = teamSimulationOptimised.Run().GetStats().LeadTime;
+const optimisedStats = teamSimulationOptimised.Run().GetStats();
 
 
 console.log(`Testing expected mean ${expectedLeadTime.Mean} against optimised mean ${result.BestScore}.`)
-let nullHypothesisOptimised = BacklogStats.TwoSampleTest(expectedLeadTime, optimisedLeadTime);
+let nullHypothesisOptimised = BacklogStats.TwoSampleTest(expectedLeadTime, optimisedStats.LeadTime);
 console.log(`->Null Hypothesis:${nullHypothesisOptimised}<-`);
 

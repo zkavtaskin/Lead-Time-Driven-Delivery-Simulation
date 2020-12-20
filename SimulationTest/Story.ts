@@ -42,22 +42,18 @@ describe('Story', () => {
         expect(story.IsCompleted()).to.equal(false);
     }),
 
-    //TODO test bool
     it('Activate, there is no such team member, does not activate', () => {
         let story = new Story(1, false, 2, new Array<Task>(new Task(2)));
         expect(story.Activate(1, 0)).to.equal(false);
-        expect(story.StartedTick).to.equal(null);
     }),
     it('Activate, this is the first time story is picked up, story is activated', () => {
         let story = new Story(1, false, 2, new Array<Task>(new Task(2)));
         expect(story.Activate(0, 0)).to.equal(true);
-        expect(story.StartedTick).to.equal(0);
     }),
     it('Activate, secod time story is picked up, story is not re-activated', () => {
         let story = new Story(1, false, 2, new Array<Task>(new Task(2), new Task(5)));
         expect(story.Activate(0, 0)).to.equal(true);
         expect(story.Activate(1, 1)).to.equal(false);
-        expect(story.StartedTick).to.equal(0);
     }),
 
     it('Complete, tasks are not at zero, false', () => {

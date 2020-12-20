@@ -16,35 +16,8 @@ export class BacklogStats {
         if(0 >= stories[0].Tasks.length)
             throw new Error("Tasks need to be provided");
 
-        const numOfMembers = stories[0].Tasks.length;
-        this.TeamMembersOriginal = new Array<Summary>(numOfMembers);
-        this.TeamMembersActual = new Array<Summary>(numOfMembers); 
-
-        let cycleTime = Array<number>(), 
-            leadTime = Array<number>(), 
-            teamMembersOriginal = new Array<Array<number>>(numOfMembers).fill(new Array<number>()),
-            teamMembersActual = new Array<Array<number>>(numOfMembers).fill(new Array<number>());
-            
-        stories.forEach(story => {
-            cycleTime.push(story.CycleTime);
-            leadTime.push(story.CycleTime + story.StartedTick);
-
-            story.Tasks.forEach((task, index) => {
-                if(task != null) {
-                    teamMembersOriginal[index].push(task.Original);
-                    teamMembersActual[index].push(task.Actual);
-                }
-            });
-
-        });
-        this.CycleTime = this.getSummary(cycleTime);
-        this.LeadTime = this.getSummary(leadTime);
-
-        for(let i = 0; i < stories[0].Tasks.length; i++) {
-            this.TeamMembersOriginal[i] = this.getSummary(teamMembersOriginal[i]);
-            this.TeamMembersActual[i] = this.getSummary(teamMembersActual[i]);
-        }
-
+        this.CycleTime = this.getSummary(stories.map((s) => s.CycleTime));
+        this.LeadTime = this.getSummary(stories.map((s) => s.LeadTime));
     }
 
     /**

@@ -39,16 +39,19 @@ export class Story {
         
       return this.tasks.map((task) => task ? task.Original : 0).reduce((total, value) => total + value);
     }
-
-    get StartedTick() : number {
-      return this.startedTick;
-    }
     
     get CycleTime() : number | null {
       if(this.completedTick == null || this.startedTick == null)
         return null;
 
       return this.completedTick - this.startedTick;
+    }
+
+    get LeadTime() : number | null {
+      if(this.completedTick == null || this.startedTick == null)
+        return null;
+
+      return this.CycleTime + this.startedTick;
     }
   
     Activate(teamMemberId : number, clockTicks : number) : boolean {
