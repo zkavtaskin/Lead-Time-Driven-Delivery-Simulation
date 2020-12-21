@@ -18,8 +18,8 @@ const teamConfig = new TeamConfig([
                 new MemberConfig("Front-End", 37/37, 8/10, 35/100),
                 new MemberConfig("Test", 37/37, 10/10, 10/100)], 
         [
-                //bottom 0 diagonal represents flow downstream dependencies 
-                //top 0 diagonal represents flow "feedback" upstream 
+               //Bottom 0 diagonal represents flow downstream dependencies 
+               //top 0 diagonal represents flow "feedback" upstream 
                //PO  UX   ARCH  BE      FE   TEST <= X-axis is same "mirror" for Y-axis, order is the same as above order
                 [0, 1/5, 1/10, 1/5,   1/5, 1/10],
                 [1, 0,   1/10,   0,   1/5, 1/10],

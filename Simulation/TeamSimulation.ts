@@ -33,34 +33,31 @@ export class TeamSimulation {
       this.backlog = Backlog.Generate(this.teamConfig.Members, this.backlogConfig, backlogSortFunc);
       
       this.teamMembers = new Array<TeamMember>();
-      this.teamConfig.Members.forEach((member, index) => 
-          this.teamMembers.push(new TeamMember(index, member, this.teamConfig.Graph)));
+      this.teamConfig.Members.forEach((member, index) => this.teamMembers.push(new TeamMember(index, member, this.teamConfig.Graph)));
         
       /***
        * >Graph "feedback" upstream tick normalisation, this adds weight to the ratio to prevent frequent feeback:
        * Let Cc be member capacity, Cr be  member contribution, S be average size of work,
-       * U units of work completed per turn and F feedback ratio. Find W weight that is added to the F.
+       * U units of work completed per turn and F feedback ratio. S distribution is uniform. 
+       * Find W weight that is added to the F.
        * 
        * S * Cr gives amount of work that a team member can do.
        * Cc * U gives you team members capacity per turn. 
        * (S * Cr) / (Cc * U) gives you number of turns required to complete a story. 
        * 1 / ((S * Cr) / (Cc * U)) gives you W weight reciprocal 
        * 1 / ((S * Cr) / (Cc * U))  * F gives you weighted feedback ratio. 
-       * 
-       * Assumption is that S distribution is uniform. 
-       * 
       */ 
-      this.teamConfig.Graph.forEach((row, rowTeamMemberId) => {
-        for(let columnTeamMemberId:number = rowTeamMemberId; columnTeamMemberId < this.teamConfig.Graph.length; columnTeamMemberId++) {
-          const teamMember = this.teamConfig.Members[rowTeamMemberId];
-          const S  = (this.backlogConfig.MaxStorySize + this.backlogConfig.MinStorySize) / 2;
-          const Cr = teamMember.BacklogContribution;
-          const Cc = teamMember.Capacity;
-          const U  = this.clock.EffortSize;
-          const W = 1 / ((S * Cr) / (Cc * U));
-          this.teamConfig.Graph[rowTeamMemberId][columnTeamMemberId] *= W;
+      for(let columnId:number = 0; columnId < this.teamConfig.Graph.length; columnId++) {
+        const teamMember = this.teamConfig.Members[columnId];
+        const S  = (this.backlogConfig.MaxStorySize + this.backlogConfig.MinStorySize) / 2;
+        const Cr = teamMember.BacklogContribution;
+        const Cc = teamMember.Capacity;
+        const U  = this.clock.EffortSize;
+        const W = 1 / ((S * Cr) / (Cc * U));
+        for(let rowId:number = 0; rowId < columnId; rowId++) {
+          this.teamConfig.Graph[rowId][columnId] *= W;
         }
-      });
+      }
     }
 
     public Reset(backlogSortFunc : (a : Story, b : Story) => number = null) {
@@ -73,7 +70,6 @@ export class TeamSimulation {
         this.teamMembers.forEach(member => member.DoWork(this.backlog, this.clock));
         this.clock.Tick();
       }
-  
       return this.backlog;
     }
   }
