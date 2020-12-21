@@ -84,7 +84,6 @@ export class Backlog {
             if(Math.random() <= member.BacklogFrequency) {
               let effort:number = member.BacklogContribution * storySize;
               tasks.push(new Task(effort));
-    
             } else {
               tasks.push(null);
             }

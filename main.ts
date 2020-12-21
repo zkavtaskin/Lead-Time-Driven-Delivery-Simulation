@@ -31,7 +31,7 @@ const teamConfig = new TeamConfig([
                  * With team config and graph this means the following will happen:
                  * If story contains work for product owner then it will have to travel through product owner before 
                  * it goes to UX, ARCH, BE, FE and TEST. 
-                 * If story has no product owner involvement and it has UX involvemnt, then it FE has to wait for UX to do their bit.
+                 * If story has no product owner involvement and it has UX involvement, then it FE has to wait for UX to do their bit.
                  */
         ]
 );

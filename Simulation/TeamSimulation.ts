@@ -37,16 +37,30 @@ export class TeamSimulation {
           this.teamMembers.push(new TeamMember(index, member, this.teamConfig.Graph)));
         
       /***
-       * Graph "feedback" upstream tick normalisation
-       * To avoid giving feedback to few stories at the same time, feedback ratio
-       * needs to be adjusted for 
-       
+       * >Graph "feedback" upstream tick normalisation, this adds weight to the ratio to prevent frequent feeback:
+       * Let Cc be member capacity, Cr be  member contribution, S be average size of work,
+       * U units of work completed per turn and F feedback ratio. Find W weight that is added to the F.
+       * 
+       * S * Cr gives amount of work that a team member can do.
+       * Cc * U gives you team members capacity per turn. 
+       * (S * Cr) / (Cc * U) gives you number of turns required to complete a story. 
+       * 1 / ((S * Cr) / (Cc * U)) gives you W weight reciprocal 
+       * 1 / ((S * Cr) / (Cc * U))  * F gives you weighted feedback ratio. 
+       * 
+       * Assumption is that S distribution is uniform. 
+       * 
+      */ 
       this.teamConfig.Graph.forEach((row, rowTeamMemberId) => {
         for(let columnTeamMemberId:number = rowTeamMemberId; columnTeamMemberId < this.teamConfig.Graph.length; columnTeamMemberId++) {
-          let ratioOfStoryDoneOnAvg = this.clock.EffortSize / backlogStats.TeamMembersOriginal[rowTeamMemberId].Mean;
-          this.teamConfig.Graph[rowTeamMemberId][columnTeamMemberId] = ratioOfStoryDoneOnAvg * this.teamConfig.Graph[rowTeamMemberId][columnTeamMemberId];
+          const teamMember = this.teamConfig.Members[rowTeamMemberId];
+          const S  = (this.backlogConfig.MaxStorySize + this.backlogConfig.MinStorySize) / 2;
+          const Cr = teamMember.BacklogContribution;
+          const Cc = teamMember.Capacity;
+          const U  = this.clock.EffortSize;
+          const W = 1 / ((S * Cr) / (Cc * U));
+          this.teamConfig.Graph[rowTeamMemberId][columnTeamMemberId] *= W;
         }
-      });*/
+      });
     }
 
     public Reset(backlogSortFunc : (a : Story, b : Story) => number = null) {
