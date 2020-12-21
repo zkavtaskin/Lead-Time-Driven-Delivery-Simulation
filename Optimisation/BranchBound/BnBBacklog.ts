@@ -29,6 +29,8 @@ export class BnBBacklog implements BacklogOptimiser {
                 min = mean;
                 bestPattern = pattern;
             }
+            //relax the search, keep searching nodes that are around < 0.05 from the
+            //the min
             if(mean/min < 1.05)
                 return mean;
                 

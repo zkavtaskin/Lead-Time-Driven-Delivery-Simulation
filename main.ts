@@ -35,31 +35,31 @@ const teamConfig = new TeamConfig([
                  */
         ]
 );
-
-const backlogConfig = new BacklogConfig(100, 1/10, 1/10, 1, 30);
+const effortPerTick:number = 1, numberOfStories = 300;
+const backlogConfig = new BacklogConfig(numberOfStories, 1/10, 1/10, 1, 10);
 
 console.log("\n#Expected");
-let teamSimulationExpected = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
+let teamSimulationExpected = new TeamSimulation("*", teamConfig, backlogConfig, effortPerTick);
 const expectedLeadTime  = teamSimulationExpected.Run().GetStats().LeadTime;
 console.log(`->Expected average mean: ${expectedLeadTime.Mean}<-`);
 
 
 console.log("\n#Control, Null Hypothesis Test");
-const teamSimulationControl = new TeamSimulation("*", teamConfig, backlogConfig, 0.5);
+const teamSimulationControl = new TeamSimulation("*", teamConfig, backlogConfig, effortPerTick);
 const controlLeadTime = teamSimulationControl.Run().GetStats().LeadTime;
 console.log(`Control mean: ${controlLeadTime.Mean} std: ${controlLeadTime.Std}`);
 const nullHypothesis = BacklogStats.TwoSampleTest(expectedLeadTime, controlLeadTime);
 console.log(`->Null Hypothesis:${nullHypothesis}<-`);
 
 
-const backlogOptimiser = new BnBBacklog(teamConfig, backlogConfig, 0.5) as BacklogOptimiser;
+const backlogOptimiser = new BnBBacklog(teamConfig, backlogConfig, effortPerTick) as BacklogOptimiser;
 const result = backlogOptimiser.Solve();
 console.log(`->Final best score: ${result.BestScore}, sort: ${result.BestEncodingDecoded}<-`);
 
 
 console.log("\n#Experiment, Null Hypothesis Test");
 const backlogDecoder = new BnBBacklogDecoder(teamConfig);
-const teamSimulationOptimised = new TeamSimulation("*", teamConfig, backlogConfig, 0.5, backlogDecoder.Decode(result.BestEncoding));
+const teamSimulationOptimised = new TeamSimulation("*", teamConfig, backlogConfig, effortPerTick, backlogDecoder.Decode(result.BestEncoding));
 const optimisedStats = teamSimulationOptimised.Run().GetStats();
 
 
