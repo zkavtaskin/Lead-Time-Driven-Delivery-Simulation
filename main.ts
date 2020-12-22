@@ -2,13 +2,12 @@ import { MemberConfig } from "./Simulation/MemberConfig";
 import { BacklogConfig } from "./Simulation/BacklogConfig";
 import { TeamSimulation } from "./Simulation/TeamSimulation";
 import { TeamConfig } from "./Simulation/TeamConfig";
-import { GeneticBacklog } from "./Optimisation/Genetic/GeneticBacklog";
 import { BnBBacklog } from "./Optimisation/BranchBound/BnBBacklog";
 import { BnBBacklogDecoder } from "./Optimisation/BranchBound/BnBBacklogDecoder";
 import { BacklogOptimiser } from "./Optimisation/BacklogOptimiser";
 import { BacklogStats } from "./Simulation/BacklogStats";
 import { Result } from "./Optimisation/Result";
-import { GeneticBacklogDecoder } from "./Optimisation/Genetic/GeneticBacklogDecoder";
+import { RandomForest} from "./Optimisation/RandomForest"
 
 const teamConfig = new TeamConfig([
                 new MemberConfig("Product Owner", 10/37, 8/10, 10/100),
@@ -53,7 +52,8 @@ console.log(`->Null Hypothesis:${nullHypothesis}<-`);
 
 const backlogDecoder = new BnBBacklogDecoder(teamConfig);
 const backlogOptimiser = new BnBBacklog(teamConfig, backlogConfig, effortPerTick, backlogDecoder) as BacklogOptimiser;
-const result = backlogOptimiser.Search();
+const randomForestOptimiser = new RandomForest(backlogOptimiser, backlogDecoder);
+const result = randomForestOptimiser.Search(5);
 console.log(`->Final best score: ${result.BestScore}, sort: ${result.BestEncodingDecoded}<-`);
 
 
