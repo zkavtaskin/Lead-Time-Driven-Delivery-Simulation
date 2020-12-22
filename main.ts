@@ -53,7 +53,7 @@ console.log(`->Null Hypothesis:${nullHypothesis}<-`);
 const backlogDecoder = new BnBBacklogDecoder(teamConfig);
 const backlogOptimiser = new BnBBacklog(teamConfig, backlogConfig, effortPerTick, backlogDecoder) as BacklogOptimiser;
 const randomForestOptimiser = new RandomForest(backlogOptimiser, backlogDecoder);
-const result = randomForestOptimiser.Search(100);
+const result = randomForestOptimiser.Search(30);
 console.log(`->Final best score: ${result.BestScore}, sort: ${result.BestEncodingDecoded}<-`);
 
 
