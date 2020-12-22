@@ -1,11 +1,15 @@
-export class ExperimentResult {
-    public readonly BestScore : number;
-    public readonly BestEncoding : Array<number>
-    public readonly BestEncodingDecoded : Array<string>
+import { Summary } from "../Simulation/BacklogStats";
 
-    constructor(bestScore : number, bestEncoding : Array<number>, bestEncodingDecoded : Array<string>) {
-        this.BestScore = bestScore;
-        this.BestEncoding = bestEncoding;
-        this.BestEncodingDecoded = bestEncodingDecoded;
+export class ExperimentResult {
+    public readonly ControlStats : Summary;
+    public readonly ExperimentStats : Summary;
+    public readonly ExperimentConditions : Array<[string, string]>;
+    public readonly NullHypothesis : boolean
+
+    constructor(scoreControl: Summary, scoreExperiment:Summary, nullHypothesis:boolean, conditions: Array<[string, string]>) {
+        this.ControlStats = scoreControl;
+        this.ExperimentStats = scoreExperiment;
+        this.NullHypothesis = nullHypothesis;
+        this.ExperimentConditions = conditions;
     }
 }

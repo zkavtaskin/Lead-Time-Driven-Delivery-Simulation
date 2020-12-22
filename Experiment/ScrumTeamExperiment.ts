@@ -1,8 +1,15 @@
 import { TeamConfig} from "../Simulation/TeamConfig"
 import { MemberConfig } from "../Simulation/MemberConfig"
 import { BacklogConfig } from "../Simulation/BacklogConfig"
+import { TeamSimulation } from "../Simulation/TeamSimulation"
+import { Experiment } from "../Experiment/Experiment"
+import { TestResult } from "./TestResult"
+import { BnBBacklogDecoder } from "../Optimisation/BranchBound/BnBBacklogDecoder"
+import { BnBBacklog } from "../Optimisation/BranchBound/BnBBacklog"
+import { RandomForest } from "../Optimisation/RandomForest"
+import { BacklogOptimiser } from "../Optimisation/BacklogOptimiser"
 
-export class ScrumTeamExperiment {
+export class ScrumTeamExperiment extends Experiment {
 
     private teamConfig = new TeamConfig([
             new MemberConfig("Product Owner", 10/37, 8/10, 10/100),
@@ -35,8 +42,19 @@ export class ScrumTeamExperiment {
     );
     private backlogConfig = new BacklogConfig(50, 1/10, 1/10, 1, 10);
     private effortPerTick = 1;
+    protected name: string = "ScrumTeam";
+    
+    protected controlGroup(): TestResult {
+        const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick);
+        return new TestResult(teamSimulation.Run().GetStats(), null);
+    }
 
-    Run()  {
-        
+    protected experimentGroup(): TestResult {
+        const backlogDecoder = new BnBBacklogDecoder(this.teamConfig);
+        const backlogOptimiser = new BnBBacklog(this.teamConfig, this.backlogConfig, this.effortPerTick, backlogDecoder) as BacklogOptimiser;
+        const randomForestOptimiser = new RandomForest(backlogOptimiser, backlogDecoder);
+        const result = randomForestOptimiser.Search(30);
+        const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, backlogDecoder.Decode(result.BestEncoding));
+        return new TestResult(teamSimulation.Run().GetStats(), [["Sort",result.BestEncodingDecoded.join(",")]])
     }
 }

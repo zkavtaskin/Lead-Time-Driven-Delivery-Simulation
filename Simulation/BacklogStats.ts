@@ -2,9 +2,7 @@ import { Story } from "./Story";
 import * as simplestats from 'simple-statistics'
 
 export class BacklogStats {
-
-    readonly TeamMembersOriginal : Array<Summary>;
-    readonly TeamMembersActual : Array<Summary>;
+    
     readonly CycleTime : Summary;
     readonly LeadTime : Summary;
 
