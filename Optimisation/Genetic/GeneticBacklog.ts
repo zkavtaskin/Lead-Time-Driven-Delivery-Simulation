@@ -22,6 +22,7 @@ export class GeneticBacklog implements BacklogOptimiser {
         this.effortSize = effortSize;
         this.decoder = new GeneticBacklogDecoder(teamConfig);
     }
+    Base: number;
 
     Solve() : Result {
         const geneticPool = new genetic.Darwin<number>({

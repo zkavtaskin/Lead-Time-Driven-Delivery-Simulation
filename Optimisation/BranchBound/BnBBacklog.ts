@@ -12,6 +12,10 @@ export class BnBBacklog implements BacklogOptimiser {
     private readonly effortSize : number;
     private readonly decoder : BnBBacklogDecoder;
 
+    get Base(): number  {
+        return this.decoder.Size;
+    }
+
     constructor(teamConfig : TeamConfig, backlogConfig : BacklogConfig, effortSize : number = 0.5) {
         this.teamConfig = teamConfig;
         this.backlogConfig = backlogConfig;
