@@ -9,7 +9,7 @@ describe('BnBBacklogDecoder', () => {
     it('Init, given 2 team members and 1 field (PrerequisiteId), 3 will be used for optimisation and gene length is 3', () => {
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)], null);
         const decoder = new BnBBacklogDecoder(teamConfig);
-        expect(decoder.Size).to.equal(teamConfig.Members.length + 3);
+        expect(decoder.Base).to.equal(teamConfig.Members.length + 3);
     }),
 
     it('Decode, stories have have tasks with nulls, sort null tasks first and then in asc order', () => {

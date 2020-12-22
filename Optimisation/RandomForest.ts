@@ -1,48 +1,51 @@
 import { Result } from "..//Optimisation/Result"
+import { BacklogDecoder } from "./BacklogDecoder"
 import { BacklogOptimiser } from "../Optimisation/BacklogOptimiser";
 
 export class RandomForest {
-    Solve(optimiser:BacklogOptimiser, sample:number = 50) : Result {
+    Solve(optimiser:BacklogOptimiser, decoder:BacklogDecoder, sample:number = 50) : Result {
         //grow the forest
         const results = new Array<Result>();
         for(let i=0; i < sample; i++) {
-            results.push(optimiser.Solve());
+            results.push(optimiser.Search());
         }
 
+        const tree = new Array<number>(0);
         //reduce the forest by growing split tree
         for(let i=0; i < results.length; i++) {
-            this.sparseTree(results[i].BestEncoding, 0, tree, optimiser.Base);
+            this.indexedSparseTree(results[i].BestEncoding, 0, tree, decoder.Base);
         }
 
         //traverse the tree to find the majority vote
-        let patternMajority = Array<number>(), branch = tree;
-        do {
-            let best = Number.NEGATIVE_INFINITY, bestIndex = null;
-            for(let j=0; j < optimiser.Base; j++) {
-                if(best < branch[j][1] && 3 <= branch[j][1]) {
-                    best = branch[j][1];
-                    bestIndex = j;
+        let branch = tree, maxPattern = Array<number>();
+        while(branch != null) {
+            let max = 0, maxIndex = null;
+            for(let i=0; i < decoder.Base; i++) {
+                if(max < branch[i][1] && 3 <= branch[i][1]) {
+                    max = branch[i][1];
+                    maxIndex = i;
                 }
             }
-            branch = branch[bestIndex][0];
-            patternMajority.push(bestIndex);
-        } while(branch != null)
+            branch = branch[maxIndex][0];
+            maxPattern.push(maxIndex);
+        } 
 
-        return null;
+        return new Result(null, maxPattern, decoder.DecodeReadable(maxPattern));
     }
 
-    private sparseTree(pattern, index, branch, base) {
-        if(index >= pattern.length) 
+    private indexedSparseTree(pattern: Array<number>, level: number, branch: any[], base: number) {
+        if(level >= pattern.length) {
             return;
+        }
 
-        const id = pattern[index];
+        const index = pattern[level];
 
-        if(branch[id] == null) 
-            branch[id] = [new Array(base), 1];
-        else 
-            branch[id][1]++;
-
-        this.sparseTree(pattern, index++, branch[id][0], base);
+        if(branch[index]) {
+            branch[index][1]++;
+        } else {
+            branch[index] = [new Array(base), 1];
+        }
+        this.indexedSparseTree(pattern, level++, branch[index][0], base);
     }
 
 }

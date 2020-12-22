@@ -51,14 +51,13 @@ console.log(`Control mean: ${controlLeadTime.Mean} std: ${controlLeadTime.Std}`)
 const nullHypothesis = BacklogStats.TwoSampleTest(expectedLeadTime, controlLeadTime);
 console.log(`->Null Hypothesis:${nullHypothesis}<-`);
 
-
-const backlogOptimiser = new BnBBacklog(teamConfig, backlogConfig, effortPerTick) as BacklogOptimiser;
-const result = backlogOptimiser.Solve();
+const backlogDecoder = new BnBBacklogDecoder(teamConfig);
+const backlogOptimiser = new BnBBacklog(teamConfig, backlogConfig, effortPerTick, backlogDecoder) as BacklogOptimiser;
+const result = backlogOptimiser.Search();
 console.log(`->Final best score: ${result.BestScore}, sort: ${result.BestEncodingDecoded}<-`);
 
 
 console.log("\n#Experiment, Null Hypothesis Test");
-const backlogDecoder = new BnBBacklogDecoder(teamConfig);
 const teamSimulationOptimised = new TeamSimulation("*", teamConfig, backlogConfig, effortPerTick, backlogDecoder.Decode(result.BestEncoding));
 const optimisedStats = teamSimulationOptimised.Run().GetStats();
 

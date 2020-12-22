@@ -4,30 +4,27 @@ import { TeamSimulation } from "../../Simulation/TeamSimulation";
 import { Result } from "../Result"
 import { BacklogOptimiser } from "../BacklogOptimiser";
 import { BnBBacklogDecoder } from "./BnBBacklogDecoder";
+import { BacklogDecoder } from "../BacklogDecoder";
 
 export class BnBBacklog implements BacklogOptimiser {
 
     private readonly teamConfig : TeamConfig;
     private readonly backlogConfig : BacklogConfig;
     private readonly effortSize : number;
-    private readonly decoder : BnBBacklogDecoder;
+    private readonly backlogDecoder : BacklogDecoder;
 
-    get Base(): number  {
-        return this.decoder.Size;
-    }
-
-    constructor(teamConfig : TeamConfig, backlogConfig : BacklogConfig, effortSize : number = 0.5) {
+    constructor(teamConfig : TeamConfig, backlogConfig : BacklogConfig, effortSize : number = 0.5, backlogDecoder: BacklogDecoder) {
         this.teamConfig = teamConfig;
         this.backlogConfig = backlogConfig;
         this.effortSize = effortSize;
-        this.decoder = new BnBBacklogDecoder(teamConfig);
+        this.backlogDecoder = backlogDecoder;
     }
 
-    Solve() : Result {
+    Search() : Result {
         let min = Infinity,  bestPattern = null;
         const teamSimulation = new TeamSimulation(null, this.teamConfig, this.backlogConfig, this.effortSize);
         let valuation = (pattern) => {
-            teamSimulation.Reset(this.decoder.Decode(pattern));
+            teamSimulation.Reset(this.backlogDecoder.Decode(pattern));
             const mean = teamSimulation.Run().GetStats().LeadTime.Mean;
             if(mean < min) {
                 min = mean;
@@ -40,8 +37,8 @@ export class BnBBacklog implements BacklogOptimiser {
                 
             return null;
         }
-        const results = BnBBacklog.generateCombinations(this.decoder.Size, valuation);
-        return new Result(min, bestPattern, this.decoder.DecodeReadable(bestPattern));
+        const results = BnBBacklog.generateCombinations(this.backlogDecoder.Base, valuation);
+        return new Result(min, bestPattern, this.backlogDecoder.DecodeReadable(bestPattern));
     }
 
     static generateCombinations(n:number, valuator:(pattern : Array<number>) => number) {
