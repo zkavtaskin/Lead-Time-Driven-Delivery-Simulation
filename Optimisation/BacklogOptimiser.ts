@@ -1,5 +1,5 @@
-import { Result } from "./Result";
+import { SearchResult } from "./SearchResult";
 
 export interface BacklogOptimiser {
-    Search: () => Result;
+    Search: () => SearchResult;
 }

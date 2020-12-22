@@ -1,4 +1,4 @@
-import { Result } from "./Result";
+import { SearchResult } from "./SearchResult";
 import { Story } from "../Simulation/Story"
 
 export interface BacklogDecoder {

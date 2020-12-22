@@ -1,5 +1,4 @@
-
-export class Result {
+export class ExperimentResult {
     public readonly BestScore : number;
     public readonly BestEncoding : Array<number>
     public readonly BestEncodingDecoded : Array<string>

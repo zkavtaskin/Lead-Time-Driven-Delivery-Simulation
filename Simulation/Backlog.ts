@@ -72,7 +72,7 @@ export class Backlog {
           }
     
           let prerequisiteStoryId:number | null = null;
-          if(Math.random() <= backlogConfig.DependenciesFrequency && id > 0) {
+          if(Math.random() <= backlogConfig.StoryDependenciesFrequency && id > 0) {
             while(prerequisiteStoryId == null || prerequisiteStoryId == id) {
               prerequisiteStoryId = Math.floor(Math.random() * id);
             }

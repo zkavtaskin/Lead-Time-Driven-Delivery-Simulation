@@ -1,7 +1,7 @@
 import { BacklogConfig } from "../../Simulation/BacklogConfig";
 import { TeamConfig } from "../../Simulation/TeamConfig";
 import { TeamSimulation } from "../../Simulation/TeamSimulation";
-import { Result } from "../Result"
+import { SearchResult } from "../SearchResult"
 import { BacklogOptimiser } from "../BacklogOptimiser";
 import { BacklogDecoder } from "../BacklogDecoder";
 
@@ -19,7 +19,7 @@ export class BnBBacklog implements BacklogOptimiser {
         this.backlogDecoder = backlogDecoder;
     }
 
-    Search() : Result {
+    Search() : SearchResult {
         let min = Infinity,  bestPattern = null;
         const teamSimulation = new TeamSimulation(null, this.teamConfig, this.backlogConfig, this.effortSize);
         let valuation = (pattern) => {
@@ -33,7 +33,7 @@ export class BnBBacklog implements BacklogOptimiser {
             return false;
         }
         const results = BnBBacklog.generateCombinations(this.backlogDecoder.Base, valuation);
-        return new Result(min, bestPattern, this.backlogDecoder.DecodeReadable(bestPattern));
+        return new SearchResult(min, bestPattern, this.backlogDecoder.DecodeReadable(bestPattern));
     }
 
     static generateCombinations(n:number, valuator:(pattern : Array<number>) => boolean) {

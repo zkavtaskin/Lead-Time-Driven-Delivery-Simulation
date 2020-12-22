@@ -1,4 +1,4 @@
-import { Result } from "..//Optimisation/Result"
+import { SearchResult } from "./SearchResult"
 import { BacklogDecoder } from "./BacklogDecoder"
 import { BacklogOptimiser } from "../Optimisation/BacklogOptimiser";
 
@@ -12,9 +12,9 @@ export class RandomForest {
         this.decoder = decoder;
     }
 
-    Search(sample:number = 50) : Result {
+    Search(sample:number = 50) : SearchResult {
         //grow the forest
-        const results = new Array<Result>();
+        const results = new Array<SearchResult>();
         for(let i=0; i < sample; i++) {
             results.push(this.optimiser.Search());
         }
@@ -44,7 +44,7 @@ export class RandomForest {
             branch = branch[maxIndex][0];
         } 
 
-        return new Result(null, maxPattern, this.decoder.DecodeReadable(maxPattern));
+        return new SearchResult(null, maxPattern, this.decoder.DecodeReadable(maxPattern));
     }
 
     private indexedSparseTree(pattern: Array<number>, level: number, branch: any[], base: number) {

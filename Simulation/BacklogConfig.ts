@@ -3,15 +3,15 @@ import { Story } from "./Story";
 export class BacklogConfig {
 
     readonly NumberOfStories :number;
-    readonly DependenciesFrequency :number;
+    readonly StoryDependenciesFrequency :number;
     readonly DeadlinesFrequency :number;
     readonly MinStorySize :number;
     readonly MaxStorySize :number;
 
-    constructor(numberOfStories :number, dependenciesFrequency :number, deadlinesFrequency :number, minStorySize :number, maxStorySize :number = minStorySize) {
+    constructor(numberOfStories :number, storyDependenciesFrequency :number, deadlinesFrequency :number, minStorySize :number, maxStorySize :number = minStorySize) {
         this.NumberOfStories = numberOfStories;
         this.DeadlinesFrequency = deadlinesFrequency;
-        this.DependenciesFrequency = dependenciesFrequency;
+        this.StoryDependenciesFrequency = storyDependenciesFrequency;
 
         if(0 > minStorySize)
             throw Error("Min story size can not be less than 0.")

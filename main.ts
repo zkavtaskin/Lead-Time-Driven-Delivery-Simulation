@@ -6,7 +6,7 @@ import { BnBBacklog } from "./Optimisation/BranchBound/BnBBacklog";
 import { BnBBacklogDecoder } from "./Optimisation/BranchBound/BnBBacklogDecoder";
 import { BacklogOptimiser } from "./Optimisation/BacklogOptimiser";
 import { BacklogStats } from "./Simulation/BacklogStats";
-import { Result } from "./Optimisation/Result";
+import { SearchResult } from "./Optimisation/SearchResult";
 import { RandomForest} from "./Optimisation/RandomForest"
 
 const teamConfig = new TeamConfig([
