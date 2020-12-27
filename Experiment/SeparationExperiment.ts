@@ -2,14 +2,14 @@ import { TeamConfig} from "../Simulation/TeamConfig"
 import { MemberConfig } from "../Simulation/MemberConfig"
 import { BacklogConfig } from "../Simulation/BacklogConfig"
 import { TeamSimulation } from "../Simulation/TeamSimulation"
-import { Experiment } from "../Experiment/Experiment"
+import { Experiment } from "./Experiment"
 import { TestResult } from "./TestResult"
 import { BnBBacklogDecoder } from "../Optimisation/BranchBound/BnBBacklogDecoder"
 import { BnBBacklog } from "../Optimisation/BranchBound/BnBBacklog"
 import { RandomForest } from "../Optimisation/RandomForest"
 import { BacklogOptimiser } from "../Optimisation/BacklogOptimiser"
 
-export class ScrumTeamExperiment extends Experiment {
+export class SeparationExperiment extends Experiment {
 
     private teamConfig = new TeamConfig([
             new MemberConfig("Product Owner", 10/37, 8/10, 10/100),
@@ -40,7 +40,7 @@ export class ScrumTeamExperiment extends Experiment {
              */
         ]
     );
-    private backlogConfig = new BacklogConfig(100, 1/10, 1/10, 1, 10);
+    private backlogConfig = new BacklogConfig(50, 1/10, 1/10, 1, 10);
     private effortPerTick = 1;
     protected name: string = "ScrumTeam";
     
