@@ -44,6 +44,35 @@ export class ScrumTeamExperiment extends Experiment {
     private effortPerTick = 1;
     protected name: string = "ScrumTeam";
     
+    protected assumptions(): Array<[string, boolean]> {
+
+        const LeadNotNormal = () => {
+            return false;
+        }
+
+        const CycleNotNormal = () => {
+            return false;
+        }
+
+        const grtLeadGrtCycle = () => {
+            const teamSimulationA = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick);
+            const statsA = teamSimulationA.Run().GetStats();
+            
+            const teamSimulationB = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick);
+            const statsB = teamSimulationB.Run().GetStats();
+
+            const aGrtThenb = statsA.LeadTime.Median > statsB.LeadTime.Median && statsA.CycleTime.Median > statsB.CycleTime.Median;
+            const bGrtThena = statsA.LeadTime.Median < statsB.LeadTime.Median && statsA.CycleTime.Median < statsB.CycleTime.Median;
+            return aGrtThenb || bGrtThena;
+        }
+
+        return [
+            ["LeadTime does not follow normal distribution", LeadNotNormal()],
+            ["CycleTime does not follow normal distribution", CycleNotNormal()],
+            ["LeadTimeA > LeadTimeB then CycleTimeA > CycleTimeB", grtLeadGrtCycle()]
+        ];
+    }
+
     protected controlGroup(): TestResult {
         const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick);
         return new TestResult(teamSimulation.Run().GetStats(), null);

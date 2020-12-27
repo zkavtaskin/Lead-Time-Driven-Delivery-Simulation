@@ -5,6 +5,7 @@ export class BacklogStats {
     
     readonly CycleTime : Summary;
     readonly LeadTime : Summary;
+    readonly SizeOriginal : number;
 
     constructor(stories: Array<Story>) {
 
@@ -16,6 +17,7 @@ export class BacklogStats {
 
         this.CycleTime = this.getSummary(stories.map((s) => s.CycleTime));
         this.LeadTime = this.getSummary(stories.map((s) => s.LeadTime));
+        this.SizeOriginal = stories.map((s) => s.SizeOriginal).reduce((sum, value) => sum + value);
     }
 
     /**
@@ -57,6 +59,7 @@ export class BacklogStats {
         summary.Std =  this.toDecimalPlace(simplestats.standardDeviation(numbers));
         summary.Variance = this.toDecimalPlace(simplestats.variance(numbers));
         summary.Skew = this.toDecimalPlace(simplestats.sampleSkewness(numbers));
+        summary.Kurtosis = this.toDecimalPlace(simplestats.sampleKurtosis(numbers));
         return summary;
     }
 
@@ -68,18 +71,18 @@ export class BacklogStats {
 }
 
 export class Summary {
-    Count :number;
-    Sum   :number;
-    Min : number;
-    Max : number;
     Mean :number;
     Median : number;
     Std : number;
-    Variance : number;
-    Mode : number;
+    Min : number;
+    Max : number;
     Skew : number;
+    Kurtosis: number;
+    Variance : number;
+    Count :number;
+    Sum   :number;
 
-    constructor(count : number = 0, sum : number = 0, min : number = 0, max : number = 0, mean : number = 0, median : number = 0, std : number = 0, variance : number = 0, skew : number = 0) {
+    constructor(count : number = 0, sum : number = 0, min : number = 0, max : number = 0, mean : number = 0, median : number = 0, std : number = 0, variance : number = 0, skew : number = 0, kurtosis: number = 0) {
         this.Count = count;
         this.Sum = sum;
         this.Min = min;
@@ -89,6 +92,7 @@ export class Summary {
         this.Std = std;
         this.Variance = variance;
         this.Skew = skew;
+        this.Kurtosis = kurtosis;
     }
 
 }

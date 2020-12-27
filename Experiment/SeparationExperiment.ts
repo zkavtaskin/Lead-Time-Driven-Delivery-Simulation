@@ -42,8 +42,12 @@ export class SeparationExperiment extends Experiment {
     );
     private backlogConfig = new BacklogConfig(50, 1/10, 1/10, 1, 10);
     private effortPerTick = 1;
-    protected name: string = "ScrumTeam";
+    protected name: string = "Seperation";
     
+    protected assumptions(): [string, boolean][] {
+        throw new Error("Method not implemented.")
+    }
+
     protected controlGroup(): TestResult {
         const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick);
         return new TestResult(teamSimulation.Run().GetStats(), null);

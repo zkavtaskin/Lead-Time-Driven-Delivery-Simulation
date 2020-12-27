@@ -15,7 +15,7 @@ describe('BacklogStats', () => {
         let story = new Story(0, false, null, new Array<Task>());
         expect(() => new BacklogStats(new Array<Story>(story))).to.throw();
     }),
-    it('Three stories with high, mid and low, Lead Time and Cycle Time matches expectation', () => {
+    it('Four stories with high, mid, mid and low, Lead Time and Cycle Time matches expectation', () => {
         
         let storyOne = new Story(0, false, null, new Array<Task>(new Task(0)));
         storyOne.Activate(0, 1);
@@ -24,20 +24,24 @@ describe('BacklogStats', () => {
         let storyTwo = new Story(1, false, null, new Array<Task>(new Task(0)));
         storyTwo.Activate(0, 5);
         storyTwo.Complete(10);
+    
+        let storyThree = new Story(1, false, null, new Array<Task>(new Task(0)));
+        storyThree.Activate(0, 5);
+        storyThree.Complete(10);
 
-        let storyThree = new Story(25, false, null, new Array<Task>(new Task(0)));
-        storyThree.Activate(0, 100);
-        storyThree.Complete(120);
+        let storyFour = new Story(25, false, null, new Array<Task>(new Task(0)));
+        storyFour.Activate(0, 100);
+        storyFour.Complete(120);
 
-        let actual = new BacklogStats(new Array<Story>(storyOne, storyTwo, storyThree));
-        let leadTimeExpected = new Summary(3, 132, 2, 120, 44, 10, 53.8, 2898.7, 1.7);
-        let cycleTimeExpected = new Summary(3, 26, 1, 20, 8.7, 5, 8.2, 66.9, 1.4);
+        let actual = new BacklogStats(new Array<Story>(storyOne, storyTwo, storyThree, storyFour));
+        let leadTimeExpected = new Summary(4, 142, 2, 120, 35.5, 10, 48.9, 2390.8, 2, 3.9);
+        let cycleTimeExpected = new Summary(4, 31, 1, 20, 7.8, 5, 7.3, 52.7, 1.7, 3.2);
 
         expect(actual.LeadTime).to.eql(leadTimeExpected);
         expect(actual.CycleTime).to.eql(cycleTimeExpected);
     }),
 
-    it('Three stories done at the same cycle time, Lead Time and Cycle Time matches expectation', () => {
+    it('Four stories done at the same cycle time, Lead Time and Cycle Time matches expectation', () => {
         
         let storyOne = new Story(0, false, null, new Array<Task>(new Task(0)));
         storyOne.Activate(0, 0);
@@ -47,13 +51,17 @@ describe('BacklogStats', () => {
         storyTwo.Activate(0, 5);
         storyTwo.Complete(10);
 
-        let storyThree = new Story(25, false, null, new Array<Task>(new Task(0)));
+        let storyThree = new Story(3, false, null, new Array<Task>(new Task(0)));
         storyThree.Activate(0, 10);
         storyThree.Complete(15);
 
-        let actual = new BacklogStats(new Array<Story>(storyOne, storyTwo, storyThree));
-        let leadTimeExpected = new Summary(3, 30, 5, 15, 10, 10, 4.1, 16.7, 0);
-        let cycleTimeExpected = new Summary(3, 15, 5, 5, 5, 5, 0, 0, NaN);
+        let storyFour = new Story(4, false, null, new Array<Task>(new Task(0)));
+        storyFour.Activate(0, 15);
+        storyFour.Complete(20);
+
+        let actual = new BacklogStats(new Array<Story>(storyOne, storyTwo, storyThree, storyFour));
+        let leadTimeExpected = new Summary(4, 50, 5, 20, 12.5, 12.5, 5.6, 31.3, 0, -1.2);
+        let cycleTimeExpected = new Summary(4, 20, 5, 5, 5, 5, 0, 0, NaN, NaN);
 
         expect(actual.LeadTime).to.eql(leadTimeExpected);
         expect(actual.CycleTime).to.eql(cycleTimeExpected);

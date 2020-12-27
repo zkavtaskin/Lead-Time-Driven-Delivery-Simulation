@@ -3,11 +3,13 @@ import { ExperimentResult} from "./ExperimentResult"
 import { BacklogStats } from "../Simulation/BacklogStats";
 
 export abstract class Experiment {
+    protected abstract assumptions() : Array<[string, boolean]>
     protected abstract controlGroup() : TestResult;
     protected abstract experimentGroup() : TestResult;
     protected abstract name : string;
 
     public Run() : ExperimentResult {
+        const assumptions = this.assumptions();
         const controlAResult = this.controlGroup();
         const controlBResult = this.controlGroup();
         const experimentResult = this.experimentGroup();
@@ -19,6 +21,6 @@ export abstract class Experiment {
 
         const nullHypControlvsExperiment = BacklogStats.TwoSampleTest(controlAResult.Score.LeadTime, experimentResult.Score.LeadTime);
         
-        return new ExperimentResult(controlAResult.Score.LeadTime, experimentResult.Score.LeadTime, nullHypControlvsExperiment, experimentResult.Conditions);
+        return new ExperimentResult(assumptions, controlAResult.Score.LeadTime, experimentResult.Score.LeadTime, nullHypControlvsExperiment, experimentResult.Conditions);
     }
 }
