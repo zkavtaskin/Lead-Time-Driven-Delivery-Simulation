@@ -30,8 +30,8 @@ describe('BacklogStats', () => {
         storyThree.Complete(120);
 
         let actual = new BacklogStats(new Array<Story>(storyOne, storyTwo, storyThree));
-        let leadTimeExpected = new Summary(3, 132, 2, 120, 44, 10, 53.8, 2898.7, null);
-        let cycleTimeExpected = new Summary(3, 26, 1, 20, 8.7, 5, 8.2, 66.9, null);
+        let leadTimeExpected = new Summary(3, 132, 2, 120, 44, 10, 53.8, 2898.7, 1.7);
+        let cycleTimeExpected = new Summary(3, 26, 1, 20, 8.7, 5, 8.2, 66.9, 1.4);
 
         expect(actual.LeadTime).to.eql(leadTimeExpected);
         expect(actual.CycleTime).to.eql(cycleTimeExpected);
@@ -52,8 +52,8 @@ describe('BacklogStats', () => {
         storyThree.Complete(15);
 
         let actual = new BacklogStats(new Array<Story>(storyOne, storyTwo, storyThree));
-        let leadTimeExpected = new Summary(3, 30, 5, 15, 10, 10, 4.1, 16.7, null);
-        let cycleTimeExpected = new Summary(3, 15, 5, 5, 5, 5, 0, 0, 5);
+        let leadTimeExpected = new Summary(3, 30, 5, 15, 10, 10, 4.1, 16.7, 0);
+        let cycleTimeExpected = new Summary(3, 15, 5, 5, 5, 5, 0, 0, NaN);
 
         expect(actual.LeadTime).to.eql(leadTimeExpected);
         expect(actual.CycleTime).to.eql(cycleTimeExpected);

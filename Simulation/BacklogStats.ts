@@ -56,21 +56,7 @@ export class BacklogStats {
         summary.Max = this.toDecimalPlace(simplestats.max(numbers));
         summary.Std =  this.toDecimalPlace(simplestats.standardDeviation(numbers));
         summary.Variance = this.toDecimalPlace(simplestats.variance(numbers));
-
-        const profile = numbers.map((n) => this.toDecimalPlace(n, 0))
-                                 .reduce((map, n) => map.has(n) ? map.set(n,map.get(n)+1) : map.set(n, 1), new Map<number, number>());
-        
-        let modeMax = -1;
-        profile.forEach((v, k) => { 
-            if(v > modeMax) { 
-                modeMax = v; 
-                summary.Mode = k
-            }
-        });
-        if(modeMax <= 1) {
-            summary.Mode = null;
-        }
-        
+        summary.Skew = this.toDecimalPlace(simplestats.sampleSkewness(numbers));
         return summary;
     }
 
@@ -91,8 +77,9 @@ export class Summary {
     Std : number;
     Variance : number;
     Mode : number;
+    Skew : number;
 
-    constructor(count : number = 0, sum : number = 0, min : number = 0, max : number = 0, mean : number = 0, median : number = 0, std : number = 0, variance : number = 0, mode : number = 0) {
+    constructor(count : number = 0, sum : number = 0, min : number = 0, max : number = 0, mean : number = 0, median : number = 0, std : number = 0, variance : number = 0, skew : number = 0) {
         this.Count = count;
         this.Sum = sum;
         this.Min = min;
@@ -101,7 +88,7 @@ export class Summary {
         this.Median = median;
         this.Std = std;
         this.Variance = variance;
-        this.Mode = mode;
+        this.Skew = skew;
     }
 
 }

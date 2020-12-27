@@ -36,7 +36,7 @@ export class BnBBacklog implements BacklogOptimiser {
         return new SearchResult(min, bestPattern, this.backlogDecoder.DecodeReadable(bestPattern));
     }
 
-    static generateCombinations(n:number, valuator:(pattern : Array<number>) => boolean) {
+    static generateCombinations(n:number, boundary:(pattern : Array<number>) => boolean) {
         const bagOrigin:Array<number> = [...Array(n).keys()];
         const root = [[[...bagOrigin], []]];
         const combinations = [];
@@ -47,7 +47,7 @@ export class BnBBacklog implements BacklogOptimiser {
                 const newPattern = [...bag[1]];
                 const k = newBag.splice(i, 1)[0];
                 newPattern.push(k);
-                if(valuator && !valuator(newPattern)) {
+                if(boundary && !boundary(newPattern)) {
                     continue;
                 }
                 root.push([newBag, newPattern]);

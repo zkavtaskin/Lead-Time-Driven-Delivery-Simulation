@@ -14,7 +14,7 @@ export abstract class Experiment {
         
         const nullHypControlGroups = BacklogStats.TwoSampleTest(controlAResult.Score.LeadTime, controlBResult.Score.LeadTime);
         if(nullHypControlGroups != null) {
-            throw new Error(`${this.name} experiment is not stable, same control groups have different means`);
+            throw new Error(`${this.name} experiment is not stable, same control groups have different means.`);
         }
 
         const nullHypControlvsExperiment = BacklogStats.TwoSampleTest(controlAResult.Score.LeadTime, experimentResult.Score.LeadTime);
