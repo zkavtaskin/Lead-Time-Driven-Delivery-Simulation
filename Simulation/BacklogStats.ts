@@ -20,6 +20,23 @@ export class BacklogStats {
         this.SizeOriginal = stories.map((s) => s.SizeOriginal).reduce((sum, value) => sum + value);
     }
 
+    /***
+     * **Kurtosis & Skew explanation: https://www.spcforexcel.com/knowledge/basic-statistics/are-skewness-and-kurtosis-useful-statistics**
+     * *Kurtosis
+     * "Kurtosis tells you virtually nothing about the shape of the peak – its only unambiguous interpretation is in terms of tail extremity."
+     *  The following heuristics will be used: {0..0.5=Normal tail,>1=Not enough tail,-0.3..0=Moderate tail,..<-0.3=Heavy tail}
+     * 
+     * *Skew
+     * "Skewness is usually described as a measure of a dataset’s symmetry – or lack of symmetry.   
+     * A perfectly symmetrical data set will have a skewness of 0. The normal distribution has a skewness of 0."
+     * The following heuristics will be used: {-0.5..0.5=Normal Skew,-1..-0.5 OR ,0.5..1=Moderate Skew,..<-1 OR >1 =High Skew}
+     */
+    public static IsNormalDistribution(kurt : number, skew : number) : boolean {
+        const normalTail = kurt <= 0.5 && kurt >= -0.3;
+        const normalSkew = skew <= 1 && skew >= -1;
+        return normalSkew && normalTail;
+    }
+
     /**
      * Two sample t-Test that performs Null Hypothesis for two samples.
      * @param a 

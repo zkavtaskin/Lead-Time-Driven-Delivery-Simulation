@@ -8,6 +8,7 @@ import { BnBBacklogDecoder } from "../Optimisation/BranchBound/BnBBacklogDecoder
 import { BnBBacklog } from "../Optimisation/BranchBound/BnBBacklog"
 import { RandomForest } from "../Optimisation/RandomForest"
 import { BacklogOptimiser } from "../Optimisation/BacklogOptimiser"
+import { BacklogStats } from "../Simulation/BacklogStats"
 
 export class ScrumTeamExperiment extends Experiment {
 
@@ -46,31 +47,30 @@ export class ScrumTeamExperiment extends Experiment {
     
     protected assumptions(): Array<[string, boolean]> {
 
-        const LeadNotNormal = () => {
-            return false;
-        }
+        const teamSimulationA = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick);
+        const statsA = teamSimulationA.Run().GetStats();
+        
+        const teamSimulationB = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick);
+        const statsB = teamSimulationB.Run().GetStats();
 
-        const CycleNotNormal = () => {
-            return false;
-        }
+        const LeadNotNormal = () : [string, boolean] => [
+                "LeadTime does NOT follow normal distribution",
+                !BacklogStats.IsNormalDistribution(statsA.LeadTime.Kurtosis, statsA.LeadTime.Skew)];
 
-        const grtLeadGrtCycle = () => {
-            const teamSimulationA = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick);
-            const statsA = teamSimulationA.Run().GetStats();
-            
-            const teamSimulationB = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick);
-            const statsB = teamSimulationB.Run().GetStats();
+        const CycleNotNormal = () : [string, boolean] => [
+            "CycleTime does NOT follow normal distribution",
+            !BacklogStats.IsNormalDistribution(statsA.CycleTime.Kurtosis, statsA.CycleTime.Skew)];
 
+        const grtLeadGrtCycle = () : [string, boolean] => {
             const aGrtThenb = statsA.LeadTime.Median > statsB.LeadTime.Median && statsA.CycleTime.Median > statsB.CycleTime.Median;
             const bGrtThena = statsA.LeadTime.Median < statsB.LeadTime.Median && statsA.CycleTime.Median < statsB.CycleTime.Median;
-            return aGrtThenb || bGrtThena;
+            return [
+                "LeadTimeA > LeadTimeB then CycleTimeA > CycleTimeB",
+                aGrtThenb || bGrtThena
+            ];
         }
 
-        return [
-            ["LeadTime does not follow normal distribution", LeadNotNormal()],
-            ["CycleTime does not follow normal distribution", CycleNotNormal()],
-            ["LeadTimeA > LeadTimeB then CycleTimeA > CycleTimeB", grtLeadGrtCycle()]
-        ];
+        return [LeadNotNormal(), CycleNotNormal(), grtLeadGrtCycle()];
     }
 
     protected controlGroup(): TestResult {
