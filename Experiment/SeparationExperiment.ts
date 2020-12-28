@@ -11,6 +11,10 @@ import { BacklogOptimiser } from "../Optimisation/BacklogOptimiser"
 
 export class SeparationExperiment extends Experiment {
 
+    public readonly Name: string = "Seperation"
+
+    public readonly Description: string = ``;
+
     private teamConfig = new TeamConfig([
             new MemberConfig("Product Owner", 10/37, 8/10, 10/100),
             new MemberConfig("UX", 10/37, 2/10, 5/100),
@@ -42,7 +46,6 @@ export class SeparationExperiment extends Experiment {
     );
     private backlogConfig = new BacklogConfig(50, 1/10, 1/10, 1, 10);
     private effortPerTick = 1;
-    protected name: string = "Seperation";
     
     protected assumptions(): [string, boolean][] {
         throw new Error("Method not implemented.")

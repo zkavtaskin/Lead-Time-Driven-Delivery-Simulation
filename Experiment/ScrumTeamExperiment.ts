@@ -12,6 +12,17 @@ import { BacklogStats } from "../Simulation/BacklogStats"
 
 export class ScrumTeamExperiment extends Experiment {
 
+    public readonly Name: string = "Scrum Team";
+
+    public Description: string = `
+Simulation of a cross functional "Scrum" team with some supporting "Component" teams. 
+Experiment searches for:
+    1) Shortest lead time
+    2) Follows as close uniform distribution as possible  
+    3) Delivers biggest amount of stories (value).
+As a starting point experiment will be setup to have a bias towards delivering work right at the end the cycle.
+    `;
+
     private teamConfig = new TeamConfig([
             new MemberConfig("Product Owner", 10/37, 8/10, 10/100),
             new MemberConfig("UX", 10/37, 2/10, 5/100),
@@ -43,7 +54,6 @@ export class ScrumTeamExperiment extends Experiment {
     );
     private backlogConfig = new BacklogConfig(100, 1/10, 1/10, 1, 10);
     private effortPerTick = 1;
-    protected name: string = "ScrumTeam";
     
     protected assumptions(): Array<[string, boolean]> {
 
@@ -54,23 +64,18 @@ export class ScrumTeamExperiment extends Experiment {
         const statsB = teamSimulationB.Run().GetStats();
 
         const LeadNotNormal = () : [string, boolean] => [
-                "LeadTime does NOT follow normal distribution",
+                "Lead Time does NOT follow normal distribution (Nonparametric)",
                 !BacklogStats.IsNormalDistribution(statsA.LeadTime.Kurtosis, statsA.LeadTime.Skew)];
 
         const CycleNotNormal = () : [string, boolean] => [
-            "CycleTime does NOT follow normal distribution",
+            "Cycle Time does NOT follow normal distribution (Nonparametric)",
             !BacklogStats.IsNormalDistribution(statsA.CycleTime.Kurtosis, statsA.CycleTime.Skew)];
 
-        const grtLeadGrtCycle = () : [string, boolean] => {
-            const aGrtThenb = statsA.LeadTime.Median > statsB.LeadTime.Median && statsA.CycleTime.Median > statsB.CycleTime.Median;
-            const bGrtThena = statsA.LeadTime.Median < statsB.LeadTime.Median && statsA.CycleTime.Median < statsB.CycleTime.Median;
-            return [
-                "LeadTimeA > LeadTimeB then CycleTimeA > CycleTimeB",
-                aGrtThenb || bGrtThena
-            ];
-        }
+        const LeadTimeControlNullHypo = () : [string, boolean] => [
+            "Two random Lead Time control experiments come from same distribution (Null-Hypothesis is true)",
+            false];
 
-        return [LeadNotNormal(), CycleNotNormal(), grtLeadGrtCycle()];
+        return [LeadNotNormal(), CycleNotNormal(), LeadTimeControlNullHypo()];
     }
 
     protected controlGroup(): TestResult {

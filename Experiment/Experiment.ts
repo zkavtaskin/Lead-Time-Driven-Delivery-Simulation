@@ -3,10 +3,11 @@ import { ExperimentResult} from "./ExperimentResult"
 import { BacklogStats } from "../Simulation/BacklogStats";
 
 export abstract class Experiment {
+    public abstract readonly Name : string;
+    public abstract readonly Description : string;
     protected abstract assumptions() : Array<[string, boolean]>
     protected abstract controlGroup() : TestResult;
     protected abstract experimentGroup() : TestResult;
-    protected abstract name : string;
 
     public Run() : ExperimentResult {
         const assumptions = this.assumptions();
@@ -16,7 +17,7 @@ export abstract class Experiment {
         
         const nullHypControlGroups = BacklogStats.TwoSampleTest(controlAResult.Score.LeadTime, controlBResult.Score.LeadTime);
         if(nullHypControlGroups != null) {
-            throw new Error(`${this.name} experiment is not stable, same control groups have different means.`);
+            throw new Error(`${this.Name} experiment is not stable, same control groups have different means.`);
         }
 
         const nullHypControlvsExperiment = BacklogStats.TwoSampleTest(controlAResult.Score.LeadTime, experimentResult.Score.LeadTime);

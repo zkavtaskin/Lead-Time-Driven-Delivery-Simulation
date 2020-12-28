@@ -4,7 +4,8 @@ const scrumTeamExp = new ScrumTeamExperiment();
 const scrumTeamResult = scrumTeamExp.Run();
 
 console.log(`
-        \n ### Scrum Team Experiment
+        \n ###  ${scrumTeamExp.Name} Experiment
+        \n ${scrumTeamExp.Description}
         \n # Assumptions
         \n   ${scrumTeamResult.Assumptions.reduce((s,a,i) => s+((i+1) + ": " + a[0] + " => " + a[1] + "\n   "), "")} 
         \n # Control 
