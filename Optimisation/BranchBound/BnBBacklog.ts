@@ -20,20 +20,22 @@ export class BnBBacklog implements BacklogOptimiser {
     }
 
     Search() : SearchResult {
-        let min = Infinity,  bestPattern = null;
+        let minTime = Infinity, minUniformity = Infinity,  bestPattern = null;
         const teamSimulation = new TeamSimulation(null, this.teamConfig, this.backlogConfig, this.effortSize);
         let valuation = (pattern) => {
             teamSimulation.Reset(this.backlogDecoder.Decode(pattern));
-            const mean = teamSimulation.Run().GetStats().LeadTime.Max;
-            if(mean < min) {
-                min = mean;
+            const maxTime = teamSimulation.Run().GetStats().LeadTime.Max;
+            const maxUniformity = teamSimulation.Run().GetStats().LeadTimeUniformity;
+            if(maxTime < minTime && maxUniformity < minUniformity) {
+                minTime = maxTime;
+                minUniformity = maxUniformity;
                 bestPattern = pattern;
                 return true;
             }
             return false;
         }
         const results = BnBBacklog.generateCombinations(this.backlogDecoder.Base, valuation);
-        return new SearchResult(min, bestPattern, this.backlogDecoder.DecodeReadable(bestPattern));
+        return new SearchResult(minTime, bestPattern, this.backlogDecoder.DecodeReadable(bestPattern));
     }
 
     static generateCombinations(n:number, boundary:(pattern : Array<number>) => boolean) {

@@ -19,7 +19,7 @@ Simulation of a cross functional "Scrum" team with some supporting "Component" t
 Experiment searches for:
     1) Shortest lead time
     2) Follows as close uniform distribution as possible  
-    3) Delivers biggest amount of stories (value).
+    3) Delivers biggest amount of stories (value), this is a given as under the experiment everyone needs to deiver set amount of stories.  
 As a starting point experiment will be setup to have a bias towards delivering work right at the end the cycle.
     `;
 
@@ -52,7 +52,7 @@ As a starting point experiment will be setup to have a bias towards delivering w
              */
         ]
     );
-    private backlogConfig = new BacklogConfig(100, 1/10, 1/10, 1, 10);
+    private backlogConfig = new BacklogConfig(200, 1/10, 1/10, 1, 10);
     private effortPerTick = 1;
     
     protected assumptions(): Array<[string, boolean]> {
