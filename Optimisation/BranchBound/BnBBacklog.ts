@@ -24,7 +24,7 @@ export class BnBBacklog implements BacklogOptimiser {
         const teamSimulation = new TeamSimulation(null, this.teamConfig, this.backlogConfig, this.effortSize);
         let valuation = (pattern) => {
             teamSimulation.Reset(this.backlogDecoder.Decode(pattern));
-            const mean = teamSimulation.Run().GetStats().LeadTime.Mean;
+            const mean = teamSimulation.Run().GetStats().LeadTime.Max;
             if(mean < min) {
                 min = mean;
                 bestPattern = pattern;
