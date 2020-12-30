@@ -4,6 +4,7 @@ import { TeamSimulation } from "../../Simulation/TeamSimulation";
 import { SearchResult } from "../SearchResult"
 import { BacklogOptimiser } from "../BacklogOptimiser";
 import { BacklogDecoder } from "../BacklogDecoder";
+import { Trees } from "../../Optimisation/Trees";
 
 export class BnBBacklog implements BacklogOptimiser {
 
@@ -22,41 +23,19 @@ export class BnBBacklog implements BacklogOptimiser {
     Search() : SearchResult {
         let minTime = Infinity, minUniformity = Infinity,  bestPattern = null;
         const teamSimulation = new TeamSimulation(null, this.teamConfig, this.backlogConfig, this.effortSize);
-        let valuation = (pattern) => {
-            teamSimulation.Reset(this.backlogDecoder.Decode(pattern));
+        let optimisation_function = (combination) => {
+            teamSimulation.Reset(this.backlogDecoder.Decode(combination));
             const maxTime = teamSimulation.Run().GetStats().LeadTime.Max;
             const maxUniformity = teamSimulation.Run().GetStats().LeadTimeUniformity;
             if(maxTime < minTime && maxUniformity < minUniformity) {
                 minTime = maxTime;
                 minUniformity = maxUniformity;
-                bestPattern = pattern;
+                bestPattern = combination;
                 return true;
             }
             return false;
         }
-        const results = BnBBacklog.generateCombinations(this.backlogDecoder.Base, valuation);
+        Trees.BranchAndBound(this.backlogDecoder.Base, optimisation_function);
         return new SearchResult(minTime, bestPattern, this.backlogDecoder.DecodeReadable(bestPattern));
     }
-
-    static generateCombinations(n:number, boundary:(pattern : Array<number>) => boolean) {
-        const bagOrigin:Array<number> = [...Array(n).keys()];
-        const root = [[[...bagOrigin], []]];
-        const combinations = [];
-        let bag = null;
-        while(bag = root.shift()) {
-            for(let i:number = 0; i < bag[0].length; i++) {
-                const newBag = [...bag[0]];
-                const newPattern = [...bag[1]];
-                const k = newBag.splice(i, 1)[0];
-                newPattern.push(k);
-                if(boundary && !boundary(newPattern)) {
-                    continue;
-                }
-                root.push([newBag, newPattern]);
-                combinations.push(newPattern);
-            }
-        } 
-        return combinations;
-    }
-
 }
