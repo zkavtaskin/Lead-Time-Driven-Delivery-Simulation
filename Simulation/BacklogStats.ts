@@ -42,10 +42,11 @@ export class BacklogStats {
      * Explanation: https://www.eg.bucknell.edu/~xmeng/Course/CS6337/Note/master/node43.html#:~:text=The%20frequency%20test%20is%20a,and%20the%20theoretical%20uniform%20distribution.
      */
     public static UniformDistribution(numbers : Array<number>, binSize : number) : number {
-        const binIntervals = Math.ceil(Math.max(...numbers) / binSize);
-        const bins = new Array(binIntervals).fill(0);
-        numbers.forEach((number) => bins[Math.floor(number / binSize)]++);
-        const chiSquared = bins.reduce((sum, bin) => sum + (((bin-binSize)**2) / binSize));
+        const numberOfIntervals = Math.ceil(Math.max(...numbers) / binSize);
+        const expected = numbers.length / numberOfIntervals;
+        const observationsPerInterval = new Array(numberOfIntervals).fill(0);
+        numbers.forEach((number) => observationsPerInterval[Math.floor(number / binSize)]++);
+        const chiSquared = observationsPerInterval.reduce((sum, observation) => sum + (((observation-expected)**2) / expected));
         return chiSquared;
     }
 
