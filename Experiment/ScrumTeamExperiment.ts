@@ -88,7 +88,7 @@ As a starting point experiment will be setup to have a bias towards delivering w
         const backlogDecoder = new BnBBacklogDecoder(this.teamConfig);
         const backlogOptimiser = new BnBBacklog(this.teamConfig, this.backlogConfig, this.effortPerTick, backlogDecoder) as BacklogOptimiser;
         const randomForestOptimiser = new RandomForest(backlogOptimiser, backlogDecoder);
-        const result = randomForestOptimiser.Search(30);
+        const result = randomForestOptimiser.Search(50);
         const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, backlogDecoder.Decode(result.BestEncoding));
         return new TestResult(teamSimulation.Run().GetRuntimeMetrics(), [["Sort",result.BestEncodingDecoded.join(",")]])
     }
