@@ -1,13 +1,13 @@
-import { Summary } from "../Simulation/BacklogStats";
+import { StatisticsDescriptive } from "../Simulation/StatisticsDescriptive";
 
 export class ExperimentResult {
     public readonly Assumptions : Array<[string, boolean]>;
-    public readonly ControlStats : Summary;
-    public readonly ExperimentStats : Summary;
+    public readonly ControlStats : StatisticsDescriptive;
+    public readonly ExperimentStats : StatisticsDescriptive;
     public readonly ExperimentConditions : Array<[string, string]>;
     public readonly NullHypothesis : boolean
 
-    constructor(assumptions:Array<[string, boolean]>, scoreControl: Summary, scoreExperiment:Summary, nullHypothesis:boolean, experimentConditions: Array<[string, string]>) {
+    constructor(assumptions:Array<[string, boolean]>, scoreControl: StatisticsDescriptive, scoreExperiment:StatisticsDescriptive, nullHypothesis:boolean, experimentConditions: Array<[string, string]>) {
         this.Assumptions = assumptions;
         this.ControlStats = scoreControl;
         this.ExperimentStats = scoreExperiment;

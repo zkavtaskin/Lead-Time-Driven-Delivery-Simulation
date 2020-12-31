@@ -8,7 +8,8 @@ import { BnBBacklogDecoder } from "../Optimisation/BranchBound/BnBBacklogDecoder
 import { BnBBacklog } from "../Optimisation/BranchBound/BnBBacklog"
 import { RandomForest } from "../Optimisation/RandomForest"
 import { BacklogOptimiser } from "../Optimisation/BacklogOptimiser"
-import { BacklogStats } from "../Simulation/BacklogStats"
+import { BacklogRuntimeMetrics } from "../Simulation/BacklogRuntimeMetrics"
+import { Statistics } from "../Simulation/Statistics"
 
 export class ScrumTeamExperiment extends Experiment {
 
@@ -58,18 +59,18 @@ As a starting point experiment will be setup to have a bias towards delivering w
     protected assumptions(): Array<[string, boolean]> {
 
         const teamSimulationA = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick);
-        const statsA = teamSimulationA.Run().GetStats();
+        const statsA = teamSimulationA.Run().GetRuntimeMetrics();
         
         const teamSimulationB = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick);
-        const statsB = teamSimulationB.Run().GetStats();
+        const statsB = teamSimulationB.Run().GetRuntimeMetrics();
 
         const LeadNotNormal = () : [string, boolean] => [
                 "Lead Time does NOT follow normal distribution (Nonparametric)",
-                !BacklogStats.IsNormalDistribution(statsA.LeadTime.Kurtosis, statsA.LeadTime.Skew)];
+                !Statistics.IsNormalDistribution(statsA.LeadTime.Kurtosis, statsA.LeadTime.Skew)];
 
         const CycleNotNormal = () : [string, boolean] => [
             "Cycle Time does NOT follow normal distribution (Nonparametric)",
-            !BacklogStats.IsNormalDistribution(statsA.CycleTime.Kurtosis, statsA.CycleTime.Skew)];
+            !Statistics.IsNormalDistribution(statsA.CycleTime.Kurtosis, statsA.CycleTime.Skew)];
 
         const LeadTimeControlNullHypo = () : [string, boolean] => [
             "Two random Lead Time control experiments come from same distribution (Null-Hypothesis is true)",
@@ -80,7 +81,7 @@ As a starting point experiment will be setup to have a bias towards delivering w
 
     protected controlGroup(): TestResult {
         const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick);
-        return new TestResult(teamSimulation.Run().GetStats(), null);
+        return new TestResult(teamSimulation.Run().GetRuntimeMetrics(), null);
     }
 
     protected experimentGroup(): TestResult {
@@ -89,6 +90,6 @@ As a starting point experiment will be setup to have a bias towards delivering w
         const randomForestOptimiser = new RandomForest(backlogOptimiser, backlogDecoder);
         const result = randomForestOptimiser.Search(30);
         const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, backlogDecoder.Decode(result.BestEncoding));
-        return new TestResult(teamSimulation.Run().GetStats(), [["Sort",result.BestEncodingDecoded.join(",")]])
+        return new TestResult(teamSimulation.Run().GetRuntimeMetrics(), [["Sort",result.BestEncodingDecoded.join(",")]])
     }
 }

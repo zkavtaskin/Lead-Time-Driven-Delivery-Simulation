@@ -2,7 +2,7 @@ import { Story } from "./Story";
 import { MemberConfig } from "./MemberConfig";
 import { BacklogConfig } from "./BacklogConfig";
 import { Task } from "./Task";
-import { BacklogStats } from "./BacklogStats";
+import { BacklogRuntimeMetrics } from "./BacklogRuntimeMetrics";
 
 export class Backlog {
 
@@ -57,8 +57,8 @@ export class Backlog {
       return this.storiesMap.get(id);
     }
 
-    GetStats() : BacklogStats {
-      return new BacklogStats(this.stories);
+    GetRuntimeMetrics() : BacklogRuntimeMetrics {
+      return new BacklogRuntimeMetrics(this.stories);
     }
 
     public static Generate(memberConfig : Array<MemberConfig>, backlogConfig :BacklogConfig, sortFunc :  (a : Story, b : Story) => number = null) : Backlog {

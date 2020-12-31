@@ -25,8 +25,9 @@ export class BnBBacklog implements BacklogOptimiser {
         const teamSimulation = new TeamSimulation(null, this.teamConfig, this.backlogConfig, this.effortSize);
         let optimisation_function = (combination) => {
             teamSimulation.Reset(this.backlogDecoder.Decode(combination));
-            const maxTime = teamSimulation.Run().GetStats().LeadTime.Max;
-            const maxUniformity = teamSimulation.Run().GetStats().LeadTimeUniformity;
+            const leadTimeStatistics = teamSimulation.Run().GetRuntimeMetrics().LeadTime;
+            const maxTime = leadTimeStatistics.Max;
+            const maxUniformity = leadTimeStatistics.Frequency;
             if(maxTime < minTime && maxUniformity < minUniformity) {
                 minTime = maxTime;
                 minUniformity = maxUniformity;
