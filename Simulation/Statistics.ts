@@ -18,15 +18,17 @@ export class Statistics {
      * @description Uniform Distribution test using Chi-Squared test
      * Explanation: https://www.eg.bucknell.edu/~xmeng/Course/CS6337/Note/master/node43.html#:~:text=The%20frequency%20test%20is%20a,and%20the%20theoretical%20uniform%20distribution.
      * @param x list of numbers to evaluate 
-     * @param binSize size of the bins that numbers will be placed inside
+     * @param binRange range of numbers that will be placed inside the bin
      * @returns chiSquared
      */
-    public static FrequencyTest(x : Array<number>, binSize : number) : number {
-        const numberOfIntervals = Math.ceil(Math.max(...x) / binSize);
+    public static FrequencyTest(x : Array<number>, binRange : number) : number {
+        //inclusive of the first number  
+        const len = Math.max(...x) - Math.min(...x) + 1;
+        const numberOfIntervals = Math.ceil(len / binRange);
         const expected = x.length / numberOfIntervals;
         const observationsPerInterval = new Array(numberOfIntervals).fill(0);
-        x.forEach((number) => observationsPerInterval[Math.floor(number / binSize)]++);
-        const chiSquared = observationsPerInterval.reduce((sum, observation) => sum + (((observation-expected)**2) / expected));
+        x.forEach((number) => observationsPerInterval[Math.floor(number / binRange)]++);
+        const chiSquared = observationsPerInterval.reduce((sum, observation) => sum += (observation-expected)**2 / expected, 0);
         return chiSquared;
     }
 }

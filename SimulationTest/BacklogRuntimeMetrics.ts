@@ -45,7 +45,7 @@ describe('BacklogRuntimeMetrics', () => {
             Variance : 2390.8,
             Count :4,
             Sum   :142,
-            Frequency : 3.5
+            Frequency : 1
         };
             
         let cycleTimeExpected : StatisticsDescriptive  = {
@@ -59,7 +59,7 @@ describe('BacklogRuntimeMetrics', () => {
             Variance : 52.7,
             Count :4,
             Sum   :31,
-            Frequency : 4
+            Frequency : 0
         }
 
         expect(actual.LeadTime).to.eql(leadTimeExpected);
@@ -97,7 +97,7 @@ describe('BacklogRuntimeMetrics', () => {
             Variance : 31.3,
             Count :4,
             Sum   :50,
-            Frequency : 4
+            Frequency : 0
         };
             
         let cycleTimeExpected : StatisticsDescriptive  = {
@@ -111,7 +111,7 @@ describe('BacklogRuntimeMetrics', () => {
             Variance : 0,
             Count :4,
             Sum   :20,
-            Frequency : 4
+            Frequency : 0
         }
 
         expect(actual.LeadTime).to.eql(leadTimeExpected);
