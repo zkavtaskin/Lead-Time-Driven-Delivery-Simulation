@@ -21,8 +21,8 @@ export class BnBBacklog implements BacklogOptimiser {
     }
 
     Search() : SearchResult {
-        let minTime = Infinity, minUniformity = Infinity,  bestPattern = null;
-        const teamSimulation = new TeamSimulation(null, this.teamConfig, this.backlogConfig, this.effortSize);
+        let minTime = Infinity, minUniformity = Infinity,  bestCombination = null;
+        const teamSimulation = new TeamSimulation(null, this.teamConfig, this.backlogConfig, this.effortSize, null, true);
         let optimisation_function = (combination) => {
             teamSimulation.Reset(this.backlogDecoder.Decode(combination));
             const leadTimeStatistics = teamSimulation.Run().GetRuntimeMetrics().LeadTime;
@@ -31,12 +31,12 @@ export class BnBBacklog implements BacklogOptimiser {
             if(maxTime < minTime && maxUniformity < minUniformity) {
                 minTime = maxTime;
                 minUniformity = maxUniformity;
-                bestPattern = combination;
+                bestCombination = combination;
                 return true;
             }
             return false;
         }
         Trees.BranchAndBound(this.backlogDecoder.Base, optimisation_function);
-        return new SearchResult(minTime, bestPattern, this.backlogDecoder.DecodeReadable(bestPattern));
+        return new SearchResult(minTime, bestCombination, this.backlogDecoder.DecodeReadable(bestCombination));
     }
 }

@@ -16,15 +16,16 @@ export class TeamMember {
   
     public DoWork(backlog :Backlog, clock :Clock) : void{
       let timeRemaining :number = this.member.Capacity * clock.EffortSize;
-      let feedbackGivenDuringTheTick = false;
+
       for(let story of backlog.Iterator()){
-
-        if(timeRemaining == 0) 
+        if(timeRemaining == 0) {
           break;
-
+        }
+      
         //make sure dependencies are completed
-        if((story.HasPrerequisite() && !backlog.Find(story.PrerequisiteId).IsCompleted)) 
+        if((story.HasPrerequisite() && !backlog.Find(story.PrerequisiteId).IsCompleted)) {
           continue;
+        }
 
         //ensure it is "my" turn
         let storyHasUpstreamWork = false;
@@ -34,22 +35,24 @@ export class TeamMember {
             break;
           }
         }
-        if(storyHasUpstreamWork) 
-          continue;
 
-        if(!story.HasWork(this.id)) 
+        if(storyHasUpstreamWork) {
           continue;
-        
+        }
+
+        if(!story.HasWork(this.id)) {
+          continue;
+        }
+
         story.Activate(this.id, clock.Ticks);
         timeRemaining = story.Contribute(this.id, timeRemaining);
 
         //give upstream team members feedback, 0.2 is the upper bound max feedback
-        for(let priorTeamMemberId:number = this.id-1; priorTeamMemberId >= 0 && !feedbackGivenDuringTheTick; priorTeamMemberId--) {
-          let feedbackRatio = this.teamGraph[priorTeamMemberId][this.id];
-          if(story.Tasks[priorTeamMemberId] != null && Math.random() <= feedbackRatio) {
-            let extraEffort:number = Math.ceil((Math.random() * 0.2) * story.Tasks[priorTeamMemberId].Original);
-            story.AddWork(priorTeamMemberId, extraEffort);
-            feedbackGivenDuringTheTick = true;
+        for(let teamMemberRow:number = this.id-1; teamMemberRow >= 0; teamMemberRow--) {
+          const feedbackRatio = this.teamGraph[teamMemberRow][this.id];
+          if(story.Tasks[teamMemberRow] != null && Math.random() <= feedbackRatio) {
+            const extraEffort = Math.ceil((Math.random() * 0.2) * story.Tasks[teamMemberRow].Original);
+            story.AddWork(teamMemberRow, extraEffort);
           }
         }
 

@@ -19,13 +19,13 @@ describe('Statistics', () => {
         expect(false).to.eql(actual);
     }),
 
-    it('FrequencyTest, uniform distribution, 0 < chiSquared < 4', () => {
+    it('FrequencyTest, uniform distribution, 0 < chiSquared < 20', () => {
         const x = [];
         for(let i=0; i < 300; i++) {
            x.push(Math.floor(Math.random() * 6));
         }
         const chiSquared = Statistics.FrequencyTest(x, 2);
-        expect(4).to.be.greaterThan(chiSquared);
+        expect(20).to.be.greaterThan(chiSquared);
         expect(0).to.be.lessThan(chiSquared);
     }),
 

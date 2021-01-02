@@ -182,6 +182,32 @@ describe('Backlog', () => {
 
         backlog.Reset(null);
         expect(backlog.IsCompleted).to.equal(false);
+    }),
+
+    it('Reset, backlog is complete, after recycle statistics are the same', () => {
+        const members = [new MemberConfig("PO", 1, 1, 1) ];
+        const config = new BacklogConfig(5, 1, 1, 1, 10);
+        const backlog =  Backlog.Generate(members, config);
+
+        let i = 0;
+        for(let story of backlog.Iterator()){
+            story.Contribute(0, story.Tasks[0].Remaining);
+            story.Complete(i++);
+        }
+
+        const metricsOriginal = backlog.GetRuntimeMetrics();
+
+        backlog.Reset(null);
+        
+        i = 0;
+        for(let story of backlog.Iterator()){
+            story.Contribute(0, story.Tasks[0].Remaining);
+            story.Complete(i++);
+        }
+
+        const metricsReset = backlog.GetRuntimeMetrics();  
+
+        expect(metricsOriginal).to.eql(metricsReset)
     })
 
 });

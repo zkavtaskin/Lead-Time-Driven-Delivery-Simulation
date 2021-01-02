@@ -31,6 +31,19 @@ describe('TeamSimulation', () => {
         expect(teamSimulation.TeamConfig.Graph[0][1]).to.equal(0.25);
     }),
 
+    it('Graph feedback normalisation by interval, 1 in 2 stories get feedback, determistic mode is true, all feedback is set to 0', () => {
+        const teamConfig = new TeamConfig([
+            new MemberConfig("PO", 1, 1, 0.5),
+            new MemberConfig("DEV", 1, 1, 0.5)
+        ],[
+         [0, 1/2],
+         [1, 0]]);
+        const backlogConfig = new BacklogConfig(1, 0, 0, 1);
+
+        const teamSimulation = new TeamSimulation("", teamConfig, backlogConfig, 0.5, null, true);
+        expect(teamSimulation.TeamConfig.Graph[0][1]).to.equal(0);
+    }),
+
     it('Run, original team config and backlog config does not get mutated', () => {
         const teamConfig = new TeamConfig([
             new MemberConfig("PO", 1, 1, 0.5),

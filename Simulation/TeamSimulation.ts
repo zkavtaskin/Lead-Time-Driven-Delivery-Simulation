@@ -22,7 +22,7 @@ export class TeamSimulation {
       return this.backlogConfig;
     }
 
-    constructor(name :string, teamConfig :TeamConfig, backlogConfig :BacklogConfig, effortSizePerTick :number, backlogSortFunc : (a : Story, b : Story) => number = null, backlog:Backlog = null) {
+    constructor(name :string, teamConfig :TeamConfig, backlogConfig :BacklogConfig, effortSizePerTick :number, backlogSortFunc : (a : Story, b : Story) => number = null, deterministic :boolean = false) {
       this.name = name;
 
       //create own copy to avoid config mutation
@@ -55,7 +55,12 @@ export class TeamSimulation {
         const U  = this.clock.EffortSize;
         const W = 1 / ((S * Cr) / (Cc * U));
         for(let rowId:number = 0; rowId < columnId; rowId++) {
-          this.teamConfig.Graph[rowId][columnId] *= W;
+          if(deterministic) {
+            //this removes randomness factor from team work processing, this is used during optimisation
+            this.teamConfig.Graph[rowId][columnId] = 0;
+          } else {
+            this.teamConfig.Graph[rowId][columnId] *= W;
+          }
         }
       }
     }
