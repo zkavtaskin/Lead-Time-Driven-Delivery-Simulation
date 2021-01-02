@@ -44,6 +44,38 @@ describe('TeamSimulation', () => {
         expect(teamSimulation.TeamConfig.Graph[0][1]).to.equal(0);
     }),
 
+    it('Run & Reset, determistic mode is false, runtime metrics are different', () => {
+        const teamConfig = new TeamConfig([
+            new MemberConfig("PO", 1, 0.8, 0.3),
+            new MemberConfig("DEV", 1, 1, 0.5)
+        ],[
+         [0, 1],
+         [1, 0]]);
+        const backlogConfig = new BacklogConfig(20, 0, 0, 1, 10);
+
+        const teamSimulation = new TeamSimulation("", teamConfig, backlogConfig, 0.5, null);
+        const metricsOriginal = teamSimulation.Run().GetRuntimeMetrics();
+        teamSimulation.Reset();
+        const metricsReset = teamSimulation.Run().GetRuntimeMetrics();
+        expect(metricsOriginal.LeadTime.Sum).to.not.equal(metricsReset.LeadTime.Sum);
+    }),
+
+    it('Run & Reset, determistic mode is true, runtime metrics are same', () => {
+        const teamConfig = new TeamConfig([
+            new MemberConfig("PO", 1, 0.8, 0.3),
+            new MemberConfig("DEV", 1, 1, 0.5)
+        ],[
+         [0, 1],
+         [1, 0]]);
+        const backlogConfig = new BacklogConfig(20, 0, 0, 1, 10);
+
+        const teamSimulation = new TeamSimulation("", teamConfig, backlogConfig, 0.5, null, true);
+        const metricsOriginal = teamSimulation.Run().GetRuntimeMetrics();
+        teamSimulation.Reset();
+        const metricsReset = teamSimulation.Run().GetRuntimeMetrics();
+        expect(metricsOriginal.LeadTime.Sum).to.equal(metricsReset.LeadTime.Sum);
+    }),
+
     it('Run, original team config and backlog config does not get mutated', () => {
         const teamConfig = new TeamConfig([
             new MemberConfig("PO", 1, 1, 0.5),
