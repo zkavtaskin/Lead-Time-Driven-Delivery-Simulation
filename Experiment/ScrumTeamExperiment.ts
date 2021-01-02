@@ -73,7 +73,7 @@ As a starting point experiment will be setup to have a bias towards delivering w
             !Statistics.IsNormalDistribution(statsA.CycleTime.Kurtosis, statsA.CycleTime.Skew)];
 
         const LeadTimeControlNullHypo = () : [string, boolean] => [
-            "Two random Lead Time control experiments come from same distribution (Null-Hypothesis is true)",
+            "TODO: Two random Lead Time control experiments come from same distribution (Null-Hypothesis is true)",
             false];
 
         return [LeadNotNormal(), CycleNotNormal(), LeadTimeControlNullHypo()];

@@ -94,7 +94,7 @@ export class Trees {
                 }
             }
 
-            if(!maxIndex || !branch[maxIndex]) {
+            if(maxIndex == null || branch[maxIndex] == null) {
                 break;
             }
 
