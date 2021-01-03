@@ -5,21 +5,17 @@ export class Trees {
      * BranchAndBound based on https://en.wikipedia.org/wiki/Branch_and_bound, this function
      * is used to find the optimal answer to a combinatorial problem. 
      * @param nCombinations number from 0 to nCombinations 
-     * @param optimisation_function function that evaluates pattern, against some optimisation and responds with true if search should continue and false if this combination branch should terminate. 
+     * @param objective_function function that evaluates combination, against some optimisation and responds with true if search should continue and false if this combination branch should terminate. 
      * @returns all remaining / possible combinations   
      * 
      * This function is literal, it creates a bag filled with elements, it then removes item from the bag,
      * removed element is then used to form a pattern. It keeps doing this for all possible combinations of a bag state.
      */
-    public static BranchAndBound(nCombinations:number, optimisation_function:(combination : Array<number>) => boolean) : Array<Array<number>> {
+    public static BranchAndBound(nCombinations:number, objective_function:(combination : Array<number>) => boolean) : Array<Array<number>> {
         //create a bag full of numbers from 0 to nCombinations 
         const bagOrigin:Array<number> = [...Array(nCombinations).keys()];
         //create tree with first element being the full bag and the second element being empty pattern 
         const tree = [[[...bagOrigin], []]];
-        //optimisation function should test no combinations 
-        if(optimisation_function) {
-            optimisation_function([]);
-        }
         const combinations = [];
         let branch = null;
         while(branch = tree.shift()) {
@@ -32,7 +28,7 @@ export class Trees {
                 combinationNew.push(omittedElement);
                 //see if there is optimisation function present, if it is, see if 
                 //search needs to continue or this particular combination tree should terminate 
-                if(optimisation_function && !optimisation_function(combinationNew)) {
+                if(objective_function && !objective_function(combinationNew)) {
                     continue;
                 }
                 tree.push([bagReduced, combinationNew]);

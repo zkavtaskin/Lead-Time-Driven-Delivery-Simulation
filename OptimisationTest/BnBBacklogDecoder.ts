@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { TeamConfig } from "../Simulation/TeamConfig";
-import { BnBBacklogDecoder } from "../Optimisation/BranchBound/BnBBacklogDecoder";
+import { BacklogDecoder } from "../Optimisation/Discrete/BacklogDecoder";
 import { MemberConfig } from '../Simulation/MemberConfig';
 import { Story } from '../Simulation/Story';
 import { Task } from '../Simulation/Task';
@@ -8,7 +8,7 @@ import { Task } from '../Simulation/Task';
 describe('BnBBacklogDecoder', () => {
     it('Init, given 2 team members and 1 field (PrerequisiteId), 3 will be used for optimisation and gene length is 3', () => {
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)], null);
-        const decoder = new BnBBacklogDecoder(teamConfig);
+        const decoder = new BacklogDecoder(teamConfig);
         expect(decoder.Base).to.equal(teamConfig.Members.length + 3);
     }),
 
@@ -20,7 +20,7 @@ describe('BnBBacklogDecoder', () => {
         const stories = new Array<Story>(storyA, storyB, storyC);
 
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)],  null);
-        const decoder = new BnBBacklogDecoder(teamConfig);
+        const decoder = new BacklogDecoder(teamConfig);
 
         const lambda = decoder.Decode([3]);
         const actual = stories.sort(lambda).map(story => story.Id);
@@ -36,7 +36,7 @@ describe('BnBBacklogDecoder', () => {
         const stories = new Array<Story>(storyA, storyB, storyC);
 
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)],  null);
-        const decoder = new BnBBacklogDecoder(teamConfig);
+        const decoder = new BacklogDecoder(teamConfig);
 
         const lambda = decoder.Decode([0]);
         const actual = stories.sort(lambda).map(story => story.Id);
@@ -55,7 +55,7 @@ describe('BnBBacklogDecoder', () => {
         const stories = new Array<Story>(storyA, storyB, storyC, storyD, storyE, storyF);
 
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)],  null);
-        const decoder = new BnBBacklogDecoder(teamConfig);
+        const decoder = new BacklogDecoder(teamConfig);
 
         const lambda = decoder.Decode([0]);
         const actual = stories.sort(lambda).map(story => story.Id);
@@ -74,7 +74,7 @@ describe('BnBBacklogDecoder', () => {
         const stories = new Array<Story>(storyA, storyB, storyC, storyD, storyE, storyF);
 
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)],  null);
-        const decoder = new BnBBacklogDecoder(teamConfig);
+        const decoder = new BacklogDecoder(teamConfig);
 
         const lambda = decoder.Decode([3]);
         const actual = stories.sort(lambda).map(story => story.Id);
@@ -93,7 +93,7 @@ describe('BnBBacklogDecoder', () => {
         const stories = new Array<Story>(storyA, storyB, storyC, storyD, storyE, storyF);
 
         const teamConfig = new TeamConfig([new MemberConfig("", 1, 1, 1), new MemberConfig("", 1, 1, 1)],  null);
-        const decoder = new BnBBacklogDecoder(teamConfig);
+        const decoder = new BacklogDecoder(teamConfig);
         
         const lambda = decoder.Decode([0,3]);
         const actual = stories.sort(lambda).map(story => story.Id);
@@ -103,7 +103,7 @@ describe('BnBBacklogDecoder', () => {
 
     it('Decode redable, pattern is set to prioritise by prerequisiteId first and then single team member', () => {
         const teamConfig = new TeamConfig([new MemberConfig("A", 1, 1, 1), new MemberConfig("B", 1, 1, 1)],  null);
-        const decoder = new BnBBacklogDecoder(teamConfig);
+        const decoder = new BacklogDecoder(teamConfig);
         
         const actual = decoder.DecodeReadable([0, 3]);
         const expected = ["PrerequisiteId", "A"];

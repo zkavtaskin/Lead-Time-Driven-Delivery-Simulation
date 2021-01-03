@@ -1,8 +1,8 @@
 import { TeamConfig } from "../../Simulation/TeamConfig";
 import { Story } from "../../Simulation/Story";
-import { BacklogDecoder } from "../BacklogDecoder"
+import { DiscreteDecoder } from "../Discrete/DiscreteDecoder";
 
-export class BnBBacklogDecoder implements BacklogDecoder {
+export class BacklogDecoder implements DiscreteDecoder {
 
     get Base() : number {
         return this.decodeMap.size;

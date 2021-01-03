@@ -4,13 +4,14 @@ import { BacklogConfig } from "../Simulation/BacklogConfig"
 import { TeamSimulation } from "../Simulation/TeamSimulation"
 import { Experiment } from "../Experiment/Experiment"
 import { TestResult } from "./TestResult"
-import { BnBBacklogDecoder } from "../Optimisation/BranchBound/BnBBacklogDecoder"
-import { BnBBacklog } from "../Optimisation/BranchBound/BnBBacklog"
-import { RandomForest } from "../Optimisation/RandomForest"
-import { BacklogOptimiser } from "../Optimisation/BacklogOptimiser"
-import { BacklogRuntimeMetrics } from "../Simulation/BacklogRuntimeMetrics"
+import { BacklogDecoder } from "../Optimisation/Discrete/BacklogDecoder"
+import { Backlog } from "../Optimisation/Discrete/Backlog"
+import { RandomForest } from "../Optimisation/Discrete/RandomForest"
+import { DiscreteOptimiser } from "../Optimisation/Discrete/DiscreteOptimiser"
 import { Statistics } from "../Simulation/Statistics"
 import * as simplestats from 'simple-statistics'
+import { DiscreteDecoder } from "../Optimisation/Discrete/DiscreteDecoder"
+import { Story } from "../Simulation/Story"
 
 export class ScrumTeamExperiment extends Experiment {
 
@@ -81,16 +82,16 @@ As a starting point experiment will be setup to have a bias towards delivering w
     }
 
     protected controlGroup(): TestResult {
-        const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, null, true);
+        const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, null);
         return new TestResult(teamSimulation.Run().GetRuntimeMetrics(), null);
     }
 
     protected experimentGroup(): TestResult {
-        const backlogDecoder = new BnBBacklogDecoder(this.teamConfig);
-        const backlogOptimiser = new BnBBacklog(this.teamConfig, this.backlogConfig, this.effortPerTick, backlogDecoder) as BacklogOptimiser;
-        const randomForestOptimiser = new RandomForest(backlogOptimiser, backlogDecoder);
-        const result = randomForestOptimiser.Search(30);
-        const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, backlogDecoder.Decode(result.BestEncoding), true);
-        return new TestResult(teamSimulation.Run().GetRuntimeMetrics(), [["Sort",result.BestEncodingDecoded.join(",")]])
+        const decoder = new BacklogDecoder(this.teamConfig) as DiscreteDecoder;
+        const optimiser = new Backlog(this.teamConfig, this.backlogConfig, this.effortPerTick, decoder) as DiscreteOptimiser;
+        const randomForest = new RandomForest(optimiser, decoder);
+        const result = randomForest.Search(30);
+        const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, decoder.Decode(result.Encoding) as ((a : Story, b : Story) => number));
+        return new TestResult(teamSimulation.Run().GetRuntimeMetrics(), [["Sort",result.EncodingDecoded.join(",")]])
     }
 }
