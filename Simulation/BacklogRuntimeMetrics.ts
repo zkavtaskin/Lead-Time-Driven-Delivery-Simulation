@@ -7,6 +7,8 @@ import { StatisticsDescriptive } from "./StatisticsDescriptive";
 export class BacklogRuntimeMetrics {
     public readonly CycleTime : StatisticsDescriptive;
     public readonly LeadTime : StatisticsDescriptive;
+    public readonly CycleTimeData : Array<number>;
+    public readonly LeadTimeData : Array<number>;
 
     constructor(stories: Array<Story>) {
 
@@ -18,8 +20,11 @@ export class BacklogRuntimeMetrics {
             throw new Error("Tasks need to be provided");
         }
 
-        this.CycleTime = this.describe(stories.map((s) => s.CycleTime));
-        this.LeadTime = this.describe(stories.map((s) => s.LeadTime));
+        this.CycleTimeData = stories.map((s) => s.CycleTime);
+        this.CycleTime = this.describe(this.CycleTimeData);
+
+        this.LeadTimeData = stories.map((s) => s.LeadTime);
+        this.LeadTime = this.describe(this.LeadTimeData);
     }
 
     private describe(x : Array<number>) {

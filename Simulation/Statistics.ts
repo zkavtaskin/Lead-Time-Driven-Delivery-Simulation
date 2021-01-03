@@ -28,7 +28,7 @@ export class Statistics {
         const expected = x.length / numberOfIntervals;
         const observationsPerInterval = new Array(numberOfIntervals).fill(0);
         x.forEach((number) => observationsPerInterval[Math.floor(number / binRange)]++);
-        const chiSquared = observationsPerInterval.reduce((sum, observation) => sum += (observation-expected)**2 / expected, 0);
+        const chiSquared = observationsPerInterval.reduce((sum, observation) => sum + (observation-expected)**2 / expected, 0);
         return chiSquared;
     }
 }

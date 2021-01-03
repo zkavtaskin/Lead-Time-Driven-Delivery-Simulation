@@ -10,6 +10,7 @@ import { RandomForest } from "../Optimisation/RandomForest"
 import { BacklogOptimiser } from "../Optimisation/BacklogOptimiser"
 import { BacklogRuntimeMetrics } from "../Simulation/BacklogRuntimeMetrics"
 import { Statistics } from "../Simulation/Statistics"
+import * as simplestats from 'simple-statistics'
 
 export class ScrumTeamExperiment extends Experiment {
 
@@ -53,7 +54,7 @@ As a starting point experiment will be setup to have a bias towards delivering w
              */
         ]
     );
-    private backlogConfig = new BacklogConfig(200, 1/10, 1/10, 1, 10);
+    private backlogConfig = new BacklogConfig(100, 1/10, 1/10, 1, 10);
     private effortPerTick = 1;
     
     protected assumptions(): Array<[string, boolean]> {
@@ -73,14 +74,14 @@ As a starting point experiment will be setup to have a bias towards delivering w
             !Statistics.IsNormalDistribution(statsA.CycleTime.Kurtosis, statsA.CycleTime.Skew)];
 
         const LeadTimeControlNullHypo = () : [string, boolean] => [
-            "TODO: Two random Lead Time control experiments come from same distribution (Null-Hypothesis is true)",
-            false];
+            "Two random Lead Time control experiments come from same distribution (Null-Hypothesis is true)",
+            simplestats.permutationTest(statsA.LeadTimeData, statsB.LeadTimeData) > 0.05];
 
         return [LeadNotNormal(), CycleNotNormal(), LeadTimeControlNullHypo()];
     }
 
     protected controlGroup(): TestResult {
-        const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick);
+        const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, null, true);
         return new TestResult(teamSimulation.Run().GetRuntimeMetrics(), null);
     }
 
@@ -88,8 +89,8 @@ As a starting point experiment will be setup to have a bias towards delivering w
         const backlogDecoder = new BnBBacklogDecoder(this.teamConfig);
         const backlogOptimiser = new BnBBacklog(this.teamConfig, this.backlogConfig, this.effortPerTick, backlogDecoder) as BacklogOptimiser;
         const randomForestOptimiser = new RandomForest(backlogOptimiser, backlogDecoder);
-        const result = randomForestOptimiser.Search(50);
-        const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, backlogDecoder.Decode(result.BestEncoding));
+        const result = randomForestOptimiser.Search(30);
+        const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, backlogDecoder.Decode(result.BestEncoding), true);
         return new TestResult(teamSimulation.Run().GetRuntimeMetrics(), [["Sort",result.BestEncodingDecoded.join(",")]])
     }
 }

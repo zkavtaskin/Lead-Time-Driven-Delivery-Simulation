@@ -16,6 +16,10 @@ export class Trees {
         const bagOrigin:Array<number> = [...Array(nCombinations).keys()];
         //create tree with first element being the full bag and the second element being empty pattern 
         const tree = [[[...bagOrigin], []]];
+        //optimisation function should test no combinations 
+        if(optimisation_function) {
+            optimisation_function([]);
+        }
         const combinations = [];
         let branch = null;
         while(branch = tree.shift()) {
