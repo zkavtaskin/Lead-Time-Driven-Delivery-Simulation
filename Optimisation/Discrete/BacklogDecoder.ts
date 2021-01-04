@@ -39,7 +39,7 @@ export class BacklogDecoder implements DiscreteDecoder {
     public DecodeReadable(pattern : Array<number>) : Array<string> {
         const decoded = new Array<string>();
         for(let i = 0; i < pattern.length; i++) {
-            decoded.push( this.decodeReadableMap.get(pattern[i]));
+            decoded.push(this.decodeReadableMap.get(pattern[i]));
         }
         return decoded;
     }

@@ -68,15 +68,18 @@ As a starting point experiment will be setup to have a bias towards delivering w
 
         const LeadNotNormal = () : [string, boolean] => [
                 "Lead Time does NOT follow normal distribution (Nonparametric)",
-                !Statistics.IsNormalDistribution(statsA.LeadTime.Kurtosis, statsA.LeadTime.Skew)];
+                !Statistics.IsNormalDistribution(statsA.LeadTime.Kurtosis, statsA.LeadTime.Skew)
+        ];
 
         const CycleNotNormal = () : [string, boolean] => [
             "Cycle Time does NOT follow normal distribution (Nonparametric)",
-            !Statistics.IsNormalDistribution(statsA.CycleTime.Kurtosis, statsA.CycleTime.Skew)];
+            !Statistics.IsNormalDistribution(statsA.CycleTime.Kurtosis, statsA.CycleTime.Skew)
+        ];
 
         const LeadTimeControlNullHypo = () : [string, boolean] => [
             "Two random Lead Time control experiments come from same distribution (Null-Hypothesis is true)",
-            simplestats.permutationTest(statsA.LeadTimeData, statsB.LeadTimeData) > 0.05];
+            simplestats.permutationTest(statsA.LeadTimeData, statsB.LeadTimeData) > 0.05
+        ];
 
         return [LeadNotNormal(), CycleNotNormal(), LeadTimeControlNullHypo()];
     }
@@ -90,7 +93,7 @@ As a starting point experiment will be setup to have a bias towards delivering w
         const decoder = new BacklogDecoder(this.teamConfig) as DiscreteDecoder;
         const optimiser = new Backlog(this.teamConfig, this.backlogConfig, this.effortPerTick, decoder) as DiscreteOptimiser;
         const randomForest = new RandomForest(optimiser, decoder);
-        const result = randomForest.Search(30);
+        const result = randomForest.Search(50);
         const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, decoder.Decode(result.Encoding) as ((a : Story, b : Story) => number));
         return new TestResult(teamSimulation.Run().GetRuntimeMetrics(), [["Sort",result.EncodingDecoded.join(",")]])
     }

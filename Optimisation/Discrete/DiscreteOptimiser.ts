@@ -1,5 +1,6 @@
 import { DiscreteSearchResult } from "./DiscreteSearchResult";
 
 export interface DiscreteOptimiser {
-    Search: () => DiscreteSearchResult;
+    ObjectiveFunctions:Array<string>;
+    Search: (objectiveFunction:string) => DiscreteSearchResult;
 }

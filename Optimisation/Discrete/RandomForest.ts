@@ -18,7 +18,8 @@ export class RandomForest {
         //grow the forest
         const results = new Array<DiscreteSearchResult>();
         for(let i=0; i < sample; i++) {
-            results.push(this.optimiser.Search());
+            const k = Math.floor(Math.random() * this.optimiser.ObjectiveFunctions.length)
+            results.push(this.optimiser.Search(this.optimiser.ObjectiveFunctions[k]));
         }
 
         //reduce the forest by growing split tree with branches  
