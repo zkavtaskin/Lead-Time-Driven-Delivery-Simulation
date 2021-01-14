@@ -2,7 +2,7 @@ import { TeamConfig} from "../Simulation/TeamConfig"
 import { MemberConfig } from "../Simulation/MemberConfig"
 import { BacklogConfig } from "../Simulation/BacklogConfig"
 import { TeamSimulation } from "../Simulation/TeamSimulation"
-import { Experiment } from "../Experiment/Experiment"
+import { Experiment } from "./Experiment"
 import { TestResult } from "./TestResult"
 import { BacklogDecoder } from "../Optimisation/Discrete/BacklogDecoder"
 import { Backlog } from "../Optimisation/Discrete/Backlog"
@@ -13,18 +13,16 @@ import * as simplestats from 'simple-statistics'
 import { DiscreteDecoder } from "../Optimisation/Discrete/DiscreteDecoder"
 import { Story } from "../Simulation/Story"
 
-export class ScrumTeamExperiment extends Experiment {
+export class WaterfallExperiment extends Experiment {
 
-    public readonly Name: string = "Scrum";
+    public readonly Name: string = "Waterfall"
 
     public Description: string = `
-Simulation of a cross functional "Scrum" team with some supporting "Component" teams.
-
+Simulation of a specialist "Waterfall" team where works is handed over from one discipline to another. 
 Experiment searches for:
     1) Shortest lead time
     2) Follows as close uniform distribution as possible  
-    3) Delivers biggest amount of stories (value), this is a given as under the experiment everyone needs to deiver set amount of stories.  
-As a starting point experiment will be setup to have a bias towards delivering work right at the end the cycle.
+    3) Delivers biggest amount of stories (value), this is a given as under the experiment everyone needs to deiver set amount of stories.
     `;
 
     private teamConfig = new TeamConfig([
