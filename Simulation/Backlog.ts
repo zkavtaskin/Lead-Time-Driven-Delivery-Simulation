@@ -78,7 +78,13 @@ export class Backlog {
             }
           }
     
-          let storySize = backlogConfig.MinStorySize + (Math.random() * (backlogConfig.MaxStorySize - backlogConfig.MinStorySize));
+          let storySize = null;
+          if(backlogConfig.StorySizeGenerator == null) {
+            storySize = backlogConfig.MinStorySize + (Math.random() * (backlogConfig.MaxStorySize - backlogConfig.MinStorySize));
+          } else {
+            storySize = backlogConfig.StorySizeGenerator();
+          }
+
           let tasks = new Array<Task>();
           memberConfig.forEach((member :MemberConfig, index:number) => {
             if(Math.random() <= member.BacklogFrequency) {
