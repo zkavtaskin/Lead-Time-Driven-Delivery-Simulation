@@ -4,6 +4,8 @@ import { TeamMember } from "./TeamMember";
 import { BacklogConfig } from "./BacklogConfig";
 import { TeamConfig } from "./TeamConfig";
 import { Story } from "./Story";
+import * as simplestats from 'simple-statistics'
+
 
 export class TeamSimulation {
 
@@ -47,12 +49,12 @@ export class TeamSimulation {
        * 1 / ((S * Cr) / (Cc * U)) gives you W weight reciprocal 
        * 1 / ((S * Cr) / (Cc * U))  * F gives you weighted feedback ratio. 
       */ 
+     const S  = simplestats.median(Array.from({length:100}, () => this.backlogConfig.GenerateStorySize()));
+     const U  = this.clock.EffortSize;
       for(let columnId:number = 0; columnId < this.teamConfig.Graph.length; columnId++) {
         const teamMember = this.teamConfig.Members[columnId];
-        const S  = (this.backlogConfig.MaxStorySize + this.backlogConfig.MinStorySize) / 2;
         const Cr = teamMember.BacklogContribution;
         const Cc = teamMember.Capacity;
-        const U  = this.clock.EffortSize;
         const W = 1 / ((S * Cr) / (Cc * U));
         for(let rowId:number = 0; rowId < columnId; rowId++) {
           if(deterministic) {
