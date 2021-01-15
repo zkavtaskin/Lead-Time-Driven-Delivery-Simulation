@@ -57,9 +57,9 @@ As a starting point experiment will be setup to have a bias towards delivering w
              */
         ]
     );
-    private backlogConfig = new BacklogConfig(100, 1/4, 1/10, 1, 10, () => {
-        return Probability.Choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1, [0.25, 0.25, 0.05, 0.05, 0.10, 0.05, 0.10, 0.05, 0.05, 0.05])[0];
-    });
+    private backlogConfig = new BacklogConfig(100, 1/4, 1/10, 1, 10, () => 
+        Probability.Choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1, [0.25, 0.25, 0.05, 0.05, 0.10, 0.05, 0.10, 0.05, 0.05, 0.05])[0]);
+        
     private effortPerTick = 1;
     
     protected assumptions(): Array<[string, boolean]> {

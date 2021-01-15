@@ -27,7 +27,7 @@ export class TeamSimulation {
 
       //create own copy to avoid config mutation
       this.teamConfig = JSON.parse(JSON.stringify(teamConfig));
-      this.backlogConfig = JSON.parse(JSON.stringify(backlogConfig));
+      this.backlogConfig = backlogConfig.Copy();
 
       this.clock = new Clock(effortSizePerTick);
       this.backlog = Backlog.Generate(this.teamConfig.Members, this.backlogConfig, backlogSortFunc);
