@@ -1,42 +1,33 @@
 
 export class Probability {
 
-  public static Choice(arr: Array<number>, size : number, p : Array<number> = null) : Array<number> {
+  public static Choice(events: Array<number>, size : number, probability : Array<number> = null) : Array<number> {
 
-    if(p != null && p.reduce((sum, v) => sum + v) + Number.EPSILON < 1) {
+    if(probability != null && probability.reduce((sum, v) => sum + v) + Number.EPSILON < 1) {
       throw Error("Overall probability has to be 1");
     }
 
-    if(p == null) {
-      p = new Array(arr.length).fill(1/arr.length);
+    if(probability == null) {
+      probability = new Array(events.length).fill(1/events.length);
     }
 
-    if(arr.length != p.length) {
-      throw Error("arr has to be same length as p");
+    if(events.length != probability.length) {
+      throw Error("Events have to be same length as probability");
     }
 
-    const choices = Array<number>();
-
-    const pRange = p.reduce((ranges, v, i) => {
-      const start = i > 0 ? ranges[i-1][1] : 0;
+    const probabilityRanges = probability.reduce((ranges, v, i) => {
+      const start = i > 0 ? ranges[i-1][1] : 0 - Number.EPSILON;
       ranges.push([start, v + start + Number.EPSILON]);
       return ranges;
-    }, [])
+    }, []);
 
+    const choices = Array<number>();
     for(let i = 0; i < size; i++) {
       const random = Math.random();
-      const rangeIndex = this.mapToRange(random, pRange);
-      choices.push(arr[rangeIndex]);
+      const rangeIndex = probabilityRanges.findIndex((v, i) => random > v[0] && random <= v[1]);
+      choices.push(events[rangeIndex]);
     }
     return choices;
-  }
-
-  private static mapToRange(random, pRange : Array<[number, number]>) {
-    for(let i = 0; i < pRange.length; i++) {
-      if(random > pRange[i][0] && random <= pRange[i][1]) {
-        return i;
-      }
-    }
   }
 
 }
