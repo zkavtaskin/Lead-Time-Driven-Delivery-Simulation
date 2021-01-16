@@ -1,10 +1,14 @@
 
 export class Probability {
 
-  public static Choice(arr: Array<number>, size : number, p : Array<number>) : Array<number> {
+  public static Choice(arr: Array<number>, size : number, p : Array<number> = null) : Array<number> {
 
-    if(p.reduce((sum, v) => sum + v) + Number.EPSILON < 1) {
+    if(p != null && p.reduce((sum, v) => sum + v) + Number.EPSILON < 1) {
       throw Error("Overall probability has to be 1");
+    }
+
+    if(p == null) {
+      p = new Array(arr.length).fill(1/arr.length);
     }
 
     if(arr.length != p.length) {

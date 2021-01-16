@@ -29,24 +29,26 @@ As a starting point experiment will be setup to have a bias towards delivering w
     `;
 
     private teamConfig = new TeamConfig([
-            new MemberConfig("Product Owner", 10/37, 8/10, 5/100),
+            new MemberConfig("Product Owner", 10/37, 8/10, 4/100),
             new MemberConfig("UX", 10/37, 4/10, 10/100),
             new MemberConfig("Architecture", 5/37, 5/10, 5/100),
             new MemberConfig("Back-End", 37/37, 8/10, 30/100),
             new MemberConfig("Front-End", 37/37, 8/10, 30/100),
-            new MemberConfig("Test", 37/37, 10/10, 20/100)], 
+            new MemberConfig("Test", 37/37, 10/10, 20/100),
+            new MemberConfig("Product Owner Sign Off", 1/37, 10/10, 1/100)],
         [
             /***
              * Bottom 0 diagonal represents flow downstream dependencies (prerequisite work)
              * top 0 diagonal represents flow "feedback" upstream 
-             *  PO  UX   ARCH  BE      FE   TEST <= X-axis is same "mirror" for Y-axis, order is the same as above order
+             *  PO  UX   ARCH  BE      FE   TEST   POS <= X-axis is same "mirror" for Y-axis, order is the same as above order
              */
-                [0, 1/2, 1/5, 1/2,   1/5, 1/5],
-                [1, 0,   1/5,   0,   1/5, 1/5],
-                [1, 1,      0, 1/5,  1/10,    0],
-                [1, 0,      1,   0,   1/2,  1/2],
-                [1, 1,      1,   0,     0,  1/2],
-                [1, 1,      0,   1,     1,    0] 
+                [0, 1/2, 1/5, 1/2,   1/5,   1/5,   0],
+                [1, 0,   1/5,   0,   1/5,   1/5,   1/50],
+                [1, 1,      0, 1/5,  1/10,    0,   0],
+                [1, 0,      1,   0,   1/2,  1/2,   1/50],
+                [1, 1,      1,   0,     0,  1/2,   1/20],
+                [1, 1,      0,   1,     1,    0,   1/10],
+                [0, 0,      0,   0,     0,    1,  0],
             /*** 
              * With graph provides a dependency map for prerequisite work, meaning the following will happen:
              * If story contains work for product owner then it will have to travel through product owner before 
@@ -57,7 +59,7 @@ As a starting point experiment will be setup to have a bias towards delivering w
              */
         ]
     );
-    private backlogConfig = new BacklogConfig(100, 1/4, 1/10, 1, 10, () => 
+    private backlogConfig = new BacklogConfig(20, 1/4, 1/10, 1, 10, () => 
         Probability.Choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1, [0.25, 0.25, 0.05, 0.05, 0.10, 0.05, 0.10, 0.05, 0.05, 0.05])[0]);
         
     private effortPerTick = 1;
