@@ -3,7 +3,7 @@ export class Probability {
 
   public static Choice(events: Array<number>, size : number, probability : Array<number> = null) : Array<number> {
     if(probability != null) {
-      const pSum = probability.reduce((sum, v) => sum + v) + Number.EPSILON;
+      const pSum = probability.reduce((sum, v) => sum + v);
       if(pSum < 1 || pSum > 1 + Number.EPSILON) {
         throw Error("Overall probability has to be 1.");
       }
