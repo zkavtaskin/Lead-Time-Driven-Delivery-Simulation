@@ -22,13 +22,20 @@ export class Statistics {
      * @returns chiSquared
      */
     public static FrequencyTest(x : Array<number>, binRange : number) : number {
-        //inclusive of the first number  
-        const len = Math.max(...x) - Math.min(...x) + 1;
-        const numberOfIntervals = Math.ceil(len / binRange);
-        const expected = x.length / numberOfIntervals;
-        const observationsPerInterval = new Array(numberOfIntervals).fill(0);
-        x.forEach((number) => observationsPerInterval[Math.floor((number-1) / binRange)]++);
-        const chiSquared = observationsPerInterval.reduce((sum, observation) => sum + (observation-expected)**2 / expected, 0);
+        const bins = this.Histogram(x, binRange);
+        const expected = x.length / bins.length;
+        const chiSquared = bins.reduce((sum, observation) => sum + (observation-expected)**2 / expected, 0);
         return chiSquared;
+    }
+
+    public static Histogram(X : Array<number>, binRange : number) : Array<number> {
+        //inclusive of the first number  
+        const max = Math.max(...X);
+        const min = Math.min(...X);
+        const len = max - min + 1;
+        const numberOfBins = Math.ceil(len / binRange);
+        const bins = new Array(numberOfBins).fill(0);
+        X.forEach((x) => bins[Math.floor((x-min) / binRange)]++);
+        return bins;
     }
 }
