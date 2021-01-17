@@ -2,7 +2,7 @@ import { TeamConfig} from "../Simulation/TeamConfig"
 import { MemberConfig } from "../Simulation/MemberConfig"
 import { BacklogConfig } from "../Simulation/BacklogConfig"
 import { TeamSimulation } from "../Simulation/TeamSimulation"
-import { Experiment } from "../Experiment/Experiment"
+import { Experiment } from "./Experiment"
 import { TestResult } from "./TestResult"
 import { BacklogDecoder } from "../Optimisation/Discrete/BacklogDecoder"
 import { Backlog } from "../Optimisation/Discrete/Backlog"
@@ -20,22 +20,16 @@ export class ScrumTeamExperiment extends Experiment {
 
     public Description: string = `
 Simulation of a cross functional "Scrum" team with some supporting "Component" teams.
-
-Experiment searches for:
-    1) Shortest lead time
-    2) Follows as close uniform distribution as possible  
-    3) Delivers biggest amount of stories (value), this is a given as under the experiment everyone needs to deiver set amount of stories.  
-As a starting point experiment will be setup to have a bias towards delivering work right at the end the cycle.
-    `;
+In this scenario, backlog is ready before the Sprint starts.`;
 
     private teamConfig = new TeamConfig([
-            new MemberConfig("Product Owner", 10/37, 8/10, 4/100),
-            new MemberConfig("UX", 10/37, 4/10, 10/100),
-            new MemberConfig("Architecture", 5/37, 5/10, 5/100),
+            new MemberConfig("Product Owner", 10/37, 0/10, 4/100),
+            new MemberConfig("UX", 10/37, 0/10, 10/100),
+            new MemberConfig("Architecture", 5/37, 0/10, 5/100),
             new MemberConfig("Back-End", 37/37, 8/10, 30/100),
             new MemberConfig("Front-End", 37/37, 8/10, 30/100),
             new MemberConfig("Test", 37/37, 10/10, 20/100),
-            new MemberConfig("Product Owner Sign Off", 1/37, 10/10, 1/100)],
+            new MemberConfig("Product Owner Sign Off", 10/37, 10/10, 1/100)],
         [
             /***
              * Bottom 0 diagonal represents flow downstream dependencies (prerequisite work)
@@ -101,6 +95,6 @@ As a starting point experiment will be setup to have a bias towards delivering w
         const randomForest = new RandomForest(optimiser, decoder);
         const result = randomForest.Search(100);
         const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, decoder.Decode(result.Encoding) as ((a : Story, b : Story) => number));
-        return new TestResult(teamSimulation.Run().GetRuntimeMetrics(), [["Sort",result.EncodingDecoded.join(",")]])
+        return new TestResult(teamSimulation.Run().GetRuntimeMetrics(), [["Sort",result.EncodingDecoded.join(", ")]])
     }
 }

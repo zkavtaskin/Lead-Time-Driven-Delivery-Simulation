@@ -53,5 +53,9 @@ describe('Statistics', () => {
     it('Histogram, random numbers with start at zero, 5 bins with correct values', () => {
         const histogram = Statistics.Histogram([0, 3, 2, 5, 2, 6, 1], 2)
         expect(histogram).to.be.eqls([2, 3, 1, 1]);
+    }),
+    it('Histogram, numbers start at 5 end at 10, 3 bins with correct values', () => {
+        const histogram = Statistics.Histogram([5, 5, 6, 6, 7, 8, 9, 10], 2)
+        expect(histogram).to.be.eqls([4, 2, 2]);
     })
 });
