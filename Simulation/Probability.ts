@@ -2,17 +2,19 @@
 export class Probability {
 
   public static Choice(events: Array<number>, size : number, probability : Array<number> = null) : Array<number> {
-
-    if(probability != null && probability.reduce((sum, v) => sum + v) + Number.EPSILON < 1) {
-      throw Error("Overall probability has to be 1");
-    }
-
-    if(probability == null) {
+    if(probability != null) {
+      const pSum = probability.reduce((sum, v) => sum + v) + Number.EPSILON;
+      if(pSum < 1 || pSum > 1 + Number.EPSILON) {
+        throw Error("Overall probability has to be 1.");
+      }
+      if(probability.find((p) => p < 0) != undefined) {
+        throw Error("Probability can not contain negative values");
+      }
+      if(events.length != probability.length) {
+        throw Error("Events have to be same length as probability");
+      }
+    } else {
       probability = new Array(events.length).fill(1/events.length);
-    }
-
-    if(events.length != probability.length) {
-      throw Error("Events have to be same length as probability");
     }
 
     const probabilityRanges = probability.reduce((ranges, v, i) => {

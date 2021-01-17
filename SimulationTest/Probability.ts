@@ -6,6 +6,14 @@ describe('Probability', () => {
         const actual = () => Probability.Choice([1,2,3], 1, [0.2]);
         expect(actual).to.throw();
     }),
+    it('Choice, p contains negative value, throws error', () => {
+        const actual = () => Probability.Choice([1,2,3], 1, [0.2, -0.2, 1]);
+        expect(actual).to.throw();
+    }),
+    it('Choice, p is greater then 1, throws error', () => {
+        const actual = () => Probability.Choice([1,2,3], 1, [0.2, 0.7, 0.2]);
+        expect(actual).to.throw();
+    }),
     it('Choice, p and arr not same len, throws error', () => {
         const actual = () => Probability.Choice([1,2,3], 1, [0.2, 0.8]);
         expect(actual).to.throw();
