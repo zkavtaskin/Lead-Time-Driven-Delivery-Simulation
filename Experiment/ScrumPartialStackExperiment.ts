@@ -14,23 +14,22 @@ import { DiscreteDecoder } from "../Optimisation/Discrete/DiscreteDecoder"
 import { Story } from "../Simulation/Story"
 import { Probability } from "../Simulation/Probability"
 
-export class ScrumExperiment extends Experiment {
+export class ScrumPartialStackExperiment extends Experiment {
 
-    public readonly Name: string = "Scrum";
+    public readonly Name: string = "Scrum Partial Stack";
 
     public Description: string = `
-Simulation of a cross functional "Scrum" team with some supporting "Component" teams.
-In this scenario, backlog is "ready" before the Sprint starts, in this simulation it means that there is no dependency, developers and testers don't have to 
-wait to start the work.`;
+Simulation of a cross functional partial stack "Scrum" team with some supporting "Component" teams.
+In this scenario, there are same amount of people, however they are cross skilled so they can pick up each other's work.`;
 
 
     private teamConfig = new TeamConfig([
-            new MemberConfig("Product Owner", 10/37, 8/10, 4/100),
+            new MemberConfig("Product Owner / Test Upstream", 10/37, 8/10, 14/100),
             new MemberConfig("UX", 10/37, 4/10, 10/100),
             new MemberConfig("Architecture", 5/37, 5/10, 5/100),
-            new MemberConfig("Back-End", 37/37, 8/10, 30/100),
-            new MemberConfig("Front-End", 37/37, 8/10, 30/100),
-            new MemberConfig("Test", 37/37, 10/10, 20/100),
+            new MemberConfig("Back-End / Front-End", 37/37, 8/10, 30/100),
+            new MemberConfig("Front-End / Back-End", 37/37, 8/10, 30/100),
+            new MemberConfig("Test Review", 37/37, 10/10, 10/100),
             new MemberConfig("Product Owner Sign Off", 1/37, 10/10, 1/100)
         ],
         [
@@ -42,8 +41,8 @@ wait to start the work.`;
                 [0, 1/2, 1/5, 1/2,   1/5,   1/5,   0],
                 [0, 0,   1/5,   0,   1/5,   1/5,   1/50],
                 [0, 0,      0, 1/5,  1/10,    0,   0],
-                [0, 0,      0,   0,   1/2,  1/2,   1/50],
-                [0, 0,      0,   0,     0,  1/2,   1/20],
+                [0, 0,      0,   0,     0,    1/5,   1/20],
+                [0, 0,      0,   0,     0,    1/5,   1/20],
                 [0, 0,      0,   1,     1,    0,   1/10],
                 [0, 0,      0,   0,     0,    1,  0],
             /*** 
