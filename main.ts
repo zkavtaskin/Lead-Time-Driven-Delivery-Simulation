@@ -1,8 +1,9 @@
 import { Experiment } from "./Experiment/Experiment";
-import {ScrumKanbanTeamExperiment} from "./Experiment/ScrumKanbanTeamExperiment"
-import {ScrumTeamExperiment} from "./Experiment/ScrumTeamExperiment"
+import {ScrumKanbanExperiment} from "./Experiment/ScrumKanbanExperiment"
+import {ScrumExperiment} from "./Experiment/ScrumExperiment"
+import {WaterfallExperiment} from "./Experiment/WaterfallExperiment"
 
-const experiments = new Array<Experiment>(new ScrumTeamExperiment(), new ScrumKanbanTeamExperiment());
+const experiments = new Array<Experiment>(new ScrumExperiment(), new ScrumKanbanExperiment(), new WaterfallExperiment());
 
 console.log(`
 Experiments search for:
@@ -24,11 +25,11 @@ ${results.Assumptions.reduce((s,a,i) => s+((i+1) + ": " + a[0] + " => " + a[1] +
 # Control 
 Lead Time - Max: ${results.ControlStats.Max}, Mean: ${results.ControlStats.Mean}, Sum: ${results.ControlStats.Sum}, Uniformity Deviation: ${results.ControlStats.Frequency}
 Histogram (Count: ${results.ControlStats.Count})
-${results.ControlStats.Histogram.reduce((s,v,i) => s+((i*25) + "-" + ((i+1)*25) + ":" + v + "\n"), "")} 
+${results.ControlStats.Histogram.reduce((s,v,i) => s+((i*100) + "-" + ((i+1)*100) + ":" + v + "\n"), "")} 
 # Experiment 
 Lead Time - Max: ${results.ExperimentStats.Max}, Mean: ${results.ExperimentStats.Mean}, Sum: ${results.ExperimentStats.Sum}, Uniformity Deviation: ${results.ExperimentStats.Frequency}
 Histogram (Count: ${results.ExperimentStats.Count})
-${results.ExperimentStats.Histogram.reduce((s,v,i) => s+((i*25) + "-" + ((i+1)*25) + ":" + v + "\n"), "")} 
+${results.ExperimentStats.Histogram.reduce((s,v,i) => s+((i*100) + "-" + ((i+1)*100) + ":" + v + "\n"), "")} 
 Conditions: ${results.ExperimentConditions}
 
 # Null Hypothesis: ${results.NullHypothesis ? "No difference (Not Rejected)" : "Significant difference (Rejected)"}

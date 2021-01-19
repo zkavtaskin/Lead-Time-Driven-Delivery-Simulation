@@ -14,13 +14,15 @@ import { DiscreteDecoder } from "../Optimisation/Discrete/DiscreteDecoder"
 import { Story } from "../Simulation/Story"
 import { Probability } from "../Simulation/Probability"
 
-export class ScrumKanbanTeamExperiment extends Experiment {
+export class ScrumExperiment extends Experiment {
 
-    public readonly Name: string = "Scrum Kanban";
+    public readonly Name: string = "Scrum";
 
     public Description: string = `
-Simulation of a cross functional "Scrum" team working using Kanban approach with some supporting "Component" teams.
-In this scenario, with Kanban approach assumption is that there is no ready backlog, so teams are waiting for work to be refined.`;
+Simulation of a cross functional "Scrum" team with some supporting "Component" teams.
+In this scenario, backlog is "ready" before the Sprint starts, in this simulation it means that there is no dependency, developers and testers don't have to 
+wait to start the work.`;
+
 
     private teamConfig = new TeamConfig([
             new MemberConfig("Product Owner", 10/37, 8/10, 4/100),
@@ -29,7 +31,8 @@ In this scenario, with Kanban approach assumption is that there is no ready back
             new MemberConfig("Back-End", 37/37, 8/10, 30/100),
             new MemberConfig("Front-End", 37/37, 8/10, 30/100),
             new MemberConfig("Test", 37/37, 10/10, 20/100),
-            new MemberConfig("Product Owner Sign Off", 1/37, 10/10, 1/100)],
+            new MemberConfig("Product Owner Sign Off", 1/37, 10/10, 1/100)
+        ],
         [
             /***
              * Bottom 0 diagonal represents flow downstream dependencies (prerequisite work)
@@ -37,11 +40,11 @@ In this scenario, with Kanban approach assumption is that there is no ready back
              *  PO  UX   ARCH  BE      FE   TEST   POS <= X-axis is same "mirror" for Y-axis, order is the same as above order
              */
                 [0, 1/2, 1/5, 1/2,   1/5,   1/5,   0],
-                [1, 0,   1/5,   0,   1/5,   1/5,   1/50],
-                [1, 1,      0, 1/5,  1/10,    0,   0],
-                [1, 0,      1,   0,   1/2,  1/2,   1/50],
-                [1, 1,      1,   0,     0,  1/2,   1/20],
-                [1, 1,      0,   1,     1,    0,   1/10],
+                [0, 0,   1/5,   0,   1/5,   1/5,   1/50],
+                [0, 0,      0, 1/5,  1/10,    0,   0],
+                [0, 0,      0,   0,   1/2,  1/2,   1/50],
+                [0, 0,      0,   0,     0,  1/2,   1/20],
+                [0, 0,      0,   1,     1,    0,   1/10],
                 [0, 0,      0,   0,     0,    1,  0],
             /*** 
              * With graph provides a dependency map for prerequisite work, meaning the following will happen:
@@ -56,7 +59,7 @@ In this scenario, with Kanban approach assumption is that there is no ready back
     private backlogConfig = new BacklogConfig(20, 1/4, 1/10, 1, 10, () => 
         Probability.Choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1, [0.25, 0.25, 0.05, 0.05, 0.10, 0.05, 0.10, 0.05, 0.05, 0.05])[0]);
         
-    private effortPerTick = 1;
+    private effortPerTick = 1/4;
     
     protected assumptions(): Array<[string, boolean]> {
 

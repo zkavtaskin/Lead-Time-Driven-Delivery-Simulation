@@ -40,7 +40,7 @@ export class BacklogRuntimeMetrics {
         description.Skew = BacklogRuntimeMetrics.toDecimalPlace(simplestats.sampleSkewness(x));
         description.Kurtosis = BacklogRuntimeMetrics.toDecimalPlace(simplestats.sampleKurtosis(x));
         description.Frequency = BacklogRuntimeMetrics.toDecimalPlace(Statistics.FrequencyTest(x, 100));
-        description.Histogram = Statistics.Histogram(x, 25);
+        description.Histogram = Statistics.Histogram(x, 100);
         return description;
     }
 
