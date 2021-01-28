@@ -39,4 +39,12 @@ export class Statistics {
         X.forEach((x) => bins[Math.floor((x-min) / binRange)]++);
         return bins;
     }
+
+    public static HistogramSum(histograms : Array<Array<number>>) : Array<number> {
+        const map = new Map<number, number>();
+        histograms.forEach(((histogram) => 
+            histogram.forEach((bin, i) => map.set(i, map.has(i) ? map.get(i) + bin : bin))
+        ));
+        return Array.from(map.values());
+    }
 }
