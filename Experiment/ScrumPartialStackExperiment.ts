@@ -95,7 +95,7 @@ In this scenario, there are same amount of people, however they are cross skille
         const decoder = new BacklogDecoder(this.teamConfig) as DiscreteDecoder;
         const optimiser = new Backlog(this.teamConfig, this.backlogConfig, this.effortPerTick, decoder) as DiscreteOptimiser;
         const randomForest = new RandomForest(optimiser, decoder);
-        const result = randomForest.Search(100);
+        const result = randomForest.Search(30);
         const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, decoder.Decode(result.Encoding) as ((a : Story, b : Story) => number));
         return new TestResult(teamSimulation.Run().GetRuntimeMetrics(), [["Sort",result.EncodingDecoded.join(", ")]])
     }

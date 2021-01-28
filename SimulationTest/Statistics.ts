@@ -63,5 +63,15 @@ describe('Statistics', () => {
         const histogramFull = [1,2,3,4,5];
         const actual = Statistics.HistogramSum([histogramNotFull, histogramFull]);
         expect([1, 14, 3, 4, 5]).to.be.eqls(actual);
+    }),
+    it('HistogramMaxTailIndex, last value is max, returns last index', () => {
+        const histogram = [0, 12, 0, 2]
+        const actual = Statistics.HistogramMaxTailIndex(histogram);
+        expect(3).to.be.equal(actual);
+    }),
+    it('HistogramMaxTailIndex, third value from back is max, returns third value index', () => {
+        const histogram = [0, 12, 23, 2, 10, 5, 6, 7, 1, 0]
+        const actual = Statistics.HistogramMaxTailIndex(histogram);
+        expect(7).to.be.equal(actual);
     })
 });

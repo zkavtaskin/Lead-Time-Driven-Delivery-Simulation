@@ -47,4 +47,15 @@ export class Statistics {
         ));
         return Array.from(map.values());
     }
+
+    public static HistogramMaxTailIndex(histogram : Array<number>) : number {
+        let indexMax = histogram.length-1;
+        for (let i = histogram.length-2; i >= 0 ; i--) {
+            if(histogram[i] > histogram[indexMax]) {
+                indexMax = i;
+            }  else {
+                return indexMax;
+            } 
+        }
+    }
 }
