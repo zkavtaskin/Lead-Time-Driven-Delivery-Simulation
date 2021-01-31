@@ -13,6 +13,7 @@ import * as simplestats from 'simple-statistics'
 import { DiscreteDecoder } from "../Optimisation/Discrete/DiscreteDecoder"
 import { Story } from "../Simulation/Story"
 import { Probability } from "../Simulation/Probability"
+import { Histogram } from "./Histogram"
 
 export class ScrumExperiment extends Experiment {
 
@@ -88,8 +89,12 @@ wait to start the work.`;
     }
 
     protected controlGroup(): TestResult {
-        const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, null);
-        return new TestResult(teamSimulation.Run().GetRuntimeMetrics(), null);
+        const histogram = this.Test(() => {
+            const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, null);
+            return teamSimulation.Run().GetRuntimeMetrics()
+        });
+
+        return new TestResult(new Histogram(histogram[0], histogram[1]), null);
     }
 
     protected experimentGroup(): TestResult {
@@ -97,7 +102,13 @@ wait to start the work.`;
         const optimiser = new Backlog(this.teamConfig, this.backlogConfig, this.effortPerTick, decoder) as DiscreteOptimiser;
         const randomForest = new RandomForest(optimiser, decoder);
         const result = randomForest.Search(30);
-        const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, decoder.Decode(result.Encoding) as ((a : Story, b : Story) => number));
-        return new TestResult(teamSimulation.Run().GetRuntimeMetrics(), [["Sort",result.EncodingDecoded.join(", ")]])
+
+
+        const histogram = this.Test(() => {
+            const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, decoder.Decode(result.Encoding) as ((a : Story, b : Story) => number));
+            return teamSimulation.Run().GetRuntimeMetrics()
+        });
+
+        return new TestResult(new Histogram(histogram[0], histogram[1]), [["Sort",result.EncodingDecoded.join(", ")]]);
     }
 }

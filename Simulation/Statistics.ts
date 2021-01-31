@@ -23,10 +23,15 @@ export class Statistics {
      */
     public static FrequencyTest(X : Array<number>, binRange : number) : number {
         const bins = this.Histogram(X, binRange);
-        const expected = X.length / bins.length;
+        return this.FrequencyTestBin(bins);
+    }
+
+    public static FrequencyTestBin(bins : Array<number>) : number {
+        const sum = bins.reduce((sum, bin) => sum + bin, 0);
+        const expected = sum / bins.length;
         const chiSquared = bins.reduce((sum, observation) => sum + (observation-expected)**2 / expected, 0);
         return chiSquared;
-    }
+    } 
 
     public static Histogram(X : Array<number>, binRange : number) : Array<number> {
         //inclusive of the first number  
@@ -46,16 +51,5 @@ export class Statistics {
             histogram.forEach((bin, i) => map.set(i, map.has(i) ? map.get(i) + bin : bin))
         ));
         return Array.from(map.values());
-    }
-
-    public static HistogramMaxTailIndex(histogram : Array<number>) : number {
-        let indexMax = histogram.length-1;
-        for (let i = histogram.length-2; i >= 0 ; i--) {
-            if(histogram[i] > histogram[indexMax]) {
-                indexMax = i;
-            }  else {
-                return indexMax;
-            } 
-        }
     }
 }

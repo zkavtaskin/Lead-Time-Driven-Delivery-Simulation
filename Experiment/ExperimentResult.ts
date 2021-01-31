@@ -1,16 +1,16 @@
-import { StatisticsDescriptive } from "../Simulation/StatisticsDescriptive";
+import { Histogram } from "./Histogram";
 
 export class ExperimentResult {
     public readonly Assumptions : Array<[string, boolean]>;
-    public readonly ControlStats : StatisticsDescriptive;
-    public readonly ExperimentStats : StatisticsDescriptive;
+    public readonly Control : Histogram;
+    public readonly Experiment : Histogram;
     public readonly ExperimentConditions : Array<[string, string]>;
     public readonly NullHypothesis : boolean
 
-    constructor(assumptions:Array<[string, boolean]>, scoreControl: StatisticsDescriptive, scoreExperiment:StatisticsDescriptive, nullHypothesis:boolean, experimentConditions: Array<[string, string]>) {
+    constructor(assumptions:Array<[string, boolean]>, control: Histogram, experiment:Histogram, nullHypothesis:boolean, experimentConditions: Array<[string, string]>) {
         this.Assumptions = assumptions;
-        this.ControlStats = scoreControl;
-        this.ExperimentStats = scoreExperiment;
+        this.Control = control;
+        this.Experiment = experiment;
         this.NullHypothesis = nullHypothesis;
         this.ExperimentConditions = experimentConditions;
     }

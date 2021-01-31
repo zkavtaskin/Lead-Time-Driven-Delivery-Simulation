@@ -4,7 +4,9 @@ import {ScrumExperiment} from "./Experiment/ScrumExperiment"
 import {WaterfallExperiment} from "./Experiment/WaterfallExperiment"
 import {ScrumPartialStackExperiment} from "./Experiment/ScrumPartialStackExperiment"
 
-const experiments = new Array<Experiment>(new ScrumExperiment(), new ScrumKanbanExperiment(), new ScrumPartialStackExperiment(), new WaterfallExperiment());
+//const experiments = new Array<Experiment>(new ScrumExperiment(), new ScrumKanbanExperiment(), new ScrumPartialStackExperiment(), new WaterfallExperiment());
+
+const experiments = new Array<Experiment>(new ScrumExperiment(), new ScrumKanbanExperiment());
 
 console.log(`
 Experiments search for:
@@ -24,13 +26,13 @@ ${experiment.Description}
 # Assumptions
 ${results.Assumptions.reduce((s,a,i) => s+((i+1) + ": " + a[0] + " => " + a[1] + "\n"), "")} 
 # Control 
-Lead Time - Max: ${results.ControlStats.Max}, Mean: ${results.ControlStats.Mean}, Sum: ${results.ControlStats.Sum}, Uniformity Deviation: ${results.ControlStats.Frequency}
-Histogram (Count: ${results.ControlStats.Count})
-${results.ControlStats.Histogram.reduce((s,v,i) => s+((i*100) + "-" + ((i+1)*100) + ":" + v + "\n"), "")} 
+Lead Time - Last: ${results.Control.Last[0] * results.Control.BinRange}, Mean: ${results.Control.Mean}, Sum: ${results.Control.Sum}, Uniformity Deviation: ${results.Control.Uniformity}
+Histogram 
+${results.Control.Bins.reduce((s,v,i) => s+((i*results.Control.BinRange) + "-" + ((i+1)*results.Control.BinRange) + ":" + v + "\n"), "")} 
 # Experiment 
-Lead Time - Max: ${results.ExperimentStats.Max}, Mean: ${results.ExperimentStats.Mean}, Sum: ${results.ExperimentStats.Sum}, Uniformity Deviation: ${results.ExperimentStats.Frequency}
-Histogram (Count: ${results.ExperimentStats.Count})
-${results.ExperimentStats.Histogram.reduce((s,v,i) => s+((i*100) + "-" + ((i+1)*100) + ":" + v + "\n"), "")} 
+Lead Time - Last: ${results.Experiment.Last[0] * results.Experiment.BinRange}, Mean: ${results.Experiment.Mean}, Sum: ${results.Experiment.Sum}, Uniformity Deviation: ${results.Experiment.BinRange}
+Histogram
+${results.Experiment.Bins.reduce((s,v,i) => s+((i*results.Control.BinRange) + "-" + ((i+1)*results.Control.BinRange) + ":" + v + "\n"), "")} 
 Conditions: ${results.ExperimentConditions}
 
 # Null Hypothesis: ${results.NullHypothesis ? "No difference (Not Rejected)" : "Significant difference (Rejected)"}
