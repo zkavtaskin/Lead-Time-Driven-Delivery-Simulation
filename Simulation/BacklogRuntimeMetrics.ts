@@ -39,9 +39,9 @@ export class BacklogRuntimeMetrics {
         description.Variance = Statistics.toDecimalPlace(simplestats.variance(x));
         description.Skew = Statistics.toDecimalPlace(simplestats.sampleSkewness(x));
         description.Kurtosis = Statistics.toDecimalPlace(simplestats.sampleKurtosis(x));
-        description.Frequency = Statistics.toDecimalPlace(Statistics.FrequencyTest(x, 100));
-        description.Histogram = Statistics.Histogram(x, 1000);
         description.HistogramRange = 1000;
+        description.Frequency = Statistics.toDecimalPlace(Statistics.FrequencyTest(x, description.HistogramRange));
+        description.Histogram = Statistics.Histogram(x, description.HistogramRange);
         return description;
     }
 }

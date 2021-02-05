@@ -5,7 +5,6 @@ import {WaterfallExperiment} from "./Experiment/WaterfallExperiment"
 import {ScrumPartialStackExperiment} from "./Experiment/ScrumPartialStackExperiment"
 
 const experiments = new Array<Experiment>(new ScrumExperiment(), new ScrumKanbanExperiment(), new ScrumPartialStackExperiment(), new WaterfallExperiment());
-
 console.log(`
 Experiments search for:
     1) Shortest lead time
@@ -24,11 +23,11 @@ ${experiment.Description}
 # Assumptions
 ${results.Assumptions.reduce((s,a,i) => s+((i+1) + ": " + a[0] + " => " + a[1] + "\n"), "")} 
 # Control 
-Lead Time - Last: ${results.Control.Last[0] * results.Control.BinRange}, Mean: ${results.Control.Mean}, Sum: ${results.Control.Sum}, Uniformity Deviation: ${results.Control.Uniformity}
+Lead Time - Last: ${results.Control.Last[0] * results.Control.BinRange}, Median: v:${results.Control.Median[1]} i:${results.Control.Median[0] * results.Control.BinRange}, Sum: ${results.Control.Sum}, Uniformity Deviation: ${results.Control.Uniformity}
 Histogram 
 ${results.Control.Bins.reduce((s,v,i) => s+((i*results.Control.BinRange) + "-" + ((i+1)*results.Control.BinRange) + ":" + v + "\n"), "")} 
 # Experiment 
-Lead Time - Last: ${results.Experiment.Last[0] * results.Experiment.BinRange}, Mean: ${results.Experiment.Mean}, Sum: ${results.Experiment.Sum}, Uniformity Deviation: ${results.Experiment.BinRange}
+Lead Time - Last: ${results.Experiment.Last[0] * results.Experiment.BinRange}, Median: v:${results.Experiment.Median[1]} i:${results.Experiment.Median[0] * results.Experiment.BinRange}, Sum: ${results.Experiment.Sum}, Uniformity Deviation: ${results.Experiment.BinRange}
 Histogram
 ${results.Experiment.Bins.reduce((s,v,i) => s+((i*results.Control.BinRange) + "-" + ((i+1)*results.Control.BinRange) + ":" + v + "\n"), "")} 
 Conditions: ${results.ExperimentConditions}

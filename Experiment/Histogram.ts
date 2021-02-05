@@ -5,7 +5,7 @@ export class Histogram {
     public readonly BinRange : number;
 
     get Uniformity() : number {
-        return Statistics.FrequencyTestBin(this.Bins);
+        return Statistics.toDecimalPlace(Statistics.FrequencyTestBin(this.Bins), 2);
     }
 
     get Last() : [number, number] {
@@ -16,8 +16,15 @@ export class Histogram {
         return this.Bins.reduce((sum, bin) => sum + bin, 0);
     }
 
-    get Mean() : number {
-        return this.Sum / this.Bins.length;
+    get Median() : [number, number] {
+        const half = this.Sum / 2;
+        let sum = 0;
+        for(let i = 0; i < this.Bins.length; i++) {
+            sum += this.Bins[i];
+            if(sum >= half) {
+                return [i, this.Bins[i]]; 
+            }
+        }
     }
 
     constructor(bins : Array<number>, binsRange : number) {
