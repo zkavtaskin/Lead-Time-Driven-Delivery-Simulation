@@ -1,31 +1,19 @@
 import { TeamConfig} from "../Simulation/TeamConfig"
 import { MemberConfig } from "../Simulation/MemberConfig"
 import { BacklogConfig } from "../Simulation/BacklogConfig"
-import { TeamSimulation } from "../Simulation/TeamSimulation"
-import { Experiment } from "./Experiment"
-import { TestResult } from "./TestResult"
-import { BacklogDecoder } from "../Optimisation/Discrete/BacklogDecoder"
-import { Backlog } from "../Optimisation/Discrete/Backlog"
-import { RandomForest } from "../Optimisation/Discrete/RandomForest"
-import { DiscreteOptimiser } from "../Optimisation/Discrete/DiscreteOptimiser"
-import { Statistics } from "../Simulation/Statistics"
-import * as simplestats from 'simple-statistics'
-import { DiscreteDecoder } from "../Optimisation/Discrete/DiscreteDecoder"
-import { Story } from "../Simulation/Story"
+import { SoftwareExperiment } from "./SoftwareExperiment"
 import { Probability } from "../Simulation/Probability"
-import { Histogram } from "./Histogram"
 
-export class ScrumExperiment extends Experiment {
+export class ScrumExperiment extends SoftwareExperiment {
 
     public readonly Name: string = "Scrum";
 
-    public Description: string = `
+    public readonly Description: string = `
 Simulation of a cross functional "Scrum" team with some supporting "Component" teams.
 In this scenario, backlog is "ready" before the Sprint starts, in this simulation it means that there is no dependency, developers and testers don't have to 
 wait to start the work.`;
 
-
-    private teamConfig = new TeamConfig([
+    protected readonly teamConfig = new TeamConfig([
             new MemberConfig("Product Owner", 10/37, 8/10, 4/100),
             new MemberConfig("UX", 10/37, 4/10, 10/100),
             new MemberConfig("Architecture", 5/37, 5/10, 5/100),
@@ -57,58 +45,6 @@ wait to start the work.`;
              */
         ]
     );
-    private backlogConfig = new BacklogConfig(100, 1/4, 1/10, 1, 10, () => 
+    protected readonly backlogConfig = new BacklogConfig(100, 1/4, 1/10, 1, 10, () => 
         Probability.Choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1, [0.25, 0.25, 0.05, 0.05, 0.10, 0.05, 0.10, 0.05, 0.05, 0.05])[0]);
-        
-    private effortPerTick = 1/4;
-    
-    protected assumptions(): Array<[string, boolean]> {
-
-        const teamSimulationA = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick);
-        const statsA = teamSimulationA.Run().GetRuntimeMetrics();
-        
-        const teamSimulationB = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick);
-        const statsB = teamSimulationB.Run().GetRuntimeMetrics();
-
-        const LeadNotNormal = () : [string, boolean] => [
-                "Lead Time does NOT follow normal distribution (Nonparametric)",
-                !Statistics.IsNormalDistribution(statsA.LeadTime.Kurtosis, statsA.LeadTime.Skew)
-        ];
-
-        const CycleNotNormal = () : [string, boolean] => [
-            "Cycle Time does NOT follow normal distribution (Nonparametric)",
-            !Statistics.IsNormalDistribution(statsA.CycleTime.Kurtosis, statsA.CycleTime.Skew)
-        ];
-
-        const LeadTimeControlNullHypo = () : [string, boolean] => [
-            "Two random Lead Time control experiments come from same distribution (Null-Hypothesis is true)",
-            simplestats.permutationTest(statsA.LeadTimeData, statsB.LeadTimeData) > 0.05
-        ];
-
-        return [LeadNotNormal(), CycleNotNormal(), LeadTimeControlNullHypo()];
-    }
-
-    protected controlGroup(): TestResult {
-        const histogram = this.Test(() => {
-            const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, null);
-            return teamSimulation.Run().GetRuntimeMetrics()
-        });
-
-        return new TestResult(new Histogram(histogram[0], histogram[1]), null);
-    }
-
-    protected experimentGroup(): TestResult {
-        const decoder = new BacklogDecoder(this.teamConfig) as DiscreteDecoder;
-        const optimiser = new Backlog(this.teamConfig, this.backlogConfig, this.effortPerTick, decoder) as DiscreteOptimiser;
-        const randomForest = new RandomForest(optimiser, decoder);
-        const result = randomForest.Search(30);
-
-
-        const histogram = this.Test(() => {
-            const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, decoder.Decode(result.Encoding) as ((a : Story, b : Story) => number));
-            return teamSimulation.Run().GetRuntimeMetrics()
-        });
-
-        return new TestResult(new Histogram(histogram[0], histogram[1]), [["Sort",result.EncodingDecoded.join(", ")]]);
-    }
 }

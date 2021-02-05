@@ -3,10 +3,18 @@ import { ExperimentResult} from "./ExperimentResult"
 import { BacklogRuntimeMetrics } from "../Simulation/BacklogRuntimeMetrics";
 import * as simplestats from 'simple-statistics'
 import { Statistics } from "../Simulation/Statistics";
+import { TeamConfig } from "../Simulation/TeamConfig";
+import { BacklogConfig } from "../Simulation/BacklogConfig";
 
 export abstract class Experiment {
+
     public abstract readonly Name : string;
     public abstract readonly Description : string;
+
+    protected abstract readonly teamConfig : TeamConfig;
+    protected abstract readonly backlogConfig : BacklogConfig;
+    protected abstract readonly effortPerTick: number;
+
     protected abstract assumptions() : Array<[string, boolean]>
     protected abstract controlGroup() : TestResult;
     protected abstract experimentGroup() : TestResult;
