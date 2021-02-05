@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import { Statistics } from "../Simulation/Statistics";
-import { Probability } from "../Simulation/Probability"
 
 describe('Statistics', () => {
     it('IsNormalDistribution, normal distribution, passes test', () => {
@@ -20,13 +19,13 @@ describe('Statistics', () => {
         expect(false).to.eql(actual);
     }),
     it('FrequencyTest, uniform distribution, 0 < chiSquared < 20', () => {
-        const x = Probability.Choice([1, 2, 3, 4, 5, 6], 300);
+        const x = Statistics.Choice([1, 2, 3, 4, 5, 6], 300);
         const chiSquared = Statistics.FrequencyTest(x, 2);
         expect(20).to.be.greaterThan(chiSquared);
         expect(0).to.be.lessThan(chiSquared);
     }),
     it('FrequencyTest, none uniform distribution, 50 < chiSquared', () => {
-        const x =  Probability.Choice([0, 1, 2], 300, [0.1, 0.1, 0.8]);
+        const x =  Statistics.Choice([0, 1, 2], 300, [0.1, 0.1, 0.8]);
         const chiSquared = Statistics.FrequencyTest(x, 1);
         expect(50).to.be.lessThan(chiSquared);
     }),
@@ -63,5 +62,41 @@ describe('Statistics', () => {
         const histogramFull = [1,2,3,4,5];
         const actual = Statistics.HistogramSum([histogramNotFull, histogramFull]);
         expect([1, 14, 3, 4, 5]).to.be.eqls(actual);
+    }),
+    it('Choice, p is not equals 1, throws error', () => {
+        const actual = () => Statistics.Choice([1,2,3], 1, [0.2]);
+        expect(actual).to.throw();
+    }),
+    it('Choice, p contains negative value, throws error', () => {
+        const actual = () => Statistics.Choice([1,2,3], 1, [0.2, -0.2, 1]);
+        expect(actual).to.throw();
+    }),
+    it('Choice, p is greater then 1, throws error', () => {
+        const actual = () => Statistics.Choice([1,2,3], 1, [0.2, 0.7, 0.2]);
+        expect(actual).to.throw();
+    }),
+    it('Choice, p and arr not same len, throws error', () => {
+        const actual = () => Statistics.Choice([1,2,3], 1, [0.2, 0.8]);
+        expect(actual).to.throw();
+    }),
+    it('Choice, size 1, returns 1 value', () => {
+        const actual = Statistics.Choice([1,2,3], 1, [0.2, 0.7, 0.1]);
+        expect(actual.length).to.eql(1);
+    }),
+    it('Choice, size 2, returns 2 values', () => {
+        const actual = Statistics.Choice([1,2,3], 2, [0.2, 0.7, 0.1]);
+        expect(actual.length).to.eql(2);
+    }),
+    it('Choice, all weight for first value, returns first value', () => {
+        const actual = Statistics.Choice([1,2,3], 1, [1, 0, 0]);
+        expect(actual).to.eql([1]);
+    }),
+    it('Choice, all weight for last value, returns last value', () => {
+        const actual = Statistics.Choice([1,2,3], 1, [0, 0, 1]);
+        expect(actual).to.eql([3]);
+    }),
+    it('Choice, all weight for middle value, returns middle value', () => {
+        const actual = Statistics.Choice([1,2,3], 1, [0, 1, 0]);
+        expect(actual).to.eql([2]);
     })
 });

@@ -1,7 +1,7 @@
 import { TeamConfig} from "../Simulation/TeamConfig"
 import { MemberConfig } from "../Simulation/MemberConfig"
 import { BacklogConfig } from "../Simulation/BacklogConfig"
-import { Probability } from "../Simulation/Probability"
+import { Statistics } from "../Simulation/Statistics"
 import { SoftwareExperiment } from "./SoftwareExperiment"
 
 export class ScrumKanbanExperiment extends SoftwareExperiment {
@@ -32,5 +32,5 @@ As work is refined and it is team members turn work is pulled. Main difference w
         ]
     );
     protected readonly backlogConfig = new BacklogConfig(100, 1/4, 1/10, 1, 10, () => 
-        Probability.Choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1, [0.25, 0.25, 0.05, 0.05, 0.10, 0.05, 0.10, 0.05, 0.05, 0.05])[0]);
+    Statistics.Choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1, [0.25, 0.25, 0.05, 0.05, 0.10, 0.05, 0.10, 0.05, 0.05, 0.05])[0]);
 }

@@ -2,7 +2,7 @@ import { TeamConfig} from "../Simulation/TeamConfig"
 import { MemberConfig } from "../Simulation/MemberConfig"
 import { BacklogConfig } from "../Simulation/BacklogConfig"
 import { SoftwareExperiment } from "./SoftwareExperiment"
-import { Probability } from "../Simulation/Probability"
+import { Statistics } from "../Simulation/Statistics"
 
 export class ScrumExperiment extends SoftwareExperiment {
 
@@ -46,5 +46,5 @@ wait to start the work.`;
         ]
     );
     protected readonly backlogConfig = new BacklogConfig(100, 1/4, 1/10, 1, 10, () => 
-        Probability.Choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1, [0.25, 0.25, 0.05, 0.05, 0.10, 0.05, 0.10, 0.05, 0.05, 0.05])[0]);
+        Statistics.Choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1, [0.25, 0.25, 0.05, 0.05, 0.10, 0.05, 0.10, 0.05, 0.05, 0.05])[0]);
 }

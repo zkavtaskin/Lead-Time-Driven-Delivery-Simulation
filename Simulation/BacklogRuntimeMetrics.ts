@@ -30,23 +30,18 @@ export class BacklogRuntimeMetrics {
     private describe(x : Array<number>) {
         const description = new StatisticsDescriptive();
         description.Count = x.length;
-        description.Mean = BacklogRuntimeMetrics.toDecimalPlace(simplestats.mean(x));
-        description.Median = BacklogRuntimeMetrics.toDecimalPlace(simplestats.median(x));
-        description.Sum = BacklogRuntimeMetrics.toDecimalPlace(simplestats.sum(x));
-        description.Min = BacklogRuntimeMetrics.toDecimalPlace(simplestats.min(x));
-        description.Max = BacklogRuntimeMetrics.toDecimalPlace(simplestats.max(x));
-        description.Std =  BacklogRuntimeMetrics.toDecimalPlace(simplestats.standardDeviation(x));
-        description.Variance = BacklogRuntimeMetrics.toDecimalPlace(simplestats.variance(x));
-        description.Skew = BacklogRuntimeMetrics.toDecimalPlace(simplestats.sampleSkewness(x));
-        description.Kurtosis = BacklogRuntimeMetrics.toDecimalPlace(simplestats.sampleKurtosis(x));
-        description.Frequency = BacklogRuntimeMetrics.toDecimalPlace(Statistics.FrequencyTest(x, 100));
+        description.Mean = Statistics.toDecimalPlace(simplestats.mean(x));
+        description.Median = Statistics.toDecimalPlace(simplestats.median(x));
+        description.Sum = Statistics.toDecimalPlace(simplestats.sum(x));
+        description.Min = Statistics.toDecimalPlace(simplestats.min(x));
+        description.Max = Statistics.toDecimalPlace(simplestats.max(x));
+        description.Std =  Statistics.toDecimalPlace(simplestats.standardDeviation(x));
+        description.Variance = Statistics.toDecimalPlace(simplestats.variance(x));
+        description.Skew = Statistics.toDecimalPlace(simplestats.sampleSkewness(x));
+        description.Kurtosis = Statistics.toDecimalPlace(simplestats.sampleKurtosis(x));
+        description.Frequency = Statistics.toDecimalPlace(Statistics.FrequencyTest(x, 100));
         description.Histogram = Statistics.Histogram(x, 1000);
         description.HistogramRange = 1000;
         return description;
-    }
-
-    private static toDecimalPlace(value : number, decimalPlaces : number = 1) : number {
-        const diviser =  Math.pow(10, decimalPlaces);
-        return Math.round((value + Number.EPSILON) * diviser) / diviser;
     }
 }
