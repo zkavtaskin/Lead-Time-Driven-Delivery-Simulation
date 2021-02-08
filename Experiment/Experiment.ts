@@ -32,7 +32,7 @@ export abstract class Experiment {
         return new ExperimentResult(assumptions, controlAResult.Metrics, experimentResult.Metrics, null, experimentResult.Conditions);
     }
 
-    protected Test(experiment : () => BacklogRuntimeMetrics, samples : number = 30) : [Array<number>, number] {
+    protected Test(experiment : () => BacklogRuntimeMetrics, samples : number = 15) : [Array<number>, number] {
         const histograms = new Array<Array<number>>();
         let binsRange = 0;
         for(let i = 0; i < samples; i++) {
