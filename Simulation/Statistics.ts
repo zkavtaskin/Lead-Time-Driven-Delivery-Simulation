@@ -1,3 +1,4 @@
+import * as simplestats from 'simple-statistics'
 
 export class Statistics {
     /***
@@ -89,4 +90,38 @@ export class Statistics {
       return Math.round((value + Number.EPSILON) * diviser) / diviser;
     }
     
+    /**
+     * @description Moods Median Test of Significance based on  https://sixsigmastudyguide.com/moods-median-non-parametric-hypothesis-test/
+     * @param sampleA independent group A
+     * @param sampleB independent group B
+     */
+    public static MoodsMedianTest(sampleA : Array<number>, sampleB : Array<number>) : Boolean {
+      let samples = [].concat(sampleA).concat(sampleB).sort();
+      const totalMedian = simplestats.median(samples);
+
+      //2X2 contingency table
+      const sampleAGrtnLen = sampleA.filter(v => v > totalMedian).length;
+      const sampleANotGrtnLen = sampleA.length - sampleAGrtnLen;
+      const sampleBGrtnLen = sampleB.filter(v => v > totalMedian).length;
+      const sampleBNotGrtnLen = sampleB.length - sampleBGrtnLen; 
+      const GrtnLen = sampleAGrtnLen + sampleBGrtnLen;
+      const NotGrtnLen = sampleANotGrtnLen + sampleBNotGrtnLen; 
+      const grandTotal = sampleA.length + sampleB.length;
+
+      //chi-square χ2 test
+      const sampleAGrtnLenChi = sampleA.length * GrtnLen / grandTotal;
+      const sampleANotGrtnLenChi = sampleA.length * NotGrtnLen / grandTotal;
+      const sampleBGrtnLenChi = sampleB.length * GrtnLen / grandTotal;
+      const sampleBNotGrtnLenChi = sampleB.length * NotGrtnLen / grandTotal;
+
+      //chi-square χ2 value
+      const chiSquare =
+        (sampleAGrtnLen - sampleAGrtnLenChi)**2 / sampleAGrtnLenChi + 
+        (sampleANotGrtnLen - sampleANotGrtnLenChi)**2 / sampleANotGrtnLenChi + 
+        (sampleBGrtnLen - sampleBGrtnLenChi)**2 / sampleBGrtnLenChi + 
+        (sampleBNotGrtnLen - sampleBNotGrtnLenChi)**2 / sampleBNotGrtnLenChi;
+
+      //significance level testing
+      return simplestats.chiSquaredDistributionTable[1][0.05] <= chiSquare;
+    }
 }
