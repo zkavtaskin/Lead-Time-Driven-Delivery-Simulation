@@ -30,18 +30,18 @@ export class BacklogRuntimeMetrics {
     private describe(x : Array<number>) {
         const description = new StatisticsDescriptive();
         description.Count = x.length;
-        description.Mean = Statistics.toDecimalPlace(simplestats.mean(x));
-        description.Median = Statistics.toDecimalPlace(simplestats.median(x));
-        description.Sum = Statistics.toDecimalPlace(simplestats.sum(x));
-        description.Min = Statistics.toDecimalPlace(simplestats.min(x));
-        description.Max = Statistics.toDecimalPlace(simplestats.max(x));
-        description.Std =  Statistics.toDecimalPlace(simplestats.standardDeviation(x));
-        description.Variance = Statistics.toDecimalPlace(simplestats.variance(x));
-        description.Skew = Statistics.toDecimalPlace(simplestats.sampleSkewness(x));
-        description.Kurtosis = Statistics.toDecimalPlace(simplestats.sampleKurtosis(x));
+        description.Mean = Statistics.ToDecimalPlace(simplestats.mean(x));
+        description.Median = Statistics.ToDecimalPlace(simplestats.median(x));
+        description.Sum = Statistics.ToDecimalPlace(simplestats.sum(x));
+        description.Min = Statistics.ToDecimalPlace(simplestats.min(x));
+        description.Max = Statistics.ToDecimalPlace(simplestats.max(x));
+        description.Std =  Statistics.ToDecimalPlace(simplestats.standardDeviation(x));
+        description.Variance = Statistics.ToDecimalPlace(simplestats.variance(x));
+        description.Skew = Statistics.ToDecimalPlace(simplestats.sampleSkewness(x));
+        description.Kurtosis = Statistics.ToDecimalPlace(simplestats.sampleKurtosis(x));
         description.HistogramRange = 250;
-        description.Frequency = Statistics.toDecimalPlace(Statistics.FrequencyTest(x, description.HistogramRange));
         description.Histogram = Statistics.Histogram(x, description.HistogramRange);
+        description.Frequency = Statistics.ToDecimalPlace(Statistics.FrequencyTestBin(description.Histogram));
         return description;
     }
 }

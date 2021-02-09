@@ -5,7 +5,7 @@ export class Histogram {
     public readonly BinRange : number;
 
     get Uniformity() : number {
-        return Statistics.toDecimalPlace(Statistics.FrequencyTestBin(this.Bins), 2);
+        return Statistics.ToDecimalPlace(Statistics.FrequencyTestBin(this.Bins), 2);
     }
 
     get Max() : [number, number] {

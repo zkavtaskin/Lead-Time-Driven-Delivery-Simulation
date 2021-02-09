@@ -85,9 +85,25 @@ export class Statistics {
         return choices;
     }
 
-    public static toDecimalPlace(value : number, decimalPlaces : number = 1) : number {
+    public static ToDecimalPlace(value : number, decimalPlaces : number = 1) : number {
       const diviser =  Math.pow(10, decimalPlaces);
       return Math.round((value + Number.EPSILON) * diviser) / diviser;
+    }
+
+    public static Quartiles(sample : Array<number>) : [number, number, number] {
+      const x = sample.slice().sort((a,b) => a-b);
+      const q1Index  = x.length * (1/4), 
+            q2Index  = x.length * (2/4), 
+            q3Index  = x.length * (3/4);
+
+      return [Statistics.quartile(x, q1Index), Statistics.quartile(x, q2Index), Statistics.quartile(x, q3Index)];
+    }
+
+    private static quartile(x : Array<number>, quartileIndex : number) : number {
+      if(Math.floor(quartileIndex) == quartileIndex) {
+        return x[quartileIndex-1];
+      }
+      return (x[Math.floor(quartileIndex)-1] + x[Math.ceil(quartileIndex)-1]) / 2;
     }
     
     /**
@@ -96,8 +112,7 @@ export class Statistics {
      * @param sampleB independent group B
      */
     public static MoodsMedianTest(sampleA : Array<number>, sampleB : Array<number>) : Boolean {
-      let samples = [].concat(sampleA).concat(sampleB).sort();
-      const totalMedian = simplestats.median(samples);
+      const totalMedian = simplestats.median([].concat(sampleA).concat(sampleB));
 
       //2X2 contingency table
       const sampleAGrtnLen = sampleA.filter(v => v > totalMedian).length;

@@ -41,7 +41,7 @@ export abstract class SoftwareExperiment extends Experiment  {
     }
 
     protected controlGroup(): TestResult {
-        const histogram = this.Test(() => {
+        const histogram = this.Sample(() => {
             const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, null);
             return teamSimulation.Run().GetRuntimeMetrics()
         });
@@ -56,7 +56,7 @@ export abstract class SoftwareExperiment extends Experiment  {
         const result = randomForest.Search(30);
 
 
-        const histogram = this.Test(() => {
+        const histogram = this.Sample(() => {
             const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, decoder.Decode(result.Encoding) as ((a : Story, b : Story) => number));
             return teamSimulation.Run().GetRuntimeMetrics()
         });
