@@ -1,4 +1,5 @@
 import * as simplestats from 'simple-statistics'
+import { StatisticsDescriptive } from './StatisticsDescriptive';
 
 export class Statistics {
     /***
@@ -110,8 +111,9 @@ export class Statistics {
      * @description Moods Median Test of Significance based on  https://sixsigmastudyguide.com/moods-median-non-parametric-hypothesis-test/
      * @param sampleA independent group A
      * @param sampleB independent group B
+     * @returns boolean true=No difference (Not Rejected) false=Significant difference (Rejected) 
      */
-    public static MoodsMedianTest(sampleA : Array<number>, sampleB : Array<number>) : Boolean {
+    public static MoodsMedianTest(sampleA : Array<number>, sampleB : Array<number>) : boolean {
       const totalMedian = simplestats.median([].concat(sampleA).concat(sampleB));
 
       //2X2 contingency table
@@ -137,6 +139,21 @@ export class Statistics {
         (sampleBNotGrtnLen - sampleBNotGrtnLenChi)**2 / sampleBNotGrtnLenChi;
 
       //significance level testing
-      return simplestats.chiSquaredDistributionTable[1][0.05] <= chiSquare;
+      return simplestats.chiSquaredDistributionTable[1][0.05] > chiSquare;
     }
+
+    public static Describe(x : Array<number>) : StatisticsDescriptive {
+        const description = new StatisticsDescriptive();
+        description.Median = Statistics.ToDecimalPlace(simplestats.median(x));
+        description.Sum = Statistics.ToDecimalPlace(simplestats.sum(x));
+        description.Min = Statistics.ToDecimalPlace(simplestats.min(x));
+        description.Max = Statistics.ToDecimalPlace(simplestats.max(x));
+        description.Skew = Statistics.ToDecimalPlace(simplestats.sampleSkewness(x));
+        description.Kurtosis = Statistics.ToDecimalPlace(simplestats.sampleKurtosis(x));
+        description.Quartiles = Statistics.Quartiles(x);
+        description.HistogramRange = 250;
+        description.Histogram = Statistics.Histogram(x, description.HistogramRange);
+        description.Frequency = Statistics.ToDecimalPlace(Statistics.FrequencyTestBin(description.Histogram));
+        return description;
+    } 
 }

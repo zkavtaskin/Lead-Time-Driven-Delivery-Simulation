@@ -10,6 +10,7 @@ export class StatisticsDescriptive {
     Count :number;
     Sum   :number;
     Frequency :number;
+    Quartiles : [number, number, number];
     Histogram : Array<number>;
     HistogramRange : number;
 }

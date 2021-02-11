@@ -99,11 +99,11 @@ describe('Statistics', () => {
         const actual = Statistics.Choice([1,2,3], 1, [0, 1, 0]);
         expect(actual).to.eql([2]);
     }),
-    it('MoodsMedianTest, null hypothesis not rejected, returns false', () => {
+    it('MoodsMedianTest, null hypothesis not rejected, returns true', () => {
         const sampleA = [1, 14, 19, 12, 11, 15, 20, 5, 21, 15, 15, 28, 3, 6];
         const sampleB = [16, 17, 19, 10, 31, 22, 26, 24, 27, 32, 14, 8, 12, 11];
         const actual = Statistics.MoodsMedianTest(sampleA, sampleB);
-        expect(actual).to.eql(false);
+        expect(actual).to.eql(true);
     }),
     it('Quartiles, null hypothesis not rejected, returns false', () => {
         const sampleA = [1, 14, 19, 12, 11, 15, 20, 5, 21, 15, 15, 28, 3, 6];

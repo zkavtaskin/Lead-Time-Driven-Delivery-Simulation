@@ -2,9 +2,9 @@ import { TeamConfig} from "../Simulation/TeamConfig"
 import { MemberConfig } from "../Simulation/MemberConfig"
 import { BacklogConfig } from "../Simulation/BacklogConfig"
 import { Statistics } from "../Simulation/Statistics"
-import { SoftwareExperiment } from "./SoftwareExperiment"
+import { SoftwareTest } from "./SoftwareTest"
 
-export class ScrumKanbanExperiment extends SoftwareExperiment {
+export class ScrumKanbanTest extends SoftwareTest {
 
     public readonly Name: string = "Scrum Kanban";
 

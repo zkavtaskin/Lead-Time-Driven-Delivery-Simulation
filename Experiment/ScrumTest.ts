@@ -1,10 +1,10 @@
 import { TeamConfig} from "../Simulation/TeamConfig"
 import { MemberConfig } from "../Simulation/MemberConfig"
 import { BacklogConfig } from "../Simulation/BacklogConfig"
-import { SoftwareExperiment } from "./SoftwareExperiment"
+import { SoftwareTest } from "./SoftwareTest"
 import { Statistics } from "../Simulation/Statistics"
 
-export class ScrumExperiment extends SoftwareExperiment {
+export class ScrumTest extends SoftwareTest {
 
     public readonly Name: string = "Scrum";
 

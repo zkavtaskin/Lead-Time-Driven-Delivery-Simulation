@@ -1,10 +1,11 @@
-import { Experiment } from "./Experiment/Experiment";
-import {ScrumKanbanExperiment} from "./Experiment/ScrumKanbanExperiment"
-import {ScrumExperiment} from "./Experiment/ScrumExperiment"
+import { Test } from "./Experiment/Test";
+import {ScrumKanbanTest} from "./Experiment/ScrumKanbanTest"
+import {ScrumTest} from "./Experiment/ScrumTest"
 import {WaterfallExperiment} from "./Experiment/WaterfallExperiment"
-import {ScrumPartialStackExperiment} from "./Experiment/ScrumPartialStackExperiment"
+import {ScrumPartialStackTest} from "./Experiment/ScrumPartialStackTest"
 
-const experiments = new Array<Experiment>(new ScrumExperiment(), new ScrumKanbanExperiment(), new ScrumPartialStackExperiment(), new WaterfallExperiment());
+const experiments = new Array<Test>(new ScrumTest(), new ScrumKanbanTest(), new ScrumPartialStackTest(), new WaterfallExperiment());
+
 
 console.log(`
 Experiments search for:
@@ -23,18 +24,23 @@ ${experiment.Description}
 
 # Assumptions
 ${results.Assumptions.reduce((s,a,i) => s+((i+1) + ": " + a[0] + " => " + a[1] + "\n"), "")} 
-# Setting
-Bin Range: 0-${results.Control.BinRange}
-# Control - Lead Time
-Bin Max: ${results.Control.Max[0] * results.Control.BinRange}
-Bin Uniformity Deviation: ${results.Control.Uniformity}
-Bin Quartiles: Q1=${results.Control.Quartiles[0] * results.Control.BinRange}-${(results.Control.Quartiles[0]+1) * results.Control.BinRange}, Q2=${results.Control.Quartiles[1] * results.Control.BinRange}-${(results.Control.Quartiles[1]+1) * results.Control.BinRange}, Q3=${results.Control.Quartiles[2] * results.Control.BinRange}-${(results.Control.Quartiles[2]+1) * results.Control.BinRange}
 
-# Experiment - Lead Time
-Conditions: ${results.ExperimentConditions}
-Bin Max: ${results.Experiment.Max[0] * results.Experiment.BinRange}
-Bin Uniformity Deviation: ${results.Experiment.Uniformity}
-Bin Quartiles: Q1=${results.Experiment.Quartiles[0] * results.Experiment.BinRange}-${(results.Experiment.Quartiles[0]+1) * results.Experiment.BinRange}, Q2=${results.Experiment.Quartiles[1] * results.Experiment.BinRange}-${(results.Experiment.Quartiles[1]+1) * results.Experiment.BinRange}, Q3=${results.Experiment.Quartiles[2] * results.Experiment.BinRange}-${(results.Experiment.Quartiles[2]+1) * results.Experiment.BinRange}
+# Control 
+## Lead Time
+Max: ${results.Control.LeadTime.Max}, Uniformity Deviation: ${results.Control.LeadTime.Frequency}
+Quartiles: Q1=${results.Control.LeadTime.Quartiles[0]}, Q2=${results.Control.LeadTime.Quartiles[1]}, Q2=${results.Control.LeadTime.Quartiles[2]}
+## Cycle Time
+Max: ${results.Control.CycleTime.Max}, Uniformity Deviation: ${results.Control.CycleTime.Frequency}
+Quartiles: Q1=${results.Control.CycleTime.Quartiles[0]}, Q2=${results.Control.CycleTime.Quartiles[1]}, Q2=${results.Control.CycleTime.Quartiles[2]}
+
+# Experiment 
+Conditions: ${results.Experiment.Conditions}
+## Lead Time
+Max: ${results.Experiment.LeadTime.Max}, Uniformity Deviation: ${results.Experiment.LeadTime.Frequency}
+Quartiles: Q1=${results.Experiment.LeadTime.Quartiles[0]}, Q2=${results.Experiment.LeadTime.Quartiles[1]}, Q2=${results.Experiment.LeadTime.Quartiles[2]}
+## Cycle Time
+Max: ${results.Experiment.CycleTime.Max}, Uniformity Deviation: ${results.Experiment.CycleTime.Frequency}
+Quartiles: Q1=${results.Experiment.CycleTime.Quartiles[0]}, Q2=${results.Experiment.CycleTime.Quartiles[1]}, Q2=${results.Experiment.CycleTime.Quartiles[2]}
 
 # Null Hypothesis: ${results.NullHypothesis ? "No difference (Not Rejected)" : "Significant difference (Rejected)"}
 ##############################END###################################

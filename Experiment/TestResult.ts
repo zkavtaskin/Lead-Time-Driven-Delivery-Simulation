@@ -1,13 +1,16 @@
-import { Backlog } from "../Simulation/Backlog";
-import { BacklogRuntimeMetrics } from "../Simulation/BacklogRuntimeMetrics";
-import { Histogram } from "./Histogram";
+import { StatisticsDescriptive } from "../Simulation/StatisticsDescriptive";
+import { Result } from "./Result";
 
 export class TestResult {
-    public readonly Metrics : Histogram;
-    public readonly Conditions : Array<[string, string]>;
+    public readonly Assumptions : Array<[string, boolean]>;
+    public readonly Control : Result;
+    public readonly Experiment : Result;
+    public readonly NullHypothesis : boolean
 
-    constructor(metrics:Histogram, conditions:Array<[string, string]>) {
-        this.Metrics = metrics;
-        this.Conditions = conditions;
+    constructor(assumptions:Array<[string, boolean]>, control: Result, experiment:Result, nullHypothesis:boolean) {
+        this.Assumptions = assumptions;
+        this.Control = control;
+        this.Experiment = experiment;
+        this.NullHypothesis = nullHypothesis;
     }
 }
