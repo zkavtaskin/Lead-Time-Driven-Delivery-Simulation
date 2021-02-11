@@ -57,12 +57,6 @@ describe('Statistics', () => {
         const histogram = Statistics.Histogram([5, 5, 6, 6, 7, 8, 9, 10], 2)
         expect(histogram).to.be.eqls([4, 2, 2]);
     }),
-    it('HistogramSum, 2 diverse histograms to be summed up', () => {
-        const histogramNotFull = [0, 12]
-        const histogramFull = [1,2,3,4,5];
-        const actual = Statistics.HistogramSum([histogramNotFull, histogramFull]);
-        expect([1, 14, 3, 4, 5]).to.be.eqls(actual);
-    }),
     it('Choice, p is not equals 1, throws error', () => {
         const actual = () => Statistics.Choice([1,2,3], 1, [0.2]);
         expect(actual).to.throw();

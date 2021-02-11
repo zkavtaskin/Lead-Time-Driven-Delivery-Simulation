@@ -1,6 +1,3 @@
-import { Backlog } from "../Simulation/Backlog";
-import { BacklogRuntimeMetrics } from "../Simulation/BacklogRuntimeMetrics";
-import { Histogram } from "./Histogram";
 
 export class Data {
     public readonly LeadTime : Array<number>;

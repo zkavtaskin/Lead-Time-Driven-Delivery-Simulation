@@ -47,14 +47,6 @@ export class Statistics {
         return bins;
     }
 
-    public static HistogramSum(histograms : Array<Array<number>>) : Array<number> {
-        const map = new Map<number, number>();
-        histograms.forEach(((histogram) => 
-            histogram.forEach((bin, i) => map.set(i, map.has(i) ? map.get(i) + bin : bin))
-        ));
-        return Array.from(map.values());
-    }
-
     public static Choice(events: Array<number>, size : number, probability : Array<number> = null) : Array<number> {
         if(probability != null) {
           const pSum = probability.reduce((sum, v) => sum + v);
