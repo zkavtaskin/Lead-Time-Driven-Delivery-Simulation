@@ -28,7 +28,7 @@ export abstract class Test {
         return new TestResult(assumptions, new Result(control), new Result(experiment), nullHypothesis);
     }
 
-    protected Sample(experiment : () => BacklogRuntimeMetrics, nSamples : number = 15) : [Array<number>, Array<number>] {
+    protected Sample(experiment : () => BacklogRuntimeMetrics, nSamples : number = 30) : [Array<number>, Array<number>] {
         let leadTimeSamples = new Array<number>(),
               cycleTimeSamples = new Array<number>();
         for(let i = 0; i < nSamples; i++) {

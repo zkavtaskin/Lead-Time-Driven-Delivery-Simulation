@@ -27,22 +27,24 @@ ${results.Assumptions.reduce((s,a,i) => s+((i+1) + ": " + a[0] + " => " + a[1] +
 
 # Control 
 ## Lead Time
-Max: ${results.Control.LeadTime.Max}, Uniformity Deviation: ${results.Control.LeadTime.Frequency}
-Quartiles: Q1=${results.Control.LeadTime.Quartiles[0]}, Q2=${results.Control.LeadTime.Quartiles[1]}, Q2=${results.Control.LeadTime.Quartiles[2]}
+Uniformity Deviation: ${results.Control.LeadTime.Frequency}
+Day *when* work was delivered: 
+First 25% delivered on day ${results.Control.LeadTime.Quartiles[0]}, 50% ${results.Control.LeadTime.Quartiles[1]}, 75% ${results.Control.LeadTime.Quartiles[2]}, last 25% ${results.Control.LeadTime.Max}
 ## Cycle Time
-Max: ${results.Control.CycleTime.Max}, Uniformity Deviation: ${results.Control.CycleTime.Frequency}
-Quartiles: Q1=${results.Control.CycleTime.Quartiles[0]}, Q2=${results.Control.CycleTime.Quartiles[1]}, Q2=${results.Control.CycleTime.Quartiles[2]}
+*Time taken* to deliver once started: 
+25% has taken ${results.Control.CycleTime.Quartiles[0]} day(s), 50% ${results.Control.CycleTime.Quartiles[1]}, 75% ${results.Control.CycleTime.Quartiles[2]}, last 25% ${results.Control.CycleTime.Max}
 
 # Experiment 
 Conditions: ${results.Experiment.Conditions}
-## Lead Time
-Max: ${results.Experiment.LeadTime.Max}, Uniformity Deviation: ${results.Experiment.LeadTime.Frequency}
-Quartiles: Q1=${results.Experiment.LeadTime.Quartiles[0]}, Q2=${results.Experiment.LeadTime.Quartiles[1]}, Q2=${results.Experiment.LeadTime.Quartiles[2]}
+## Lead Time 
+Uniformity Deviation: ${results.Experiment.LeadTime.Frequency}
+Day *when* work was delivered: 
+First 25% delivered on day ${results.Experiment.LeadTime.Quartiles[0]}, 50% ${results.Experiment.LeadTime.Quartiles[1]}, 75% ${results.Experiment.LeadTime.Quartiles[2]}, last 25% ${results.Experiment.LeadTime.Max}
 ## Cycle Time
-Max: ${results.Experiment.CycleTime.Max}, Uniformity Deviation: ${results.Experiment.CycleTime.Frequency}
-Quartiles: Q1=${results.Experiment.CycleTime.Quartiles[0]}, Q2=${results.Experiment.CycleTime.Quartiles[1]}, Q2=${results.Experiment.CycleTime.Quartiles[2]}
+*Time taken* to deliver once started: 
+25% has taken ${results.Experiment.CycleTime.Quartiles[0]} day(s), 50% ${results.Experiment.CycleTime.Quartiles[1]}, 75% ${results.Experiment.CycleTime.Quartiles[2]}, last 25% ${results.Experiment.CycleTime.Max}
 
-# Null Hypothesis: ${results.NullHypothesis ? "No difference (Not Rejected)" : "Significant difference (Rejected)"}
+# Control vs Experiment (Null Hypothesis): ${results.NullHypothesis ? "No difference (Not Rejected)" : "Significant difference (Rejected)"}
 ##############################END###################################
 `);
 

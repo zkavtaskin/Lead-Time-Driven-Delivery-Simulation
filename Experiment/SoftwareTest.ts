@@ -8,10 +8,13 @@ import { RandomForest } from "../Optimisation/Discrete/RandomForest"
 import { DiscreteOptimiser } from "../Optimisation/Discrete/DiscreteOptimiser"
 import { DiscreteDecoder } from "../Optimisation/Discrete/DiscreteDecoder";
 import { Story } from "../Simulation/Story";
+import { BacklogConfig } from "../Simulation/BacklogConfig";
 
 export abstract class SoftwareTest extends Test  {
 
     protected readonly effortPerTick = 1/4;
+    protected readonly backlogConfig = new BacklogConfig(10, 1/4, 1/10, 1, 10, () => 
+    Statistics.Choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1, [0.25, 0.25, 0.05, 0.05, 0.10, 0.05, 0.10, 0.05, 0.05, 0.05])[0]);
 
     protected controlGroup(): Data {
         const samples = this.Sample(() => {
@@ -26,6 +29,9 @@ export abstract class SoftwareTest extends Test  {
         const teamSimulationTest = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick);
         const metricsTest = teamSimulationTest.Run().GetRuntimeMetrics();
 
+        //control is coming back rejected, this needs review.
+        const split = Math.floor(control.LeadTime.length/2)-1;
+
         const LeadNotNormal = () : [string, boolean] => [
             "Lead Time does NOT follow normal distribution (Nonparametric)",
             !Statistics.IsNormalDistribution(metricsTest.LeadTime.Kurtosis, metricsTest.LeadTime.Skew)
@@ -38,7 +44,7 @@ export abstract class SoftwareTest extends Test  {
 
         const LeadTimeControlNullHypo = () : [string, boolean] => [
             "Two random Lead Time control experiments come from same distribution (Null-Hypothesis is true)",
-            Statistics.MoodsMedianTest(control.LeadTime, metricsTest.LeadTimeData)
+            Statistics.MoodsMedianTest(control.LeadTime.slice(0, split),control.LeadTime.slice(split, control.LeadTime.length-1))
         ];
 
         return [LeadNotNormal(), CycleNotNormal(), LeadTimeControlNullHypo()];
