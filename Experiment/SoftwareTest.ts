@@ -29,9 +29,7 @@ export abstract class SoftwareTest extends Test  {
         const teamSimulationTest = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick);
         const metricsTest = teamSimulationTest.Run().GetRuntimeMetrics();
 
-        //control is coming back rejected, this needs review.
-        const split = Math.floor(control.LeadTime.length/2)-1;
-
+        //need more samples
         const LeadNotNormal = () : [string, boolean] => [
             "Lead Time does NOT follow normal distribution (Nonparametric)",
             !Statistics.IsNormalDistribution(metricsTest.LeadTime.Kurtosis, metricsTest.LeadTime.Skew)
@@ -44,7 +42,7 @@ export abstract class SoftwareTest extends Test  {
 
         const LeadTimeControlNullHypo = () : [string, boolean] => [
             "Two random Lead Time control experiments come from same distribution (Null-Hypothesis is true)",
-            Statistics.MoodsMedianTest(control.LeadTime.slice(0, split),control.LeadTime.slice(split, control.LeadTime.length-1))
+            Statistics.MoodsMedianTest(metricsTest.LeadTimeData, control.LeadTime)
         ];
 
         return [LeadNotNormal(), CycleNotNormal(), LeadTimeControlNullHypo()];
