@@ -19,7 +19,7 @@ export abstract class SoftwareTest extends Test  {
     protected controlGroup(): Data {
         const samples = this.Sample(() => {
             const teamSimulation = new TeamSimulation(this.teamConfig, this.backlogConfig, this.effortPerTick, null);
-            return teamSimulation.Run();
+            return teamSimulation.Run().Backlog;
         });
 
         return new Data(samples[0], samples[1], null);
@@ -27,7 +27,7 @@ export abstract class SoftwareTest extends Test  {
 
     protected assumptions(control : Data) : Array<[string, boolean]> {
         const teamSimulationTest = new TeamSimulation(this.teamConfig, this.backlogConfig, this.effortPerTick);
-        const metricsTest = teamSimulationTest.Run();
+        const metricsTest = teamSimulationTest.Run().Backlog;
 
         const LeadNotNormal = () : [string, boolean] => [
             "Lead Time does NOT follow normal distribution (Nonparametric)",
@@ -55,7 +55,7 @@ export abstract class SoftwareTest extends Test  {
 
         const samples = this.Sample(() => {
             const teamSimulation = new TeamSimulation(this.teamConfig, this.backlogConfig, this.effortPerTick, decoder.Decode(result.Encoding) as ((a : Story, b : Story) => number));
-            return teamSimulation.Run();
+            return teamSimulation.Run().Backlog;
         });
 
         return new Data(samples[0], samples[1], [["Sort",result.EncodingDecoded.join(", ")]]);

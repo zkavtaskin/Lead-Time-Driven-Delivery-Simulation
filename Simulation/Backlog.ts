@@ -19,6 +19,10 @@ export class Backlog {
       return this.stories.length;
     }
 
+    get Metrics() : BacklogRuntimeMetrics {
+      return new BacklogRuntimeMetrics(this.stories);
+    }
+
     constructor(stories :Array<Story>, sortFunc :  (a : Story, b : Story) => number = null) {
       this.init(stories, sortFunc);
     }
@@ -55,10 +59,6 @@ export class Backlog {
 
     Find(id:number) :Story {
       return this.storiesMap.get(id);
-    }
-
-    GetRuntimeMetrics() : BacklogRuntimeMetrics {
-      return new BacklogRuntimeMetrics(this.stories);
     }
 
     public static Generate(memberConfig : Array<MemberConfig>, backlogConfig :BacklogConfig, sortFunc :  (a : Story, b : Story) => number = null) : Backlog {

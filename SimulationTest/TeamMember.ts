@@ -18,7 +18,7 @@ describe('TeamMember', () => {
         let clock = new Clock(1);
 
         let teamMember = new TeamMember(0, membersConfig[0], teamGraph);
-        teamMember.DoWork(backlog, clock);
+        teamMember.Work(backlog, clock);
         expect(backlog.IsCompleted).to.equal(true);
     }),
     it('Team Member is out of time, story is not completed', () => {
@@ -33,7 +33,7 @@ describe('TeamMember', () => {
         let clock = new Clock(1);
 
         let teamMember = new TeamMember(0, membersConfig[0], teamGraph);
-        teamMember.DoWork(backlog, clock);
+        teamMember.Work(backlog, clock);
         expect(backlog.IsCompleted).to.equal(false);
     }),
     it('Team Member can not complete work in one turn, with 2 turns completes the work', () => {
@@ -48,8 +48,8 @@ describe('TeamMember', () => {
         let clock = new Clock(5);
 
         let teamMember = new TeamMember(0, membersConfig[0], teamGraph);
-        teamMember.DoWork(backlog, clock);
-        teamMember.DoWork(backlog, clock);
+        teamMember.Work(backlog, clock);
+        teamMember.Work(backlog, clock);
         expect(backlog.IsCompleted).to.equal(true);
     }),
     it('Team Member can not complete work as there is prerequisite', () => {
@@ -64,7 +64,7 @@ describe('TeamMember', () => {
         let clock = new Clock(1);
 
         let teamMember = new TeamMember(0, membersConfig[0], teamGraph);
-        teamMember.DoWork(backlog, clock);
+        teamMember.Work(backlog, clock);
         expect(backlog.IsCompleted).to.equal(false);
     }),
     it('Team Member can  complete work as  prerequisite is completed', () => {
@@ -79,8 +79,8 @@ describe('TeamMember', () => {
         let clock = new Clock(1);
 
         let teamMember = new TeamMember(0, membersConfig[0], teamGraph);
-        teamMember.DoWork(backlog, clock);
-        teamMember.DoWork(backlog, clock);
+        teamMember.Work(backlog, clock);
+        teamMember.Work(backlog, clock);
         expect(backlog.IsCompleted).to.equal(true);
     }),
 
@@ -98,9 +98,9 @@ describe('TeamMember', () => {
         let clock = new Clock(5);
 
         let DevTeamMember = new TeamMember(1, membersConfig[1], teamGraph);
-        DevTeamMember.DoWork(backlog, clock);
+        DevTeamMember.Work(backlog, clock);
         let POTeamMember = new TeamMember(0, membersConfig[0], teamGraph);
-        POTeamMember.DoWork(backlog, clock);
+        POTeamMember.Work(backlog, clock);
 
         expect(backlog.IsCompleted).to.equal(false);
     }),
@@ -118,9 +118,9 @@ describe('TeamMember', () => {
         let clock = new Clock(5);
 
         let POTeamMember = new TeamMember(0, membersConfig[0], teamGraph);
-        POTeamMember.DoWork(backlog, clock);
+        POTeamMember.Work(backlog, clock);
         let DevTeamMember = new TeamMember(1, membersConfig[1], teamGraph);
-        DevTeamMember.DoWork(backlog, clock);
+        DevTeamMember.Work(backlog, clock);
 
         expect(backlog.IsCompleted).to.equal(true);
     }),
@@ -138,9 +138,9 @@ describe('TeamMember', () => {
         let clock = new Clock(5);
 
         let POTeamMember = new TeamMember(0, membersConfig[0], teamGraph);
-        POTeamMember.DoWork(backlog, clock);
+        POTeamMember.Work(backlog, clock);
         let DevTeamMember = new TeamMember(1, membersConfig[1], teamGraph);
-        DevTeamMember.DoWork(backlog, clock);
+        DevTeamMember.Work(backlog, clock);
 
         expect(backlog.IsCompleted).to.equal(false);
         expect(backlog.Find(0).Tasks[0].Actual > backlog.Find(0).Tasks[0].Original).to.equal(true);

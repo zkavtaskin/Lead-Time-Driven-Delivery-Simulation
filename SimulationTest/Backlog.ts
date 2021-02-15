@@ -195,7 +195,7 @@ describe('Backlog', () => {
             story.Complete(i++);
         }
 
-        const metricsOriginal = backlog.GetRuntimeMetrics();
+        const metricsOriginal = backlog.Metrics;
 
         backlog.Reset(null);
         
@@ -205,7 +205,7 @@ describe('Backlog', () => {
             story.Complete(i++);
         }
 
-        const metricsReset = backlog.GetRuntimeMetrics();  
+        const metricsReset = backlog.Metrics;  
 
         expect(metricsOriginal).to.eql(metricsReset)
     })

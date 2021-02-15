@@ -1,6 +1,7 @@
 import { Clock } from "./Clock";
 import { Backlog } from "./Backlog";
 import { MemberConfig } from "./MemberConfig";
+import { TeamMemberMetrics } from "./TeamMemberMetrics";
 
 export class TeamMember {
   
@@ -11,13 +12,17 @@ export class TeamMember {
     private skipPrerequisite: number;
     private skipNotMyTurn: number;
 
+    get Metrics() : TeamMemberMetrics {
+      return new TeamMemberMetrics(this.id, this.timeIdle, this.skipPrerequisite, this.skipNotMyTurn);
+    }
+
     constructor(id :number, member:MemberConfig, teamGraph: Array<Array<number>>) {
       this.id = id;
       this.member = member;
       this.teamGraph = teamGraph;
     }
 
-    public DoWork(backlog :Backlog, clock :Clock) : void {
+    public Work(backlog :Backlog, clock :Clock) : void {
       let timeRemaining :number = this.member.Capacity * clock.EffortSize;
 
       for(let story of backlog.Iterator()) {

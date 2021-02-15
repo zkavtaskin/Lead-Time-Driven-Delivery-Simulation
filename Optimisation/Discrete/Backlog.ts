@@ -39,7 +39,7 @@ export class Backlog implements DiscreteOptimiser {
         const teamSimulation = new TeamSimulation(this.teamConfig, this.backlogConfig, this.effortSize, null, true);
         let objectiveFunction = (combination) => {
             teamSimulation.Reset(this.backlogDecoder.Decode(combination) as ((a : Story, b : Story) => number));
-            const metrics = teamSimulation.Run()[_class];
+            const metrics = teamSimulation.Run().Backlog[_class];
             const value = metrics[property];
             if(value < min) {
                 min = value;

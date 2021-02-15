@@ -1,19 +1,19 @@
 import { Backlog } from "./Backlog";
 import { Clock } from "./Clock";
-import { TeamMember } from "./TeamMember";
+import { Team } from "./Team";
 import { BacklogConfig } from "./BacklogConfig";
 import { TeamConfig } from "./TeamConfig";
 import { Story } from "./Story";
 import * as simplestats from 'simple-statistics'
-import { BacklogRuntimeMetrics } from "./BacklogRuntimeMetrics";
+import { TeamMetrics } from "./TeamMetrics";
 
 
 export class TeamSimulation {
     private clock :Clock;
     private backlog :Backlog;
-    private teamMembers :Array<TeamMember>;
     private teamConfig : TeamConfig;
     private backlogConfig : BacklogConfig;
+    private team : Team;
 
     public get TeamConfig() : TeamConfig {
       return this.teamConfig;
@@ -31,10 +31,8 @@ export class TeamSimulation {
 
       this.clock = new Clock(effortSizePerTick);
       this.backlog = Backlog.Generate(this.teamConfig.Members, this.backlogConfig, backlogSortFunc);
-      
-      this.teamMembers = new Array<TeamMember>();
-      this.teamConfig.Members.forEach((member, index) => this.teamMembers.push(new TeamMember(index, member, this.teamConfig.Graph)));
-        
+      this.team = new Team(this.teamConfig, this.backlog, this.clock);
+
       /***
        * >Graph "feedback" upstream tick normalisation, this adds weight to the ratio to prevent frequent feeback:
        * Let Cc be member capacity, Cr be  member contribution, S be average size of work,
@@ -68,13 +66,10 @@ export class TeamSimulation {
     public Reset(backlogSortFunc : (a : Story, b : Story) => number = null) {
       this.clock = new Clock(this.clock.EffortSize);
       this.backlog.Reset(backlogSortFunc);
+      this.team = new Team(this.teamConfig, this.backlog, this.clock);
     }
 
-    public Run() : BacklogRuntimeMetrics {
-      while(!this.backlog.IsCompleted) {
-        this.teamMembers.forEach(member => member.DoWork(this.backlog, this.clock));
-        this.clock.Tick();
-      }
-      return this.backlog.GetRuntimeMetrics();
+    public Run() : TeamMetrics {
+      return this.team.Work();
     }
   }

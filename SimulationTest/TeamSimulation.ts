@@ -54,9 +54,9 @@ describe('TeamSimulation', () => {
         const backlogConfig = new BacklogConfig(20, 0, 0, 1, 10);
 
         const teamSimulation = new TeamSimulation(teamConfig, backlogConfig, 0.5, null);
-        const metricsOriginal = teamSimulation.Run();
+        const metricsOriginal = teamSimulation.Run().Backlog;
         teamSimulation.Reset();
-        const metricsReset = teamSimulation.Run();
+        const metricsReset = teamSimulation.Run().Backlog;
         expect(metricsOriginal.LeadTime.Sum).to.not.equal(metricsReset.LeadTime.Sum);
     }),
 
@@ -70,9 +70,9 @@ describe('TeamSimulation', () => {
         const backlogConfig = new BacklogConfig(20, 0, 0, 1, 10);
 
         const teamSimulation = new TeamSimulation(teamConfig, backlogConfig, 0.5, null, true);
-        const metricsOriginal = teamSimulation.Run();
+        const metricsOriginal = teamSimulation.Run().Backlog;
         teamSimulation.Reset();
-        const metricsReset = teamSimulation.Run();
+        const metricsReset = teamSimulation.Run().Backlog;
         expect(metricsOriginal.LeadTime.Sum).to.equal(metricsReset.LeadTime.Sum);
     }),
 
