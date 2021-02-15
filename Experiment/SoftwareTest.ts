@@ -29,7 +29,6 @@ export abstract class SoftwareTest extends Test  {
         const teamSimulationTest = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick);
         const metricsTest = teamSimulationTest.Run().GetRuntimeMetrics();
 
-        //need more samples
         const LeadNotNormal = () : [string, boolean] => [
             "Lead Time does NOT follow normal distribution (Nonparametric)",
             !Statistics.IsNormalDistribution(metricsTest.LeadTime.Kurtosis, metricsTest.LeadTime.Skew)

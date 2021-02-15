@@ -27,8 +27,8 @@ ${results.Assumptions.reduce((s,a,i) => s+((i+1) + ": " + a[0] + " => " + a[1] +
 
 # Control 
 ## Lead Time
-Uniformity Deviation: ${results.Control.LeadTime.Frequency}
-Day *when* work was delivered: 
+Uniformity Deviation: ${results.Control.LeadTime.Frequency}, Skew: ${results.Control.LeadTime.Skew}
+*When* delivered: 
 First 25% delivered on day ${results.Control.LeadTime.Quartiles[0]}, 50% ${results.Control.LeadTime.Quartiles[1]}, 75% ${results.Control.LeadTime.Quartiles[2]}, last 25% ${results.Control.LeadTime.Max}
 ## Cycle Time
 *Time taken* to deliver once started: 
@@ -37,8 +37,8 @@ First 25% delivered on day ${results.Control.LeadTime.Quartiles[0]}, 50% ${resul
 # Experiment 
 Conditions: ${results.Experiment.Conditions}
 ## Lead Time 
-Uniformity Deviation: ${results.Experiment.LeadTime.Frequency}
-Day *when* work was delivered: 
+Uniformity Deviation: ${results.Experiment.LeadTime.Frequency}, Skew: ${results.Experiment.LeadTime.Skew}
+*When* delivered: 
 First 25% delivered on day ${results.Experiment.LeadTime.Quartiles[0]}, 50% ${results.Experiment.LeadTime.Quartiles[1]}, 75% ${results.Experiment.LeadTime.Quartiles[2]}, last 25% ${results.Experiment.LeadTime.Max}
 ## Cycle Time
 *Time taken* to deliver once started: 
