@@ -14,7 +14,7 @@ describe('TeamSimulation', () => {
          [1, 0]]);
         const backlogConfig = new BacklogConfig(1, 0, 0, 1);
 
-        const teamSimulation = new TeamSimulation("", teamConfig, backlogConfig, 0.5);
+        const teamSimulation = new TeamSimulation(teamConfig, backlogConfig, 0.5);
         expect(teamSimulation.TeamConfig.Graph[0][1]).to.equal(1/2);
     }),
 
@@ -27,7 +27,7 @@ describe('TeamSimulation', () => {
          [1, 0]]);
         const backlogConfig = new BacklogConfig(1, 0, 0, 1);
 
-        const teamSimulation = new TeamSimulation("", teamConfig, backlogConfig, 0.25);
+        const teamSimulation = new TeamSimulation(teamConfig, backlogConfig, 0.25);
         expect(teamSimulation.TeamConfig.Graph[0][1]).to.equal(0.25);
     }),
 
@@ -40,7 +40,7 @@ describe('TeamSimulation', () => {
          [1, 0]]);
         const backlogConfig = new BacklogConfig(1, 0, 0, 1);
 
-        const teamSimulation = new TeamSimulation("", teamConfig, backlogConfig, 0.5, null, true);
+        const teamSimulation = new TeamSimulation(teamConfig, backlogConfig, 0.5, null, true);
         expect(teamSimulation.TeamConfig.Graph[0][1]).to.equal(0);
     }),
 
@@ -53,7 +53,7 @@ describe('TeamSimulation', () => {
          [1, 0]]);
         const backlogConfig = new BacklogConfig(20, 0, 0, 1, 10);
 
-        const teamSimulation = new TeamSimulation("", teamConfig, backlogConfig, 0.5, null);
+        const teamSimulation = new TeamSimulation(teamConfig, backlogConfig, 0.5, null);
         const metricsOriginal = teamSimulation.Run().GetRuntimeMetrics();
         teamSimulation.Reset();
         const metricsReset = teamSimulation.Run().GetRuntimeMetrics();
@@ -69,7 +69,7 @@ describe('TeamSimulation', () => {
          [1, 0]]);
         const backlogConfig = new BacklogConfig(20, 0, 0, 1, 10);
 
-        const teamSimulation = new TeamSimulation("", teamConfig, backlogConfig, 0.5, null, true);
+        const teamSimulation = new TeamSimulation(teamConfig, backlogConfig, 0.5, null, true);
         const metricsOriginal = teamSimulation.Run().GetRuntimeMetrics();
         teamSimulation.Reset();
         const metricsReset = teamSimulation.Run().GetRuntimeMetrics();
@@ -93,7 +93,7 @@ describe('TeamSimulation', () => {
          [1, 0]]);
         const backlogConfigExpected = new BacklogConfig(10, 0, 0, 1);
 
-        const teamSimulation = new TeamSimulation("", teamConfig, backlogConfig, 0.25);
+        const teamSimulation = new TeamSimulation(teamConfig, backlogConfig, 0.25);
         teamSimulation.Run();
 
         expect(teamConfig).to.eql(teamConfigExpected);

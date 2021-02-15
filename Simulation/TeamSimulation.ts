@@ -8,8 +8,6 @@ import * as simplestats from 'simple-statistics'
 
 
 export class TeamSimulation {
-
-    private name :string;
     private clock :Clock;
     private backlog :Backlog;
     private teamMembers :Array<TeamMember>;
@@ -24,8 +22,7 @@ export class TeamSimulation {
       return this.backlogConfig;
     }
 
-    constructor(name :string, teamConfig :TeamConfig, backlogConfig :BacklogConfig, effortSizePerTick :number, backlogSortFunc : (a : Story, b : Story) => number = null, deterministic :boolean = false) {
-      this.name = name;
+    constructor(teamConfig :TeamConfig, backlogConfig :BacklogConfig, effortSizePerTick :number, backlogSortFunc : (a : Story, b : Story) => number = null, deterministic :boolean = false) {
 
       //create own copy to avoid config mutation
       this.teamConfig = JSON.parse(JSON.stringify(teamConfig));

@@ -18,7 +18,7 @@ export abstract class SoftwareTest extends Test  {
 
     protected controlGroup(): Data {
         const samples = this.Sample(() => {
-            const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, null);
+            const teamSimulation = new TeamSimulation(this.teamConfig, this.backlogConfig, this.effortPerTick, null);
             return teamSimulation.Run().GetRuntimeMetrics()
         });
 
@@ -26,7 +26,7 @@ export abstract class SoftwareTest extends Test  {
     }
 
     protected assumptions(control : Data) : Array<[string, boolean]> {
-        const teamSimulationTest = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick);
+        const teamSimulationTest = new TeamSimulation(this.teamConfig, this.backlogConfig, this.effortPerTick);
         const metricsTest = teamSimulationTest.Run().GetRuntimeMetrics();
 
         const LeadNotNormal = () : [string, boolean] => [
@@ -54,7 +54,7 @@ export abstract class SoftwareTest extends Test  {
         const result = randomForest.Search(30);
 
         const samples = this.Sample(() => {
-            const teamSimulation = new TeamSimulation("*", this.teamConfig, this.backlogConfig, this.effortPerTick, decoder.Decode(result.Encoding) as ((a : Story, b : Story) => number));
+            const teamSimulation = new TeamSimulation(this.teamConfig, this.backlogConfig, this.effortPerTick, decoder.Decode(result.Encoding) as ((a : Story, b : Story) => number));
             return teamSimulation.Run().GetRuntimeMetrics()
         });
 
