@@ -7,23 +7,27 @@ export class TeamMember {
     private id: number;
     private member: MemberConfig;
     private teamGraph: Array<Array<number>>;
+    private timeIdle: number;
+    private skipPrerequisite: number;
+    private skipNotMyTurn: number;
 
     constructor(id :number, member:MemberConfig, teamGraph: Array<Array<number>>) {
       this.id = id;
       this.member = member;
       this.teamGraph = teamGraph;
     }
-  
-    public DoWork(backlog :Backlog, clock :Clock) : void{
+
+    public DoWork(backlog :Backlog, clock :Clock) : void {
       let timeRemaining :number = this.member.Capacity * clock.EffortSize;
 
-      for(let story of backlog.Iterator()){
+      for(let story of backlog.Iterator()) {
         if(timeRemaining == 0) {
           break;
         }
       
         //make sure dependencies are completed
         if((story.HasPrerequisite() && !backlog.Find(story.PrerequisiteId).IsCompleted)) {
+          this.skipPrerequisite++;
           continue;
         }
 
@@ -37,6 +41,7 @@ export class TeamMember {
         }
 
         if(storyHasUpstreamWork) {
+          this.skipNotMyTurn++;
           continue;
         }
 
@@ -58,6 +63,7 @@ export class TeamMember {
 
         story.Complete(clock.Ticks);
       }
+      this.timeIdle += timeRemaining;
     }
     
   }

@@ -5,6 +5,7 @@ import { BacklogConfig } from "./BacklogConfig";
 import { TeamConfig } from "./TeamConfig";
 import { Story } from "./Story";
 import * as simplestats from 'simple-statistics'
+import { BacklogRuntimeMetrics } from "./BacklogRuntimeMetrics";
 
 
 export class TeamSimulation {
@@ -69,11 +70,11 @@ export class TeamSimulation {
       this.backlog.Reset(backlogSortFunc);
     }
 
-    public Run() : Backlog {
+    public Run() : BacklogRuntimeMetrics {
       while(!this.backlog.IsCompleted) {
         this.teamMembers.forEach(member => member.DoWork(this.backlog, this.clock));
         this.clock.Tick();
       }
-      return this.backlog;
+      return this.backlog.GetRuntimeMetrics();
     }
   }
