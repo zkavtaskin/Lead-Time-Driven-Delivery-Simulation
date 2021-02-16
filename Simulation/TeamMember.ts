@@ -8,9 +8,9 @@ export class TeamMember {
     private id: number;
     private member: MemberConfig;
     private teamGraph: Array<Array<number>>;
-    private timeIdle: number;
-    private skipPrerequisite: number;
-    private skipNotMyTurn: number;
+    private timeIdle: number = 0;
+    private skipPrerequisite: number = 0;
+    private skipNotMyTurn: number = 0;
 
     get Metrics() : TeamMemberMetrics {
       return new TeamMemberMetrics(this.id, this.member.Name, this.timeIdle, this.skipPrerequisite, this.skipNotMyTurn);

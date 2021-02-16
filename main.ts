@@ -3,6 +3,7 @@ import {ScrumKanbanTest} from "./Experiment/ScrumKanbanTest"
 import {ScrumTest} from "./Experiment/ScrumTest"
 import {WaterfallExperiment} from "./Experiment/WaterfallExperiment"
 import {ScrumPartialStackTest} from "./Experiment/ScrumPartialStackTest"
+import { Statistics } from "./Simulation/Statistics";
 
 const experiments = new Array<Test>(new ScrumTest(), new ScrumKanbanTest(), new ScrumPartialStackTest(), new WaterfallExperiment());
 
@@ -33,6 +34,8 @@ First 25% delivered on day ${results.Control.LeadTime.Quartiles[0]}, 50% ${resul
 ## Cycle Time
 *Time taken* to deliver once started: 
 25% has taken ${results.Control.CycleTime.Quartiles[0]} day(s), 50% ${results.Control.CycleTime.Quartiles[1]}, 75% ${results.Control.CycleTime.Quartiles[2]}, last 25% ${results.Control.CycleTime.Max}
+## Team Members
+${results.Control.TeamMembers.reduce((s,m,i) => s+(m.Name + ", idle " + Statistics.ToDecimalPlace(m.TimeIdle,0) + ", skip waiting turn " + m.SkipNotMyTurn + ", skip waiting preq " + m.SkipPrerequisite + "\n"), "")} 
 
 # Experiment 
 Conditions: ${results.Experiment.Conditions}
@@ -43,6 +46,9 @@ First 25% delivered on day ${results.Experiment.LeadTime.Quartiles[0]}, 50% ${re
 ## Cycle Time
 *Time taken* to deliver once started: 
 25% has taken ${results.Experiment.CycleTime.Quartiles[0]} day(s), 50% ${results.Experiment.CycleTime.Quartiles[1]}, 75% ${results.Experiment.CycleTime.Quartiles[2]}, last 25% ${results.Experiment.CycleTime.Max}
+## Team Members
+${results.Experiment.TeamMembers.reduce((s,m) => s+(m.Name + ", idle " + Statistics.ToDecimalPlace(m.TimeIdle,0) + ", skip waiting turn " + m.SkipNotMyTurn + ", skip waiting preq " + m.SkipPrerequisite + "\n"), "")} 
+
 
 # Control vs Experiment (Null Hypothesis): ${results.NullHypothesis ? "No difference (Not Rejected)" : "Significant difference (Rejected)"}
 ##############################END###################################

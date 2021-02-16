@@ -12,7 +12,7 @@ export class Result {
     constructor(data : Data) {
         this.LeadTime = Statistics.Describe(data.LeadTime);
         this.CycleTime = Statistics.Describe(data.CycleTime);
-        this.TeamMembers = data.TeamMembers;
+        this.TeamMembers = data.TeamMembers.sort((a,b) => a.TimeIdle - b.TimeIdle);
         this.Conditions = data.Conditions;
     }
 }
