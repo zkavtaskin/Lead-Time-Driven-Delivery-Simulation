@@ -1,6 +1,4 @@
-import { Clock } from "./Clock";
-import { Backlog } from "./Backlog";
-import { MemberConfig } from "./MemberConfig";
+
 
 export class TeamMemberMetrics {
     Id: number;
@@ -13,5 +11,14 @@ export class TeamMemberMetrics {
       this.TimeIdle = timeIdle;
       this.SkipPrerequisite = skipPreq;
       this.SkipNotMyTurn = skipNotMy;
+    }
+
+    public Combine(teamMemberMetric : TeamMemberMetrics) {
+      if(teamMemberMetric.Id != this.Id){
+        throw new Error("Id's don't match");
+      }
+      this.TimeIdle += teamMemberMetric.TimeIdle;
+      this.SkipPrerequisite += teamMemberMetric.SkipPrerequisite;
+      this.SkipNotMyTurn += teamMemberMetric.SkipNotMyTurn;
     }
   }
