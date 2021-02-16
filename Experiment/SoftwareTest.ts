@@ -22,7 +22,7 @@ export abstract class SoftwareTest extends Test  {
             return teamSimulation.Run();
         });
 
-        return new Data(samples[0], samples[1], null);
+        return new Data(samples[0], samples[1], samples[2], null);
     }
 
     protected assumptions(control : Data) : Array<[string, boolean]> {
@@ -58,7 +58,7 @@ export abstract class SoftwareTest extends Test  {
             return teamSimulation.Run();
         });
 
-        return new Data(samples[0], samples[1], [["Sort",result.EncodingDecoded.join(", ")]]);
+        return new Data(samples[0], samples[1], samples[2], [["Sort",result.EncodingDecoded.join(", ")]]);
     }
 
 

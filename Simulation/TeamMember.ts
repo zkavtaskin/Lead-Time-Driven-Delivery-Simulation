@@ -13,7 +13,7 @@ export class TeamMember {
     private skipNotMyTurn: number;
 
     get Metrics() : TeamMemberMetrics {
-      return new TeamMemberMetrics(this.id, this.timeIdle, this.skipPrerequisite, this.skipNotMyTurn);
+      return new TeamMemberMetrics(this.id, this.member.Name, this.timeIdle, this.skipPrerequisite, this.skipNotMyTurn);
     }
 
     constructor(id :number, member:MemberConfig, teamGraph: Array<Array<number>>) {

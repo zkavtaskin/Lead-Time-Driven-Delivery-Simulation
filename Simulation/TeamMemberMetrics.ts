@@ -2,12 +2,14 @@
 
 export class TeamMemberMetrics {
     Id: number;
+    Name: string;
     TimeIdle: number;
     SkipPrerequisite: number;
     SkipNotMyTurn: number;
 
-    constructor(id : number, timeIdle : number, skipPreq : number, skipNotMy : number) {
+    constructor(id : number, name : string, timeIdle : number, skipPreq : number, skipNotMy : number) {
       this.Id = id;
+      this.Name = name;
       this.TimeIdle = timeIdle;
       this.SkipPrerequisite = skipPreq;
       this.SkipNotMyTurn = skipNotMy;
