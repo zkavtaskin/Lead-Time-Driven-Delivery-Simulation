@@ -53,13 +53,13 @@ export class BacklogDecoder implements DiscreteDecoder {
     }
 
     private orderByPrerequisite(a : Story, b : Story) : number {
-        if(!a.HasPrerequisite() && !b.HasPrerequisite())
+        if(!a.HasPrerequisite && !b.HasPrerequisite)
             return 0;
 
-        if(!a.HasPrerequisite())
+        if(!a.HasPrerequisite)
             return -1;
         
-        if(!b.HasPrerequisite())
+        if(!b.HasPrerequisite)
             return 1;
 
         return a.PrerequisiteId-b.PrerequisiteId; 

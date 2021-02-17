@@ -41,10 +41,10 @@ export abstract class Test {
             teamMetrics.Members.forEach((teamMemberSample) => {
                 let teamMemberSamples = teamMembersSamples.get(teamMemberSample.Id);
                 if(teamMemberSamples == null) {
-                    teamMembersSamples.set(teamMemberSample.Id, teamMemberSample);
-                } else {
-                    teamMemberSamples.Combine(teamMemberSample);
+                    teamMemberSamples = new TeamMemberMetrics(teamMemberSample.Id, teamMemberSample.Name)
+                    teamMembersSamples.set(teamMemberSample.Id, teamMemberSamples);
                 }
+                teamMemberSamples.Combine(teamMemberSample);
             });
         }
 

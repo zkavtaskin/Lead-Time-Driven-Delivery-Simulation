@@ -49,7 +49,7 @@ export class Backlog {
       let onStreak = true;
       for(let i = this.nextStreakIndex; i < this.stories.length; i++) {
           yield this.stories[i];
-          if(this.stories[i].IsCompleted() && onStreak) {
+          if(this.stories[i].IsCompleted && onStreak) {
             this.nextStreakIndex = i + 1;
             continue;
           } 

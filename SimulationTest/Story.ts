@@ -9,7 +9,7 @@ describe('Story', () => {
 
         expect(story.Id).to.equal(1);
         expect(story.PrerequisiteId).to.equal(2);
-        expect(story.HasPrerequisite()).to.equal(true);
+        expect(story.HasPrerequisite).to.equal(true);
         expect(story.Deadline).to.equal(false);
         expect(story.Tasks.length).to.equal(0);
     }),
@@ -25,21 +25,21 @@ describe('Story', () => {
 
     it('HasPrerequisite, there is no prerequisite, false', () => {
         let story = new Story(1, false, null, new Array<Task>());
-        expect(story.HasPrerequisite()).to.equal(false);
+        expect(story.HasPrerequisite).to.equal(false);
     }),
     it('HasPrerequisite, there is prerequisite, true', () => {
         let story = new Story(1, false, 2, new Array<Task>());
-        expect(story.HasPrerequisite()).to.equal(true);
+        expect(story.HasPrerequisite).to.equal(true);
     }),
 
     it('IsCompleted, is completed at zero ticks, true', () => {
         let story = new Story(1, false, 2, new Array<Task>(new Task(0)));
         story.Complete(0);
-        expect(story.IsCompleted()).to.equal(true);
+        expect(story.IsCompleted).to.equal(true);
     }),
     it('IsCompleted, is not completed, false', () => {
         let story = new Story(1, false, 2, new Array<Task>(new Task(0)));
-        expect(story.IsCompleted()).to.equal(false);
+        expect(story.IsCompleted).to.equal(false);
     }),
 
     it('Activate, there is no such team member, does not activate', () => {

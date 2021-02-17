@@ -53,6 +53,14 @@ export class Story {
 
       return this.CycleTime + this.startedTick;
     }
+
+    get IsCompleted() : boolean{
+      return this.completedTick != null;
+    }
+
+    get HasPrerequisite() : boolean {
+      return this.prerequisiteId != null;
+    }
   
     Activate(teamMemberId : number, clockTicks : number) : boolean {
       if(this.tasks[teamMemberId] != null && this.tasks[teamMemberId].Remaining == this.tasks[teamMemberId].Original && this.startedTick == null) {
@@ -60,10 +68,6 @@ export class Story {
         return true;
       }
       return false;
-    }
-  
-    HasPrerequisite() : boolean {
-      return this.prerequisiteId != null;
     }
   
     Complete(clockTicks : number) : boolean {
@@ -105,10 +109,6 @@ export class Story {
       this.tasks[teamMemberId].Remaining += effort;
       this.tasks[teamMemberId].Actual += effort;
       return this.tasks[teamMemberId];
-    }
-  
-    IsCompleted() : boolean{
-      return this.completedTick != null;
     }
 
     Copy() : Story {

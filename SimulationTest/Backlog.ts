@@ -25,7 +25,7 @@ describe('Backlog', () => {
         let iterator = backlog.Iterator();
         let story1 = iterator.next().value as Story;
 
-        expect(story1.HasPrerequisite()).to.equal(false);
+        expect(story1.HasPrerequisite).to.equal(false);
     }),
 
     it('Generate backlog with 2 stories for 1 team member, second story has a dependency on the first, but first not on the second.', () => {
@@ -37,8 +37,8 @@ describe('Backlog', () => {
         let story1 = iterator.next().value as Story;
         let story2 = iterator.next().value as Story;
 
-        expect(story1.HasPrerequisite()).to.equal(false);
-        expect(story2.HasPrerequisite()).to.equal(true);
+        expect(story1.HasPrerequisite).to.equal(false);
+        expect(story2.HasPrerequisite).to.equal(true);
     }),
 
     it('Generate backlog with 1 story for 1 team member, story has deadline', () => {

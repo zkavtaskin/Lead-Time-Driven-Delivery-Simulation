@@ -31,7 +31,7 @@ export class TeamMember {
         }
       
         //make sure dependencies are completed
-        if((story.HasPrerequisite() && !backlog.Find(story.PrerequisiteId).IsCompleted)) {
+        if((story.HasPrerequisite && !backlog.Find(story.PrerequisiteId).IsCompleted)) {
           this.skipPrerequisite++;
           continue;
         }
