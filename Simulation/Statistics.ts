@@ -78,11 +78,6 @@ export class Statistics {
         return choices;
     }
 
-    public static ToDecimalPlace(value : number, decimalPlaces : number = 1) : number {
-      const diviser =  Math.pow(10, decimalPlaces);
-      return Math.round((value + Number.EPSILON) * diviser) / diviser;
-    }
-
     public static Quartiles(sample : Array<number>) : [number, number, number] {
       const x = sample.slice().sort((a,b) => a-b);
       const q1Index  = x.length * (1/4), 
@@ -148,4 +143,14 @@ export class Statistics {
         description.Frequency = Statistics.ToDecimalPlace(Statistics.FrequencyTestBin(description.Histogram));
         return description;
     } 
+
+    public static ToDecimalPlace(value : number, decimalPlaces : number = 1) : number {
+      const diviser =  Math.pow(10, decimalPlaces);
+      return Math.round((value + Number.EPSILON) * diviser) / diviser;
+    }
+
+    public static Reciprocal(n : number) : number {
+      if(n == 0) return n;
+      return 1/n;
+    }
 }

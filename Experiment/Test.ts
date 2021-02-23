@@ -26,7 +26,7 @@ export abstract class Test {
         const experiment = this.experimentGroup();
 
         const nullHypothesis = Statistics.MoodsMedianTest(control.LeadTime, experiment.LeadTime);
-        return new TestResult(assumptions, new Result(control), new Result(experiment), nullHypothesis);
+        return new TestResult(assumptions, new Result(control), new Result(experiment), nullHypothesis, this.effortPerTick);
     }
 
     protected Sample(experiment : () => TeamMetrics, nSamples : number = 30) : [Array<number>, Array<number>, Array<TeamMemberMetrics>] {
