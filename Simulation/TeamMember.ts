@@ -11,9 +11,10 @@ export class TeamMember {
     private timeIdle: number = 0;
     private skipPrerequisite: number = 0;
     private skipNotMyTurn: number = 0;
+    private givenFeedback : number = 0;
 
     get Metrics() : TeamMemberMetrics {
-      return new TeamMemberMetrics(this.id, this.member.Name, this.timeIdle, this.skipPrerequisite, this.skipNotMyTurn);
+      return new TeamMemberMetrics(this.id, this.member.Name, this.timeIdle, this.skipPrerequisite, this.skipNotMyTurn, this.givenFeedback);
     }
 
     constructor(id :number, member:MemberConfig, teamGraph: Array<Array<number>>) {
@@ -61,6 +62,7 @@ export class TeamMember {
         for(let teamMemberRow:number = this.id-1; teamMemberRow >= 0; teamMemberRow--) {
           const feedbackRatio = this.teamGraph[teamMemberRow][this.id];
           if(story.Tasks[teamMemberRow] != null && Math.random() <= feedbackRatio) {
+            this.givenFeedback++;
             const extraEffort = Math.ceil((Math.random() * 0.2) * story.Tasks[teamMemberRow].Original);
             story.AddWork(teamMemberRow, extraEffort);
           }
