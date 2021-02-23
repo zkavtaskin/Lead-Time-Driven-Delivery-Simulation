@@ -39,6 +39,13 @@ export class Story {
         
       return this.tasks.map((task) => task ? task.Original : 0).reduce((total, value) => total + value);
     }
+
+    get SizeActual() : number {
+      if(this.tasks.length == 0) 
+        return 0;
+        
+      return this.tasks.map((task) => task ? task.Actual : 0).reduce((total, value) => total + value);
+    }
     
     get CycleTime() : number | null {
       if(this.completedTick == null || this.startedTick == null)

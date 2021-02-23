@@ -27,6 +27,7 @@ ${experiment.Description}
 ${results.Assumptions.reduce((s,a,i) => s+((i+1) + ": " + a[0] + " => " + a[1] + "\n"), "")} 
 
 # Control 
+Total mean man-days: original ${Statistics.ToDecimalPlace(results.Control.WorkSizeOriginalMean)}, actual ${Statistics.ToDecimalPlace(results.Control.WorkSizeActualMean)}
 ## Lead Time
 Uniformity Deviation: ${results.Control.LeadTime.Frequency}, Skew: ${results.Control.LeadTime.Skew}
 *When* delivered: 
@@ -38,6 +39,7 @@ First 25% delivered on day ${results.Control.LeadTime.Quartiles[0]  }, 75% ${res
 ${results.Control.TeamMembers.reduce((s,m,i) => s+(m.Name + " => idle days " + Statistics.ToDecimalPlace(m.TimeIdle,0) + ", skip waiting count: turn " + m.SkipNotMyTurn * results.EffortPerTick + ", preq: " + m.SkipPrerequisite * results.EffortPerTick + "\n"), "")} 
 
 # Experiment 
+Total mean man-days: original ${Statistics.ToDecimalPlace(results.Experiment.WorkSizeOriginalMean)}, actual ${Statistics.ToDecimalPlace(results.Experiment.WorkSizeActualMean)}
 Conditions: ${results.Experiment.Conditions}
 ## Lead Time 
 Uniformity Deviation: ${results.Experiment.LeadTime.Frequency}, Skew: ${results.Experiment.LeadTime.Skew}

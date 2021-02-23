@@ -8,6 +8,8 @@ export class BacklogRuntimeMetrics {
     public readonly LeadTime : StatisticsDescriptive;
     public readonly CycleTimeData : Array<number>;
     public readonly LeadTimeData : Array<number>;
+    public readonly SizeOriginal : number;
+    public readonly SizeActual : number;
 
     constructor(stories: Array<Story>) {
 
@@ -24,5 +26,8 @@ export class BacklogRuntimeMetrics {
 
         this.LeadTimeData = stories.map((s) => s.LeadTime);
         this.LeadTime = Statistics.Describe(this.LeadTimeData);
+
+        this.SizeOriginal = stories.reduce((total, story) => total + story.SizeOriginal, 0);
+        this.SizeActual = stories.reduce((total, story) => total + story.SizeActual, 0);
     }
 }

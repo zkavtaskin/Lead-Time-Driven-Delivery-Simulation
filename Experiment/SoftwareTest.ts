@@ -17,12 +17,10 @@ export abstract class SoftwareTest extends Test  {
     Statistics.Choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1, [0.25, 0.25, 0.05, 0.05, 0.10, 0.05, 0.10, 0.05, 0.05, 0.05])[0]);
 
     protected controlGroup(): Data {
-        const samples = this.Sample(() => {
+        return this.Sample(() => {
             const teamSimulation = new TeamSimulation(this.teamConfig, this.backlogConfig, this.effortPerTick, null);
             return teamSimulation.Run();
         });
-
-        return new Data(samples[0], samples[1], samples[2], null);
     }
 
     protected assumptions(control : Data) : Array<[string, boolean]> {
@@ -53,12 +51,12 @@ export abstract class SoftwareTest extends Test  {
         const randomForest = new RandomForest(optimiser, decoder);
         const result = randomForest.Search(30);
 
-        const samples = this.Sample(() => {
+        const data = this.Sample(() => {
             const teamSimulation = new TeamSimulation(this.teamConfig, this.backlogConfig, this.effortPerTick, decoder.Decode(result.Encoding) as ((a : Story, b : Story) => number));
             return teamSimulation.Run();
         });
-
-        return new Data(samples[0], samples[1], samples[2], [["Sort",result.EncodingDecoded.join(", ")]]);
+        data.AddCondition([["Sort",result.EncodingDecoded.join(", ")]]);
+        return data;
     }
 
 

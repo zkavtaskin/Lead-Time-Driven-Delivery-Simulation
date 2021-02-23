@@ -29,29 +29,11 @@ export abstract class Test {
         return new TestResult(assumptions, new Result(control), new Result(experiment), nullHypothesis, this.effortPerTick);
     }
 
-    protected Sample(experiment : () => TeamMetrics, nSamples : number = 30) : [Array<number>, Array<number>, Array<TeamMemberMetrics>] {
-        let leadTimeSamples = new Array<number>(),
-              cycleTimeSamples = new Array<number>(),
-              teamMembersSamples = new Map<number, TeamMemberMetrics>();
-
+    protected Sample(experiment : () => TeamMetrics, nSamples : number = 30) : Data {
+        const data = new Data();
         for(let i = 0; i < nSamples; i++) {
-            const teamMetrics = experiment();
-            leadTimeSamples = leadTimeSamples.concat(teamMetrics.Backlog.LeadTimeData);
-            cycleTimeSamples = cycleTimeSamples.concat(teamMetrics.Backlog.CycleTimeData);
-            teamMetrics.Members.forEach((teamMemberSample) => {
-                let teamMemberSamples = teamMembersSamples.get(teamMemberSample.Id);
-                if(teamMemberSamples == null) {
-                    teamMemberSamples = new TeamMemberMetrics(teamMemberSample.Id, teamMemberSample.Name)
-                    teamMembersSamples.set(teamMemberSample.Id, teamMemberSamples);
-                }
-                teamMemberSamples.Combine(teamMemberSample);
-            });
+            data.AddMetrics(experiment());
         }
-
-        return [
-                leadTimeSamples, 
-                cycleTimeSamples,
-                Array.from(teamMembersSamples.values())
-            ];
+        return data;
     }
 }
