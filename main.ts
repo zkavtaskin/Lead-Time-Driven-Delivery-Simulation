@@ -31,7 +31,7 @@ Total mean man-days: original ${Statistics.ToDecimalPlace(results.Control.WorkSi
 ## Lead Time
 Uniformity Deviation: ${results.Control.LeadTime.Frequency}, Skew: ${results.Control.LeadTime.Skew}
 *When* delivered: 
-First 25% delivered on day ${results.Control.LeadTime.Quartiles[0]  }, 75% ${results.Control.LeadTime.Quartiles[2] * results.EffortPerTick}, last 25% ${results.Control.LeadTime.Max * results.EffortPerTick}
+First 25% delivered on day ${results.Control.LeadTime.Quartiles[0] * results.EffortPerTick}, 50% ${results.Control.LeadTime.Quartiles[1] * results.EffortPerTick}, 75% ${results.Control.LeadTime.Quartiles[2] * results.EffortPerTick}, last 25% ${results.Control.LeadTime.Max * results.EffortPerTick}
 ## Cycle Time
 *Time taken* to deliver once started: 
 25% has taken ${results.Control.CycleTime.Quartiles[0] * results.EffortPerTick} day(s), 50% ${results.Control.CycleTime.Quartiles[1] * results.EffortPerTick}, 75% ${results.Control.CycleTime.Quartiles[2] * results.EffortPerTick}, last 25% ${results.Control.CycleTime.Max * results.EffortPerTick}
