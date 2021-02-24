@@ -12,6 +12,7 @@ export class TeamMember {
     private skipPrerequisite: number = 0;
     private skipNotMyTurn: number = 0;
     private givenFeedback : number = 0;
+    private feedbackGiven : Map<number, boolean> = new Map<number, boolean>();
 
     get Metrics() : TeamMemberMetrics {
       return new TeamMemberMetrics(this.id, this.member.Name, this.timeIdle, this.skipPrerequisite, this.skipNotMyTurn, this.givenFeedback);
@@ -59,12 +60,14 @@ export class TeamMember {
         timeRemaining = story.Contribute(this.id, timeRemaining);
 
         //give upstream team members feedback, 0.2 is the upper bound max feedback
-        for(let teamMemberRow:number = this.id-1; teamMemberRow >= 0; teamMemberRow--) {
+        for(let teamMemberRow:number = this.id-1; teamMemberRow >= 0 && !this.feedbackGiven.has(story.Id); teamMemberRow--) {
           const feedbackRatio = this.teamGraph[teamMemberRow][this.id];
-          if(story.Tasks[teamMemberRow] != null && Math.random() <= feedbackRatio) {
+          if(story.Tasks[teamMemberRow] != null && feedbackRatio >= Math.random()) { 
             this.givenFeedback++;
             const extraEffort = Math.ceil((Math.random() * 0.2) * story.Tasks[teamMemberRow].Original);
             story.AddWork(teamMemberRow, extraEffort);
+            this.feedbackGiven.set(story.Id, true);
+            break;
           }
         }
 

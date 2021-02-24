@@ -7,7 +7,6 @@ import { Statistics } from "./Simulation/Statistics";
 
 const experiments = new Array<Test>(new ScrumTest(), new ScrumKanbanTest(), new ScrumPartialStackTest(), new WaterfallExperiment());
 
-
 console.log(`
 Experiments search for:
     1) Shortest lead time
