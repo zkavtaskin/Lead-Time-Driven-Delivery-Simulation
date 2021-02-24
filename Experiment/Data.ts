@@ -2,13 +2,13 @@ import { TeamMemberMetrics } from "../Simulation/TeamMemberMetrics";
 import { TeamMetrics } from "../Simulation/TeamMetrics";
 
 export class Data {
-    protected leadTime : Array<number> = new Array<number>();
-    protected cycleTime : Array<number> = new Array<number>();
-    protected teamMembers : Map<number, TeamMemberMetrics> = new Map<number, TeamMemberMetrics>();
-    protected workSizeOriginal : number = 0;
-    protected workSizeActual : number = 0;
-    protected count : number = 0;
-    protected conditions : Array<[string, string]> = new Array<[string, string]>();
+    private leadTime : Array<number> = new Array<number>();
+    private cycleTime : Array<number> = new Array<number>();
+    private teamMembers : Map<number, TeamMemberMetrics> = new Map<number, TeamMemberMetrics>();
+    private workSizeOriginal : number = 0;
+    private workSizeActual : number = 0;
+    private count : number = 0;
+    private conditions : Array<[string, string]> = new Array<[string, string]>();
 
     get LeadTime() : Array<number> {
         return this.leadTime;

@@ -66,6 +66,7 @@ export class TeamMember {
             //give upstream team members feedback, 0.2 is the upper bound max feedback
             const extraEffort = Math.ceil((Math.random() * 0.2) * story.Tasks[teamMemberRow].Original);
             story.AddWork(teamMemberRow, extraEffort);
+            this.feedbackGiven.set(story.Id, true);
             break;
           }
         }
