@@ -77,8 +77,7 @@ export class Backlog {
               prerequisiteStoryId = Math.floor(Math.random() * id);
             }
           }
-    
-
+  
           const storySize = backlogConfig.GenerateStorySize();
           let tasks = new Array<Task>();
           memberConfig.forEach((member :MemberConfig) => {

@@ -59,17 +59,17 @@ export class TeamMember {
         story.Activate(this.id, clock.Ticks);
         timeRemaining = story.Contribute(this.id, timeRemaining);
 
-        //give upstream team members feedback, 0.2 is the upper bound max feedback
         for(let teamMemberRow:number = this.id-1; teamMemberRow >= 0 && !this.feedbackGiven.has(story.Id); teamMemberRow--) {
           const feedbackRatio = this.teamGraph[teamMemberRow][this.id];
           if(story.Tasks[teamMemberRow] != null && feedbackRatio >= Math.random()) { 
             this.givenFeedback++;
+            //give upstream team members feedback, 0.2 is the upper bound max feedback
             const extraEffort = Math.ceil((Math.random() * 0.2) * story.Tasks[teamMemberRow].Original);
             story.AddWork(teamMemberRow, extraEffort);
-            this.feedbackGiven.set(story.Id, true);
             break;
           }
         }
+        this.feedbackGiven.set(story.Id, true);
 
         story.Complete(clock.Ticks);
       }

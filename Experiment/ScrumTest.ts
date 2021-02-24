@@ -25,11 +25,11 @@ wait to start the work.`;
         [
             /***
              * Bottom 0 diagonal represents flow downstream dependencies (prerequisite work)
-             * top 0 diagonal represents flow "feedback" upstream 
+             * top 0 diagonal represents flow "feedback" upstream, this feedback is work creating  
              *  PO  UX   ARCH  BE      FE   TEST   POS <= X-axis is same "mirror" for Y-axis, order is the same as above order
              */
-                [0, 1/2, 1/5, 1/2,   1/5,   1/5,   0],
-                [0, 0,   1/5,   0,   1/5,   1/5,   1/50],
+                [0, 1/3, 1/10, 1/5,   1/5,   1/5,   0],
+                [0, 0,   1/10,   0,   1/3,   1/5,   1/50],
                 [0, 0,      0, 1/5,  1/10,    0,   0],
                 [0, 0,      0,   0,   1/2,  1/2,   1/50],
                 [0, 0,      0,   0,     0,  1/2,   1/20],
