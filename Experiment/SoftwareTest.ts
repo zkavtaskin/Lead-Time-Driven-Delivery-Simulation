@@ -13,7 +13,7 @@ import { BacklogConfig } from "../Simulation/BacklogConfig";
 export abstract class SoftwareTest extends Test  {
 
     protected readonly effortPerTick = 1/4;
-    protected readonly backlogConfig = new BacklogConfig(10, 1/4, 1/10, 1, 10, () => 
+    protected readonly backlogConfig = new BacklogConfig(10, 1/5, 1/10, 1, 10, () => 
     Statistics.Choice([0.5, 1, 1.5, 2, 2.5, 3, 4, 5, 6, 7], 1, [0.25, 0.25, 0.05, 0.05, 0.10, 0.05, 0.10, 0.05, 0.05, 0.05])[0]);
 
     protected controlGroup(): Data {

@@ -138,7 +138,7 @@ export class Statistics {
         description.Skew = Statistics.ToDecimalPlace(simplestats.sampleSkewness(x));
         description.Kurtosis = Statistics.ToDecimalPlace(simplestats.sampleKurtosis(x));
         description.Quartiles = Statistics.Quartiles(x);
-        description.HistogramRange = 250;
+        description.HistogramRange = 5;
         description.Histogram = Statistics.Histogram(x, description.HistogramRange);
         description.Frequency = Statistics.ToDecimalPlace(Statistics.FrequencyTestBin(description.Histogram));
         return description;

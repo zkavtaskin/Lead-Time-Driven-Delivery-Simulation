@@ -10,6 +10,7 @@ export class Result {
     public readonly WorkSizeActualMean : number;
     public readonly TeamMembers : Array<TeamMemberMetrics>;
     public readonly Conditions : Array<[string, string]>;
+    public readonly Constraint : string;
 
     constructor(data : Data) {
         this.LeadTime = Statistics.Describe(data.LeadTime);
@@ -17,6 +18,7 @@ export class Result {
         this.WorkSizeOriginalMean = data.WorkSizeOriginalMean;
         this.WorkSizeActualMean = data.WorkSizeActualMean;
         this.TeamMembers = data.TeamMembers.sort((a,b) => a.TimeIdle - b.TimeIdle);
+        this.Constraint = this.TeamMembers[0].Name;
         this.Conditions = data.Conditions;
     }
 }
