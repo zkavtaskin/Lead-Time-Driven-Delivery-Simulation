@@ -22,8 +22,8 @@ As work is refined and it is team members turn work is pulled. Main difference w
             new MemberConfig("Test", 37/37, 10/10, 20/100),
             new MemberConfig("Product Owner Sign Off", 1/37, 10/10, 1/100)],
         [
-                [0, 1/2, 1/5, 1/2,   1/5,   1/5,   0],
-                [1, 0,   1/5,   0,   1/5,   1/5,   1/50],
+                [0, 1/3, 1/10, 1/5,   1/5,   1/5,   0],
+                [1, 0,   1/10,   0,   1/3,   1/5,   1/50],
                 [1, 1,      0, 1/5,  1/10,    0,   0],
                 [1, 0,      1,   0,   1/2,  1/2,   1/50],
                 [1, 1,      1,   0,     0,  1/2,   1/20],

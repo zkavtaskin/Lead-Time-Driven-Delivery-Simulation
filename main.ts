@@ -4,6 +4,7 @@ import {ScrumTest} from "./Experiment/ScrumTest"
 import {WaterfallExperiment} from "./Experiment/WaterfallExperiment"
 import {ScrumPartialStackTest} from "./Experiment/ScrumPartialStackTest"
 import { Statistics } from "./Simulation/Statistics";
+import { Result } from "./Experiment/Result";
 
 const experiments = new Array<Test>(new ScrumTest(), new ScrumKanbanTest(), new ScrumPartialStackTest(), new WaterfallExperiment());
 
@@ -26,33 +27,27 @@ ${experiment.Description}
 ${results.Assumptions.reduce((s,a,i) => s+((i+1) + ": " + a[0] + " => " + a[1] + "\n"), "")} 
 
 # Control 
-Total mean man-days: original ${Statistics.ToDecimalPlace(results.Control.WorkSizeOriginalMean)}, actual ${Statistics.ToDecimalPlace(results.Control.WorkSizeActualMean)}
-## Lead Time
-Uniformity Deviation: ${results.Control.LeadTime.Frequency}, Skew: ${results.Control.LeadTime.Skew}
-*When* delivered: 
-First 25% delivered on day ${results.Control.LeadTime.Quartiles[0] * results.EffortPerTick}, 50% ${results.Control.LeadTime.Quartiles[1] * results.EffortPerTick}, 75% ${results.Control.LeadTime.Quartiles[2] * results.EffortPerTick}, last 25% ${results.Control.LeadTime.Max * results.EffortPerTick}
-## Cycle Time
-*Time taken* to deliver once started: 
-25% has taken ${results.Control.CycleTime.Quartiles[0] * results.EffortPerTick} day(s), 50% ${results.Control.CycleTime.Quartiles[1] * results.EffortPerTick}, 75% ${results.Control.CycleTime.Quartiles[2] * results.EffortPerTick}, last 25% ${results.Control.CycleTime.Max * results.EffortPerTick}
-## Team Members
-${results.Control.TeamMembers.reduce((s,m,i) => s+(m.Name + " => idle days " + Statistics.ToDecimalPlace(m.TimeIdle,0) + ", turn count: waiting " + Statistics.ToDecimalPlace(m.SkipNotMyTurn,1) + ", preq " + Statistics.ToDecimalPlace(m.SkipPrerequisite,1) + ", feedback " + Statistics.ToDecimalPlace(m.GivenFeedback,1) + "\n"), "")} 
+${resultView(results.Control, results.EffortPerTick)}
 
 # Experiment 
-Total mean man-days: original ${Statistics.ToDecimalPlace(results.Experiment.WorkSizeOriginalMean)}, actual ${Statistics.ToDecimalPlace(results.Experiment.WorkSizeActualMean)}
-Conditions: ${results.Experiment.Conditions}
-## Lead Time 
-Uniformity Deviation: ${results.Experiment.LeadTime.Frequency}, Skew: ${results.Experiment.LeadTime.Skew}
-*When* delivered: 
-First 25% delivered on day ${results.Experiment.LeadTime.Quartiles[0] * results.EffortPerTick}, 50% ${results.Experiment.LeadTime.Quartiles[1] * results.EffortPerTick}, 75% ${results.Experiment.LeadTime.Quartiles[2] * results.EffortPerTick}, last 25% ${results.Experiment.LeadTime.Max * results.EffortPerTick}
-## Cycle Time
-*Time taken* to deliver once started: 
-25% has taken ${results.Experiment.CycleTime.Quartiles[0] * results.EffortPerTick} day(s), 50% ${results.Experiment.CycleTime.Quartiles[1] * results.EffortPerTick}, 75% ${results.Experiment.CycleTime.Quartiles[2] * results.EffortPerTick}, last 25% ${results.Experiment.CycleTime.Max * results.EffortPerTick}
-## Team Members
-${results.Experiment.TeamMembers.reduce((s,m) => s+(m.Name + " => idle days " + Statistics.ToDecimalPlace(m.TimeIdle,0) + ", turn count: waiting " + Statistics.ToDecimalPlace(m.SkipNotMyTurn,1) + ", preq " + Statistics.ToDecimalPlace(m.SkipPrerequisite,1) + ", feedback " + Statistics.ToDecimalPlace(m.GivenFeedback,1) + "\n"), "")} 
-
+${resultView(results.Experiment, results.EffortPerTick)}
 
 # Control vs Experiment (Null Hypothesis): ${results.NullHypothesis ? "No difference (Not Rejected)" : "Significant difference (Rejected)"}
 ##############################END###################################
 `);
 
 });
+
+function resultView(result : Result, tickSize : number) {
+  return `Total mean man-days: original ${Statistics.ToDecimalPlace(result.WorkSizeOriginalMean)}, actual ${Statistics.ToDecimalPlace(result.WorkSizeActualMean)}
+Conditions: ${result.Conditions}
+## Lead Time 
+Uniformity Deviation: ${result.LeadTime.Frequency}, Skew: ${result.LeadTime.Skew}
+*When* delivered: 
+First 25% delivered on day ${result.LeadTime.Quartiles[0] * tickSize}, 50% ${result.LeadTime.Quartiles[1] * tickSize}, 75% ${result.LeadTime.Quartiles[2] * tickSize}, last 25% ${result.LeadTime.Max * tickSize}
+## Cycle Time
+*Time taken* to deliver once started: 
+25% has taken ${result.CycleTime.Quartiles[0] * tickSize} day(s), 50% ${result.CycleTime.Quartiles[1] * tickSize}, 75% ${result.CycleTime.Quartiles[2] * tickSize}, last 25% ${result.CycleTime.Max * tickSize}
+## Team Members
+${result.TeamMembers.reduce((s,m) => s+(m.Name + " => idle days " + Statistics.ToDecimalPlace(m.TimeIdle,0) + ", turn count: waiting " + Statistics.ToDecimalPlace(m.SkipNotMyTurn,1) + ", preq " + Statistics.ToDecimalPlace(m.SkipPrerequisite,1) + ", feedback " + Statistics.ToDecimalPlace(m.GivenFeedback,1) + "\n"), "")}`;
+}
