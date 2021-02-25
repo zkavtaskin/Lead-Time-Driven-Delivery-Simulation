@@ -12,7 +12,7 @@ console.log(`
 Experiments search for:
     1) Shortest lead time
     2) Follows as close uniform distribution as possible  
-    3) Delivers biggest amount of stories (value), this is a given as under the experiment everyone needs to deiver set amount of stories.  
+    3) Delivers biggest amount of stories (value), this is a given as under the experiment everyone needs to deliver set amount of stories.  
 As a starting point experiment will be setup to have a bias towards delivering work right at the end the cycle.
 `);
 

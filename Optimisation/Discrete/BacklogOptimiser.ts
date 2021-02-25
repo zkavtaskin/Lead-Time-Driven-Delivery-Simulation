@@ -7,7 +7,7 @@ import { Trees } from "./Trees";
 import { DiscreteDecoder } from "./DiscreteDecoder";
 import { Story } from "../../Simulation/Story";
 
-export class Backlog implements DiscreteOptimiser {
+export class BacklogOptimiser implements DiscreteOptimiser {
 
     private readonly teamConfig : TeamConfig;
     private readonly backlogConfig : BacklogConfig;
@@ -20,7 +20,7 @@ export class Backlog implements DiscreteOptimiser {
     private static ObjectiveLeadTimeFrequency = "LeadTimeFrequency";
 
     get ObjectiveFunctions() : Array<string> {
-        return [Backlog.ObjectiveLeadTimeMedian, Backlog.ObjectiveLeadTimeMax, Backlog.ObjectiveLeadTimeFrequency];
+        return [BacklogOptimiser.ObjectiveLeadTimeMedian, BacklogOptimiser.ObjectiveLeadTimeMax, BacklogOptimiser.ObjectiveLeadTimeFrequency];
     }
 
     constructor(teamConfig : TeamConfig, backlogConfig : BacklogConfig, effortSize : number = 0.5, backlogDecoder: DiscreteDecoder) {
@@ -29,9 +29,9 @@ export class Backlog implements DiscreteOptimiser {
         this.effortSize = effortSize;
         this.backlogDecoder = backlogDecoder;
 
-        this.map.set(Backlog.ObjectiveLeadTimeMedian, ["LeadTime", "Median"]);
-        this.map.set(Backlog.ObjectiveLeadTimeMax, ["LeadTime", "Max"]);
-        this.map.set(Backlog.ObjectiveLeadTimeFrequency, ["LeadTime", "Frequency"]);
+        this.map.set(BacklogOptimiser.ObjectiveLeadTimeMedian, ["LeadTime", "Median"]);
+        this.map.set(BacklogOptimiser.ObjectiveLeadTimeMax, ["LeadTime", "Max"]);
+        this.map.set(BacklogOptimiser.ObjectiveLeadTimeFrequency, ["LeadTime", "Frequency"]);
     }
 
     Search(objectiveFunctionName:string) : DiscreteSearchResult {

@@ -3,7 +3,7 @@ import { Test } from "./Test"
 import { TeamSimulation } from "../Simulation/TeamSimulation"
 import { Data } from "./Data";
 import { BacklogDecoder } from "../Optimisation/Discrete/BacklogDecoder"
-import { Backlog } from "../Optimisation/Discrete/Backlog"
+import { BacklogOptimiser } from "../Optimisation/Discrete/BacklogOptimiser"
 import { RandomForest } from "../Optimisation/Discrete/RandomForest"
 import { DiscreteOptimiser } from "../Optimisation/Discrete/DiscreteOptimiser"
 import { DiscreteDecoder } from "../Optimisation/Discrete/DiscreteDecoder";
@@ -47,7 +47,7 @@ export abstract class SoftwareTest extends Test  {
 
     protected experimentGroup(): Data {
         const decoder = new BacklogDecoder(this.teamConfig) as DiscreteDecoder;
-        const optimiser = new Backlog(this.teamConfig, this.backlogConfig, this.effortPerTick, decoder) as DiscreteOptimiser;
+        const optimiser = new BacklogOptimiser(this.teamConfig, this.backlogConfig, this.effortPerTick, decoder) as DiscreteOptimiser;
         const randomForest = new RandomForest(optimiser, decoder);
         const result = randomForest.Search(30);
 
