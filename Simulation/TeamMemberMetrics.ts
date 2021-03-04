@@ -1,12 +1,13 @@
+import { Statistics } from "./Statistics";
+import { StatisticsDescriptive } from "./StatisticsDescriptive";
 
 export class TeamMemberMetrics {
     private id: number;
     private name: string;
-    private timeIdle: number;
-    private skipPrerequisite: number;
-    private skipNotMyTurn: number;
-    private givenFeedback: number;
-    private count : number;
+    private timeIdleData : Array<number>;
+    private skipPrerequisiteData : Array<number>;
+    private givenFeedbackData : Array<number>;
+    private skipNotMyTurnData: Array<number>;
 
     get Id() : number {
       return this.id;
@@ -16,40 +17,54 @@ export class TeamMemberMetrics {
       return this.name;
     }
 
-    get TimeIdle() : number {
-      return this.timeIdle / this.count;
+    get TimeIdleData() : Array<number> {
+      return this.timeIdleData;
     }
 
-    get SkipPrerequisite() : number {
-      return this.skipPrerequisite / this.count;
+    get TimeIdle() : StatisticsDescriptive {
+      return Statistics.Describe(this.timeIdleData);
     }
 
-    get SkipNotMyTurn() : number {
-      return this.skipNotMyTurn / this.count;
+    get SkipPrerequisiteData() : Array<number> {
+      return this.skipPrerequisiteData;
     }
 
-    get GivenFeedback() : number {
-      return this.givenFeedback / this.count;
+    get SkipPrerequisite() : StatisticsDescriptive {
+      return Statistics.Describe(this.skipPrerequisiteData);
+    }
+
+    get SkipNotMyTurnData() : Array<number> {
+      return this.skipNotMyTurnData;
+    }
+
+    get SkipNotMyTurn() : StatisticsDescriptive {
+      return Statistics.Describe(this.skipNotMyTurnData);
+    }
+
+    get GivenFeedbackData() : Array<number> {
+      return this.givenFeedbackData;
+    }
+
+    get GivenFeedback() : StatisticsDescriptive {
+      return Statistics.Describe(this.givenFeedbackData)
     }
 
     constructor(id : number, name : string, timeIdle : number = 0, skipPreq : number = 0, skipNotMy : number = 0, givenFeedback : number = 0) {
       this.id = id;
       this.name = name;
-      this.timeIdle = timeIdle;
-      this.skipPrerequisite = skipPreq;
-      this.skipNotMyTurn = skipNotMy;
-      this.givenFeedback = givenFeedback;
-      this.count = 1;
+      this.timeIdleData =  [timeIdle];
+      this.skipPrerequisiteData = [skipPreq];
+      this.skipNotMyTurnData = [skipNotMy];
+      this.givenFeedbackData = [givenFeedback];
     }
 
     public Combine(teamMemberMetric : TeamMemberMetrics) {
       if(teamMemberMetric.id != this.id){
         throw new Error("Id's don't match");
       }
-      this.timeIdle += teamMemberMetric.timeIdle;
-      this.skipPrerequisite += teamMemberMetric.skipPrerequisite;
-      this.skipNotMyTurn += teamMemberMetric.skipNotMyTurn;
-      this.givenFeedback += teamMemberMetric.givenFeedback;
-      this.count++;
+      this.timeIdleData = this.timeIdleData.concat(teamMemberMetric.TimeIdleData);
+      this.skipPrerequisiteData = this.skipPrerequisiteData.concat(teamMemberMetric.SkipPrerequisiteData);
+      this.skipNotMyTurnData = this.skipNotMyTurnData.concat(teamMemberMetric.SkipNotMyTurnData)
+      this.givenFeedbackData = this.givenFeedbackData.concat(teamMemberMetric.GivenFeedbackData);
     }
   }

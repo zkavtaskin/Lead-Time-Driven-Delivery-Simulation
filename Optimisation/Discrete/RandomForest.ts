@@ -22,7 +22,7 @@ export class RandomForest {
             results.push(this.optimiser.Search(this.optimiser.ObjectiveFunctions[k]));
         }
 
-        //reduce the forest by growing split tree with branches  
+        //reduce the forest by growing split tree with weighted branches  
         const tree = new Array<number>(this.decoder.Base);
         for(let i=0; i < results.length; i++) {
             Trees.BranchCounter(results[i].Encoding, tree, this.decoder.Base);

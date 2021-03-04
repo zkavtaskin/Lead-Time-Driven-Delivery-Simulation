@@ -131,6 +131,8 @@ export class Statistics {
 
     public static Describe(x : Array<number>) : StatisticsDescriptive {
         const description = new StatisticsDescriptive();
+        description.Count = x.length;
+        description.Mean = Statistics.ToDecimalPlace(simplestats.mean(x));
         description.Median = Statistics.ToDecimalPlace(simplestats.median(x));
         description.Sum = Statistics.ToDecimalPlace(simplestats.sum(x));
         description.Min = Statistics.ToDecimalPlace(simplestats.min(x));

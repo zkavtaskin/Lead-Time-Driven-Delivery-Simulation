@@ -51,5 +51,5 @@ First 25% delivered on day ${result.LeadTime.Quartiles[0] * tickSize}, 50% ${res
 ## Constraint
 ${result.Constraint}
 ## Team Members
-${result.TeamMembers.reduce((s,m) => s+(m.Name + " => idle days " + Statistics.ToDecimalPlace(m.TimeIdle,0) + ", turn count: waiting " + Statistics.ToDecimalPlace(m.SkipNotMyTurn,1) + ", preq " + Statistics.ToDecimalPlace(m.SkipPrerequisite,1) + ", feedback " + Statistics.ToDecimalPlace(m.GivenFeedback,1) + "\n"), "")}`;
+${result.TeamMembers.reduce((s,m) => s+(m.Name + " => idle days " + Statistics.ToDecimalPlace(m.TimeIdle.Median,0) + ", turn count: waiting " + Statistics.ToDecimalPlace(m.SkipNotMyTurn.Median,1) + ", preq " + Statistics.ToDecimalPlace(m.SkipPrerequisite.Median,1) + ", feedback " + Statistics.ToDecimalPlace(m.GivenFeedback.Median,1) + "\n"), "")}`;
 }

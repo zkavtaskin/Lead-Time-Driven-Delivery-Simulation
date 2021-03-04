@@ -25,24 +25,29 @@ export abstract class SoftwareTest extends Test  {
 
     protected assumptions(control : Data) : Array<[string, boolean]> {
         const teamSimulationTest = new TeamSimulation(this.teamConfig, this.backlogConfig, this.effortPerTick);
-        const metricsTest = teamSimulationTest.Run().Backlog;
+        const teamMetrics = teamSimulationTest.Run();
 
         const LeadNotNormal = () : [string, boolean] => [
             "Lead Time does NOT follow normal distribution (Nonparametric)",
-            !Statistics.IsNormalDistribution(metricsTest.LeadTime.Kurtosis, metricsTest.LeadTime.Skew)
+            !Statistics.IsNormalDistribution(teamMetrics.Backlog.LeadTime.Kurtosis, teamMetrics.Backlog.LeadTime.Skew)
         ];
 
         const CycleNotNormal = () : [string, boolean] => [
             "Cycle Time does NOT follow normal distribution (Nonparametric)",
-            !Statistics.IsNormalDistribution(metricsTest.CycleTime.Kurtosis, metricsTest.CycleTime.Skew)
+            !Statistics.IsNormalDistribution(teamMetrics.Backlog.CycleTime.Kurtosis, teamMetrics.Backlog.CycleTime.Skew)
         ];
 
         const LeadTimeControlNullHypo = () : [string, boolean] => [
             "Two random Lead Time control experiments come from same distribution (Null-Hypothesis is true)",
-            Statistics.MoodsMedianTest(metricsTest.LeadTimeData, control.LeadTime)
+            Statistics.MoodsMedianTest(teamMetrics.Backlog.LeadTimeData, control.LeadTime)
         ];
 
-        return [LeadNotNormal(), CycleNotNormal(), LeadTimeControlNullHypo()];
+        const IdleNotNormal = () : [string, boolean] => [
+            "Team member idle does NOT follow normal distribution (Nonparametric)",
+            !Statistics.IsNormalDistribution(control.TeamMembers[0].TimeIdle.Kurtosis, control.TeamMembers[0].TimeIdle.Skew)
+        ];
+
+        return [LeadNotNormal(), CycleNotNormal(), LeadTimeControlNullHypo(), IdleNotNormal()];
     }
 
     protected experimentGroup(): Data {

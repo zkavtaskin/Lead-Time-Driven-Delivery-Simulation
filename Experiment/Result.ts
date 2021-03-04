@@ -17,7 +17,7 @@ export class Result {
         this.CycleTime = Statistics.Describe(data.CycleTime);
         this.WorkSizeOriginalMean = data.WorkSizeOriginalMean;
         this.WorkSizeActualMean = data.WorkSizeActualMean;
-        this.TeamMembers = data.TeamMembers.sort((a,b) => a.TimeIdle - b.TimeIdle);
+        this.TeamMembers = data.TeamMembers.sort((a,b) => a.TimeIdle.Mean - b.TimeIdle.Mean);
         this.Constraint = this.TeamMembers[0].Name;
         this.Conditions = data.Conditions;
     }
