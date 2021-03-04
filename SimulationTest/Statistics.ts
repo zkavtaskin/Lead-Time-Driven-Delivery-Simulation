@@ -18,16 +18,16 @@ describe('Statistics', () => {
         const actual = Statistics.IsNormalDistribution(2, 2);
         expect(false).to.eql(actual);
     }),
-    it('FrequencyTest, uniform distribution, 0 < chiSquared < 20', () => {
+    it('FrequencyTest, uniform distribution, 0 < chiSquared < 2', () => {
         const x = Statistics.Choice([1, 2, 3, 4, 5, 6], 300);
         const chiSquared = Statistics.FrequencyTest(x, 2);
-        expect(20).to.be.greaterThan(chiSquared);
+        expect(2).to.be.greaterThan(chiSquared);
         expect(0).to.be.lessThan(chiSquared);
     }),
-    it('FrequencyTest, none uniform distribution, 50 < chiSquared', () => {
+    it('FrequencyTest, none uniform distribution, 15 < chiSquared', () => {
         const x =  Statistics.Choice([0, 1, 2], 300, [0.1, 0.1, 0.8]);
         const chiSquared = Statistics.FrequencyTest(x, 1);
-        expect(50).to.be.lessThan(chiSquared);
+        expect(15).to.be.lessThan(chiSquared);
     }),
     it('Histogram, 1 value per bin, 3 bins with 1 value', () => {
         const histogram = Statistics.Histogram([1, 2, 3], 1)

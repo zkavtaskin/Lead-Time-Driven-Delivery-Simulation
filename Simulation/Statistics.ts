@@ -31,7 +31,8 @@ export class Statistics {
     public static FrequencyTestBin(bins : Array<number>) : number {
         const sum = bins.reduce((sum, bin) => sum + bin, 0);
         const expected = sum / bins.length;
-        const chiSquared = bins.reduce((sum, observation) => sum + (observation-expected)**2 / expected, 0);
+        //TODO need to revisit this
+        const chiSquared = Math.sqrt(bins.reduce((sum, observation) => sum + (observation-expected)**2 / expected, 0));
         return chiSquared;
     } 
 

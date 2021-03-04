@@ -49,7 +49,7 @@ First 25% delivered on day ${result.LeadTime.Quartiles[0] * tickSize}, 50% ${res
 *Time taken* to deliver once started: 
 25% has taken ${result.CycleTime.Quartiles[0] * tickSize} day(s), 50% ${result.CycleTime.Quartiles[1] * tickSize}, 75% ${result.CycleTime.Quartiles[2] * tickSize}, last 25% ${result.CycleTime.Max * tickSize}
 ## Constraint
-${result.Constraint}
+Member: ${result.Constraint}, Uniformity Deviation: ${Statistics.ToDecimalPlace(result.TeamMembersIdleFrequency)}
 ## Team Members
 ${result.TeamMembers.reduce((s,m) => s+(m.Name + " => idle days " + Statistics.ToDecimalPlace(m.TimeIdle.Median,0) + ", turn count: waiting " + Statistics.ToDecimalPlace(m.SkipNotMyTurn.Median,1) + ", preq " + Statistics.ToDecimalPlace(m.SkipPrerequisite.Median,1) + ", feedback " + Statistics.ToDecimalPlace(m.GivenFeedback.Median,1) + "\n"), "")}`;
 }
