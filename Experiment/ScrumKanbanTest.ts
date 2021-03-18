@@ -13,7 +13,7 @@ Simulation of a cross functional "Scrum" team working using Kanban approach with
 In this scenario, with Kanban approach assumption is that there is no ready backlog, so teams are waiting for work to be refined. 
 As work is refined and it is team members turn work is pulled. Main difference with this approach is that there are a lot of dependencies as work gets handed over.`;
 
-    protected readonly teamConfig = new TeamConfig([
+    public readonly teamConfig = new TeamConfig([
             new MemberConfig("Product Owner", 10/37, 8/10, 4/100),
             new MemberConfig("UX", 10/37, 4/10, 10/100),
             new MemberConfig("Architecture", 5/37, 5/10, 5/100),

@@ -13,7 +13,9 @@ Simulation of a cross functional "Scrum" team with some supporting "Component" t
 In this scenario, backlog is "ready" before the Sprint starts, in this simulation it means that there is no dependency, developers and testers don't have to 
 wait to start the work.`;
 
-    protected readonly teamConfig = new TeamConfig([
+    public readonly teamConfig = new TeamConfig(
+       
+        [
             new MemberConfig("Product Owner", 10/37, 8/10, 4/100),
             new MemberConfig("UX", 10/37, 4/10, 10/100),
             new MemberConfig("Architecture", 5/37, 5/10, 5/100),
@@ -22,6 +24,27 @@ wait to start the work.`;
             new MemberConfig("Test", 37/37, 10/10, 20/100),
             new MemberConfig("Product Owner Sign Off", 1/37, 10/10, 1/100)
         ],
+        /*
+        [
+            new MemberConfig("Product Owner", 1, 8/10, 4/100),
+            new MemberConfig("UX", 0.87, 4/10, 10/100),
+            new MemberConfig("Architecture", 0.5, 5/10, 5/100),
+            new MemberConfig("Back-End", 3.3, 8/10, 30/100),
+            new MemberConfig("Front-End", 3.6, 8/10, 30/100),
+            new MemberConfig("Test", 3.4, 10/10, 20/100),
+            new MemberConfig("Product Owner Sign Off", 1/37, 0/10, 0/100)
+        ], */
+        /*
+        [
+            new MemberConfig("Product Owner", 0.93, 8/10, 4/100),
+            new MemberConfig("UX", 0.79, 4/10, 10/100),
+            new MemberConfig("Architecture", 0.46, 5/10, 5/100),
+            new MemberConfig("Back-End", 2.7, 8/10, 30/100),
+            new MemberConfig("Front-End", 2.9, 8/10, 30/100),
+            new MemberConfig("Test", 2, 10/10, 20/100),
+            new MemberConfig("Product Owner Sign Off", 1/37, 0/10, 0/100)
+        ],
+     */
         [
             /***
              * Bottom 0 diagonal represents flow downstream dependencies (prerequisite work)

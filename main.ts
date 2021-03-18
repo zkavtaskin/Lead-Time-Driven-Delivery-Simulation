@@ -6,6 +6,54 @@ import {ScrumPartialStackTest} from "./Experiment/ScrumPartialStackTest"
 import { Statistics } from "./Simulation/Statistics";
 import { Result } from "./Experiment/Result";
 
+/*
+const scrumTest = new ScrumTest();
+const testResult = scrumTest.Run();
+console.log("Max", testResult.Control.LeadTime.Max);
+console.log("Idle Time Sum", testResult.Control.TeamMembersIdleSum);
+console.log("Score", (testResult.Control.TeamMembersIdleSum*10) + testResult.Control.LeadTime.Max);
+*/
+
+
+const results = [];
+for(let i = 0; i < 200; i++) {
+  const scrumTest = new ScrumTest();
+  const b1 = Math.random() * 5;
+  const b2 = Math.random() * 5;
+  const b3 = Math.random() * 5;
+  const b4 = Math.random() * 5;
+  const b5 = Math.random() * 5;
+  const b6 = Math.random() * 5;
+  const b7 = Math.random() * 5;
+  scrumTest.teamConfig.Members[0].Capacity = b1*scrumTest.teamConfig.Members[0].Capacity;
+  scrumTest.teamConfig.Members[1].Capacity = b2*scrumTest.teamConfig.Members[1].Capacity;
+  scrumTest.teamConfig.Members[2].Capacity = b3*scrumTest.teamConfig.Members[2].Capacity;
+  scrumTest.teamConfig.Members[3].Capacity = b4*scrumTest.teamConfig.Members[3].Capacity;
+  scrumTest.teamConfig.Members[4].Capacity = b5*scrumTest.teamConfig.Members[4].Capacity;
+  scrumTest.teamConfig.Members[5].Capacity = b6*scrumTest.teamConfig.Members[5].Capacity;
+  scrumTest.teamConfig.Members[6].Capacity = b7*scrumTest.teamConfig.Members[6].Capacity;
+  const x1 = scrumTest.teamConfig.Members[0].Capacity;
+  const x2 = scrumTest.teamConfig.Members[1].Capacity;
+  const x3 = scrumTest.teamConfig.Members[2].Capacity;
+  const x4 = scrumTest.teamConfig.Members[3].Capacity;
+  const x5 = scrumTest.teamConfig.Members[4].Capacity;
+  const x6 = scrumTest.teamConfig.Members[5].Capacity;
+  const x7 = scrumTest.teamConfig.Members[6].Capacity;
+  const testResult = scrumTest.Run();
+  const y1 = testResult.Control.TeamMembersIdleSum;
+  const y2 = testResult.Control.LeadTime.Max;
+  results.push([x1, x2, x3, x4, x5, x6, x7, y1, y2]);
+}
+
+const output = results.reduce((s, result) => 
+  (s + result.reduce((s, v) => 
+    s + "," + Statistics.ToDecimalPlace(v, 2),"") + "\n"), "");
+
+console.log(output);
+
+
+
+/*
 const experiments = new Array<Test>(new ScrumTest(), new ScrumKanbanTest(), new ScrumPartialStackTest(), new WaterfallExperiment());
 
 console.log(`
@@ -53,3 +101,4 @@ Member: ${result.Constraint}, Uniformity Deviation: ${Statistics.ToDecimalPlace(
 ## Team Members
 ${result.TeamMembers.reduce((s,m) => s+(m.Name + " => idle days " + Statistics.ToDecimalPlace(m.TimeIdle.Median,0) + ", turn count: waiting " + Statistics.ToDecimalPlace(m.SkipNotMyTurn.Median,1) + ", preq " + Statistics.ToDecimalPlace(m.SkipPrerequisite.Median,1) + ", feedback " + Statistics.ToDecimalPlace(m.GivenFeedback.Median,1) + "\n"), "")}`;
 }
+*/

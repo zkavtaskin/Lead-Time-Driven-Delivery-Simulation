@@ -13,7 +13,7 @@ Simulation of a cross functional partial stack "Scrum" team with some supporting
 In this scenario, there are same amount of people, however they are cross skilled so they can pick up each other's work.`;
 
 
-    protected readonly teamConfig = new TeamConfig([
+    public readonly teamConfig = new TeamConfig([
             new MemberConfig("Product Owner / Test Upstream", 10/37, 8/10, 14/100),
             new MemberConfig("UX", 10/37, 4/10, 10/100),
             new MemberConfig("Architecture", 5/37, 5/10, 5/100),

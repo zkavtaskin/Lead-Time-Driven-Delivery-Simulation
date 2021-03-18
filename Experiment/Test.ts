@@ -12,7 +12,7 @@ export abstract class Test {
     public abstract readonly Name : string;
     public abstract readonly Description : string;
 
-    protected abstract readonly teamConfig : TeamConfig;
+    public abstract readonly teamConfig : TeamConfig;
     protected abstract readonly backlogConfig : BacklogConfig;
     protected abstract readonly effortPerTick: number;
 
@@ -29,7 +29,7 @@ export abstract class Test {
         return new TestResult(assumptions, new Result(control), new Result(experiment), nullHypothesis, this.effortPerTick);
     }
 
-    protected Sample(experiment : () => TeamMetrics, nSamples : number = 30) : Data {
+    protected Sample(experiment : () => TeamMetrics, nSamples : number = 10) : Data {
         const data = new Data();
         for(let i = 0; i < nSamples; i++) {
             data.AddMetrics(experiment());

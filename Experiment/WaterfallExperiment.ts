@@ -12,7 +12,7 @@ export class WaterfallExperiment extends SoftwareTest {
 Simulation of a Waterfall team, work is passed from one department to the other. 
 With this approach everything is a dependency, work must be completed at each stage before it is passed to the next stage.`;
 
-    protected readonly teamConfig = new TeamConfig([
+    public readonly teamConfig = new TeamConfig([
             new MemberConfig("Product Owner", 10/37, 8/10, 4/100),
             new MemberConfig("UX", 10/37, 4/10, 10/100),
             new MemberConfig("Architecture", 5/37, 5/10, 5/100),

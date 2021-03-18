@@ -10,6 +10,7 @@ export class Result {
     public readonly WorkSizeActualMean : number;
     public readonly TeamMembers : Array<TeamMemberMetrics>;
     public readonly TeamMembersIdleFrequency : number; 
+    public readonly TeamMembersIdleSum : number;
     public readonly Conditions : Array<[string, string]>;
     public readonly Constraint : string;
 
@@ -21,6 +22,7 @@ export class Result {
         this.TeamMembers = data.TeamMembers.sort((a,b) => a.TimeIdle.Median - b.TimeIdle.Median);
         this.Constraint = this.TeamMembers[0].Name;
         this.TeamMembersIdleFrequency = Statistics.FrequencyTestBin(data.TeamMembers.map((teamMember) => teamMember.TimeIdle.Sum)); 
+        this.TeamMembersIdleSum = data.TeamMembers.map((teamMember) => teamMember.TimeIdle.Median).reduce((s, v) => s + v, 0);
         this.Conditions = data.Conditions;
     }
 }
