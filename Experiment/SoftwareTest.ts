@@ -2,6 +2,7 @@ import { Statistics } from "../Simulation/Statistics";
 import { Test } from "./Test"
 import { TeamSimulation } from "../Simulation/TeamSimulation"
 import { Data } from "./Data";
+import { MemberCapacityOptimiser } from "../Optimisation/Continuous/MemberCapacityOptimiser"
 import { BacklogDecoder } from "../Optimisation/Discrete/BacklogDecoder"
 import { BacklogOptimiser } from "../Optimisation/Discrete/BacklogOptimiser"
 import { RandomForest } from "../Optimisation/Discrete/RandomForest"
@@ -51,16 +52,23 @@ export abstract class SoftwareTest extends Test  {
     }
 
     protected experimentGroup(): Data {
-        const decoder = new BacklogDecoder(this.teamConfig) as DiscreteDecoder;
-        const optimiser = new BacklogOptimiser(this.teamConfig, this.backlogConfig, this.effortPerTick, decoder) as DiscreteOptimiser;
-        const randomForest = new RandomForest(optimiser, decoder);
-        const result = randomForest.Search(30);
+        const backlogDecoder = new BacklogDecoder(this.teamConfig) as DiscreteDecoder;
+        const backlogOptimiser = new BacklogOptimiser(this.teamConfig, this.backlogConfig, this.effortPerTick, backlogDecoder) as DiscreteOptimiser;
+        const randomForest = new RandomForest(backlogOptimiser, backlogDecoder);
+        const discreteResult = randomForest.Search(30);
+
+        /*
+        const memberCapacityOptimiser = new MemberCapacityOptimiser(this.teamConfig, this.backlogConfig, this.effortPerTick);
+        const continuousResult = memberCapacityOptimiser.Optimise();
+        const teamConfigOptimised = this.teamConfig.ChangeMembersCapacity(continuousResult.x);
+        */
 
         const data = this.Sample(() => {
-            const teamSimulation = new TeamSimulation(this.teamConfig, this.backlogConfig, this.effortPerTick, decoder.Decode(result.Encoding) as ((a : Story, b : Story) => number));
+            const teamSimulation = new TeamSimulation(this.teamConfig, this.backlogConfig, this.effortPerTick, backlogDecoder.Decode(discreteResult.Encoding) as ((a : Story, b : Story) => number));
             return teamSimulation.Run();
         });
-        data.AddCondition([["Sort",result.EncodingDecoded.join(", ")]]);
+        data.AddCondition([["Sort",discreteResult.EncodingDecoded.join(", ")]]);
+
         return data;
     }
 

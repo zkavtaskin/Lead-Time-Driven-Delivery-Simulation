@@ -9,8 +9,13 @@ export class TeamConfig {
         this.Graph = graph;
     }
 
-    Clone() : TeamConfig {
-        return new TeamConfig(this.Members.map((m) => Object.assign({}, m)), 
-            this.Graph.map((g) => g.slice()));
+    ChangeMembersCapacity(membersCapacity : Array<number>) : TeamConfig {
+        const graph = this.Graph.map((g) => g.slice());
+        const members = new Array<MemberConfig>();
+        this.Members.forEach((m, i) => {
+            members.push(new MemberConfig(m.Name, membersCapacity[i], m.BacklogFrequency, m.BacklogContribution))
+        })
+        return new TeamConfig(members, graph);
     }
+
 }

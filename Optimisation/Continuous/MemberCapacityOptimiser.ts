@@ -32,7 +32,7 @@ export class MemberCapacityOptimiser  {
         //3. Test the mean error
         //4. Add another sample batch, compare the mean error to see what is the improvement 
         //5. Once error is stable find optimal y using gradient descent 
-        //return optimal x and y
+        //return optimal x
         return new ContinuousResult([]);
     }
 
@@ -50,8 +50,7 @@ export class MemberCapacityOptimiser  {
 
     private randomSample() : [Array<number>, number] {
         //need to test clone
-        const teamConfigSample = this.teamConfig.Clone();
-        teamConfigSample.Members.forEach((m) => m.Capacity = (Math.random() * 5) * m.Capacity)
+        const teamConfigSample = this.teamConfig.ChangeMembersCapacity(this.teamConfig.Members.map((m) => (Math.random() * 5) * m.Capacity));
         const teamSimulation = new TeamSimulation(teamConfigSample, this.backlogConfig, this.effortSize);
         const teamMetrics = teamSimulation.Run();
         const y1 = teamMetrics.Backlog.LeadTime.Max

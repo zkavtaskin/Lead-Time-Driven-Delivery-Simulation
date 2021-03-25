@@ -12,7 +12,7 @@ export abstract class Test {
     public abstract readonly Name : string;
     public abstract readonly Description : string;
 
-    public abstract readonly teamConfig : TeamConfig;
+    protected abstract readonly teamConfig : TeamConfig;
     protected abstract readonly backlogConfig : BacklogConfig;
     protected abstract readonly effortPerTick: number;
 
