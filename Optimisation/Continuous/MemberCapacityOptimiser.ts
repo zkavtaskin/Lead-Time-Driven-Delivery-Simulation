@@ -2,8 +2,6 @@ import { TeamConfig } from "../../Simulation/TeamConfig";
 import { TeamSimulation } from "../../Simulation/TeamSimulation";
 import { BacklogConfig } from "../../Simulation/BacklogConfig";
 import { ContinuousResult } from "../Continuous/ContinuousResult"
-import { TeamMetrics } from "../../Simulation/TeamMetrics";
-import { MemberConfig } from "../../Simulation/MemberConfig";
 
 export class MemberCapacityOptimiser  {
 
@@ -21,15 +19,13 @@ export class MemberCapacityOptimiser  {
     //https://github.com/zkavtaskin/Lead-Time-Driven-Delivery-Simulation/blob/master/Notebook/LeadTimeCapacityMinimisation.ipynb
     Optimise() : ContinuousResult {
 
-        const X = Array<Array<number>>(), 
-              y = Array<number>();
+        let X = Array<Array<number>>(), 
+            y = Array<number>();
 
-        //initial seed
-        for(let i = 0; i < 2 * (32 * this.teamConfig.Members.length); i++){
-            const result = this.randomSample();
-            X.push(result[0]);
-            y.push(Math.log10(result[1]));
-        }
+        //initial seed, 2 batches 
+        let results = this.batchSamples(2);
+        X = X.concat(results[0]);
+        y = y.concat(results[1]);
 
         //1. Turn X in to a polynomial 
         //2. Use multivariable Linear regression to find the model
@@ -37,7 +33,19 @@ export class MemberCapacityOptimiser  {
         //4. Add another sample batch, compare the mean error to see what is the improvement 
         //5. Once error is stable find optimal y using gradient descent 
         //return optimal x and y
-        return null;
+        return new ContinuousResult([]);
+    }
+
+    private batchSamples(nBatches : number) : [Array<Array<number>>, Array<number>] {
+        const X = Array<Array<number>>(), 
+                y = Array<number>();
+
+        for(let i = 0; i < nBatches * (32 * this.teamConfig.Members.length); i++){
+            const result = this.randomSample();
+            X.push(result[0]);
+            y.push(result[1]);
+        }
+        return [X, y];
     }
 
     private randomSample() : [Array<number>, number] {
@@ -48,7 +56,7 @@ export class MemberCapacityOptimiser  {
         const teamMetrics = teamSimulation.Run();
         const y1 = teamMetrics.Backlog.LeadTime.Max
         const y2 = teamMetrics.Members.reduce((s, m) => s + m.TimeIdle.Median, 0)
-        const y = y1 + y2
+        const y = Math.log10(y1 + y2)
         return [teamConfigSample.Members.map((m) => m.Capacity), y];
     }
 
