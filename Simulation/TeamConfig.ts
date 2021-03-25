@@ -8,4 +8,9 @@ export class TeamConfig {
         this.Members = memberConfig;
         this.Graph = graph;
     }
+
+    Clone() : TeamConfig {
+        return new TeamConfig(this.Members.map((m) => Object.assign({}, m)), 
+            this.Graph.map((g) => g.slice()));
+    }
 }
