@@ -6,9 +6,12 @@
     "outDir": "./out/",           
     "removeComments": true,
     "preserveConstEnums": true,
+    "allowJs": true,
+    "declaration": false
   },
   "include": [
-    "*.ts"
+    "*.ts",
+    "node_modules/js-regression/src/jsregression.js"
   ],
   "exclude": ["node_modules", "*Test"]
 }
