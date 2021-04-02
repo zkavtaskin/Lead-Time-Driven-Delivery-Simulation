@@ -11,5 +11,8 @@
         "simple-statistics": "^7.0.9",
         "ts-node": "^8.10.1",
         "typescript": "^3.8.3"
+    },
+    "dependencies": {
+        "js-regression": "^1.0.10"
     }
 }
