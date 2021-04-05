@@ -103,5 +103,15 @@ describe('Statistics', () => {
         const sampleA = [1, 14, 19, 12, 11, 15, 20, 5, 21, 15, 15, 28, 3, 6];
         const actual = Statistics.Quartiles(sampleA);
         expect(actual).to.eql([5.5, 14, 17]);
+    }),
+    it('TransformTo2ndDegreePolynomial, 2 variables transformed', () => {
+        const x = [2,3];
+        const actual = Statistics.TransformTo2ndDegreePolynomial(x);
+        expect(actual).to.eql([2,3,4,9,6]);
+    })
+    it('TransformTo2ndDegreePolynomial, three variables transformed', () => {
+        const x = [4,5,6];
+        const actual = Statistics.TransformTo2ndDegreePolynomial(x);
+        expect(actual).to.eql([ 4, 5, 6, 16, 25, 36, 20, 24, 30]);
     })
 });

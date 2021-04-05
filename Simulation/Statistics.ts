@@ -156,4 +156,20 @@ export class Statistics {
       if(n == 0) return n;
       return 1/n;
     }
+
+    public static TransformTo2ndDegreePolynomial(X : Array<number>) : Array<number>  {
+      const xTransformed = Array.from(X);
+      X.forEach(x => xTransformed.push(Math.pow(x, 2)));
+      simplestats.combinations(X, 2).forEach(c => xTransformed.push(c[0] * c[1]));
+      return xTransformed;
+    }
+
+    public static MeanSquaredError(y : Array<number>, yPredicted : Array<number>) : number {
+      let sum = 0;
+      for(let i = 0; i < y.length; i++) {
+        sum += Math.pow(y[i] - yPredicted[i],2);
+      }
+      return sum / y.length;
+    }
+
 }
