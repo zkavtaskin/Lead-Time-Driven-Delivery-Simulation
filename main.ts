@@ -41,16 +41,17 @@ ${resultView(results.Experiment, results.EffortPerTick)}
 
 function resultView(result : Result, tickSize : number) {
   return `Total mean man-days: original ${Statistics.ToDecimalPlace(result.WorkSizeOriginalMean)}, actual ${Statistics.ToDecimalPlace(result.WorkSizeActualMean)}
-Conditions: ${result.Conditions}
+Conditions: 
+${result.Conditions.map((c) => c[0] + " : " + c[1]).join("\n")}
 ## Lead Time 
-Uniformity Deviation: ${result.LeadTime.Frequency}, Skew: ${result.LeadTime.Skew}
+  Uniformity Deviation: ${result.LeadTime.Frequency}, Skew: ${result.LeadTime.Skew}
 *When* delivered: 
-First 25% delivered on day ${result.LeadTime.Quartiles[0] * tickSize}, 50% ${result.LeadTime.Quartiles[1] * tickSize}, 75% ${result.LeadTime.Quartiles[2] * tickSize}, last 25% ${result.LeadTime.Max * tickSize}
+  First 25% delivered on day ${result.LeadTime.Quartiles[0] * tickSize}, 50% ${result.LeadTime.Quartiles[1] * tickSize}, 75% ${result.LeadTime.Quartiles[2] * tickSize}, last 25% ${result.LeadTime.Max * tickSize}
 ## Cycle Time
 *Time taken* to deliver once started: 
-25% has taken ${result.CycleTime.Quartiles[0] * tickSize} day(s), 50% ${result.CycleTime.Quartiles[1] * tickSize}, 75% ${result.CycleTime.Quartiles[2] * tickSize}, last 25% ${result.CycleTime.Max * tickSize}
+  25% has taken ${result.CycleTime.Quartiles[0] * tickSize} day(s), 50% ${result.CycleTime.Quartiles[1] * tickSize}, 75% ${result.CycleTime.Quartiles[2] * tickSize}, last 25% ${result.CycleTime.Max * tickSize}
 ## Constraint
-Member: ${result.Constraint}, Uniformity Deviation: ${Statistics.ToDecimalPlace(result.TeamMembersIdleFrequency)}
+  Member: ${result.Constraint}, Uniformity Deviation: ${Statistics.ToDecimalPlace(result.TeamMembersIdleFrequency)}
 ## Team Members
-${result.TeamMembers.reduce((s,m) => s+(m.Name + " => idle days " + Statistics.ToDecimalPlace(m.TimeIdle.Median,0) + ", turn count: waiting " + Statistics.ToDecimalPlace(m.SkipNotMyTurn.Median,1) + ", preq " + Statistics.ToDecimalPlace(m.SkipPrerequisite.Median,1) + ", feedback " + Statistics.ToDecimalPlace(m.GivenFeedback.Median,1) + "\n"), "")}`;
+${result.TeamMembers.reduce((s,m) => s+(" "+ m.Name + " => idle days " + Statistics.ToDecimalPlace(m.TimeIdle.Median,0) + ", turn count: waiting " + Statistics.ToDecimalPlace(m.SkipNotMyTurn.Median,1) + ", preq " + Statistics.ToDecimalPlace(m.SkipPrerequisite.Median,1) + ", feedback " + Statistics.ToDecimalPlace(m.GivenFeedback.Median,1) + "\n"), "")}`;
 }

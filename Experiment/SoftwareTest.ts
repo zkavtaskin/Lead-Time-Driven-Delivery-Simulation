@@ -18,10 +18,12 @@ export abstract class SoftwareTest extends Test  {
     Statistics.Choice([0.5, 1, 1.5, 2, 2.5, 3, 4, 5, 6, 7], 1, [0.25, 0.25, 0.05, 0.05, 0.10, 0.05, 0.10, 0.05, 0.05, 0.05])[0]);
 
     protected controlGroup(): Data {
-        return this.Sample(() => {
+        const data = this.Sample(() => {
             const teamSimulation = new TeamSimulation(this.teamConfig, this.backlogConfig, this.effortPerTick, null);
             return teamSimulation.Run();
         });
+        data.AddCondition([["Capacity", this.teamConfig.Members.reduce((s,m) => s+(" "+ m.Name + " => Capacity " + Statistics.ToDecimalPlace(m.Capacity,1) ), "") ]]);
+        return data;
     }
 
     protected assumptions(control : Data) : Array<[string, boolean]> {
@@ -66,7 +68,10 @@ export abstract class SoftwareTest extends Test  {
             const teamSimulation = new TeamSimulation(teamConfigOptimised, this.backlogConfig, this.effortPerTick, backlogDecoder.Decode(discreteResult.Encoding) as ((a : Story, b : Story) => number));
             return teamSimulation.Run();
         });
-        data.AddCondition([["Sort",discreteResult.EncodingDecoded.join(", ")]]);
+        data.AddCondition([
+            ["Sort",discreteResult.EncodingDecoded.join(", ")], 
+            ["Capacity", teamConfigOptimised.Members.map(m => m.Name + " => " + Statistics.ToDecimalPlace(m.Capacity,1)).join(", ")]
+        ]);
 
         return data;
     }
