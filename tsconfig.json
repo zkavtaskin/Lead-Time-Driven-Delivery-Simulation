@@ -11,8 +11,7 @@
     "esModuleInterop": true
   },
   "include": [
-    "*.ts",
-    "node_modules/js-regression/src/jsregression.js"
+    "*.ts"
   ],
   "exclude": ["node_modules", "*Test"]
 }

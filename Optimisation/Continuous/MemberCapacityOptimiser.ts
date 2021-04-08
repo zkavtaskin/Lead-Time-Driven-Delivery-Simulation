@@ -4,8 +4,7 @@ import { BacklogConfig } from "../../Simulation/BacklogConfig";
 import { ContinuousResult } from "../Continuous/ContinuousResult"
 import { Statistics } from "../../Simulation/Statistics";
 import MLR from "ml-regression-multivariate-linear"
-// import optimize from "optimization-js"
-
+import * as optimize from "optimization-js"
 
 /* 
 Using 
@@ -26,12 +25,13 @@ export class MemberCapacityOptimiser  {
 
     Optimise() : ContinuousResult {
         let X = Array<Array<number>>(), Y = Array<Array<number>>();
-        let rmsePrevious = null;
+        let rmsePrevious = 1;
+        let regression : MLR = null;
         while(true) {
-            const samples = this.secondDegreeBatchSamples(1);
+            const samples = this.secondDegreeBatchSamples(2);
             X = X.concat(samples[0]);
             Y = Y.concat(samples[1]);
-            const regression = new MLR(X, Y);
+            regression = new MLR(X, Y);
             const yPredicted = regression.predict(X);
             const rmse = Math.sqrt(Statistics.MeanSquaredError(Y.map(y => y[0]), yPredicted.map(y => y[0])));
             //gains check
@@ -41,9 +41,11 @@ export class MemberCapacityOptimiser  {
             rmsePrevious = rmse;
         }
 
-        //5. Once error is stable find optimal y using gradient descent 
-        //return optimal x
-        return new ContinuousResult([0]);
+        const solution = optimize.minimize_Powell((x) => 
+            regression.predict(Statistics.TransformTo2ndDegreePolynomial(x))[0], 
+                new Array(this.teamConfig.Members.length).fill(0));
+
+        return new ContinuousResult(solution.argument);
     }
 
     private secondDegreeBatchSamples(nBatches : number) : [Array<Array<number>>, Array<Array<number>>] {
@@ -62,7 +64,7 @@ export class MemberCapacityOptimiser  {
         const teamSimulation = new TeamSimulation(teamConfigSample, this.backlogConfig, this.effortSize);
         const teamMetrics = teamSimulation.Run();
         const Y1 = teamMetrics.Backlog.LeadTime.Max;
-        const Y2 = teamMetrics.Members.reduce((s, m) => s + m.TimeIdle.Median, 0);
+        const Y2 = teamMetrics.Members.reduce((s, m) => s + m.TimeIdleData[0], 0);
         const Y = Math.log10(Y1 + Y2);
         const X = Statistics.TransformTo2ndDegreePolynomial(teamConfigSample.Members.map((m) => m.Capacity));
         return [X, [Y]];

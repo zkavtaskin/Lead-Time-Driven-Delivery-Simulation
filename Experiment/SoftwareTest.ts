@@ -57,14 +57,13 @@ export abstract class SoftwareTest extends Test  {
         const randomForest = new RandomForest(backlogOptimiser, backlogDecoder);
         const discreteResult = randomForest.Search(30);
 
-        /*
+  
         const memberCapacityOptimiser = new MemberCapacityOptimiser(this.teamConfig, this.backlogConfig, this.effortPerTick);
         const continuousResult = memberCapacityOptimiser.Optimise();
         const teamConfigOptimised = this.teamConfig.ChangeMembersCapacity(continuousResult.x);
-        */
 
         const data = this.Sample(() => {
-            const teamSimulation = new TeamSimulation(this.teamConfig, this.backlogConfig, this.effortPerTick, backlogDecoder.Decode(discreteResult.Encoding) as ((a : Story, b : Story) => number));
+            const teamSimulation = new TeamSimulation(teamConfigOptimised, this.backlogConfig, this.effortPerTick, backlogDecoder.Decode(discreteResult.Encoding) as ((a : Story, b : Story) => number));
             return teamSimulation.Run();
         });
         data.AddCondition([["Sort",discreteResult.EncodingDecoded.join(", ")]]);
