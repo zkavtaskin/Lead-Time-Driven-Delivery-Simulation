@@ -7,7 +7,8 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "allowJs": true,
-    "declaration": false
+    "declaration": false,
+    "esModuleInterop": true
   },
   "include": [
     "*.ts",
