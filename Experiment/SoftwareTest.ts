@@ -54,15 +54,15 @@ export abstract class SoftwareTest extends Test  {
     }
 
     protected experimentGroup(): Data {
-        const backlogDecoder = new BacklogDecoder(this.teamConfig) as DiscreteDecoder;
-        const backlogOptimiser = new BacklogOptimiser(this.teamConfig, this.backlogConfig, this.effortPerTick, backlogDecoder) as DiscreteOptimiser;
-        const randomForest = new RandomForest(backlogOptimiser, backlogDecoder);
-        const discreteResult = randomForest.Search(30);
-
   
         const memberCapacityOptimiser = new MemberCapacityOptimiser(this.teamConfig, this.backlogConfig, this.effortPerTick);
         const continuousResult = memberCapacityOptimiser.Optimise();
         const teamConfigOptimised = this.teamConfig.ChangeMembersCapacity(continuousResult.x);
+
+        const backlogDecoder = new BacklogDecoder(teamConfigOptimised) as DiscreteDecoder;
+        const backlogOptimiser = new BacklogOptimiser(teamConfigOptimised, this.backlogConfig, this.effortPerTick, backlogDecoder) as DiscreteOptimiser;
+        const randomForest = new RandomForest(backlogOptimiser, backlogDecoder);
+        const discreteResult = randomForest.Search(30);
 
         const data = this.Sample(() => {
             const teamSimulation = new TeamSimulation(teamConfigOptimised, this.backlogConfig, this.effortPerTick, backlogDecoder.Decode(discreteResult.Encoding) as ((a : Story, b : Story) => number));

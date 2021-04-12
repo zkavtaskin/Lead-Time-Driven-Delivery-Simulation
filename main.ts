@@ -2,12 +2,14 @@ import { Test } from "./Experiment/Test";
 import {ScrumKanbanTest} from "./Experiment/ScrumKanbanTest"
 import {ScrumTest} from "./Experiment/ScrumTest"
 import {WaterfallExperiment} from "./Experiment/WaterfallExperiment"
+import {SmallTeamTest} from "./Experiment/SmallTeamTest"
 import {ScrumPartialStackTest} from "./Experiment/ScrumPartialStackTest"
 import { Statistics } from "./Simulation/Statistics";
 import { Result } from "./Experiment/Result";
 
 
-const experiments = new Array<Test>(new ScrumTest(), new ScrumKanbanTest(), new ScrumPartialStackTest(), new WaterfallExperiment());
+const experiments = new Array<Test>(new SmallTeamTest(), new ScrumTest(), new ScrumKanbanTest(), new ScrumPartialStackTest(), new WaterfallExperiment());
+
 
 console.log(`
 Experiments search for:
