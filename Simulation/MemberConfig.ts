@@ -3,7 +3,7 @@ export class MemberConfig {
     readonly Name :string;
     
     //Ratio of how many hours member has to do the work e.g. 10 hours out of 37 hour week would be 10/37
-    Capacity :number;
+    readonly Capacity :number;
     
     //Ratio of how often work is assigned for this individual .e.g. 1 story out of 20 is assigned would be 1/20
     readonly BacklogFrequency :number;

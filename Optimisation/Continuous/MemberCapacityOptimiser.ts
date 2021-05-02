@@ -64,7 +64,6 @@ export class MemberCapacityOptimiser  {
     }
 
     private secondDegreeSample() : [Array<number>, Array<number>] {
-        //need to test clone
         const teamConfigSample = this.teamConfig.ChangeMembersCapacity(this.teamConfig.Members.map((m) => (Math.random() * 5) * m.Capacity));
         const teamSimulation = new TeamSimulation(teamConfigSample, this.backlogConfig, this.effortSize);
         const teamMetrics = teamSimulation.Run();
