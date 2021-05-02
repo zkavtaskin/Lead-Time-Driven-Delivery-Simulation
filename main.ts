@@ -10,7 +10,6 @@ import { Result } from "./Experiment/Result";
 
 const experiments = new Array<Test>(new SmallTeamTest(), new ScrumTest(), new ScrumKanbanTest(), new ScrumPartialStackTest(), new WaterfallExperiment());
 
-
 console.log(`
 Experiments search for:
     1) Shortest lead time

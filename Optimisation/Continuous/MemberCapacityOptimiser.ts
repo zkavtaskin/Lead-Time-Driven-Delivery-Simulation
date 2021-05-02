@@ -24,27 +24,32 @@ export class MemberCapacityOptimiser  {
     }   
 
     Optimise() : ContinuousResult {
-        let X = Array<Array<number>>(), Y = Array<Array<number>>();
-        let rmsePrevious = 1;
-        let regression : MLR = null;
-        while(true) {
+        let X = Array<Array<number>>(), 
+            Y = Array<Array<number>>(),
+            argumentPrevious = new Array(this.teamConfig.Members.length).fill(Number.EPSILON),
+            improvingPrecision = false,
+            solution = null;
+
+        do {
             const samples = this.secondDegreeBatchSamples(2);
             X = X.concat(samples[0]);
             Y = Y.concat(samples[1]);
-            regression = new MLR(X, Y);
-            const yPredicted = regression.predict(X);
-            const rmse = Math.sqrt(Statistics.MeanSquaredError(Y.map(y => y[0]), yPredicted.map(y => y[0])));
-            //gains check
-            if((rmsePrevious-rmse)/rmsePrevious < 0.01) {
-                break;
+
+            const regression = new MLR(X, Y);
+            solution = optimize.minimize_Powell(
+                (x) => regression.predict(Statistics.TransformTo2ndDegreePolynomial(x))[0], 
+                    new Array(this.teamConfig.Members.length).fill(0)
+            );
+
+            improvingPrecision = false;
+            for(let i = 0; i < argumentPrevious.length; i++) {
+                if(Math.abs(argumentPrevious[i] - solution.argument[i]) / argumentPrevious[i] > 0.10) {
+                    improvingPrecision = true;
+                    break;
+                }
             }
-            rmsePrevious = rmse;
-        }
-
-        const solution = optimize.minimize_Powell((x) => 
-            regression.predict(Statistics.TransformTo2ndDegreePolynomial(x))[0], 
-                new Array(this.teamConfig.Members.length).fill(0));
-
+            argumentPrevious = solution.argument;
+        } while(improvingPrecision)
         return new ContinuousResult(solution.argument);
     }
 
