@@ -11,6 +11,8 @@ export class MemberConfig {
     //Ratio of "weight" for the story e.g. if this team member does 50% of the work and the rest of the team does 50% then this would be 50/100.
     readonly BacklogContribution: number;
 
+    readonly Cost: number;
+
     constructor(name :string, capacity :number, backlogFrequency :number, backlogContribution :number) {
         this.Name = name;
         this.Capacity = capacity;

@@ -17,7 +17,7 @@ export class SmallTeamTest extends SoftwareTest {
             new MemberConfig("Dev", 37/37, 10/10, 90/100)
         ],
         [
-            [0, 1/3],
+            [0, 1/2],
             [1, 0]
         ]
     );
