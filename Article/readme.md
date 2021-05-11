@@ -1,4 +1,4 @@
-# Using Lead and cycle time to go beyond Agile dogma in software engineering 
+# Using lead and cycle time to go beyond Agile dogma in software engineering 
 
 ## Abstract
 ...
