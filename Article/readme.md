@@ -90,7 +90,7 @@ One big insight that we can gain already is that in knowledge work the **work it
 * How you do it
 * Who does it
 
-This means if you have a creative product owner or business analysts they can deliver astronomical amount of value with a very small team. However traditional manufacturing mindset would dictate that you need more capacity and people to deliver more units. This is not true for craft work unless but it is true for standard work. If this does not make sense yet that is OK. 
+This means if you have a creative product owner or business analysts they can deliver astronomical amount of value with a very small team. This is because they can swarm around "problem" that needs to be solved and figure out creative ways to getting it delivered quickly. However traditional manufacturing mindset would dictate that you need more capacity and people to deliver more units. This is not true for craft work but it is true for standard work. If this does not make sense yet that is OK. 
 
 ### What is actually important to measure 
 ...
