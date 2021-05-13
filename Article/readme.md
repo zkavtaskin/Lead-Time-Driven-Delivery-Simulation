@@ -34,6 +34,7 @@ Since the rise lean manufacturing majority of companies have transitioned toward
 This means that factory's tend to have one assembly line down which work travels. Takt dictates how much time each station has to complete their task. For example in car manufacturing, you might need to install car dashboard, you will be given 3 minutes per car to do this. If you find an issue, don't have enough time, you can "stop the line" so the entire assembly line stops. 
 
 ![](img/chaplin.gif)
+
 (Charlie Chaplin "Modern Times" 1936)
 
 Car manufacturers have been doing this for decades so they have figured out ways to ensure that each station has as few issues as possible so there is very little disruption. As you can imagine work is monotonous, however quality people are needed, so these assembly line workers tend to get paid well (in the UK). 
@@ -41,11 +42,12 @@ Car manufacturers have been doing this for decades so they have figured out ways
 Assembly lines can get very long and they might have number of inputs before the work gets merged in to a single line. This can be witnessed when car manufacturers perform "marriage", this is when they insert the chassis, transmission and engine in the body on the production line. 
 
 ![](img/marriage.jpeg)
+
 (image taken from https://www.sar.biz/news/2017_Aggregateeinbau_BMW_e.asp)
 
 Lastly all of the cars are not the same. They will be built per different specifications. Some will have premium interior, different wheels, upgraded electronics and so on. This means each stage needs to know what exactly needs to be done for that particular car. This adds additional complexity to the manufacturing process. 
 
-Now that we know some of the pertinent details we can explore why assembly line work is different to knowledge line work.  
+Now that we know some of the pertinent details we can explore why **assembly line work** is different to **knowledge line work**.  
 
 #### Standard work 
 ...
