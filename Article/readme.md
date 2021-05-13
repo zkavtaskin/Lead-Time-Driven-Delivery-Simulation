@@ -119,13 +119,23 @@ This inherently makes it less predicable. This is because unlike coffee that mig
 
 
 ### Knowledge workers workflow 
-...
+Knowledge workers typically work together to produce some value. The moment team is formed dynamics change, and I don't mean this from personality point of view but from work relay point of view. 
 
-#### Your work
-...
+#### Your individual work
 
-#### How your team works
-...
+Three factors that make up your individual work:
+* Wait Time - This is when you are waiting around for some knowledge that you don’t have, decisions that you can’t make and finally you are waiting around for someone else to complete some work before you can start yours.
+* Disruption Time - This is when you have to expedite some work, rework some work, corporate interruptions and mental health impact.
+* Task Time - Finally, this is the actual work that you are doing, pure sitting down and getting things done.
+
+![](img/systemthinking.jpeg)
+
+
+#### Your team work
+
+Imagine you are working on your own on your own start-up. You will have very little wait and disruption time. You are on our own, you can make all of the decisions. Also if you are lucky enough to work in a quiet environment you should experience very little or no disruptions. You get things done fast, your users are impressed with your company, new features just come out all the time. In this case you are in "your individual work" scenario. 
+
+However, this changes the moment you hire your first employee in your start-up. The moment you do that, you create an organisation, that means you have created a system. In the system work no longer gets done by a single individual, it gets done by many individuals. You as the founder are unlikely to feel much impact by hiring this new person (apart from knowledge transfer burden), but if you are not careful your new employee will have to wait for your decisions, knowledge and task allocation. Their Wait Time will grow as they wait for you and they will probably be disrupted by you. You will wonder why they are not as a productive as you, it might be because they have not got enough autonomy to make decisions (maybe they don’t know your values so they don’t know what decisions to make on your behalf) also they might not be getting enough clarity about the desired outcomes. Most people are not founders, they are the employees and they struggle to do their best as they just don’t understand the reasoning framework and don’t get enough autonomy.
 
 ### Learning to focus on results not methods
 
