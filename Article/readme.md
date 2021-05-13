@@ -31,13 +31,13 @@ Since the rise lean manufacturing majority of companies have transitioned toward
 ![](img/spf.jpeg)
 (Image taken from https://www.kaufmanglobal.com/glossary/single-piece-flow/)
 
-This means that factory's tend to have one assembly line down which work travels. Takt dictates how much time each station has to complete their task. For example in car manufacturing, you might need to install car dashboard, you will be given 3 minutes per car to do this. If you find an issue, don't have enough time, you can "stop the line" so the entire assembly line stops. 
+This means that factory's tend to have one assembly line down which work travels. Takt dictates how much time each station has to complete their task. For example in car manufacturing, you might need to install car dashboard, you will be given 3 minutes per car to do this. If you find an issue or don't have enough time you can "stop the line" so the entire assembly line stops. 
 
 ![](img/chaplin.gif)
 
 (Charlie Chaplin "Modern Times" 1936 movie)
 
-Car manufacturers have been doing this for decades so they have figured out ways to ensure that each station has as few issues as possible so there is very little disruption. As you can imagine work is monotonous, however quality people are needed, so these assembly line workers tend to get paid well (in the UK). 
+Car manufacturers have been doing this for decades so they have figured out ways to ensure that each station has as few issues as possible so there is very little disruption, having said that there are thousands of line stops a day and this is considered healthy. As you can imagine work is monotonous, however quality people are needed, so these assembly line workers tend to get paid well (in the UK). 
 
 Assembly lines can get very long and they might have number of inputs before the work gets merged in to a single line. This can be witnessed when car manufacturers perform "marriage", this is when they insert the chassis, transmission and engine in the body on the production line. 
 
@@ -61,7 +61,7 @@ This is not to say that there is no standard work in knowledge work. Implementat
 
 #### Anatomy of knowledge work
 
-Craft production delivery predictability is exacerbated by the fact that **people** are working on the actual work. Stakeholders in organisations forget that employee A and employee B might deliver work at very different speed due to their different characteristics and experience. Also work it self might have properties that were not considered until development starts. Here are the factors that impact productivity:
+Craft production delivery predictability is exacerbated by the fact that **people** are working on the actual work. Stakeholders in organisations forget that employee A and employee B might deliver work at very different speed due to their different characteristics and experience. Also work it self might have different properties that were not considered until development has started. Here are the factors that impact productivity:
 
 ![](img/tasktime.jpeg)
 
@@ -76,12 +76,12 @@ Domain - This is you gaining new domain knowledge (HR, Logistics, Financial Trad
 
 #### Work swapping
 
-Assembly lines tend to be linear. Once work enters the production line it goes from start to the end in the queue fashion. This is not the case with knowledge work. Work might go on to a backlog sit there for a year and then be removed. Work that was super urgent will be deprioritised. In knowledge work there is no queue as such. If you are following Scrum then normally team commits to work before a Sprint starts and very rarely should user stories in the Sprint change. This commitment is probably the only place in the whole process where there is a stable queue. 
+Assembly lines tend to be linear. Once work enters the production line it enters a queue and goes from start to the end. This is not the case with knowledge work. Work might go on to a backlog sit there for a year and then get removed. Work that once was super urgent will be deprioritised and swapped with something else. In knowledge work there is no queue as such. If you are following Scrum then normally team commits to work before a Sprint starts and very rarely should user stories in the Sprint change. This commitment is probably the only place in the whole process where there is a stable queue. 
 
 #### Implications
 
 Rest of this article explores implications of the above. However few things will be pointed out at this stage:
-1. **Little's Law** assumes that queue is stable and that work has an average cycle time. This is true for standard work, not true for craft production. This means vanilla Little's Law can't be used for software engineering. 
+1. **Little's Law** assumes that queue is stable and that work has an average cycle time. This is true for standard work as work on average takes similar amount of time, this not true for craft production. This means vanilla Little's Law can't be used in software engineering. 
 1. **One-piece flow**, typical Scrum team has around 6 team members. It is likely that they will work on more then user story at the time. This means it is not one-piece flow. Constraining team to a one piece flow artificially constraints teams and wastes capacity.
 1. **Theory of constraints** assumes that there is one-piece flow and work is standard. Different stories will engage different people in the team at different times. This means bottleneck is dynamic and it depends on the work that team is working on. 
 
@@ -90,7 +90,7 @@ One big insight that we can gain already is that in knowledge work the **work it
 * How you do it
 * Who does it
 
-This means if you have a creative product owner or business analysts they can deliver astronomical amount of value with a very small team. This is because they can swarm around "problem" that needs to be solved and figure out creative ways to getting it delivered quickly. However traditional manufacturing mindset would dictate that you need more capacity and people to deliver more units. This is not true for craft work but it is true for standard work. If this does not make sense yet that is OK. 
+This means if you have a creative product owner or business analysts they can deliver astronomical amount of value with a very small team. This is because they can swarm around "problem" that needs to be solved and figure out creative ways to getting it delivered quickly. With knowledge work you are not constrained to the assembly line, people are not machines as they can learn, help each other and be creative. However traditional manufacturing mindset would dictate that you need more capacity and people to deliver more units of work. This is not true for craft work but it is true for standard work. If this does not make sense yet that is OK, hold on we are just getting started. 
 
 ### What is actually important to measure 
 ...
