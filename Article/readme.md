@@ -81,12 +81,16 @@ Assembly lines tend to be linear. Once work enters the production line it goes f
 #### Implications
 
 Rest of this article explores implications of the above. However few things will be pointed out at this stage:
-1. Little's Law assumes that queue is stable and that work has an average cycle time. This is true for standard work, not true for craft production. This means vanilla Little's Law can't be used for software engineering. More on this later. 
-1. One-piece flow, typical Scrum team has around 6 team members. It is likely that they will work on more then user story at the time. This means it is not one-piece flow. Constraining team to a one piece flow artificial constraints teams wasting capacity. More on that later.
-1. Theory of constraints assumes that there is one-piece flow and work is standard. Different stories will engage different people in the team at different times. This means bottleneck is dynamic and it depends on the work that team is working on. 
+1. **Little's Law** assumes that queue is stable and that work has an average cycle time. This is true for standard work, not true for craft production. This means vanilla Little's Law can't be used for software engineering. 
+1. **One-piece flow**, typical Scrum team has around 6 team members. It is likely that they will work on more then user story at the time. This means it is not one-piece flow. Constraining team to a one piece flow artificially constraints teams and wastes capacity.
+1. **Theory of constraints** assumes that there is one-piece flow and work is standard. Different stories will engage different people in the team at different times. This means bottleneck is dynamic and it depends on the work that team is working on. 
 
+One big insight that we can gain already is that in knowledge work the **work it self** can be a constraint. This is because in knowledge work as a business you choose:
+* What you do
+* How you choose to do it
+* Who does it
 
-
+This means if you have a creative product owner or business analysts they deliver astronomical amount of value with a very small team. If this does not make sense yet, keep reading.
 
 ### What is actually important to measure 
 ...
