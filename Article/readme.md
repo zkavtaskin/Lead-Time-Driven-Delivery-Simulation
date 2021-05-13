@@ -35,7 +35,7 @@ This means that factory's tend to have one assembly line down which work travels
 
 ![](img/chaplin.gif)
 
-(Charlie Chaplin "Modern Times" 1936)
+(Charlie Chaplin "Modern Times" 1936 movie)
 
 Car manufacturers have been doing this for decades so they have figured out ways to ensure that each station has as few issues as possible so there is very little disruption. As you can imagine work is monotonous, however quality people are needed, so these assembly line workers tend to get paid well (in the UK). 
 
@@ -47,17 +47,19 @@ Assembly lines can get very long and they might have number of inputs before the
 
 Lastly all of the cars are not the same. They will be built per different specifications. Some will have premium interior, different wheels, upgraded electronics and so on. This means each stage needs to know what exactly needs to be done for that particular car. This adds additional complexity to the manufacturing process. 
 
-Now that we know some of the pertinent details we can explore why **assembly line work** is different to **knowledge line work**.  
+Now that we know some of the pertinent details we can explore why **assembly line work** is different to **knowledge work**.  
 
-#### Standard work 
-...
+#### Standard work (Assembly Line)
+What gave a drastic productivity boost to assembly line is componentisation. It became possible to put things together using discrete parts. Componentisation and part integration is possible only through agreed standards. Assembly line is setup and configured to produce few models of the car, sure these models have different variants like mentioned above, however they are all standard and their **Takt time is known**. 
 
+#### Non standard work (Craft production)
+Now contrast this to software engineering. In software engineering requirements drastically vary. Backlog of work of certain user stories that deliver discrete piece of value say A, B and C. A might take 15 days to complete by 4 people. B might take 5 days to complete by 2 people. C might take 8 days to complete by 7 people from different departments! In some sense this is craft production.  
 
-...
-#### Asymmetry
-...
+Practitioner might say, well how about you break these user stories down to a smaller size? So that Takt time is known? I have to counter with, user story needs to be a discrete piece of value. If it is possible to break down then it should be broken while it is still delivering value. However more often then not user story can only be broken down to a finite amount until it **loses its value** and then process becomes task break down. Breaking user stories down too far is artificial and actually leads to knowledge workers forgetting why they are doing the piece of work in the first place, this leads to poorer solutions and time waste (more on that later).
 
-#### Anatomy of tasks
+This is not to say that there is no standard work in knowledge work. Implementations consultants that are setting up a product for a customer are doing standard work. Software engineers that are re-using components and connecting them to a different data source are using standard work. However the problem is that companies want innovation and product differentiation. Unfortunately this work falls in to craft production which is slower and tends to be less predictable. 
+
+#### Anatomy of work
 ...
 
 ### What is actually important to measure 
