@@ -87,10 +87,10 @@ Rest of this article explores implications of the above. However few things will
 
 One big insight that we can gain already is that in knowledge work the **work it self** can be a constraint. This is because in knowledge work as a business you choose:
 * What you do
-* How you choose to do it
+* How you do it
 * Who does it
 
-This means if you have a creative product owner or business analysts they deliver astronomical amount of value with a very small team. If this does not make sense yet, keep reading.
+This means if you have a creative product owner or business analysts they can deliver astronomical amount of value with a very small team. However traditional manufacturing mindset would dictate that you need more capacity and people to deliver more units. This is not true for craft work unless but it is true for standard work. If this does not make sense yet that is OK. 
 
 ### What is actually important to measure 
 ...
