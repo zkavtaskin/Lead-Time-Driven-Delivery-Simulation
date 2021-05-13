@@ -13,14 +13,18 @@ Agile methodologies such as Scrum, Extreme Programming and DSDM have emerged in 
 1. Term agile is not well defined, it is hard to understand what is meant when stakeholders say "we have to be more Agile" or "we need to change our process to be more Agile".
 1. In time entropy erodes established best practice, making practitioners lose their "true north" bearings. It also makes it really difficult or not even possible to go back to "true north" if stakeholders lose faith in the existing process. 
 
-Above problems have been witnesses by the author directly and indirectly across various software engineering departments in the industry. In this article he will explore how above problems can be remedied through introduction of lead and cycle time. 
+Above problems have been witnesses by me directly and indirectly across various software engineering departments in the industry. In this article I will explore how above problems can be remedied through introduction of lead and cycle time. 
 
 ## Alternative perspective 
-In this section author will explore how your existing agile operations can be viewed from a different angle, and why we as practitioners have been experiencing above problems.
+In this section I will explore how your existing agile operations can be viewed from a different angle, and why we as practitioners have been experiencing above problems.
 
 ### Knowledge work is not manufacturing 
-...
+
+Agile methodologies do borrow ideas from lean manufacturing and engineering. While some ideas such as standards, components, trunk based development, and value streams have been very useful, others such as Kanban, Theory of Constraints (ToC) and Little's Law creates confusion and false sense of security. As a practitioner I have immersed myself in these concepts reading "Agile Management for Software Engineering" and "Phoenix Project" and for a while I was under impression that these concepts were working. Only after some reflection it became evident that these ideas did not work as expected, they actually ended up harming delivery operations and leading towards a lot of frustration. In this section we will explore why exactly ToC and Little's Law can't be applied literally. 
+
 #### Standard work 
+
+
 ...
 #### Asymmetry
 ...
@@ -46,7 +50,7 @@ In this section author will explore how your existing agile operations can be vi
 #### How your team works
 ...
 
-### Starting to focus on results not methods
+### Learning to focus on results not methods
 
 #### How your team would work 
 ...
