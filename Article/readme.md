@@ -115,8 +115,7 @@ Going back to software engineering. Work gets committed normally in the Sprint s
 
 ![](img/cycletime.png)
 
-This inherently makes it less predicable. This is because unlike coffee that might take between 30 seconds to 1 minute and 30 seconds to make. ~25% of knowledge work gets delivered in 2.5 days, ~50%  7 days, ~75% 10 days and last 25% 15 days.  
-
+This inherently makes it less predicable. This is because unlike coffee that might take between 30 seconds to 1 minute and 30 seconds which makes it 1 minute average. Based on above graph ~25% of knowledge work gets delivered in 2.5 days, ~50%  7 days, ~75% 10 days and last 25% 15 days. Sometimes you don't know always know how long it will take as it depends on overall team dynamics and this is what we are going to explore next.
 
 
 ### Knowledge workers workflow 
