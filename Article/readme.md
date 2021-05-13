@@ -53,14 +53,28 @@ Now that we know some of the pertinent details we can explore why **assembly lin
 What gave a drastic productivity boost to assembly line is componentisation. It became possible to put things together using discrete parts. Componentisation and part integration is possible only through agreed standards. Assembly line is setup and configured to produce few models of the car, sure these models have different variants like mentioned above, however they are all standard and their **Takt time is known**. 
 
 #### Non standard work (Craft production)
-Now contrast this to software engineering. In software engineering requirements drastically vary. Backlog of work of certain user stories that deliver discrete piece of value say A, B and C. A might take 15 days to complete by 4 people. B might take 5 days to complete by 2 people. C might take 8 days to complete by 7 people from different departments! In some sense this is craft production.  
+Now contrast this to software engineering. Typical backlog of user stories delivers discrete piece of value, we will call them story A, B and C. Story A might take 15 days to complete by 4 people. B might take 5 days to complete by 2 people. C might take 8 days to complete by 7 people from 3 different departments! In some sense this is craft production.  
 
-Practitioner might say, well how about you break these user stories down to a smaller size? So that Takt time is known? I have to counter with, user story needs to be a discrete piece of value. If it is possible to break down then it should be broken while it is still delivering value. However more often then not user story can only be broken down to a finite amount until it **loses its value** and then process becomes task break down. Breaking user stories down too far is artificial and actually leads to knowledge workers forgetting why they are doing the piece of work in the first place, this leads to poorer solutions and time waste (more on that later).
+Practitioner might say, well how about you break these user stories down to a smaller size? So that Takt time is known. I have to counter with, user story needs to be a discrete piece of value. If it is possible to break it down and still delivery **real value** then it should be broken down. However more often then not user story can only be broken down to a finite amount until it **loses its value** and then process becomes task break down. Breaking user stories down too far is artificial and actually leads to knowledge workers forgetting why they are doing the piece of work in the first place, this leads to poorer solutions and time waste (more on that later).
 
-This is not to say that there is no standard work in knowledge work. Implementations consultants that are setting up a product for a customer are doing standard work. Software engineers that are re-using components and connecting them to a different data source are using standard work. However the problem is that companies want innovation and product differentiation. Unfortunately this work falls in to craft production which is slower and tends to be less predictable. 
+This is not to say that there is no standard work in knowledge work. Implementations consultants that are setting up a product for a customer are doing standard work. Software engineers that are re-using components and connecting them to a different data source are doing standard work. However the problem is that companies want innovation and product differentiation. Unfortunately this work falls in to craft production which is slower and tends to be less predictable. 
 
 #### Anatomy of work
-...
+
+Craft production delivery predictability is exacerbated by the fact that **people** are working on the actual work. Stakeholders in organisations forget that employee A and employee B might deliver work at very different speed due to their different characteristics and experience. Also work it self might have properties that were not considered until development starts. Here are the factors that impact productivity:
+
+![](img/tasktime.jpeg)
+
+* Volume of work - This is the amount of work you have to do. 
+* Unknowns - This is you identifying stuff that you did not consider when you were estimating the work.
+* Complexity - This is you figuring out an algorithm to solve a problem, the main thinking part. 
+* Risk - This is how much testing you have to do given the risk level that is acceptable for the task at hand.
+* Skill - This is you improving your hard/soft transferable skills (programming, math, architecture, algorithm design, management, etc) or using your existing skills to get work done quicker.
+Domain - This is you gaining new domain knowledge (HR, Logistics, Financial Trading, etc) or using your existing domain knowledge to get work done faster.
+* Attitude - This is how you perceive your work environment and tasks.
+* Aptitude - This is you having developed or have predisposed skills towards the work that you are doing.
+
+All of this makes knowledge work asymmetrical and more of a craft production then assembly line.
 
 ### What is actually important to measure 
 ...
