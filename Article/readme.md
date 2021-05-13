@@ -92,13 +92,31 @@ One big insight that we can gain already is that in knowledge work the **work it
 
 This means if you have a creative product owner or business analysts they can deliver astronomical amount of value with a very small team. This is because they can swarm around "problem" that needs to be solved and figure out creative ways to getting it delivered quickly. With knowledge work you are not constrained to the assembly line, people are not machines as they can learn, help each other and be creative. However traditional manufacturing mindset would dictate that you need more capacity and people to deliver more units of work. This is not true for craft work but it is true for standard work. If this does not make sense yet that is OK, hold on we are just getting started. 
 
-### What is actually important to measure 
-...
+### What your business actually cares about
+
+If your business is like most businesses then it cares about delivering quality innovative solutions to the customer quickly. Speed is everything, so how strange is it that some businesses do not actually measure this. I am not talking about speed of a single department getting from point A to B either, I am talking about getting from point A (customer commitment) to Z (customer receive their functionality) i.e. work traveling through the entire business. In this section we will explore two most most important concepts that help with this. 
+
+#### Cycle Time
+Let's go back to the car manufacturing where I have introduced Takt time. Cycle time is different to Takt time. Takt time tells you how much time you have to complete a discrete unit if work given amount of demand. Cycle Time tells you how much you have used to perform a unit of work. Cycle time can be measured at every level, but what does that mean?
+
+Let's say you have entered a coffee shop, and you have finally reached the till to make that drink request. Cycle time starts from the moment barista smiles (hopefully) and asks you for your coffee order and it ends when they shout your order or name. That time that was taken to make your drink is cycle time. However if you can go measure three discrete parts: 
+* Cycle time to take your order
+* Cycle time to make your coffee 
+* Cycle time overall  
+
+Coming back to the world of software engineering. User Story will have an overall cycle time i.e. days or hours to complete, this measured time from story activation to story completion. Individual tasks under that story will also have cycle time measured from activation to completion, this is important as their cycle time will ultimately dictate the overall user story cycle time.
 
 #### Lead Time 
-...
-#### Cycle Time
-...
+Now this is the most confusing one when it comes knowledge work. Lead time is how long something has taken from the moment it was committed to the queue. So the overall time. Let's go back to the coffee shop example again (standard work). When you have entered the coffee shop you have committed yourself to the queue, the overall time it takes you from walking in that door to the moment you walk out is the lead time. 
+
+You might be thinking well there will be a lot of waiting around before I get served and my cycle time starts! You are right, the cool thing is that in "standard work" you can predict how long you will wait in the queue. This is because there is **average** cycle time. To make a coffee takes 1 minute give or take. So if there are 4 people ahead of you, you know that you will get your coffee in about 4+1(+1 is for you) multiplied by 1 minute so 5 minutes.
+
+Going back to software engineering. Work gets committed normally in the Sprint so that is when the lead time clock starts. If you are using Kanban and it is stable i.e. work does not get swapped around all the time then lead time is measured from the moment is committed to your Kanban board. Issue is that in software engineering cycle time is heavily skewed like so:
+
+![](img/cycletime.png)
+
+This inherently makes it less predicable. This is because unlike coffee that might take between 30 seconds to 1 minute and 30 seconds to make. ~25% of knowledge work gets delivered in 2.5 days, ~50%  7 days, ~75% 10 days and last 25% 15 days.  
+
 
 
 ### Knowledge workers workflow 
