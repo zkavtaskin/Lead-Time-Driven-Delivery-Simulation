@@ -128,7 +128,7 @@ Three factors that make up your individual work:
 * Disruption Time - This is when you have to expedite some work, rework some work, corporate interruptions and mental health impact.
 * Task Time - Finally, this is the actual work that you are doing, pure sitting down and getting things done.
 
-![](img/systemthinking.jpeg)
+![](img/SystemThinking.jpeg)
 
 
 #### Teaming up 
