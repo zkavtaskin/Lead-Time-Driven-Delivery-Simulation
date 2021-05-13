@@ -131,42 +131,63 @@ Three factors that make up your individual work:
 ![](img/SystemThinking.jpeg)
 
 
-#### Teaming up 
+#### Your team work
 
 Imagine you are working on your own on your own start-up. You will have very little wait and disruption time. You are on our own, you can make all of the decisions. Also if you are lucky enough to work in a quiet environment you should experience very little or no disruptions. You get things done fast, your users are impressed with your company, new features just come out all the time. In this case you are in "your individual work" scenario. 
 
 However, this changes the moment you hire your first employee in your start-up. The moment you do that, you create an organisation, that means you have created a system. In the system work no longer gets done by a single individual, it gets done by many individuals. You as the founder are unlikely to feel much impact by hiring this new person (apart from knowledge transfer burden), but if you are not careful your new employee will have to wait for your decisions, knowledge and task allocation. Their Wait Time will grow as they wait for you and they will probably be disrupted by you. You will wonder why they are not as a productive as you, it might be because they have not got enough autonomy to make decisions (maybe they don’t know your values so they don’t know what decisions to make on your behalf) also they might not be getting enough clarity about the desired outcomes. Most people are not founders, they are the employees and they struggle to do their best as they just don’t understand the reasoning framework and don’t get enough autonomy.
 
-#### Your company 
+#### Your company work 
 
-Image a company that does not follow any Agile process and instead they have departments of people per discipline. 
+Image a company that does not follow any Agile process and instead they have departments of people per discipline. So Web devs in one department, API Devs are in another department, you get the point. Each department will have their own backlog, which means everyone has their own Lead Time, on top of that all individuals will experience disruptions (team meetings, urgent requests you know the drill) and there will be many handovers from one department to another. Work will also end up traveling backwards due to misunderstandings. 
 
 ![](img/waterfallteam.jpeg)
 
-So Web devs in one department, API Devs are in another department, you get the point. Each department will have their own backlog, which means everyone has their own Lead Time, on top of that all individuals will experience disruptions (team meetings, urgent requests you know the drill) and there will be many handovers from one department to another. Work will also end up traveling backwards due to misunderstandings. So if a customer has requested a “Hot Feature A” they will have to wait for a long time for this work to travel through this type of organisation (system). Actual Task Time for "Hot Feature A” might be 12 hours of work in total, however given all of the Wait Time (handovers and lead times) and disruptions it might take up to 1 month before it gets shipped. So there is a big difference between 1 month Lead Time and 12 hours Task Time. However your customer will not care about the 12 hours of Task Time, they will just care that you took 1 month Lead Time. Overall in this type of organisation Lead Time for most work will be very high, fewer projects will be shipped, projects will very rarely go out on time and individuals will feel frustrated as there will be a lot of firefighting.
+So if a customer has requested a “Hot Feature A” they will have to wait for a long time for this work to travel through this type of organisation (system). Actual Task Time for "Hot Feature A” might be 12 hours of work in total, however given all of the Wait Time (handovers and lead times) and disruptions it might take up to 1 month before it gets shipped. So there is a big difference between 1 month Lead Time and 12 hours Task Time. However your customer will not care about the 12 hours of Task Time, they will just care that you took 1 month Lead Time. Overall in this type of organisation Lead Time for most work will be very high, fewer projects will be shipped, projects will very rarely go out on time and individuals will feel frustrated as there will be a lot of firefighting.
+
+### Learning from the lego game
+
+I have been fascinated by one-piece flow and small batches for a long time (due to my obsession with lean manufacturing). So one afternoon when it was almost home time I have asked few of my colleagues to participate in a game that would prove that one-piece flow is an optimal strategy for delivering software. 
+
+Experiment had to be quick to setup and easy to follow. I have done the following:
+* Established two teams of same size
+* Written two backlogs of stories with acceptance criteria; one backlog was broken down to tiny stories (build a chair, build a table, build a plant), and the second backlog had course grained stories (build a park scene with chair, table and a plant). There were many different scenes in there, not just park. 
+* Each team member was constrained as he/she could only work on structures top, middle or bottom part and not the whole. This constraint reflects skill/specialism in real life.
+* One-piece flow team could only take in one story and the whole team must have been engaged in getting the work done. Non one-piece flow team could work on several fine grained stories at the same time.
+
+Hypothesis was that smaller stories backlog would outpace larger stories. Theory was that larger stories create more conversation, errors and by team having many stories on the go would slow down overall delivery. 
+
+To my surprise the completely opposite was true. Team with larger stories knew what they were doing overall as they have spent time discussing overall story, theme and ideas (park scene with chair, table and a plant). As there was more work to do in one go they could utilise everyone and once they noticed that people are running out of work (due to color constraint) they started on the next item thus increasing overall utilisation. Team overall felt calm, self organised, and positive.
+
+![](img/large.jpg)
+
+Now compare this to one-piece flow team. This team was given one piece of small work to develop at the time i.e. chair. They did not fully know the full context of what they are building (park scene). They only understood the scene as they were finishing it so they have tried to make it better by reworking it, however it was still not as good as the large story team. As it was one-piece flow, many members just stood around waiting for work. This team needed also a lot of more orchestration and it felt a lot more stressed. 
+
+![](img/singlepiece.jpg)
+
+I don't know why I was surprised, large story team has outpaced one-piece flow team by 26% average and delivered much better quality! 
+
+Now dear reader, let's refer back to my earlier statement in this article "Constraining team to a one piece flow artificially constraints teams and wastes capacity" and "user story needs to be a discrete piece of value". As a rule of thumb, if a user story is not useful to the user it is probably broken down too much. However if it is too big then it is not a user story but a feature. Also team needs to do their best to minimise amount stories are worked on in parallel, ideally everyone in the team should be engaged on getting one user story complete at the time, however no one should be idle, so if someone is idle then then next story should be picked up. 
 
 
-### Learning to focus on results not methods
+## Alternative perspective in practice
 
-#### How your team would work 
+### How your team would work 
 Now imagine another company that understands importance of Lead Time and works to remove as much Wait, Disruption and Task Time (more on Task Time later) from overall delivery process. They have decided to sit people together for a limited amount of time to deliver certain features and projects. They have done this as they want to remove handovers, the amount of project management is required, competing agendas, waiting for decisions, knowledge and organisational dependencies. They work as a team on one story at time and their main job is to push that one story through the system as fast as possible. Now, that story that took 1 month to deliver, in this new system will take 12 hours or even less. This is because you have removed all of the waiting around, disruptions (team lead and product owners act as defenders) and because this team is sitting together they can actually expose the unknowns faster, tame complexity, share their experience and share the burden of the work so they can actually deliver the work faster.
 
 ![](img/agileteam.jpeg)
 
-#### Use retrospective to gain qualitative insight 
+### Use retrospective to gain qualitative insight 
 ...
 
-#### Use data to gain quantitative insight  
+### Use data to gain quantitative insight  
 ...
 
-
-## Alternative perspective in practice
-...
-
-...
 ## What are the implications of this perspective
 ...
+
 ## Conclusions 
 ...
+
 ## Acknowledgments
 ...
