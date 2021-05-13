@@ -59,7 +59,7 @@ Practitioner might say, well how about you break these user stories down to a sm
 
 This is not to say that there is no standard work in knowledge work. Implementations consultants that are setting up a product for a customer are doing standard work. Software engineers that are re-using components and connecting them to a different data source are doing standard work. However the problem is that companies want innovation and product differentiation. Unfortunately this work falls in to craft production which is slower and tends to be less predictable. 
 
-#### Anatomy of work
+#### Anatomy of knowledge work
 
 Craft production delivery predictability is exacerbated by the fact that **people** are working on the actual work. Stakeholders in organisations forget that employee A and employee B might deliver work at very different speed due to their different characteristics and experience. Also work it self might have properties that were not considered until development starts. Here are the factors that impact productivity:
 
@@ -74,7 +74,19 @@ Domain - This is you gaining new domain knowledge (HR, Logistics, Financial Trad
 * Attitude - This is how you perceive your work environment and tasks.
 * Aptitude - This is you having developed or have predisposed skills towards the work that you are doing.
 
-All of this makes knowledge work asymmetrical and more of a craft production then assembly line.
+#### Work swapping
+
+Assembly lines tend to be linear. Once work enters the production line it goes from start to the end in the queue fashion. This is not the case with knowledge work. Work might go on to a backlog sit there for a year and then be removed. Work that was super urgent will be deprioritised. In knowledge work there is no queue as such. If you are following Scrum then normally team commits to work before a Sprint starts and very rarely should user stories in the Sprint change. This commitment is probably the only place in the whole process where there is a stable queue. 
+
+#### Implications
+
+Rest of this article explores implications of the above. However few things will be pointed out at this stage:
+1. Little's Law assumes that queue is stable and that work has an average cycle time. This is true for standard work, not true for craft production. This means vanilla Little's Law can't be used for software engineering. More on this later. 
+1. One-piece flow, typical Scrum team has around 6 team members. It is likely that they will work on more then user story at the time. This means it is not one-piece flow. Constraining team to a one piece flow artificial constraints teams wasting capacity. More on that later.
+1. Theory of constraints assumes that there is one-piece flow and work is standard. Different stories will engage different people in the team at different times. This means bottleneck is dynamic and it depends on the work that team is working on. 
+
+
+
 
 ### What is actually important to measure 
 ...
