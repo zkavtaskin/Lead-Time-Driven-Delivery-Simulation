@@ -174,8 +174,6 @@ Now compare this to one-piece flow team. This team was given one piece of small 
 
 ![](img/singlepiece.jpg)
 
-![](img/large.jpg)
-
 (Small story team delivering a park scene)
 
 I don't know why I was surprised, large story team has outpaced one-piece flow team by 26% average and delivered much better quality work! 
