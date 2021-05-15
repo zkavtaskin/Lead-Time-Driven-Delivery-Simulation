@@ -9,9 +9,9 @@
         * [Standard work (Assembly Line)](#standard-work-assembly-line)
         * [Non standard work (Craft production)](#non-standard-work-craft-production)
         * [Anatomy of knowledge work](#anatomy-of-knowledge-work)
-        * [Work swapping](#work-swapping)
-        * [Implications](#implications)
-    * [What your business actually cares about](#what-your-business-actually-cares-about)
+        * [There is not much of a queue](#there-is-not-much-of-a-queue)
+        * [Implications of this reality](#implications-of-this-reality)
+    * [Goals are still the same](#goals-are-still-the-same)
         * [Cycle Time](#cycle-time)
         * [Lead Time](#lead-time)    
     * [Knowledge workers workflow](#knowledge-workers-workflow)
@@ -94,11 +94,11 @@ Domain - This is you gaining new domain knowledge (HR, Logistics, Financial Trad
 * Attitude - This is how you perceive your work environment and tasks.
 * Aptitude - This is you having developed or have predisposed skills towards the work that you are doing.
 
-#### Work swapping
+#### There is not much of a queue
 
 Assembly lines tend to be linear. Once work enters the production line it enters a queue and goes from start to the end. This is not the case with knowledge work. Work might go on to a backlog sit there for a year and then get removed. Work that once was super urgent will be deprioritised and swapped with something else. In knowledge work there is no queue as such. If you are following Scrum then normally team commits to work before a Sprint starts and very rarely should user stories in the Sprint change. This commitment is probably the only place in the whole process where there is a stable queue. 
 
-#### Implications
+#### Implications of this reality
 
 Rest of this article explores implications of the above. However few things will be pointed out at this stage:
 1. **Little's Law** assumes that queue is stable and that work has an average cycle time. This is true for standard work as work on average takes similar amount of time, this not true for craft production. This means vanilla Little's Law can't be used in software engineering. 
@@ -112,9 +112,9 @@ One big insight that we can gain already is that in knowledge work the **work it
 
 This means if you have a creative product owner or business analysts they can deliver astronomical amount of value with a very small team. This is because they can swarm around "problem" that needs to be solved and figure out creative ways to getting it delivered quickly. With knowledge work you are not constrained to the assembly line, people are not machines as they can learn, help each other and be creative. However traditional manufacturing mindset would dictate that you need more capacity and people to deliver more units of work. This is not true for craft work but it is true for standard work. If this does not make sense yet that is OK, hold on we are just getting started. 
 
-### What your business actually cares about
+### Goals are still the same
 
-If your business is like most businesses then it cares about delivering quality innovative solutions to the customer quickly. Speed is everything, so how strange is it that some businesses do not actually measure this. I am not talking about speed of a single department getting from point A to B either, I am talking about getting from point A (customer commitment) to Z (customer receive their functionality) i.e. work traveling through the entire business. In this section we will explore two most most important concepts that help with this. 
+Your business goals are still the same as in the manufacturing. It cares about delivering quality innovative solutions to the customer quickly. This is typically measured in Lead Time and Cycle Time. Speed is everything, so how strange is it that some businesses do not actually measure these two indicators. Also, I am not talking about speed of a single department getting from point A to B either, I am talking about getting from point A (customer commitment) to Z (customer receive their functionality) i.e. work traveling through the entire business. In this section we will explore two most most important concepts that help with this. 
 
 #### Cycle Time
 Let's go back to the car manufacturing where I have introduced Takt time. Cycle time is different to Takt time. Takt time tells you how much time you have to complete a discrete unit if work given amount of demand. Cycle Time tells you how much you have used to perform a unit of work. Cycle time can be measured at every level, but what does that mean?
@@ -196,7 +196,7 @@ Now image that your company grew too quickly and it ended up not following any A
 
 So if a customer has requested a “Hot Feature A” they will have to wait for a long time for this work to travel through this type of organisation (system). Actual Task Time for "Hot Feature A” might be 12 hours of work in total, however given all of the Wait Time (handovers and lead times) and disruptions it might take up to 1 month before it gets shipped. So there is a big difference between 1 month Lead Time and 12 hours Task Time. However your customer will not care about the 12 hours of Task Time, they will just care that you took 1 month Lead Time. Overall in this type of organisation Lead Time for most work will be very high, fewer projects will be shipped, projects will very rarely go out on time and individuals will feel frustrated as there will be a lot of firefighting.
 
-### Your agile team work
+#### Your agile team work
 Now imagine that your companies founder understood importance of Lead and Cycle Time and worked to remove as much Wait, Disruption and Task Time from overall delivery process. They have decided to sit people together for a limited amount of time to deliver certain features and projects. They have done this as they want to remove handovers, the amount of project management is required, competing agendas, waiting for decisions, knowledge and organisational dependencies. They work as a team on one story at time (as much as possible) and their main job is to push that one story through the system as fast as possible. Now, that story that took 1 month to deliver, in this new system will take 12 hours or even less. This is because you have removed all of the waiting around, disruptions (team lead and product owners act as defenders) and because this team is sitting together they can actually expose the unknowns faster, tame complexity, share their experience and share the burden of the work so they can actually deliver the work faster.
 
 ![](img/agileteam.jpeg)
