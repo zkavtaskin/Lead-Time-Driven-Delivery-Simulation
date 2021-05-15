@@ -6,15 +6,15 @@
 * [Alternative perspective](#alternative-perspective)
     * [Knowledge work is not manufacturing](#knowledge-work-is-not-manufacturing)
         * [Manufacturing](#manufacturing)
-        * [Standard work (Assembly Line)](#standard-work-assembly-line)
-        * [Non standard work (Craft production)](#non-standard-work-craft-production)
+        * [Standard work - Assembly Line)](#standard-work-assembly-line)
+        * [Non standard work - Craft production](#non-standard-work-craft-production)
         * [Anatomy of knowledge work](#anatomy-of-knowledge-work)
         * [There is not much of a queue](#there-is-not-much-of-a-queue)
         * [Implications of this reality](#implications-of-this-reality)
     * [Goals are still the same](#goals-are-still-the-same)
         * [Cycle Time](#cycle-time)
         * [Lead Time](#lead-time)    
-    * [Knowledge workers workflow](#knowledge-workers-workflow)
+    * [Knowledge work is systemic](#knowledge-work-is-systemic)
         * [Your individual work](#your-individual-work)
         * [Learning from the lego game](#learning-from-the-lego-game)   
         * [Your not Agile team work](#your-not-agile-team-work)   
@@ -139,7 +139,7 @@ Going back to software engineering. Work gets committed normally in the Sprint s
 
 This inherently makes it less predicable. This is because unlike coffee that might take between 30 seconds to 1 minute and 30 seconds which makes it 1 minute average. Based on above graph ~25% of knowledge work gets delivered in 2.5 days, ~50%  7 days, ~75% 10 days and last 25% 15 days. So it seems that craft work can't be standardised in to **average** unit of time like standard work can be which means vanilla Little's Law can't be used. Given all of this, how is it possible to make craft work in software engineering more predictable, that is what we are going to explore next. 
 
-### Knowledge workers workflow 
+### Knowledge work is systemic
 Knowledge workers typically work together to produce some value. The moment team is formed dynamics change, and I don't mean this from personality point of view but from work relay point of view. 
 
 #### Your individual work
