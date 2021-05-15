@@ -1,7 +1,24 @@
 # Strengthening your Agile practice by introducing Lead and Cycle Time
 
 ## Contents
-* [Abstract](#introduction)
+* [Abstract](#abstract)
+* [Introduction](#introduction)
+* [Alternative perspective](#alternative-perspective)
+    * [Knowledge work is not manufacturing](#knowledge-work-is-not-manufacturing)
+        * [Manufacturing](#manufacturing)
+        * [Standard work (Assembly Line)](#standard-work-assembly-line)
+        * [Non standard work (Craft production)](#non-standard-work-craft-production)
+        * [Anatomy of knowledge work](#anatomy-of-knowledge-work)
+        * [Work swapping](#work-swapping)
+        * [Implications](#implications)
+    * [What your business actually cares about](#what-your-business-actually-cares-about)
+        * [Cycle Time](#cycle-time)
+        * [Lead Time](#lead-time)    
+    * [Knowledge workers workflow](#knowledge-workers-workflow)
+        * [Your individual work](#your-individual-work)
+        * [Learning from the lego game](#learning-from-the-lego-game)   
+        * [Your not Agile team work](#your-not-agile-team-work)   
+        * [Your agile team work](#your-agile-team-work)   
 
 ## Abstract
 ...
