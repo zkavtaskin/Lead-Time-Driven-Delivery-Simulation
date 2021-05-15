@@ -149,28 +149,31 @@ So if a customer has requested a “Hot Feature A” they will have to wait for 
 
 ### Learning from the lego game
 
-I have been fascinated by one-piece flow and small batches for a long time (due to my obsession with lean manufacturing). So one afternoon when it was almost home time I have asked few of my colleagues to participate in a game that would prove that one-piece flow is an optimal strategy for delivering software. 
+I have been fascinated by one-piece flow and small batches for a long time, this is of-course due to my obsession with lean manufacturing. So one afternoon when it was almost home time I have asked few of my colleagues to participate in a game that would prove that one-piece flow is an optimal strategy for delivering software. 
 
-Experiment had to be quick to setup and easy to follow. I have done the following:
-* Established two teams of same size
-* Written two backlogs of stories with acceptance criteria; one backlog was broken down to tiny stories (build a chair, build a table, build a plant), and the second backlog had course grained stories (build a park scene with chair, table and a plant). There were many different scenes in there, not just park. 
+Experiment had to be quick to setup and easy to follow, after all everyone wanted to go home. The following rules were established:
+* There will be two teams of same size
+* There will be two backlogs of stories with acceptance criteria; one backlog was broken down to tiny stories (build a chair, build a table, build a plant), and the second backlog had larger stories with more scope (build a park scene with chair, table and a plant). There were many different scenes in there that teams had to create. 
 * Each team member was constrained as he/she could only work on structures top, middle or bottom part and not the whole. This constraint reflects skill/specialism in real life.
-* One-piece flow team could only take in one story and the whole team must have been engaged in getting the work done. Non one-piece flow team could work on several fine grained stories at the same time.
+* One-piece flow team could only take in one story at the time and the whole team must have been engaged in getting the work done. The other team team could work on several several stories at the same time.
 
-Hypothesis was that smaller stories backlog would outpace larger stories. Theory was that larger stories create more conversation, errors and by team having many stories on the go would slow down overall delivery. 
+Hypothesis was that smaller scope stories backlog would outpace larger scope stories. Theory was that larger stories create more conversation, errors and by having many stories on the go at the same time would slow down overall delivery. 
 
-To my surprise the completely opposite was true. Team with larger stories knew what they were doing overall as they have spent time discussing overall story, theme and ideas (park scene with chair, table and a plant). As there was more work to do in one go they could utilise everyone and once they noticed that people are running out of work (due to color constraint) they started on the next item thus increasing overall utilisation. Team overall felt calm, self organised, and positive.
+To my surprise the completely opposite was true. Team with larger stories knew what they were doing overall as they have spent time discussing overall story, theme and ideas (park scene with chair, table and a plant). As there was more work to do in one go they utilised everyone and once they noticed that people are running out of work due to artificial constraint they started on the next item thus increasing overall utilisation. Team overall felt calm, self organised, and positive.
 
 ![](img/large.jpg)
 
-Now compare this to one-piece flow team. This team was given one piece of small work to develop at the time i.e. chair. They did not fully know the full context of what they are building (park scene). They only understood the scene as they were finishing it so they have tried to make it better by reworking it, however it was still not as good as the large story team. As it was one-piece flow, many members just stood around waiting for work. This team needed also a lot of more orchestration and it felt a lot more stressed. 
+Now compare this to one-piece flow team. This team was given one piece of small work to develop at the time (chair). They did not fully know the full context of what they are building (park scene). They only understood the scene as they were finishing it so they have tried to make it better by reworking it, however it was still not as good as the large story team. As it was one-piece flow, many members just stood around waiting for work. This team needed also a lot of more orchestration and it seemed more stressed. 
 
 ![](img/singlepiece.jpg)
 
-I don't know why I was surprised, large story team has outpaced one-piece flow team by 26% average and delivered much better quality! 
+I don't know why I was surprised, large story team has outpaced one-piece flow team by 26% average and delivered much better quality work! 
 
-Now dear reader, let's refer back to my earlier statement in this article "Constraining team to a one piece flow artificially constraints teams and wastes capacity" and "user story needs to be a discrete piece of value". As a rule of thumb, if a user story is not useful to the user it is probably broken down too much. However if it is too big then it is not a user story but a feature. Also team needs to do their best to minimise amount stories are worked on in parallel, ideally everyone in the team should be engaged on getting one user story complete at the time, however no one should be idle, so if someone is idle then then next story should be picked up. 
+Now dear reader, let's refer back to my earlier statement in this article "Constraining team to a one piece flow artificially constraints teams and wastes capacity" and "user story needs to be a discrete piece of value". 
 
+The big insight here is that batch sizes need to big enough for teams to understand what is that they are doing. This way they can get engaged with the work, provide an opinion, self organise so that everyone is utilised, know what work is coming in when, provide assistance to other team members where appropriate. If user story is too small it robs the team of doing all of the things just mentioned and usually this story is probably broken down too much and it is a task. I know it will sound shocking, but it seems that planning reduces cycle time and reduced lead time. 
+
+If you decide to repeat above experiments in your own organisation, please do share the results. 
 
 ## Alternative perspective in practice
 
