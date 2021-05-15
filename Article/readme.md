@@ -133,6 +133,33 @@ Three factors that make up your individual work:
 
 (Factors that make up your actual work)
 
+### Learning from the lego game
+
+I have been fascinated by one-piece flow and small batches for a long time, this is of-course due to my obsession with lean manufacturing. So one afternoon when it was almost home time I have asked few of my colleagues to participate in a game that would prove that one-piece flow is an optimal strategy for delivering software. 
+
+Experiment had to be quick to setup and easy to follow, after all everyone wanted to go home. The following rules were established:
+* There will be two teams of same size
+* There will be two backlogs of stories with acceptance criteria; one backlog was broken down to tiny stories (build a chair, build a table, build a plant), and the second backlog had larger stories with more scope (build a park scene with chair, table and a plant). There were many different scenes in there that teams had to create. 
+* Each team member was constrained as he/she could only work on structures top, middle or bottom part and not the whole. This constraint reflects skill/specialism in real life.
+
+Hypothesis was that smaller scope stories backlog would outpace larger scope stories. Theory was that larger stories create more conversation, errors and by having many stories on the go at the same time would slow down overall delivery. 
+
+To my surprise the completely opposite was true. Team with larger stories knew what they were doing overall as they have spent time discussing overall story, theme and ideas on how park scene with chair, table and a plant will be setup. This has reduced task time, as they have worked a team to figure out best approach, it has reduced future disruptions as they knew who was doing what and why they are doing it. As plenty of work got released in to the system there was no need for anyone to wait for any work. Team overall felt calm, self organised, and positive.
+
+![](img/large.jpg)
+
+Now compare this to one-piece flow team. This team was given one piece of small work to develop at the time such as chair. They did know the overall theme of the work, that is that they are building a park scene. They only understood the scene as they were finishing it so they have tried to make it better by reworking it, creating wait time and disruption. As it was one-piece flow, many members just stood around waiting for work, thus increasing wait time. This team needed also needed a lot more orchestration as they did not know the context of the work (increase in task time, wait time and disruption) and overall team seemed more stressed. 
+
+![](img/singlepiece.jpg)
+
+I don't know why I was surprised, large story team has outpaced one-piece flow team by 26% average and delivered much better quality work! 
+
+Now dear reader, let's refer back to my earlier statement in this article "Constraining team to a one piece flow artificially constraints teams and wastes capacity" and "user story needs to be a discrete piece of value". 
+
+The big insight here is that batch sizes need to big enough for teams to understand what is that they are doing. This way they can get engaged with the work, provide an opinion, self organise so that everyone is utilised, know what work is coming in when, provide assistance to other team members where appropriate. If user story is too small it robs the team of doing all of the things just mentioned and usually this story is probably broken down too much and it is a task. If you follow INVEST and ensure that stories are actually valuable i.e. they deliver discrete piece of usable functionality you are on to the winner. I know it will sound shocking, but it seems that work planning reduces cycle time and reduced lead time.
+
+If you decide to repeat above experiments in your own organisation, please do share the results. 
+
 #### Your not Agile team work
 
 Imagine you are working on your own on your own start-up. You will have very little wait and disruption time. You are on our own, you can make all of the decisions. Also if you are lucky enough to work in a quiet environment you should experience very little or no disruptions. You get things done fast, your users are impressed with your company, new features just come out all the time. In this case you are in "your individual work" scenario. 
@@ -144,34 +171,6 @@ Now image that your company grew too quickly and it ended up not following any A
 ![](img/waterfallteam.jpeg)
 
 So if a customer has requested a “Hot Feature A” they will have to wait for a long time for this work to travel through this type of organisation (system). Actual Task Time for "Hot Feature A” might be 12 hours of work in total, however given all of the Wait Time (handovers and lead times) and disruptions it might take up to 1 month before it gets shipped. So there is a big difference between 1 month Lead Time and 12 hours Task Time. However your customer will not care about the 12 hours of Task Time, they will just care that you took 1 month Lead Time. Overall in this type of organisation Lead Time for most work will be very high, fewer projects will be shipped, projects will very rarely go out on time and individuals will feel frustrated as there will be a lot of firefighting.
-
-### Learning from the lego game (interlude)
-
-I have been fascinated by one-piece flow and small batches for a long time, this is of-course due to my obsession with lean manufacturing. So one afternoon when it was almost home time I have asked few of my colleagues to participate in a game that would prove that one-piece flow is an optimal strategy for delivering software. 
-
-Experiment had to be quick to setup and easy to follow, after all everyone wanted to go home. The following rules were established:
-* There will be two teams of same size
-* There will be two backlogs of stories with acceptance criteria; one backlog was broken down to tiny stories (build a chair, build a table, build a plant), and the second backlog had larger stories with more scope (build a park scene with chair, table and a plant). There were many different scenes in there that teams had to create. 
-* Each team member was constrained as he/she could only work on structures top, middle or bottom part and not the whole. This constraint reflects skill/specialism in real life.
-* One-piece flow team could only take in one story at the time and the whole team must have been engaged in getting the work done. The other team team could work on several several stories at the same time.
-
-Hypothesis was that smaller scope stories backlog would outpace larger scope stories. Theory was that larger stories create more conversation, errors and by having many stories on the go at the same time would slow down overall delivery. 
-
-To my surprise the completely opposite was true. Team with larger stories knew what they were doing overall as they have spent time discussing overall story, theme and ideas (park scene with chair, table and a plant). As there was more work to do in one go they utilised everyone and once they noticed that people are running out of work due to artificial constraint they started on the next item thus increasing overall utilisation. Team overall felt calm, self organised, and positive.
-
-![](img/large.jpg)
-
-Now compare this to one-piece flow team. This team was given one piece of small work to develop at the time (chair). They did not fully know the full context of what they are building (park scene). They only understood the scene as they were finishing it so they have tried to make it better by reworking it, however it was still not as good as the large story team. As it was one-piece flow, many members just stood around waiting for work. This team needed also a lot of more orchestration and it seemed more stressed. 
-
-![](img/singlepiece.jpg)
-
-I don't know why I was surprised, large story team has outpaced one-piece flow team by 26% average and delivered much better quality work! 
-
-Now dear reader, let's refer back to my earlier statement in this article "Constraining team to a one piece flow artificially constraints teams and wastes capacity" and "user story needs to be a discrete piece of value". 
-
-The big insight here is that batch sizes need to big enough for teams to understand what is that they are doing. This way they can get engaged with the work, provide an opinion, self organise so that everyone is utilised, know what work is coming in when, provide assistance to other team members where appropriate. If user story is too small it robs the team of doing all of the things just mentioned and usually this story is probably broken down too much and it is a task. If you follow INVEST and ensure that stories are actually valuable i.e. they deliver discrete piece of usable functionality you are on the winner. I know it will sound shocking, but it seems that planning reduces cycle time and reduced lead time, so learn to love planning!
-
-If you decide to repeat above experiments in your own organisation, please do share the results. 
 
 ### Your agile team work
 Now imagine that your companies founder understood importance of Lead and Cycle Time and worked to remove as much Wait, Disruption and Task Time from overall delivery process. They have decided to sit people together for a limited amount of time to deliver certain features and projects. They have done this as they want to remove handovers, the amount of project management is required, competing agendas, waiting for decisions, knowledge and organisational dependencies. They work as a team on one story at time (as much as possible) and their main job is to push that one story through the system as fast as possible. Now, that story that took 1 month to deliver, in this new system will take 12 hours or even less. This is because you have removed all of the waiting around, disruptions (team lead and product owners act as defenders) and because this team is sitting together they can actually expose the unknowns faster, tame complexity, share their experience and share the burden of the work so they can actually deliver the work faster.
