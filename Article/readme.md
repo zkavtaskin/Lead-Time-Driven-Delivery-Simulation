@@ -16,9 +16,9 @@
         * [Lead Time](#lead-time)    
     * [Knowledge work is systemic](#knowledge-work-is-systemic)
         * [Your individual work](#your-individual-work)
-        * [Story size matters, Lego game simulation](#learning-from-the-lego-game)   
-        * [Optimised by department team work](#your-not-agile-team-work)   
-        * [Optimised by work team work](#your-agile-team-work)   
+        * [Story size matters, Lego game simulation](#story-size-matters-lego-game-simulation)   
+        * [Optimised by department team work](#optimised-by-department-team-work)   
+        * [Optimised by work team work](#optimised-by-work-team-work)   
 
 ## Abstract
 ...
@@ -167,6 +167,7 @@ Hypothesis was that smaller scope stories backlog would outpace larger scope sto
 To my surprise the completely opposite was true. Team with larger stories knew what they were doing overall as they have spent time discussing overall story, theme and ideas on how park scene with chair, table and a plant will be setup. This has reduced task time, as they have worked a team to figure out best approach, it has reduced future disruptions as they knew who was doing what and why they are doing it. As plenty of work got released in to the system there was no need for anyone to wait for any work. Team overall felt calm, self organised, and positive.
 
 ![](img/large.jpg)
+
 (Large story team delivering a park scene)
 
 Now compare this to one-piece flow team. This team was given one piece of small work to develop at the time such as chair. They did know the overall theme of the work, that is that they are building a park scene. They only understood the scene as they were finishing it so they have tried to make it better by reworking it, creating wait time and disruption. As it was one-piece flow, many members just stood around waiting for work, thus increasing wait time. This team needed also needed a lot more orchestration as they did not know the context of the work (increase in task time, wait time and disruption) and overall team seemed more stressed. 
@@ -174,6 +175,7 @@ Now compare this to one-piece flow team. This team was given one piece of small 
 ![](img/singlepiece.jpg)
 
 ![](img/large.jpg)
+
 (Small story team delivering a park scene)
 
 I don't know why I was surprised, large story team has outpaced one-piece flow team by 26% average and delivered much better quality work! 
