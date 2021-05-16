@@ -3,13 +3,13 @@
 ## Contents
 * [Abstract](#abstract)
 * [Introduction](#introduction)
-* [Manufacturing is not knowledge work](#manufacturing-is-not-knowledge-work)
+* [Knowledge work is not Manufacturing](#manufacturing-is-not-knowledge-work)
     * [Manufacturing](#manufacturing)
     * [Standard work - Assembly Line](#standard-work-assembly-line)
     * [Non-standard work - Craft production](#non-standard-work-craft-production)
     * [What makes up knowledge work](#what-makes-up-knowledge-work)
     * [There is no single queue](#there-is-no-single-queue)
-    * [Implications of craft production on Agile practice](#implications-of-craft-production-on-agile-practice)
+    * [Implications on existing best practices](#implications-on-existing-best-practices)
 * [Goals are still the same](#goals-are-still-the-same)
     * [Cycle Time](#cycle-time)
     * [Lead Time](#lead-time)    
@@ -36,7 +36,7 @@ Agile methodologies such as Scrum, Extreme Programming and DSDM have emerged in 
 
 Above problems have been witnesses by me directly and indirectly across various software engineering departments and industries. In this article I will explore how above problems can be remedied by focusing on Lead and Cycle time.  
 
-## Manufacturing is not knowledge work
+## Knowledge work is not Manufacturing
 
 Agile methodologies do borrow ideas from lean manufacturing and engineering. While some ideas such as standards, components, trunk based development, and value streams have been very useful, others such as Kanban, Theory of Constraints (ToC), Little's Law and One piece flow get applied wrongly. As a practitioner I have immersed myself in these concepts reading "Agile Management for Software Engineering" and "Phoenix Project" and for a while I was under impression that these concepts were working. Only after some reflection it became evident that these ideas did not work as expected, they actually ended up slowing delivery operations which lead towards a lot of frustration. In this section we will explore why exactly ToC, Little's Law and one-piece flow can't be applied literally as they do in Lean Manufacturing. 
 
@@ -96,7 +96,7 @@ Domain - This is you gaining new domain knowledge (HR, Logistics, Financial Trad
 
 Assembly lines tend to be linear. Once work enters the production line it enters a queue and goes from start to the end. This is not the case with knowledge work. Work might go on to a backlog sit there for a year and then get removed. Work that once was super urgent will be deprioritised and swapped with something else. In knowledge work there is no queue as such. If you are following Scrum then normally team commits to work before a Sprint starts and very rarely should user stories in the Sprint change. This commitment is probably the only place in the whole process where there is a stable queue. 
 
-### Implications of craft production on Agile practice
+### Implications on existing best practices
 
 Rest of this article explores implications of the above. However few things will be pointed out at this stage:
 1. **Little's Law** assumes that queue is stable and that work has an average cycle time. This is true for standard work as work on average takes similar amount of time, this not true for craft production. This means vanilla Little's Law can't be used in software engineering. 
