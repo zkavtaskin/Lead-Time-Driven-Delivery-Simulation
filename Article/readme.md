@@ -1,4 +1,4 @@
-# Strengthening your Agile practice by introducing Lead and Cycle Time
+# Rejuvenating Agile practice by putting Lead and Cycle Time front and center
 
 ## Contents
 * [Abstract](#abstract)
@@ -17,8 +17,8 @@
     * [Knowledge work is systemic](#knowledge-work-is-systemic)
         * [Your individual work](#your-individual-work)
         * [Story size matters, Lego game simulation](#story-size-matters-lego-game-simulation)   
-        * [Optimised by department team work](#optimised-by-department-team-work)   
-        * [Optimised by work team work](#optimised-by-work-team-work)   
+        * [Optimised by department](#optimised-by-department-team-work)   
+        * [Optimised by work](#optimised-by-work-team-work)   
 
 ## Abstract
 ...
