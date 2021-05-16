@@ -1,26 +1,26 @@
-# Rejuvenating Agile practice by putting Lead and Cycle Time front and center
+# Rejuvenating Agile operations by putting Lead and Cycle Time front and center
 
 ## Contents
 * [Abstract](#abstract)
 * [Introduction](#introduction)
-* [Knowledge work is not manufacturing](#knowledge-work-is-not-manufacturing)
+* [Manufacturing is not knowledge work](#manufacturing-is-not-knowledge-work)
     * [Manufacturing](#manufacturing)
     * [Standard work - Assembly Line](#standard-work-assembly-line)
     * [Non-standard work - Craft production](#non-standard-work-craft-production)
-    * [Anatomy of craft production](#anatomy-of-knowledge-work)
-    * [There is not much of a queue](#there-is-not-much-of-a-queue)
-    * [Implications of this reality](#implications-of-this-reality)
+    * [What makes up knowledge work](#what-makes-up-knowledge-work)
+    * [There is no single queue](#there-is-no-single-queue)
+    * [Implications of craft production on Agile practice](#implications-of-craft-production-on-agile-practice)
 * [Goals are still the same](#goals-are-still-the-same)
     * [Cycle Time](#cycle-time)
     * [Lead Time](#lead-time)    
-* [Knowledge work is systemic](#knowledge-work-is-systemic)
+* [Knowledge work in the team setting](#knowledge-work-in-the-team-setting)
     * [Your individual work](#your-individual-work)
     * [Story size matters, Lego game simulation](#story-size-matters-lego-game-simulation)   
     * [Optimised by department](#optimised-by-department-team-work)   
-    * [Optimised by work](#optimised-by-work-team-work)   
-
-
-[[_TOC_]]
+    * [Optimised by work](#optimised-by-work-team-work)  
+ 
+* Conclusion
+* Acknowledgments
 
 ## Abstract
 ...
@@ -78,7 +78,7 @@ Practitioner might say, well how about you break these user stories down to a sm
 
 This is not to say that there is no standard work in knowledge work. Implementations consultants that are setting up a product for a customer are doing standard work. Software engineers that are re-using components and connecting them to a different data source are doing standard work. However the problem is that companies want innovation and product differentiation. Unfortunately this work falls in to craft production which is slower and tends to be less predictable. 
 
-### Anatomy of knowledge work
+### What makes up knowledge work
 
 Craft production delivery predictability is exacerbated by the fact that **people** are working on the actual work. Stakeholders in organisations forget that employee A and employee B might deliver work at very different speed due to their different characteristics and experience. Also work it self might have different properties that were not considered until development has started. Here are the factors that impact productivity:
 
@@ -93,11 +93,11 @@ Domain - This is you gaining new domain knowledge (HR, Logistics, Financial Trad
 * Attitude - This is how you perceive your work environment and tasks.
 * Aptitude - This is you having developed or have predisposed skills towards the work that you are doing.
 
-### There is not much of a queue
+### There is no single queue
 
 Assembly lines tend to be linear. Once work enters the production line it enters a queue and goes from start to the end. This is not the case with knowledge work. Work might go on to a backlog sit there for a year and then get removed. Work that once was super urgent will be deprioritised and swapped with something else. In knowledge work there is no queue as such. If you are following Scrum then normally team commits to work before a Sprint starts and very rarely should user stories in the Sprint change. This commitment is probably the only place in the whole process where there is a stable queue. 
 
-### Implications of this reality
+### Implications of craft production on Agile practice
 
 Rest of this article explores implications of the above. However few things will be pointed out at this stage:
 1. **Little's Law** assumes that queue is stable and that work has an average cycle time. This is true for standard work as work on average takes similar amount of time, this not true for craft production. This means vanilla Little's Law can't be used in software engineering. 
@@ -137,6 +137,8 @@ Going back to software engineering. Work gets committed normally in the Sprint s
 (X axis shows number of days it taken to complete a piece of work, Y axis shows number of stories in that group)
 
 This inherently makes it less predicable. This is because unlike coffee that might take between 30 seconds to 1 minute and 30 seconds which makes it 1 minute average. Based on above graph ~25% of knowledge work gets delivered in 2.5 days, ~50%  7 days, ~75% 10 days and last 25% 15 days. So it seems that craft work can't be standardised in to **average** unit of time like standard work can be which means vanilla Little's Law can't be used. Given all of this, how is it possible to make craft work in software engineering more predictable, that is what we are going to explore next. 
+
+
 
 ## Knowledge work in the team setting
 Knowledge workers typically work together to produce some value. The moment team is formed dynamics change, and I don't mean this from personality point of view but from work **relay** point of view. 
@@ -200,17 +202,6 @@ Now imagine that your companies founder understood importance of Lead and Cycle 
 
 ![](img/agileteam.jpeg)
 
-## Alternative perspective in practice
-
-
-### Use retrospective to gain qualitative insight 
-...
-
-### Use data to gain quantitative insight  
-...
-
-## What are the implications of this perspective
-...
 
 ## Conclusions 
 ...
