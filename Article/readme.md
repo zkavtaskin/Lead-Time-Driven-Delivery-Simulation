@@ -17,17 +17,23 @@
     * [Your individual work](#your-individual-work)
     * [Optimised by department](#optimised-by-department-team-work)   
     * [Optimised by work](#optimised-by-work-team-work)  
-* [Craft Production - Work Shaping and Allocation]()
-    * [Story size matters]()  
-    * [Scope is important]()
-    * [Team leaders (orchestrators) are key]()
-    * [Everyone must prioritise "global work" over their "local work"]()
-    * [Planning and communication reduces lead time]()
-    * [Reduce cycle time or reduce commitments to reduce lead time]()
-* [Craft Production - Iterative improvement]()
+* [Craft Production - Reducing Lead Time]()
     * [Hypothesis-based mindset for everything]()
     * [Visualising Lead and Cycle Time]()
-    * [Reducing Cycle Time]()
+    * [Lead Time Improvements]()    
+        * [Have right orchestrators (managers) in place]()
+        * [Everyone must prioritise "global customer work" over their "local work"]()
+        * [Plan, communicate and project manage]()
+        * [Reduce commitments]()
+        * [Empower to make local decisions and create knowledge]()
+        * [Reduce handovers]()
+        * [Just-in-time]()
+        * [Self-service]
+    * [Cycle Time Improvements]()
+        * [Get story size right to improve single-piece flow]()  
+        * [Get creative with scope]()
+    * [Visualising Lead and Cycle Time Improvements]()
+* What is Agile
 * Conclusion
 * Acknowledgments
 
