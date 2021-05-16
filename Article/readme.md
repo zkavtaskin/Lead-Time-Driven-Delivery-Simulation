@@ -13,11 +13,21 @@
 * [Goals are still the same](#goals-are-still-the-same)
     * [Cycle Time](#cycle-time)
     * [Lead Time](#lead-time)    
-* [Knowledge work in the team setting](#knowledge-work-in-the-team-setting)
+* [Craft Production - Work Flow](#knowledge-work-work-flow)
     * [Your individual work](#your-individual-work)
-    * [Story size matters, Lego game simulation](#story-size-matters-lego-game-simulation)   
     * [Optimised by department](#optimised-by-department-team-work)   
     * [Optimised by work](#optimised-by-work-team-work)  
+* [Craft Production - Work Shaping and Allocation]()
+    * [Story size matters]()  
+    * [Scope is important]()
+    * [Team leaders (orchestrators) are key]()
+    * [Everyone must prioritise "global work" over their "local work"]()
+    * [Planning and communication reduces lead time]()
+    * [Reduce cycle time or reduce commitments to reduce lead time]()
+* [Craft Production - Iterative improvement]()
+    * [Hypothesis-based mindset for everything]()
+    * [Visualising Lead and Cycle Time]()
+    * [Reducing Cycle Time]()
 * Conclusion
 * Acknowledgments
 
