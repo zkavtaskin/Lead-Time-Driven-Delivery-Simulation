@@ -20,20 +20,10 @@
 * [Craft Production - Reducing Lead Time]()
     * [Hypothesis-based mindset for everything]()
     * [Visualising Lead and Cycle Time]()
-    * [Lead Time Improvements]()    
-        * [Have right orchestrators (managers) in place]()
-        * [Everyone must prioritise "global customer work" over their "local work"]()
-        * [Plan, communicate and project manage]()
-        * [Reduce commitments]()
-        * [Empower to make local decisions and create knowledge]()
-        * [Reduce handovers]()
-        * [Just-in-time]()
-        * [Self-service]
-    * [Cycle Time Improvements]()
-        * [Get story size right to improve single-piece flow]()  
-        * [Get creative with scope]()
+    * [Reducing Lead Time Ideas]()    
+    * [Reducing Cycle Time Ideas]()
     * [Visualising Lead and Cycle Time Improvements]()
-* What is Agile
+* What does it actually mean to be Agile?
 * Conclusion
 * Acknowledgments
 
