@@ -3,7 +3,6 @@
 ## Contents
 * [Abstract](#abstract)
 * [Introduction](#introduction)
-* [Alternative perspective](#alternative-perspective)
     * [Knowledge work is not manufacturing](#knowledge-work-is-not-manufacturing)
         * [Manufacturing](#manufacturing)
         * [Standard work - Assembly Line)](#standard-work-assembly-line)
@@ -33,18 +32,15 @@ Agile methodologies such as Scrum, Extreme Programming and DSDM have emerged in 
 1. Term agile is not well defined, it is hard to understand what is meant when stakeholders say "we have to be more Agile" or "we need to change our process to be more Agile".
 1. In time entropy erodes established best practice, making practitioners lose their "true north" bearings. It also makes it really difficult or not even possible to go back to "true north" if stakeholders lose faith in the existing process. 
 
-Above problems have been witnesses by me directly and indirectly across various software engineering departments in the industry. In this article I will explore how above problems can be remedied through introduction of lead and cycle time. 
+Above problems have been witnesses by me directly and indirectly across various software engineering departments and industries. In this article I will explore how above problems can be remedied by focusing on Lead and Cycle time.  
 
-## Alternative perspective 
-In this section I will explore how your existing agile operations can be viewed from a different angle, and why we as practitioners have been experiencing above problems.
+## Manufacturing is not knowledge work
 
-### Knowledge work is not manufacturing 
-
-Agile methodologies do borrow ideas from lean manufacturing and engineering. While some ideas such as standards, components, trunk based development, and value streams have been very useful, others such as Kanban, Theory of Constraints (ToC),  Little's Law and One piece flow get applied wrongly. As a practitioner I have immersed myself in these concepts reading "Agile Management for Software Engineering" and "Phoenix Project" and for a while I was under impression that these concepts were working. Only after some reflection it became evident that these ideas did not work as expected, they actually ended up slowing delivery operations which lead towards a lot of frustration. In this section we will explore why exactly ToC, Little's Law and one-piece flow can't be applied literally and need to be considered from an alternative angle.
+Agile methodologies do borrow ideas from lean manufacturing and engineering. While some ideas such as standards, components, trunk based development, and value streams have been very useful, others such as Kanban, Theory of Constraints (ToC), Little's Law and One piece flow get applied wrongly. As a practitioner I have immersed myself in these concepts reading "Agile Management for Software Engineering" and "Phoenix Project" and for a while I was under impression that these concepts were working. Only after some reflection it became evident that these ideas did not work as expected, they actually ended up slowing delivery operations which lead towards a lot of frustration. In this section we will explore why exactly ToC, Little's Law and one-piece flow can't be applied literally as they do in Lean Manufacturing. 
 
 I am not an expert in manufacturing, so this section's examples should be taken as high level ideas that serve as a contrast to knowledge work.
 
-#### Manufacturing 
+### Manufacturing 
 
 Since the rise lean manufacturing majority of companies have transitioned towards one-piece flow. This is where work travels in discrete pieces from station to station where some operation is applied on to it such as:
 
@@ -69,17 +65,17 @@ Lastly all of the cars are not the same. They will be built per different specif
 
 Now that we know some of the pertinent details we can explore why **assembly line work** is different to **knowledge work**.  
 
-#### Standard work (Assembly Line)
+### Standard work (Assembly Line)
 What gave a drastic productivity boost to assembly line is componentisation. It became possible to put things together using discrete parts. Componentisation and part integration is possible only through agreed standards. Assembly line is setup and configured to produce few models of the car, sure these models have different variants like mentioned above, however they are all standard and their **Takt time is known**. 
 
-#### Non standard work (Craft production)
+### Non standard work (Craft production)
 Now contrast this to software engineering. Typical backlog of user stories delivers discrete piece of value, we will call them story A, B and C. Story A might take 15 days to complete by 4 people. B might take 5 days to complete by 2 people. C might take 8 days to complete by 7 people from 3 different departments! In some sense this is craft production.  
 
 Practitioner might say, well how about you break these user stories down to a smaller size? So that Takt time is known. I have to counter with, user story needs to be a discrete piece of value. If it is possible to break it down and still delivery **real value** then it should be broken down. However more often then not user story can only be broken down to a finite amount until it **loses its value** and then process becomes task break down. Breaking user stories down too far is artificial and actually leads to knowledge workers forgetting why they are doing the piece of work in the first place, this leads to poorer solutions and time waste (more on that later).
 
 This is not to say that there is no standard work in knowledge work. Implementations consultants that are setting up a product for a customer are doing standard work. Software engineers that are re-using components and connecting them to a different data source are doing standard work. However the problem is that companies want innovation and product differentiation. Unfortunately this work falls in to craft production which is slower and tends to be less predictable. 
 
-#### Anatomy of knowledge work
+### Anatomy of knowledge work
 
 Craft production delivery predictability is exacerbated by the fact that **people** are working on the actual work. Stakeholders in organisations forget that employee A and employee B might deliver work at very different speed due to their different characteristics and experience. Also work it self might have different properties that were not considered until development has started. Here are the factors that impact productivity:
 
@@ -94,11 +90,11 @@ Domain - This is you gaining new domain knowledge (HR, Logistics, Financial Trad
 * Attitude - This is how you perceive your work environment and tasks.
 * Aptitude - This is you having developed or have predisposed skills towards the work that you are doing.
 
-#### There is not much of a queue
+### There is not much of a queue
 
 Assembly lines tend to be linear. Once work enters the production line it enters a queue and goes from start to the end. This is not the case with knowledge work. Work might go on to a backlog sit there for a year and then get removed. Work that once was super urgent will be deprioritised and swapped with something else. In knowledge work there is no queue as such. If you are following Scrum then normally team commits to work before a Sprint starts and very rarely should user stories in the Sprint change. This commitment is probably the only place in the whole process where there is a stable queue. 
 
-#### Implications of this reality
+### Implications of this reality
 
 Rest of this article explores implications of the above. However few things will be pointed out at this stage:
 1. **Little's Law** assumes that queue is stable and that work has an average cycle time. This is true for standard work as work on average takes similar amount of time, this not true for craft production. This means vanilla Little's Law can't be used in software engineering. 
@@ -112,11 +108,11 @@ One big insight that we can gain already is that in knowledge work the **work it
 
 This means if you have a creative product owner or business analysts they can deliver astronomical amount of value with a very small team. This is because they can swarm around "problem" that needs to be solved and figure out creative ways to getting it delivered quickly. With knowledge work you are not constrained to the assembly line, people are not machines as they can learn, help each other and be creative. However traditional manufacturing mindset would dictate that you need more capacity and people to deliver more units of work. This is not true for craft work but it is true for standard work. If this does not make sense yet that is OK, hold on we are just getting started. 
 
-### Goals are still the same
+## Goals are still the same
 
 Your business goals are still the same as in the manufacturing. It cares about delivering quality innovative solutions to the customer quickly. This is typically measured in Lead Time and Cycle Time. Speed is everything, so how strange is it that some businesses do not actually measure these two indicators. Also, I am not talking about speed of a single department getting from point A to B either, I am talking about getting from point A (customer commitment) to Z (customer receive their functionality) i.e. work traveling through the entire business. In this section we will explore two most most important concepts that help with this. 
 
-#### Cycle Time
+### Cycle Time
 Let's go back to the car manufacturing where I have introduced Takt time. Cycle time is different to Takt time. Takt time tells you how much time you have to complete a discrete unit if work given amount of demand. Cycle Time tells you how much you have used to perform a unit of work. Cycle time can be measured at every level, but what does that mean?
 
 Let's say you have entered a coffee shop, and you have finally reached the till to make that drink request. Cycle time starts from the moment barista smiles (hopefully) and asks you for your coffee order and it ends when they shout your order or name. That time that was taken to make your drink is cycle time. However if you can go measure three discrete parts: 
@@ -126,7 +122,7 @@ Let's say you have entered a coffee shop, and you have finally reached the till 
 
 Coming back to the world of software engineering. User Story will have an overall cycle time i.e. days or hours to complete, this measured time from story activation to story completion. Individual tasks under that story will also have cycle time measured from activation to completion, this is important as their cycle time will ultimately dictate the overall user story cycle time.
 
-#### Lead Time 
+### Lead Time 
 Now this is the most confusing one when it comes knowledge work. Lead time is how long something has taken from the moment it was committed to the queue. So the overall time. Let's go back to the coffee shop example again (standard work). When you have entered the coffee shop you have committed yourself to the queue, the overall time it takes you from walking in that door to the moment you walk out is the lead time. 
 
 You might be thinking well there will be a lot of waiting around before I get served and my cycle time starts! You are right, the cool thing is that in "standard work" you can predict how long you will wait in the queue. This is because there is **average** cycle time. To make a coffee takes 1 minute give or take. So if there are 4 people ahead of you, you know that you will get your coffee in about 4+1(+1 is for you) multiplied by 1 minute so 5 minutes.
@@ -139,10 +135,10 @@ Going back to software engineering. Work gets committed normally in the Sprint s
 
 This inherently makes it less predicable. This is because unlike coffee that might take between 30 seconds to 1 minute and 30 seconds which makes it 1 minute average. Based on above graph ~25% of knowledge work gets delivered in 2.5 days, ~50%  7 days, ~75% 10 days and last 25% 15 days. So it seems that craft work can't be standardised in to **average** unit of time like standard work can be which means vanilla Little's Law can't be used. Given all of this, how is it possible to make craft work in software engineering more predictable, that is what we are going to explore next. 
 
-### Knowledge work is systemic
+## Knowledge work is systemic
 Knowledge workers typically work together to produce some value. The moment team is formed dynamics change, and I don't mean this from personality point of view but from work relay point of view. 
 
-#### Your individual work
+### Your individual work
 
 Three factors that make up your individual work:
 * Wait Time - This is when you are waiting around for some knowledge that you don’t have, decisions that you can’t make and finally you are waiting around for someone else to complete some work before you can start yours.
@@ -184,7 +180,7 @@ The big insight here is that batch sizes need to big enough for teams to underst
 
 If you decide to repeat above experiments in your own organisation, please do share the results. 
 
-#### Optimised by department team work
+### Optimised by department
 
 Imagine you are working on your own on your own start-up. You will have very little wait and disruption time. You are on our own, you can make all of the decisions. Also if you are lucky enough to work in a quiet environment you should experience very little or no disruptions. You get things done fast, your users are impressed with your company, new features just come out all the time. In this case you are in "your individual work" scenario. 
 
@@ -196,7 +192,7 @@ Now image that your company grew too quickly and it ended up not following any A
 
 So if a customer has requested a “Hot Feature A” they will have to wait for a long time for this work to travel through this type of organisation (system). Actual Task Time for "Hot Feature A” might be 12 hours of work in total, however given all of the Wait Time (handovers and lead times) and disruptions it might take up to 1 month before it gets shipped. So there is a big difference between 1 month Lead Time and 12 hours Task Time. However your customer will not care about the 12 hours of Task Time, they will just care that you took 1 month Lead Time. Overall in this type of organisation Lead Time for most work will be very high, fewer projects will be shipped, projects will very rarely go out on time and individuals will feel frustrated as there will be a lot of firefighting.
 
-#### Optimised by work team work
+### Optimised by work
 Now imagine that your companies founder understood importance of Lead and Cycle Time and worked to remove as much Wait, Disruption and Task Time from overall delivery process. They have decided to sit people together for a limited amount of time to deliver certain features and projects. They have done this as they want to remove handovers, the amount of project management is required, competing agendas, waiting for decisions, knowledge and organisational dependencies. They work as a team on one story at time (as much as possible) and their main job is to push that one story through the system as fast as possible. Now, that story that took 1 month to deliver, in this new system will take 12 hours or even less. This is because you have removed all of the waiting around, disruptions (team lead and product owners act as defenders) and because this team is sitting together they can actually expose the unknowns faster, tame complexity, share their experience and share the burden of the work so they can actually deliver the work faster.
 
 ![](img/agileteam.jpeg)
