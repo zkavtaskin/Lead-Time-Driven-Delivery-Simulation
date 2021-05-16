@@ -18,7 +18,6 @@
     * [Story size matters, Lego game simulation](#story-size-matters-lego-game-simulation)   
     * [Optimised by department](#optimised-by-department-team-work)   
     * [Optimised by work](#optimised-by-work-team-work)  
- 
 * Conclusion
 * Acknowledgments
 
