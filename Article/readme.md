@@ -1,23 +1,23 @@
-# Rejuvenating Agile by putting Lead and Cycle Time front and center
+# Rejuvenating Agile practice by putting Lead and Cycle Time front and center
 
 ## Contents
 * [Abstract](#abstract)
 * [Introduction](#introduction)
-    * [Knowledge work is not manufacturing](#knowledge-work-is-not-manufacturing)
-        * [Manufacturing](#manufacturing)
-        * [Standard work - Assembly Line)](#standard-work-assembly-line)
-        * [Non standard work - Craft production](#non-standard-work-craft-production)
-        * [Anatomy of knowledge work](#anatomy-of-knowledge-work)
-        * [There is not much of a queue](#there-is-not-much-of-a-queue)
-        * [Implications of this reality](#implications-of-this-reality)
-    * [Goals are still the same](#goals-are-still-the-same)
-        * [Cycle Time](#cycle-time)
-        * [Lead Time](#lead-time)    
-    * [Knowledge work is systemic](#knowledge-work-is-systemic)
-        * [Your individual work](#your-individual-work)
-        * [Story size matters, Lego game simulation](#story-size-matters-lego-game-simulation)   
-        * [Optimised by department](#optimised-by-department-team-work)   
-        * [Optimised by work](#optimised-by-work-team-work)   
+* [Knowledge work is not manufacturing](#knowledge-work-is-not-manufacturing)
+    * [Manufacturing](#manufacturing)
+    * [Standard work - Assembly Line)](#standard-work-assembly-line)
+    * [Non standard work - Craft production](#non-standard-work-craft-production)
+    * [Anatomy of knowledge work](#anatomy-of-knowledge-work)
+    * [There is not much of a queue](#there-is-not-much-of-a-queue)
+    * [Implications of this reality](#implications-of-this-reality)
+* [Goals are still the same](#goals-are-still-the-same)
+    * [Cycle Time](#cycle-time)
+    * [Lead Time](#lead-time)    
+* [Knowledge work is systemic](#knowledge-work-is-systemic)
+    * [Your individual work](#your-individual-work)
+    * [Story size matters, Lego game simulation](#story-size-matters-lego-game-simulation)   
+    * [Optimised by department](#optimised-by-department-team-work)   
+    * [Optimised by work](#optimised-by-work-team-work)   
 
 ## Abstract
 ...
