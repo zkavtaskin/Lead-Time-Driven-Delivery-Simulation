@@ -5,9 +5,9 @@
 * [Introduction](#introduction)
 * [Knowledge work is not manufacturing](#knowledge-work-is-not-manufacturing)
     * [Manufacturing](#manufacturing)
-    * [Standard work - Assembly Line)](#standard-work-assembly-line)
-    * [Non standard work - Craft production](#non-standard-work-craft-production)
-    * [Anatomy of knowledge work](#anatomy-of-knowledge-work)
+    * [Standard work - Assembly Line](#standard-work-assembly-line)
+    * [Non-standard work - Craft production](#non-standard-work-craft-production)
+    * [Anatomy of craft production](#anatomy-of-knowledge-work)
     * [There is not much of a queue](#there-is-not-much-of-a-queue)
     * [Implications of this reality](#implications-of-this-reality)
 * [Goals are still the same](#goals-are-still-the-same)
@@ -65,10 +65,10 @@ Lastly all of the cars are not the same. They will be built per different specif
 
 Now that we know some of the pertinent details we can explore why **assembly line work** is different to **knowledge work**.  
 
-### Standard work (Assembly Line)
+### Standard work - Assembly Line
 What gave a drastic productivity boost to assembly line is componentisation. It became possible to put things together using discrete parts. Componentisation and part integration is possible only through agreed standards. Assembly line is setup and configured to produce few models of the car, sure these models have different variants like mentioned above, however they are all standard and their **Takt time is known**. 
 
-### Non standard work (Craft production)
+### Non standard work - Craft production
 Now contrast this to software engineering. Typical backlog of user stories delivers discrete piece of value, we will call them story A, B and C. Story A might take 15 days to complete by 4 people. B might take 5 days to complete by 2 people. C might take 8 days to complete by 7 people from 3 different departments! In some sense this is craft production.  
 
 Practitioner might say, well how about you break these user stories down to a smaller size? So that Takt time is known. I have to counter with, user story needs to be a discrete piece of value. If it is possible to break it down and still delivery **real value** then it should be broken down. However more often then not user story can only be broken down to a finite amount until it **loses its value** and then process becomes task break down. Breaking user stories down too far is artificial and actually leads to knowledge workers forgetting why they are doing the piece of work in the first place, this leads to poorer solutions and time waste (more on that later).
@@ -135,12 +135,12 @@ Going back to software engineering. Work gets committed normally in the Sprint s
 
 This inherently makes it less predicable. This is because unlike coffee that might take between 30 seconds to 1 minute and 30 seconds which makes it 1 minute average. Based on above graph ~25% of knowledge work gets delivered in 2.5 days, ~50%  7 days, ~75% 10 days and last 25% 15 days. So it seems that craft work can't be standardised in to **average** unit of time like standard work can be which means vanilla Little's Law can't be used. Given all of this, how is it possible to make craft work in software engineering more predictable, that is what we are going to explore next. 
 
-## Knowledge work is systemic
-Knowledge workers typically work together to produce some value. The moment team is formed dynamics change, and I don't mean this from personality point of view but from work relay point of view. 
+## Knowledge work in the team setting
+Knowledge workers typically work together to produce some value. The moment team is formed dynamics change, and I don't mean this from personality point of view but from work **relay** point of view. 
 
 ### Your individual work
 
-Three factors that make up your individual work:
+Three factors that make up your **individual** work:
 * Wait Time - This is when you are waiting around for some knowledge that you don’t have, decisions that you can’t make and finally you are waiting around for someone else to complete some work before you can start yours.
 * Disruption Time - This is when you have to expedite some work, rework some work, corporate interruptions and mental health impact.
 * Task Time - Finally, this is the actual work that you are doing, pure sitting down and getting things done.
