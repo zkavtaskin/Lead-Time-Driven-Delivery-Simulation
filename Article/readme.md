@@ -1,4 +1,4 @@
-# Rejuvenating Agile practice by putting Lead and Cycle Time front and center
+# Rejuvenating Agile by putting Lead and Cycle Time front and center
 
 ## Contents
 * [Abstract](#abstract)
