@@ -20,8 +20,8 @@
 * [Craft Production - Reducing Lead Time]()
     * [Hypothesis-based mindset for everything]()
     * [Visualising Lead and Cycle Time]()
-    * [Reducing Lead Time Ideas]()    
-    * [Reducing Cycle Time Ideas]()
+    * [Reducing Lead Time Experiments]()    
+    * [Reducing Cycle Time Experiments]()
     * [Visualising Lead and Cycle Time Improvements]()
 * What does it actually mean to be Agile?
 * Conclusion
@@ -77,13 +77,22 @@ Now that we know some of the pertinent details we can explore why **assembly lin
 What gave a drastic productivity boost to assembly line is componentisation. It became possible to put things together using discrete parts. Componentisation and part integration is possible only through agreed standards. Assembly line is setup and configured to produce few models of the car, sure these models have different variants like mentioned above, however they are all standard and their **Takt time is known**. 
 
 ### Non standard work - Craft production
-Now contrast this to software engineering. Typical backlog of user stories delivers discrete piece of value, we will call them story A, B and C. Story A might take 15 days to complete by 4 people. B might take 5 days to complete by 2 people. C might take 8 days to complete by 7 people from 3 different departments! In some sense this is craft production.  
+Now contrast this to software engineering. Typical backlog of user stories delivers discrete piece of value, we will call them story A, B and C. Story A might take 15 days to complete by 4 people. B might take 5 days to complete by 2 people. C might take 8 days to complete by 7 people from 3 different departments! In some sense this is craft production. 
 
-Practitioner might say, well how about you break these user stories down to a smaller size? So that Takt time is known. I have to counter with, user story needs to be a discrete piece of value. If it is possible to break it down and still delivery **real value** then it should be broken down. However more often then not user story can only be broken down to a finite amount until it **loses its value** and then process becomes task break down. Breaking user stories down too far is artificial and actually leads to knowledge workers forgetting why they are doing the piece of work in the first place, this leads to poorer solutions and time waste (more on that later).
+Practitioner might say, well how about you break these user stories down to a smaller size so that Takt time is known? I have to counter with this, a user story needs to be a discrete piece of **real** value. If it is possible to break it down and still delivery **real value** then it should be broken down. However more often then not user story can only be broken down to a finite amount until it **loses its value** and then process becomes task break down. Breaking user stories down too far is artificial and actually leads to knowledge workers forgetting why they are doing the piece of work in the first place, this leads to poorer solutions and time waste as the Lego experiment shows.
 
-This is not to say that there is no standard work in knowledge work. Implementations consultants that are setting up a product for a customer are doing standard work. Software engineers that are re-using components and connecting them to a different data source are doing standard work. However the problem is that companies want innovation and product differentiation. Unfortunately this work falls in to craft production which is slower and tends to be less predictable. 
+Wait, what on earth is craft production?
 
-### What makes up knowledge work
+"Regardless of the product, craft production’s finished goods are unique, tell a story, and (should be) made of extremely high quality, which is the biggest appeal of purchasing something from a craft manufacturer. 
+
+However, even though customers are interested in these unique items, it does come with the disadvantage of being harder to repair compared to the mass-produced, cheaper alternatives, which are composed of identical, replaceable parts, that are easier and cheaper to fix.       
+
+The other thing about craft production is that it’s reliant on a highly skilled craft worker, of which we’re currently experiencing a shortage. Training for anyone working in craft production can be intensive and delivered through apprenticeships, workshops, lectures, or just a simple hands-on approach." - 
+Craft production segment from [Katana](https://katanamrp.com/blog/craft-production/#:~:text=What%20Is%20Craft%20Production%3F,when%20making%20pottery%20by%20hand.)
+
+This is not to say that there is no standard work in knowledge work world. Implementations consultants that are setting up a product for a customer are doing standard work. Software engineers that are re-using components and connecting them to a different data source are doing standard work. However the problem is that companies want innovation and product differentiation. Unfortunately this work falls in to craft production which is slower and tends to be less predictable. This article focuses on craft production type of work only, that is the non-standard work, on how to make it more predictable, faster and more enjoyable for everyone involved.
+
+### What makes up craft production
 
 Craft production delivery predictability is exacerbated by the fact that **people** are working on the actual work. Stakeholders in organisations forget that employee A and employee B might deliver work at very different speed due to their different characteristics and experience. Also work it self might have different properties that were not considered until development has started. Here are the factors that impact productivity:
 
@@ -109,40 +118,36 @@ Rest of this article explores implications of the above. However few things will
 1. **One-piece flow**, typical Scrum team has around 6 team members. It is likely that they will work on more then user story at the time. This means it is not one-piece flow. Constraining team to a one piece flow artificially constraints teams and wastes capacity.
 1. **Theory of constraints** assumes that there is one-piece flow and work is standard. Different stories will engage different people in the team at different times. This means bottleneck is dynamic and it depends on the work that team is working on. 
 
-One big insight that we can gain already is that in knowledge work the **work it self** can be a constraint. This is because in knowledge work as a business you choose:
+One big insight that we can gain already is that in the craft production the **work it self** can be a constraint. This is because you can choose:
 * What you do
 * How you do it
 * Who does it
 
-This means if you have a creative product owner or business analysts they can deliver astronomical amount of value with a very small team. This is because they can swarm around "problem" that needs to be solved and figure out creative ways to getting it delivered quickly. With knowledge work you are not constrained to the assembly line, people are not machines as they can learn, help each other and be creative. However traditional manufacturing mindset would dictate that you need more capacity and people to deliver more units of work. This is not true for craft work but it is true for standard work. If this does not make sense yet that is OK, hold on we are just getting started. 
+This means if you have a creative product owner or business analysts they can deliver astronomical amount of value with a very small team. This is because they can swarm around "problem" that needs to be solved and figure out creative ways to getting it delivered quickly. With craft production you are not constrained to the assembly line, people are not machines as they can learn, help each other and be creative. However traditional manufacturing mindset would dictate that you need more capacity and people to deliver more **units of work**. This is not true for craft work but it is true for standard work. If this does not make sense yet that is OK, hold on we are just getting started. 
 
 ## Goals are still the same
 
-Your business goals are still the same as in the manufacturing. It cares about delivering quality innovative solutions to the customer quickly. This is typically measured in Lead Time and Cycle Time. Speed is everything, so how strange is it that some businesses do not actually measure these two indicators. Also, I am not talking about speed of a single department getting from point A to B either, I am talking about getting from point A (customer commitment) to Z (customer receive their functionality) i.e. work traveling through the entire business. In this section we will explore two most most important concepts that help with this. 
+Your business goals are still the same as in the manufacturing. It cares about delivering quality innovative solutions to the customer. This is typically measured in Lead Time and Cycle Time. Speed is everything, so how strange is it that some businesses do not actually measure these two variables. Also, I am not talking about speed of a single department getting from point A to B either, I am talking about getting from point A (customer commitment) to Z (customer receive their functionality) i.e. work traveling through the **entire** business. In this section we will these two variables and how they can help your business. 
 
 ### Cycle Time
-Let's go back to the car manufacturing where I have introduced Takt time. Cycle time is different to Takt time. Takt time tells you how much time you have to complete a discrete unit if work given amount of demand. Cycle Time tells you how much you have used to perform a unit of work. Cycle time can be measured at every level, but what does that mean?
+Let's go back to the car manufacturing where I have introduced Takt time. Cycle time is different to Takt time. Takt time tells you how much time you have to complete a discrete unit of work given amount of demand. Cycle Time tells you how much you have used to perform a unit of work. Cycle time can be measured at every level, but what does that mean?
 
-Let's say you have entered a coffee shop, and you have finally reached the till to make that drink request. Cycle time starts from the moment barista smiles (hopefully) and asks you for your coffee order and it ends when they shout your order or name. That time that was taken to make your drink is cycle time. However if you can go measure three discrete parts: 
-* Cycle time to take your order
-* Cycle time to make your coffee 
-* Cycle time overall  
+Let's say you have entered a coffee shop, and you have finally reached the till to make that drink request. Cycle time starts from the moment barista smiles (hopefully) and asks you for your coffee order and it ends when they shout your order or name. That time that was taken to make your drink is cycle time. You also measure cycle time at lower levels, for example how long did it take to take your order, how long did it take to make your coffee and then what was the cycle time overall.  
 
-Coming back to the world of software engineering. User Story will have an overall cycle time i.e. days or hours to complete, this measured time from story activation to story completion. Individual tasks under that story will also have cycle time measured from activation to completion, this is important as their cycle time will ultimately dictate the overall user story cycle time.
+Coming back to the world of software engineering. User Story will have an overall cycle time i.e. days or hours to complete and this is measured from story activation to story completion. Individual tasks under that story will also have cycle time that are measured from activation to completion. Task cycle time is important as their cycle time will ultimately dictate the overall user story cycle time.
 
 ### Lead Time 
-Now this is the most confusing one when it comes knowledge work. Lead time is how long something has taken from the moment it was committed to the queue. So the overall time. Let's go back to the coffee shop example again (standard work). When you have entered the coffee shop you have committed yourself to the queue, the overall time it takes you from walking in that door to the moment you walk out is the lead time. 
+This is the most confusing one when it comes craft production. Lead time is how long work has taken from the moment it was committed to the queue. So the overall time. Let's go back to the coffee shop example again (standard work). When you have entered the coffee shop you have committed yourself to the queue, the overall time it takes you from walking in to that door to the moment you walk out with nice flat white is the lead time. 
 
-You might be thinking well there will be a lot of waiting around before I get served and my cycle time starts! You are right, the cool thing is that in "standard work" you can predict how long you will wait in the queue. This is because there is **average** cycle time. To make a coffee takes 1 minute give or take. So if there are 4 people ahead of you, you know that you will get your coffee in about 4+1(+1 is for you) multiplied by 1 minute so 5 minutes.
+You might be thinking well there will be a lot of waiting around before I get served and my cycle time starts! You are right, the cool thing is that in "standard work" you can predict how long you will wait in the queue. This is because there is **average** cycle time. Let's say it takes 1 minute give or take to make a cup of joe. So if there are 4 people ahead of you, you know that you will get your coffee in about 4+1(+1 is for you) multiplied by 1 minute so 5 minutes.
 
-Going back to software engineering. Work gets committed normally in the Sprint so that is when the lead time clock starts. If you are using Kanban and it is stable i.e. work does not get swapped around all the time then lead time is measured from the moment is committed to your Kanban board. Issue is that in software engineering cycle time is heavily skewed like so:
+Going back to software engineering. Work gets committed normally in the Sprint so that is when the lead time clock actually starts. If you are using Kanban and work does not get swapped around all the time (stable queue) then lead time is measured from the moment is committed to your Kanban board. Issue is that in software engineering cycle time is heavily skewed like so:
 
 ![](img/cycletime.png)
 
 (X axis shows number of days it taken to complete a piece of work, Y axis shows number of stories in that group)
 
 This inherently makes it less predicable. This is because unlike coffee that might take between 30 seconds to 1 minute and 30 seconds which makes it 1 minute average. Based on above graph ~25% of knowledge work gets delivered in 2.5 days, ~50%  7 days, ~75% 10 days and last 25% 15 days. So it seems that craft work can't be standardised in to **average** unit of time like standard work can be which means vanilla Little's Law can't be used. Given all of this, how is it possible to make craft work in software engineering more predictable, that is what we are going to explore next. 
-
 
 
 ## Knowledge work in the team setting
