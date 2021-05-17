@@ -21,8 +21,10 @@
     * [Hypothesis-based mindset for everything]()
     * [Visualising Lead and Cycle Time]()
     * [Reducing Cycle Time]()
-        * [Get story size right to maximise team engagement - Lego game simulation](#get-story-size-right-to-maximise-team-engagement---lego-game-simulation)
-        * [Reduce handovers to minimise wait and task time - Envelope game simulation](#reduce-handovers-to-minimise-wait-and-disruption---envelope-game-simulation)
+        * [Get story size right](#get-story-size-right)
+        * [Reduce handovers](#reduce-handovers)
+        * [Work needs to be planned](#work-needs-to-be-planned)
+        * [Quality throughout](#quality-throughout)
     * [Reducing Lead Time]()    
     * [Visualising Lead and Cycle Time Improvements]()
 * What does it actually mean to be Agile?
@@ -245,7 +247,7 @@ Now dear reader, let's refer back to my earlier statement in this article "Const
 
 **First insight** is that batch sizes need to big enough for teams to understand what is that they are doing. This way they can get engaged with the work, provide an opinion, self organise so that everyone is utilised, know what work is coming in when, provide assistance to other team members where appropriate. If user story is too small it robs the team of doing all of the things just mentioned and usually this story is probably broken down too much and it is a task. If you follow INVEST and ensure that stories are actually valuable i.e. they deliver discrete piece of usable functionality. 
 
-**Second shocking insight** is that work planning and team communication reduces cycle time and reduces lead time.
+**Second insight** is that work planning and team communication reduces cycle time and reduces lead time.
 
 **Third insight** refers us back to section ["Implications on existing best practices"](/#implications-on-existing-best-practices) that "in the craft production the work it self can be a constraint. This is because you can choose, what you do, how you do it and who does it". 
 
@@ -294,7 +296,7 @@ There are number of ways to put quality in to your process. For example Definiti
 
 Putting quality in to your software is covered well in DevOps literature. Normally this means quality automation tests exist that cover end to end testing, unit tests, performance tests, accessibility and so on.
 
-Key thing is that your organisation iteratively invests in to quality as this is the only way to achieve long term predictable performance. If you would like to read more about this topic check out my [Stabilise through embedded testing](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-stabilise-and.html) article.
+Key thing is that your organisation iteratively invests in to quality as this only one of the ways to achieve long term predictable and sustainiable performance. If you would like to read more about this topic check out my [stabilise through embedded testing](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-stabilise-and.html) article.
 
 ### Reducing Lead Time
 * Reduce amount of commitments
