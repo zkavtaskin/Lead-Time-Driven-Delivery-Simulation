@@ -158,7 +158,7 @@ Going back to software engineering. Work gets committed normally in the Sprint s
 This inherently makes it less predicable. This is because unlike coffee that might take between 30 seconds to 1 minute and 30 seconds which makes it 1 minute average. Based on above graph ~25% of knowledge work gets delivered in 2.5 days, ~50%  7 days, ~75% 10 days and last 25% 15 days. So it seems that craft work can't be standardised in to **average** unit of time like standard work can be which means vanilla Little's Law can't be used. Given all of this, how is it possible to make craft work in software engineering more predictable, that is what we are going to explore next. 
 
 
-## Craft production - Work Flow
+## Craft production - Learning to really see
 Knowledge workers typically work together to produce some value. The moment team is formed dynamics change, and I don't mean this from personality point of view but from work **relay** point of view. 
 
 ### Your individual work
@@ -287,23 +287,21 @@ To be clear I am not saying that user stories need to be planned 6 months in adv
 A lot of people don't find above exciting, however if you work for a large organisation this orchestration is an absolute must to reduce lead time for work inflight. This section is probably going to be the most controversial one with Agile community. 
 
 ### Commit to less 
-The simplest solution to reduce Lead Time is to commit to less work so that there are less things in the queue waiting. This is the hardest thing to do as this involves saying no and creating a slack in the queue. 
+The simplest solution to reduce Lead Time is to commit to less work so that there are less things in the queue waiting. This is the hardest thing to do as this involves saying no and creating a slack in the overall system. 
 
 When I say no, it means no to new work or contracts. Letting go of customers that are no longer your speciality. Saying no to features that don't seem like a right thing to do. 
 
-If it is common that your company expedites work to meet a customer demand, then maybe this should be embraced. Create space in teams schedules for urgent work of a certain size. If nothing comes well then team can pick up next thing of the backlog, otherwise there is space for it. Generally speaking it is healthy to create a bit of slack in the overall system so that teams can help each other out day to day. 
+If it is common that your company expedites work to meet a customer demand, then maybe this should be embraced. Create space in teams schedules for urgent work of a certain size. If nothing comes well then team can pick up next thing of the backlog, otherwise there is space for it. Generally speaking it is healthy to create a bit of slack in the overall system so that teams can help each other out day to day. If everyone is high-strung due to over utilisation teams can't help each other and processes start to erode.  
 
 By saying no, focusing and creating slack urgent work can travel through without interrupting existing commitments thus reducing or maintaining existing Lead Time.
 
 ### Prioritise global work over local work
 
-
+This section applies to specialist teams. Across the industry it is common to have Software Architects, Software Principals or a Data Scientist departments. Sometimes delivery teams that have committed to deliver something rely on some expert department to help them. It is vital that these specialist teams prioritise globally committed work over their own local commitments. To achieve this specialist teams should not make concrete commitments or create plenty of slack to avoid increasing lead time.
 
 ![](img/noqueue.gif)
 
-(Figure 12, Bruce Almighty making way for number 1)
-
-
+(Figure 12, Bruce Almighty making way for global work over local work)
 
 ### Quality throughout
  There is one thing that can drastically increase Lead Time unexpectedly. This is is unplanned disruption, typically these are bugs that appear in the form of unexpected behavior in the software or bugs that in your process manifest themselves as something important being missed or something not being accounted for. Too much of unplanned disruption can erode trust and confidence in the process. So it is important to minimise unplanned disruption as much as possible so that it is exceptional. This can be achieved by putting quality in your process and putting quality in to your software.
