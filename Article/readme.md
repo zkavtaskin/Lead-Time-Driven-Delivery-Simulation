@@ -249,7 +249,7 @@ Now dear reader, let's refer back to my earlier statement in this article "Const
 
 If you decide to repeat above experiments in your own organisation, please do share the results. 
 
-#### Reduce handovers - Envelope game simulation
+#### Reduce handovers to minimise wait and disruption - Envelope game simulation
 Knowledge work organisations are plagued by handovers, refer back figure 7. Handovers are normally required for 2 reasons: 
 1. People doing the work don't have the skill to perform the whole task so it needs to be handed over to the next specialist 
 2. There is separation of duties due to security, hierarchy or political.  
@@ -260,9 +260,11 @@ Handovers are very time consuming, however I was not sure if this is actually th
 * During first experiment participants in each team could perform only 1 task and they could choose either batch flow or one-piece flow. Most teams choose one-piece flow as it engaged more team members faster, that is it reduced wait time for all participants. 
 * During second experiment participants in each team could perform as many tasks as they wanted, the only rule was that tasks had to be completed in the specified order. 
 
-Average time for first experiment was 42 seconds. Average time for second experiment was 12 seconds. What was really fascinating that for first experiment teams were told to follow standard assembly line process (figure 1). For second experiment they were given only rules and were given time to figure out their optimal team setup. Most teams have converged to the model where each person performs the whole process on their own, no handovers at all. That ended up being the winning strategy. 
+Average time for first experiment was 42 seconds. Average time for second experiment was 12 seconds, 3.5x improvement. What was really fascinating that for first experiment teams were told to follow standard assembly line process (figure 1). For second experiment they were given only rules and were given time to figure out their optimal team setup. Most teams have converged to the model where each person performs the whole process on their own, no handovers at all. That ended up being the winning strategy. 
 
+Main insight is that handovers increase wait time and increase task time. When one person can perform the entire task from start to end it might take them longer overall then doing just one part of the process but the whole process **collectively** is much faster. This is because utilisation is increased, no one is waiting for work and task time is reduced as handovers are no longer part of the work. 
 
+This is why it is important to train your staff so that they can become full stack engineers and giving everyone in your organisation ability to self-service e.g. Software Engineers can look at the production logs, perform software releases indepdently, get access to all of the relevant information, etc. 
 
 ### Reducing Lead Time
 ...
