@@ -20,13 +20,11 @@
 * [Craft Production - Reducing Lead Time]()
     * [Hypothesis-based mindset for improvements](#hypothesis-based-mindset-for-improvements)
     * [Visualising Lead and Cycle Time]()
-    * [Reducing Cycle Time](#reducing-cycle-time)
-        * [Get story and size right](#get-story-and-size-right)
-        * [Reduce handovers](#reduce-handovers)
-        * [Work needs to be planned](#work-needs-to-be-planned)
-        * [Quality throughout](#quality-throughout)
-    * [Reducing Lead Time]()    
-    * [Visualising Lead and Cycle Time Improvements]()
+    * [Get story and size right](#get-story-and-size-right)
+    * [Reduce handovers](#reduce-handovers)
+    * [Work needs to be planned](#work-needs-to-be-planned)
+    * [Quality throughout](#quality-throughout) 
+    * [Visualising Lead and Cycle Time Improvements](#visualising-lead-and-cycle-time-improvements)
 * What does it actually mean to be Agile?
 * Conclusion
 * Acknowledgments
@@ -196,6 +194,7 @@ Now imagine that your companies founder understood importance of Lead and Cycle 
 (Figure 8)
 
 ## Craft Production - Reducing Lead Time
+By now we know that Lead and Cycle Time is comprised of Wait, Disruption and Task Time and it all of these factors get exacerbated by departmental team work. In this section we will explore how it is possible to reduce cycle time. 
 
 ### Hypothesis-based mindset for improvements
 Lead and Cycle Time give us something that Agile methods on their own don't. Ability to run experiments and measure something tangible. It is possible to form a theory let's say that "writing unit tests will will reduce lead time but will increase cycle time" and actually test this theory. By using Lead and Cycle Time it is even possible to predict the impact of a proposed change and avert bad management decisions or at least be able to measure their impact when they go wrong. Lead and Cycle Time give managers a decision making framework for process changes. 
@@ -215,10 +214,8 @@ This bar chart shows us all user stories lead time and cycle time for the past y
 
 If you would like to measure this you are better off using quartiles. With quartiles it is possible to explain above graph by saying 25% of the work gets delivered by day 5, 50% of the work gets delivered by day 8, 75% of the work by day 10 and the last 25% by day 21. 
 
-### Reducing Cycle Time
-By now we know that Cycle Time is comprised of Wait, Disruption and Task Time and it all of these factors get exacerbated by departmental team work. In this section we will explore how it is possible to reduce cycle time. 
 
-#### Get story and size right
+### Get story value and size right
 
 I have been fascinated by one-piece flow and small batches for a long time, this is of-course due to weird obsession with Lean Manufacturing. So one afternoon when it was almost home time I have asked few of my colleagues to participate in a game that would prove that one-piece flow is an optimal strategy for delivering software. 
 
@@ -253,10 +250,10 @@ Now dear reader, let's refer back to my earlier statement in this article "Const
 
 If you decide to repeat above experiments in your own organisation, please do share the results. 
 
-#### Reduce handovers
+### Reduce handovers
 Knowledge work organisations are plagued by handovers, refer back figure 7. Handovers are normally required for 2 reasons: 
 1. People doing the work don't have the skill to perform the whole task so it needs to be handed over to the next specialist 
-2. There is separation of duties due to security, hierarchy or political.  
+2. There is separation of duties due to security, hierarchy or politics.  
 
 Handovers are very time consuming, however I was not sure if this is actually the case or was it my bias talking. So once again I have run a game experiment. This time it was a much larger scale experiment, over 70 people participated in about 8 teams. Experiment rules were:
 * There will be teams with same amount of people in each team
@@ -270,7 +267,7 @@ Main insight is that handovers increase wait time and increase task time. When o
 
 This is why it is important to train your staff so that they can become full stack engineers and giving everyone in your organisation ability to self-service e.g. Software Engineers can look at the production logs, perform software releases independently, get access to all of the relevant information, etc. 
 
-#### Work needs to be planned
+### Work needs to be planned
 
 Due to volatile nature of knowledge work as normally there is no organisational queue and very little standard work. It is important that sponsors know what is currently being done, and what is going to be done next and what is the long term vision. Without this top level agreement disruption can run havoc across an organiastion as work get priotised and depriortised (work swapping). You know it is got bad when Scrum teams can't even plan a 2 week Sprint, or if they plan it and by the end of what they have delivered is different set of stories as they all got swapped. I don't know about you, but to me that is not Agile, but chaos (more on that later).
 
@@ -289,8 +286,12 @@ To be clear I am not saying that user stories need to be planned 6 months in adv
 
 A lot of people don't find above exciting, however if you work for a large organisation this orchestration is an absolute must to reduce lead time for work inflight. This section is probably going to be the most controversial one.
 
-#### Quality throughout
-Work is the right size, handovers reduced and work is planned. There is one thing that can drastically increase Lead Time unexpectedly. This is is unplanned disruption, typically these are bugs (unexpected behavior) in the software or bugs in your process (missed something important or did not account for something). Too much of unplanned disruption can erode trust and confidence in the process. So it is important to minimise unplanned disruption as much as possible so that it is exceptional. This can be achieved by putting quality in your process and putting quality in to your software.
+### Commit to less 
+
+### Prioritise global work 
+
+### Quality throughout
+ There is one thing that can drastically increase Lead Time unexpectedly. This is is unplanned disruption, typically these are bugs that appear in the form of unexpected behavior in the software or bugs that in your process manifest themselves as something important being missed or something not being accounted for. Too much of unplanned disruption can erode trust and confidence in the process. So it is important to minimise unplanned disruption as much as possible so that it is exceptional. This can be achieved by putting quality in your process and putting quality in to your software.
 
 There are number of ways to put quality in to your process. For example Definition of Done and Ready are checklists that are used to ensure that Backlog and Sprint are in the expected state. Having a release pipeline done which your work travels and gets checked either manually or automatically is another one. 
 
@@ -298,11 +299,6 @@ Putting quality in to your software is covered well in DevOps literature. Normal
 
 Key thing is that your organisation iteratively invests in to quality as this only one of the ways to achieve long term predictable and sustainiable performance. If you would like to read more about this topic check out my [stabilise through embedded testing](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-stabilise-and.html) article.
 
-### Reducing Lead Time
-* Reduce amount of commitments
-* Reduce amount of handovers
-* Deliver incrementally 
-* Prioritise global work 
 
 ### Visualising Lead and Cycle Time Improvements
 Earlier we saw how it is possible to visualise and describe Lead and Cycle Time, but what do you if you want to measure improvements? Let's say you set a goal to reduce cycle time by 1 day average. How would that look like and compare to Figure 9?
