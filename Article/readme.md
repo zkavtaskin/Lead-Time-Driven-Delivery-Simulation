@@ -240,7 +240,37 @@ If you decide to repeat above experiments in your own organisation, please do sh
 ...
 
 ### Visualising Lead and Cycle Time Improvements
-...
+Earlier we saw how it is possible to visualise and describe Lead and Cycle Time, but what do you if you want to measure improvements? Let's say you set a goal to reduce cycle time by 1 day average. How would that look like? Let's refer back to the original visualisation: 
+
+![](img/leadcycletime_original.png)
+
+(Original Lead and Cycle Time distribution)
+
+Now's let imagine that your team has achieved it is goal, here is how your new distribution would look like:
+
+![](img/leadcycletime_more.png)
+
+(Cycle Time was reduced by 1 day average)
+
+Lets take a moment and unpack what has happened. When we say we will reduce cycle time by 1 day average this means that some stories will not be reduced at all, some stories will be reduced by 1 day and some by 2 days, this will give us 1 day average. Finally, if you have shifted cycle time by 1 day average this means your team has created more space for more work. This space will get filled with more work of remaining size, above figure takes this in to account. Originally team has delivered 505 user stories in 1 year, after 1 day cycle time reduction it is forecasted that team will deliver 668 user stories. 
+
+This is all great but it is possible to get ahead of yourself and see improvements when there are none. If team happens to deliver more stories, earlier in 3 Sprints does not mean they have improved. It might just mean that is was going to happen anyway. Take a look at this visualisation:
+
+![](img/leadtimesampling.png)
+
+(Figure 6, X axis shows day when work was delivered, Y axis shows number of stories delivered on that day)
+
+Black line represents the actual delivery and variance around each day. Red and Blue represent lines and their variance represents what else could have happened given same stories and lead time. Red and Blue lines are randomly sampled from existing data. This means some stories are randomly chosen from available collection fo stories and then Blue and Red lines are drawn. Important thing to understand that it is exactly the same data. However if you look at the chart blue line might make the team feel that they are delivering work earlier in the Sprint and being more stable. However this is not the case, it is just random result.
+
+Here is how actual improvement would look like:
+
+![](img/leadtimesampling_more.png)
+
+(Figure 7, X axis shows day when work was delivered, Y axis shows number of stories delivered on that day)
+
+If you refer back to the Figure 6, we know that more work gets delivered and it gets delivered earlier. Black line represents original data Figure 5, Blue and Red now show an actual improvement, but notice how similar it still is! This is because it still is similar as team has reduced Cycle Time only by 1 day. Having said that, if data is collected for 1 year (there are enough samples) and Figure 7 has emerged then it would be reasonable to assume that there was improvement. 
+
+If you are intereted in more detail or want to see code behind this, please check out [this](https://github.com/zkavtaskin/Lead-Time-Driven-Delivery-Simulation/blob/master/Notebook/LeadTimeDynamics.ipynb) notebook. 
 
 ## Conclusions 
 ...
