@@ -216,7 +216,7 @@ By now we know that Cycle Time is comprised of Wait, Disruption and Task Time an
 
 #### Get story size right - Lego game simulation 
 
-I have been fascinated by one-piece flow and small batches for a long time, this is of-course due to my obsession with lean manufacturing. So one afternoon when it was almost home time I have asked few of my colleagues to participate in a game that would prove that one-piece flow is an optimal strategy for delivering software. 
+I have been fascinated by one-piece flow and small batches for a long time, this is of-course due to my obsession with Lean Manufacturing. So one afternoon when it was almost home time I have asked few of my colleagues to participate in a game that would prove that one-piece flow is an optimal strategy for delivering software. 
 
 Experiment had to be quick to setup and easy to follow, after all everyone wanted to go home. The following rules were established:
 * There will be two teams of same size
@@ -241,11 +241,17 @@ I don't know why I was surprised, large story team has outpaced one-piece flow t
 
 Now dear reader, let's refer back to my earlier statement in this article "Constraining team to a one piece flow artificially constraints teams and wastes capacity" and "user story needs to be a discrete piece of value". 
 
-The big insight here is that batch sizes need to big enough for teams to understand what is that they are doing. This way they can get engaged with the work, provide an opinion, self organise so that everyone is utilised, know what work is coming in when, provide assistance to other team members where appropriate. If user story is too small it robs the team of doing all of the things just mentioned and usually this story is probably broken down too much and it is a task. If you follow INVEST and ensure that stories are actually valuable i.e. they deliver discrete piece of usable functionality you are on to the winner. I know it will sound shocking, but it seems that work planning reduces cycle time and reduced lead time.
+First insight is that batch sizes need to big enough for teams to understand what is that they are doing. This way they can get engaged with the work, provide an opinion, self organise so that everyone is utilised, know what work is coming in when, provide assistance to other team members where appropriate. If user story is too small it robs the team of doing all of the things just mentioned and usually this story is probably broken down too much and it is a task. If you follow INVEST and ensure that stories are actually valuable i.e. they deliver discrete piece of usable functionality. 
+
+Second shocking insight is that work planning and team communication reduces cycle time and reduces lead time.
+
+Third insight refers us back to section ["Implications on existing best practices"](/#implications-on-existing-best-practices) that "in the craft production the work it self can be a constraint. This is because you can choose, what you do, how you do it and who does it". 
 
 If you decide to repeat above experiments in your own organisation, please do share the results. 
 
-###
+#### Reduce handovers - Envelope game simulation
+
+
 
 ### Reducing Lead Time
 ...
