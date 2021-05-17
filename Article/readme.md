@@ -193,8 +193,10 @@ Now imagine that your companies founder understood importance of Lead and Cycle 
 
 ## Craft Production - Reducing Lead Time
 
-### Hypothesis-based mindset for everything
-...
+### Hypothesis-based mindset for improvements
+Lead and Cycle Time give us something that Agile methods on their own don't. Ability to run experiments and measure something tangible. It is possible to form a theory let's say that "writing unit tests will will reduce lead time but will increase cycle time" and actually test this theory. By using Lead and Cycle Time it is even possible to predict the impact of a proposed change and avert bad management decisions or at least be able to measure their impact when they go wrong. Lead and Cycle Time give managers a decision making framework for process changes. 
+
+Plenty has been written about hypothesis-based thinking and if you have not come across it before please do explore it. I also explore it in my ("Focus on results, not methods")[http://www.zankavtaskin.com/2020/08/lead-time-driven-delivery-focus-on.html] article. 
 
 ### Visualising Lead and Cycle Time
 
