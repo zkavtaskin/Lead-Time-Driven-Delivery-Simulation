@@ -22,7 +22,7 @@
     * [Visualising Lead and Cycle Time]()
     * [Reducing Cycle Time]()
         * [Get story size right to maximise team engagement - Lego game simulation](#get-story-size-right-to-maximise-team-engagement---lego-game-simulation)
-        * [Reduce handovers to minimise wait and disruption - Envelope game simulation](#reduce-handovers-to-minimise-wait-and-disruption---envelope-game-simulation)
+        * [Reduce handovers to minimise wait and task time - Envelope game simulation](#reduce-handovers-to-minimise-wait-and-disruption---envelope-game-simulation)
     * [Reducing Lead Time]()    
     * [Visualising Lead and Cycle Time Improvements]()
 * What does it actually mean to be Agile?
@@ -251,7 +251,7 @@ Now dear reader, let's refer back to my earlier statement in this article "Const
 
 If you decide to repeat above experiments in your own organisation, please do share the results. 
 
-#### Reduce handovers to minimise wait and disruption - Envelope game simulation
+#### Reduce handovers to minimise wait and task time - Envelope game simulation
 Knowledge work organisations are plagued by handovers, refer back figure 7. Handovers are normally required for 2 reasons: 
 1. People doing the work don't have the skill to perform the whole task so it needs to be handed over to the next specialist 
 2. There is separation of duties due to security, hierarchy or political.  
