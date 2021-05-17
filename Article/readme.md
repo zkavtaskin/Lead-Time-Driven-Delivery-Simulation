@@ -214,9 +214,9 @@ If you would like to measure this you are better off using quartiles. With quart
 ### Reducing Cycle Time
 By now we know that Cycle Time is comprised of Wait, Disruption and Task Time and it all of these factors get exacerbated by departmental team work. In this section we will explore how it is possible to reduce cycle time. 
 
-#### Get story size right - Lego game simulation 
+#### Get story size right to maximise team engagement - Lego game simulation 
 
-I have been fascinated by one-piece flow and small batches for a long time, this is of-course due to my obsession with Lean Manufacturing. So one afternoon when it was almost home time I have asked few of my colleagues to participate in a game that would prove that one-piece flow is an optimal strategy for delivering software. 
+I have been fascinated by one-piece flow and small batches for a long time, this is of-course due to weird obsession with Lean Manufacturing. So one afternoon when it was almost home time I have asked few of my colleagues to participate in a game that would prove that one-piece flow is an optimal strategy for delivering software. 
 
 Experiment had to be quick to setup and easy to follow, after all everyone wanted to go home. The following rules were established:
 * There will be two teams of same size
@@ -241,15 +241,26 @@ I don't know why I was surprised, large story team has outpaced one-piece flow t
 
 Now dear reader, let's refer back to my earlier statement in this article "Constraining team to a one piece flow artificially constraints teams and wastes capacity" and "user story needs to be a discrete piece of value". 
 
-First insight is that batch sizes need to big enough for teams to understand what is that they are doing. This way they can get engaged with the work, provide an opinion, self organise so that everyone is utilised, know what work is coming in when, provide assistance to other team members where appropriate. If user story is too small it robs the team of doing all of the things just mentioned and usually this story is probably broken down too much and it is a task. If you follow INVEST and ensure that stories are actually valuable i.e. they deliver discrete piece of usable functionality. 
+**First insight** is that batch sizes need to big enough for teams to understand what is that they are doing. This way they can get engaged with the work, provide an opinion, self organise so that everyone is utilised, know what work is coming in when, provide assistance to other team members where appropriate. If user story is too small it robs the team of doing all of the things just mentioned and usually this story is probably broken down too much and it is a task. If you follow INVEST and ensure that stories are actually valuable i.e. they deliver discrete piece of usable functionality. 
 
-Second shocking insight is that work planning and team communication reduces cycle time and reduces lead time.
+**Second shocking insight** is that work planning and team communication reduces cycle time and reduces lead time.
 
-Third insight refers us back to section ["Implications on existing best practices"](/#implications-on-existing-best-practices) that "in the craft production the work it self can be a constraint. This is because you can choose, what you do, how you do it and who does it". 
+**Third insight** refers us back to section ["Implications on existing best practices"](/#implications-on-existing-best-practices) that "in the craft production the work it self can be a constraint. This is because you can choose, what you do, how you do it and who does it". 
 
 If you decide to repeat above experiments in your own organisation, please do share the results. 
 
 #### Reduce handovers - Envelope game simulation
+Knowledge work organisations are plagued by handovers, refer back figure 7. Handovers are normally required for 2 reasons: 
+1. People doing the work don't have the skill to perform the whole task so it needs to be handed over to the next specialist 
+2. There is separation of duties due to security, hierarchy or political.  
+
+Handovers are very time consuming, however I was not sure if this is actually the case or was it my bias talking. So once again I have run a game experiment. This time it was a much larger scale experiment, over 70 people participated in about 8 teams. Experiment rules were:
+* There will be teams with same amount of people in each team
+* No matter the experiment parcipants had ship  10 letters, but they had to follow the following standard work process for each letter, Dispense, Left Fold, Right Fold, Place in to the envelope, Stamp, Check, Complete. 
+* During first experiment participants in each team could perform only 1 task and they could choose either batch flow or one-piece flow. Most teams choose one-piece flow as it engaged more team members faster, that is it reduced wait time for all participants. 
+* During second experiment participants in each team could perform as many tasks as they wanted, the only rule was that tasks had to be completed in the specified order. 
+
+Average time for first experiment was 42 seconds. Average time for second experiment was 12 seconds. What was really fascinating that for first experiment teams were told to follow standard assembly line process (figure 1). For second experiment they were given only rules and were given time to figure out their optimal team setup. Most teams have converged to the model where each person performs the whole process on their own, no handovers at all. That ended up being the winning strategy. 
 
 
 
