@@ -341,6 +341,18 @@ If you refer back to the Figure 12, we know that more work gets delivered and it
 
 If you are intereted in more detail or want to see code behind this, please check out [this](https://github.com/zkavtaskin/Lead-Time-Driven-Delivery-Simulation/blob/master/Notebook/LeadTimeDynamics.ipynb) notebook. 
 
+## What does it actually mean to be Agile?
+
+If I critically think about it, I don't fully know what Agile means. During a presentation I have asked a group of people what  does it mean to be Agile. I had many answers such as "respond to market change", "working with the customer", "software development over bureaucracy" and so on, all answers were some version of Agile Manifesto. One person even said that answer is in the Agile Manifesto. It seems that Agile is set of intangible characteristics that are defined by the Agile Manifesto. 
+
+Issue is that Agile Manifesto "characteristics" are vague and due to this quiet quickly it becomes almost a spiritual discussion of what people believe and not a business discussion of what it is. To illustrate my point, recently I have read the article by Jeff Gothelf where he said that SAFe framework is not agile because SAFe is missing: 
+
+"Continuous learning and improvement, customer centricity, humility, cross-functional collaboration, evidence-based decision making, experimentation, design and course correction — to name a few — are visibly absent from the SAFe conversation. Instead, organizations adopting this way of working focus on rigid team structures, strict rituals and events and an uneven distribution of behavior change requirements depending on how high up one sits in the organization."
+
+Jeff is not the only one to say above, there is a lot of firefighting going on about this. Something is not Agile as it requires project management, future planning, dependency mapping and other larger operations artifacts. To make things worse we hear things like "we have to be more Agile" and "lets Agile this", what does that mean?
+
+So, could it be that Agile is missing something? By now you might have realized where am I going with this. What if we use Agile methods as they are, but we start measuring and caring about Lead and Cycle Time as much as companies measure and care about revenue and profit. I mean really care about it. What if you hear things like "Lets develop this iteratively so that our Lead Time is low" or "Lets create functional feature teams so that we can reduce handovers and drastically reduce our Cycle Time and overall Lead Time" and best thing of all it can be measured and visualised. It is not vague. I would love to live in the world where conversation moves away from Agile and to Lead and Cycle Time. 
+
 ## Conclusions 
 ...
 
