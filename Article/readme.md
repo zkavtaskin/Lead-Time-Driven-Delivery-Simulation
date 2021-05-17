@@ -53,13 +53,13 @@ I am not an expert in manufacturing, so this section's examples should be taken 
 Since the rise lean manufacturing majority of companies have transitioned towards one-piece flow. This is where work travels in discrete pieces from station to station where some operation is applied on to it such as:
 
 ![](img/spf.jpeg)
-(Image taken from https://www.kaufmanglobal.com/glossary/single-piece-flow/)
+(Figure 1, Image taken from https://www.kaufmanglobal.com/glossary/single-piece-flow/)
 
 This means that factory's tend to have one assembly line down which work travels. Takt dictates how much time each station has to complete their task. For example in car manufacturing, you might need to install car dashboard, you will be given 3 minutes per car to do this. If you find an issue or don't have enough time you can "stop the line" so the entire assembly line stops. 
 
 ![](img/chaplin.gif)
 
-(Charlie Chaplin "Modern Times" 1936 movie)
+(Figure 2, Charlie Chaplin "Modern Times" 1936 movie)
 
 Car manufacturers have been doing this for decades so they have figured out ways to ensure that each station has as few issues as possible so there is very little disruption, having said that there are thousands of line stops a day and this is considered healthy. As you can imagine work is monotonous, however quality people are needed, so these assembly line workers tend to get paid well (in the UK). 
 
@@ -67,7 +67,7 @@ Assembly lines can get very long and they might have number of inputs before the
 
 ![](img/marriage.jpeg)
 
-(image taken from https://www.sar.biz/news/2017_Aggregateeinbau_BMW_e.asp)
+(Figure 3, Image taken from https://www.sar.biz/news/2017_Aggregateeinbau_BMW_e.asp)
 
 Lastly all of the cars are not the same. They will be built per different specifications. Some will have premium interior, different wheels, upgraded electronics and so on. This means each stage needs to know what exactly needs to be done for that particular car. This adds additional complexity to the manufacturing process. 
 
@@ -101,6 +101,8 @@ The rest of the article focuses on craft production type of work only, we will s
 Craft production delivery predictability is exacerbated by the fact that **people** are working on the actual work. Stakeholders in organisations forget that employee A and employee B might deliver work at very different speed due to their different characteristics and experience. Also work it self might have different properties that were not considered until development has started. Here are the factors that impact productivity:
 
 ![](img/tasktime.jpeg)
+
+(Figure 4)
 
 * Volume of work - This is the amount of work you have to do. 
 * Unknowns - This is you identifying stuff that you did not consider when you were estimating the work.
@@ -149,7 +151,7 @@ Going back to software engineering. Work gets committed normally in the Sprint s
 
 ![](img/cycletime.png)
 
-(X axis shows number of days it taken to complete a piece of work, Y axis shows number of stories in that group)
+(Figure 5, X axis shows number of days it taken to complete a piece of work, Y axis shows number of stories in that group)
 
 This inherently makes it less predicable. This is because unlike coffee that might take between 30 seconds to 1 minute and 30 seconds which makes it 1 minute average. Based on above graph ~25% of knowledge work gets delivered in 2.5 days, ~50%  7 days, ~75% 10 days and last 25% 15 days. So it seems that craft work can't be standardised in to **average** unit of time like standard work can be which means vanilla Little's Law can't be used. Given all of this, how is it possible to make craft work in software engineering more predictable, that is what we are going to explore next. 
 
@@ -166,7 +168,7 @@ Three factors that make up your **individual** work:
 
 ![](img/SystemThinking.jpeg)
 
-(Factors that make up your actual work)
+(Figure 6, factors that make up your actual work)
 
 ### Optimised by department
 
@@ -178,6 +180,8 @@ Now image that your company grew too quickly and it ended up not following any A
 
 ![](img/waterfallteam.jpeg)
 
+(Figure 7)
+
 So if a customer has requested a “Hot Feature A” they will have to wait for a long time for this work to travel through this type of organisation (system). Actual Task Time for "Hot Feature A” might be 12 hours of work in total, however given all of the Wait Time (handovers and lead times) and disruptions it might take up to 1 month before it gets shipped. So there is a big difference between 1 month Lead Time and 12 hours Task Time. However your customer will not care about the 12 hours of Task Time, they will just care that you took 1 month Lead Time. Overall in this type of organisation Lead Time for most work will be very high, fewer projects will be shipped, projects will very rarely go out on time and individuals will feel frustrated as there will be a lot of firefighting.
 
 ### Optimised by work
@@ -185,6 +189,7 @@ Now imagine that your companies founder understood importance of Lead and Cycle 
 
 ![](img/agileteam.jpeg)
 
+(Figure 8)
 
 ## Craft Production - Reducing Lead Time
 
@@ -196,6 +201,8 @@ Now imagine that your companies founder understood importance of Lead and Cycle 
 To measure Lead and Cycle time we can't use average metrics, this is because they don't fall in to average (see cycle time figure) as work is skewed. This means we have to use different methods to measure Lead and Cycle Time. To bring this home take a look at this stacked bar char:
 
 ![](img/leadcycletime_original.png)
+
+(Figure 9)
 
 (X axis shows you which day work has arrived and colors represent how big item is, Y axis shows number of stories)
 
@@ -220,13 +227,13 @@ To my surprise the completely opposite was true. Team with larger stories knew w
 
 ![](img/large.jpg)
 
-(Large story team delivering a park scene)
+(Figure 10, Large story team delivering a park scene)
 
 Now compare this to one-piece flow team. This team was given one piece of small work to develop at the time such as chair. They did know the overall theme of the work, that is that they are building a park scene. They only understood the scene as they were finishing it so they have tried to make it better by reworking it, creating wait time and disruption. As it was one-piece flow, many members just stood around waiting for work, thus increasing wait time. This team needed also needed a lot more orchestration as they did not know the context of the work (increase in task time, wait time and disruption) and overall team seemed more stressed. 
 
 ![](img/singlepiece.jpg)
 
-(Small story team delivering a park scene)
+(Figure 11, Small story team delivering a park scene)
 
 I don't know why I was surprised, large story team has outpaced one-piece flow team by 26% average and delivered much better quality work! 
 
@@ -240,17 +247,12 @@ If you decide to repeat above experiments in your own organisation, please do sh
 ...
 
 ### Visualising Lead and Cycle Time Improvements
-Earlier we saw how it is possible to visualise and describe Lead and Cycle Time, but what do you if you want to measure improvements? Let's say you set a goal to reduce cycle time by 1 day average. How would that look like? Let's refer back to the original visualisation: 
-
-![](img/leadcycletime_original.png)
-
-(Original Lead and Cycle Time distribution)
-
+Earlier we saw how it is possible to visualise and describe Lead and Cycle Time, but what do you if you want to measure improvements? Let's say you set a goal to reduce cycle time by 1 day average. How would that look like and compare to Figure 9?
 Now's let imagine that your team has achieved it is goal, here is how your new distribution would look like:
 
 ![](img/leadcycletime_more.png)
 
-(Cycle Time was reduced by 1 day average)
+(Figure 12, Cycle Time was reduced by 1 day average and more work added to fill space)
 
 Lets take a moment and unpack what has happened. When we say we will reduce cycle time by 1 day average this means that some stories will not be reduced at all, some stories will be reduced by 1 day and some by 2 days, this will give us 1 day average. Finally, if you have shifted cycle time by 1 day average this means your team has created more space for more work. This space will get filled with more work of remaining size, above figure takes this in to account. Originally team has delivered 505 user stories in 1 year, after 1 day cycle time reduction it is forecasted that team will deliver 668 user stories. 
 
@@ -258,7 +260,7 @@ This is all great but it is possible to get ahead of yourself and see improvemen
 
 ![](img/leadtimesampling.png)
 
-(Figure 6, X axis shows day when work was delivered, Y axis shows number of stories delivered on that day)
+(Figure 13, X axis shows day when work was delivered, Y axis shows number of stories delivered on that day)
 
 Black line represents the actual delivery and variance around each day. Red and Blue represent lines and their variance represents what else could have happened given same stories and lead time. Red and Blue lines are randomly sampled from existing data. This means some stories are randomly chosen from available collection fo stories and then Blue and Red lines are drawn. Important thing to understand that it is exactly the same data. However if you look at the chart blue line might make the team feel that they are delivering work earlier in the Sprint and being more stable. However this is not the case, it is just random result.
 
@@ -266,9 +268,9 @@ Here is how actual improvement would look like:
 
 ![](img/leadtimesampling_more.png)
 
-(Figure 7, X axis shows day when work was delivered, Y axis shows number of stories delivered on that day)
+(Figure 14, X axis shows day when work was delivered, Y axis shows number of stories delivered on that day)
 
-If you refer back to the Figure 6, we know that more work gets delivered and it gets delivered earlier. Black line represents original data Figure 5, Blue and Red now show an actual improvement, but notice how similar it still is! This is because it still is similar as team has reduced Cycle Time only by 1 day. Having said that, if data is collected for 1 year (there are enough samples) and Figure 7 has emerged then it would be reasonable to assume that there was improvement. 
+If you refer back to the Figure 12, we know that more work gets delivered and it gets delivered earlier. Black line represents original data Figure 13, Blue and Red now show an actual improvement, but notice how similar it still is! This is because it still is similar as team has reduced Cycle Time only by 1 day. Having said that, if data is collected for 1 year (there are enough samples) and Figure 14 has emerged then some would say that it is reasonable to assume that there was improvement. 
 
 If you are intereted in more detail or want to see code behind this, please check out [this](https://github.com/zkavtaskin/Lead-Time-Driven-Delivery-Simulation/blob/master/Notebook/LeadTimeDynamics.ipynb) notebook. 
 
