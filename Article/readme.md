@@ -90,7 +90,11 @@ However, even though customers are interested in these unique items, it does com
 The other thing about craft production is that it’s reliant on a highly skilled craft worker, of which we’re currently experiencing a shortage. Training for anyone working in craft production can be intensive and delivered through apprenticeships, workshops, lectures, or just a simple hands-on approach." - 
 Craft production segment from [Katana](https://katanamrp.com/blog/craft-production/#:~:text=What%20Is%20Craft%20Production%3F,when%20making%20pottery%20by%20hand.)
 
-This is not to say that there is no standard work in knowledge work world. Implementations consultants that are setting up a product for a customer are doing standard work. Software engineers that are re-using components and connecting them to a different data source are doing standard work. However the problem is that companies want innovation and product differentiation. Unfortunately this work falls in to craft production which is slower and tends to be less predictable. This article focuses on craft production type of work only, that is the non-standard work, on how to make it more predictable, faster and more enjoyable for everyone involved.
+This is not to say that there is no standard work in knowledge work world. Implementations consultants that are setting up a product for a customer are doing some standard work. Software engineers that are re-using components and connecting them to a different data source are doing some standard work. However the problem is that companies want innovation and product differentiation. Unfortunately this work falls in to craft production which is unique and not easily repeatable which makes it slower and less predictable. 
+
+Standard work in knowledge work can be automated fairly easily thus leaving us once again with craft production work. For foreseeable future there will always remain standard work that people will need to perform because it is cheaper to have people do it or it is customer friendlier. This is where existing Lean Manufacturing techniques can be applied literally. 
+
+The rest of the article focuses on craft production type of work only, we will see how it is possible to make it more predictable, faster and more enjoyable for everyone involved. Also good news is that ideas from this article can be applied to standard work. 
 
 ### What makes up craft production
 
