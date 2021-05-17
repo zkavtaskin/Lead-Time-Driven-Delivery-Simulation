@@ -20,7 +20,7 @@
 * [Craft Production - Reducing Lead Time]()
     * [Hypothesis-based mindset for improvements](#hypothesis-based-mindset-for-improvements)
     * [Visualising Lead and Cycle Time]()
-    * [Get story and size right](#get-story-and-size-right)
+    * [Get story value and size right](#get-story-value-and-size-right)
     * [Reduce handovers](#reduce-handovers)
     * [Work needs to be planned](#work-needs-to-be-planned)
     * [Quality throughout](#quality-throughout) 
