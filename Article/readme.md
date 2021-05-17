@@ -294,7 +294,7 @@ There are number of ways to put quality in to your process. For example Definiti
 
 Putting quality in to your software is covered well in DevOps literature. Normally this means quality automation tests exist that cover end to end testing, unit tests, performance tests, accessibility and so on.
 
-Key thing is that your organisation iteratively invests in to quality as this is the only way to achieve long term predictable performance. 
+Key thing is that your organisation iteratively invests in to quality as this is the only way to achieve long term predictable performance. If you would like to read more about this topic check out my [Stabilise through embedded testing](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-stabilise-and.html) article.
 
 ### Reducing Lead Time
 * Reduce amount of commitments
