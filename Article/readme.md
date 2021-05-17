@@ -20,8 +20,10 @@
 * [Craft Production - Reducing Lead Time]()
     * [Hypothesis-based mindset for everything]()
     * [Visualising Lead and Cycle Time]()
-    * [Reducing Lead Time Experiments]()    
-    * [Reducing Cycle Time Experiments]()
+    * [Reducing Cycle Time]()
+        * [Get story size right to maximise team engagement - Lego game simulation](#get-story-size-right-to-maximise-team-engagement---lego-game-simulation)
+        * [Reduce handovers to minimise wait and disruption - Envelope game simulation](#reduce-handovers-to-minimise-wait-and-disruption---envelope-game-simulation)
+    * [Reducing Lead Time]()    
     * [Visualising Lead and Cycle Time Improvements]()
 * What does it actually mean to be Agile?
 * Conclusion
