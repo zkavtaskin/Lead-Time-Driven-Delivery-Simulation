@@ -76,7 +76,7 @@ Now that we know some of the pertinent details we can explore why **assembly lin
 ### Standard work - Assembly Line
 What gave a drastic productivity boost to assembly line is componentisation. It became possible to put things together using discrete parts. Componentisation and part integration is possible only through agreed standards. Assembly line is setup and configured to produce few models of the car, sure these models have different variants like mentioned above, however they are all standard and their **Takt time is known**. 
 
-### Non standard work - Craft production
+### Non-standard work - Craft production
 Now contrast this to software engineering. Typical backlog of user stories delivers discrete piece of value, we will call them story A, B and C. Story A might take 15 days to complete by 4 people. B might take 5 days to complete by 2 people. C might take 8 days to complete by 7 people from 3 different departments! In some sense this is craft production. 
 
 Practitioner might say, well how about you break these user stories down to a smaller size so that Takt time is known? I have to counter with this, a user story needs to be a discrete piece of **real** value. If it is possible to break it down and still delivery **real value** then it should be broken down. However more often then not user story can only be broken down to a finite amount until it **loses its value** and then process becomes task break down. Breaking user stories down too far is artificial and actually leads to knowledge workers forgetting why they are doing the piece of work in the first place, this leads to poorer solutions and time waste as the Lego experiment shows.
@@ -196,25 +196,25 @@ Now imagine that your companies founder understood importance of Lead and Cycle 
 ### Hypothesis-based mindset for improvements
 Lead and Cycle Time give us something that Agile methods on their own don't. Ability to run experiments and measure something tangible. It is possible to form a theory let's say that "writing unit tests will will reduce lead time but will increase cycle time" and actually test this theory. By using Lead and Cycle Time it is even possible to predict the impact of a proposed change and avert bad management decisions or at least be able to measure their impact when they go wrong. Lead and Cycle Time give managers a decision making framework for process changes. 
 
-Plenty has been written about hypothesis-based thinking and if you have not come across it before please do explore it. I also explore it in my ("Focus on results, not methods")[http://www.zankavtaskin.com/2020/08/lead-time-driven-delivery-focus-on.html] article. 
+Plenty has been written about hypothesis-based thinking and if you have not come across it before please do explore it. I also explore it in my ["Focus on results, not methods"](http://www.zankavtaskin.com/2020/08/lead-time-driven-delivery-focus-on.html) article. 
 
 ### Visualising Lead and Cycle Time
 
-To measure Lead and Cycle time we can't use average metrics, this is because they don't fall in to average (see cycle time figure) as work is skewed. This means we have to use different methods to measure Lead and Cycle Time. To bring this home take a look at this stacked bar char:
+To measure Lead and Cycle time we can't use average metrics, this is because they don't fall in to average (see figure 5) as work is skewed. This means we have to use different methods to measure Lead and Cycle Time. To bring this home take a look at this stacked bar char:
 
 ![](img/leadcycletime_original.png)
 
-(Figure 9)
 
-(X axis shows you which day work has arrived and colors represent how big item is, Y axis shows number of stories)
+(Figure 9, X axis shows you which day work has arrived and colors represent how big item is, Y axis shows number of stories)
 
 This bar chart shows us all user stories lead time and cycle time for the past year. This team follows a 2 week Sprint pattern and as we can see majority of the work gets delivered second week of the sprint, more towards the end. Also we can see that there are user stories that drift across Sprints as they don't get finished in a single 2 week Sprint.  
 
 If you would like to measure this you are better off using quartiles. With quartiles it is possible to explain above graph by saying 25% of the work gets delivered by day 5, 50% of the work gets delivered by day 8, 75% of the work by day 10 and the last 25% by day 21. 
 
-### Reducing Cycle Time Experiments
+### Reducing Cycle Time
+By now we know that Cycle Time is comprised of Wait, Disruption and Task Time and it all of these factors get exacerbated by departmental team work. In this section we will explore how it is possible to reduce cycle time. 
 
-### Story size matters, Lego game simulation 
+#### Get story size right - Lego game simulation 
 
 I have been fascinated by one-piece flow and small batches for a long time, this is of-course due to my obsession with lean manufacturing. So one afternoon when it was almost home time I have asked few of my colleagues to participate in a game that would prove that one-piece flow is an optimal strategy for delivering software. 
 
@@ -245,7 +245,9 @@ The big insight here is that batch sizes need to big enough for teams to underst
 
 If you decide to repeat above experiments in your own organisation, please do share the results. 
 
-### Reducing Lead Time Experiments
+###
+
+### Reducing Lead Time
 ...
 
 ### Visualising Lead and Cycle Time Improvements
