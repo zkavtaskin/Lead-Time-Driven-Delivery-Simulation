@@ -94,7 +94,7 @@ This is not to say that there is no standard work in knowledge work world. Imple
 
 Standard work in knowledge work can be automated fairly easily thus leaving us once again with craft production work. For foreseeable future there will always remain standard work that people will need to perform because it is cheaper to have people do it or it is customer friendlier. This is where existing Lean Manufacturing techniques can be applied literally. 
 
-The rest of the article focuses on craft production type of work only, we will see how it is possible to make it more predictable, faster and more enjoyable for everyone involved. Also good news is that ideas from this article can be applied to standard work. 
+The rest of the article focuses on craft production type of work only, we will see how by focusing on Lead and Cycle Time it is possible to make work more predictable, faster and more enjoyable for everyone involved.
 
 ### What makes up craft production
 
@@ -119,8 +119,8 @@ Assembly lines tend to be linear. Once work enters the production line it enters
 
 Rest of this article explores implications of the above. However few things will be pointed out at this stage:
 1. **Little's Law** assumes that queue is stable and that work has an average cycle time. This is true for standard work as work on average takes similar amount of time, this not true for craft production. This means vanilla Little's Law can't be used in software engineering. 
-1. **One-piece flow**, typical Scrum team has around 6 team members. It is likely that they will work on more then user story at the time. This means it is not one-piece flow. Constraining team to a one piece flow artificially constraints teams and wastes capacity.
-1. **Theory of constraints** assumes that there is one-piece flow and work is standard. Different stories will engage different people in the team at different times. This means bottleneck is dynamic and it depends on the work that team is working on. 
+1. **One-piece flow**, typical Scrum team has around 6 team members. It is likely that they will work on more then one user story at the time. This means it is not one-piece flow. Constraining team to a one piece flow artificially constraints teams and wastes capacity.
+1. **Theory of constraints** assumes that there is one-piece flow and work is standard. Different stories will engage different people in the team at **different times**. This means bottleneck is **dynamic** and it depends on the work that team is working on. 
 
 One big insight that we can gain already is that in the craft production the **work it self** can be a constraint. This is because you can choose:
 * What you do
@@ -134,14 +134,14 @@ This means if you have a creative product owner or business analysts they can de
 Your business goals are still the same as in the manufacturing. It cares about delivering quality innovative solutions to the customer. This is typically measured in Lead Time and Cycle Time. Speed is everything, so how strange is it that some businesses do not actually measure these two variables. Also, I am not talking about speed of a single department getting from point A to B either, I am talking about getting from point A (customer commitment) to Z (customer receive their functionality) i.e. work traveling through the **entire** business. In this section we will these two variables and how they can help your business. 
 
 ### Cycle Time
-Let's go back to the car manufacturing where I have introduced Takt time. Cycle time is different to Takt time. Takt time tells you how much time you have to complete a discrete unit of work given amount of demand. Cycle Time tells you how much you have used to perform a unit of work. Cycle time can be measured at every level, but what does that mean?
+Let's go back to the car manufacturing where I have mentioned Takt time. Cycle time is different to Takt time. Takt time tells you how much time you have to complete a discrete unit of work given amount of demand. Cycle Time tells you how much time you have used to perform a unit of work. Cycle time can be measured at every level, but what does that mean?
 
 Let's say you have entered a coffee shop, and you have finally reached the till to make that drink request. Cycle time starts from the moment barista smiles (hopefully) and asks you for your coffee order and it ends when they shout your order or name. That time that was taken to make your drink is cycle time. You also measure cycle time at lower levels, for example how long did it take to take your order, how long did it take to make your coffee and then what was the cycle time overall.  
 
 Coming back to the world of software engineering. User Story will have an overall cycle time i.e. days or hours to complete and this is measured from story activation to story completion. Individual tasks under that story will also have cycle time that are measured from activation to completion. Task cycle time is important as their cycle time will ultimately dictate the overall user story cycle time.
 
 ### Lead Time 
-This is the most confusing one when it comes craft production. Lead time is how long work has taken from the moment it was committed to the queue. So the overall time. Let's go back to the coffee shop example again (standard work). When you have entered the coffee shop you have committed yourself to the queue, the overall time it takes you from walking in to that door to the moment you walk out with nice flat white is the lead time. 
+This is the most confusing one when it comes to knowledge work. Lead time is how long work has taken from the moment it was committed to the queue. So the overall time. Let's go back to the coffee shop example again (standard work). When you have entered the coffee shop you have committed yourself to the queue, the overall time it takes you from walking in to that door to the moment you walk out with nice flat white is the lead time. 
 
 You might be thinking well there will be a lot of waiting around before I get served and my cycle time starts! You are right, the cool thing is that in "standard work" you can predict how long you will wait in the queue. This is because there is **average** cycle time. Let's say it takes 1 minute give or take to make a cup of joe. So if there are 4 people ahead of you, you know that you will get your coffee in about 4+1(+1 is for you) multiplied by 1 minute so 5 minutes.
 
@@ -154,7 +154,7 @@ Going back to software engineering. Work gets committed normally in the Sprint s
 This inherently makes it less predicable. This is because unlike coffee that might take between 30 seconds to 1 minute and 30 seconds which makes it 1 minute average. Based on above graph ~25% of knowledge work gets delivered in 2.5 days, ~50%  7 days, ~75% 10 days and last 25% 15 days. So it seems that craft work can't be standardised in to **average** unit of time like standard work can be which means vanilla Little's Law can't be used. Given all of this, how is it possible to make craft work in software engineering more predictable, that is what we are going to explore next. 
 
 
-## Knowledge work in the team setting
+## Craft production - Work Flow
 Knowledge workers typically work together to produce some value. The moment team is formed dynamics change, and I don't mean this from personality point of view but from work **relay** point of view. 
 
 ### Your individual work
@@ -167,6 +167,43 @@ Three factors that make up your **individual** work:
 ![](img/SystemThinking.jpeg)
 
 (Factors that make up your actual work)
+
+### Optimised by department
+
+Imagine you are working on your own on your own start-up. You will have very little wait and disruption time. You are on our own, you can make all of the decisions. Also if you are lucky enough to work in a quiet environment you should experience very little or no disruptions. You get things done fast, your users are impressed with your company, new features just come out all the time. In this case you are in "your individual work" scenario. 
+
+However, this changes the moment you hire your first employee in your start-up. The moment you do that, you create an organisation, that means you have created a system. In the system work no longer gets done by a single individual, it gets done by many individuals. You as the founder are unlikely to feel much impact by hiring this new person (apart from knowledge transfer burden), but if you are not careful your new employee will have to wait for your decisions, knowledge and task allocation. Their Wait Time will grow as they wait for you and they will probably be disrupted by you. You will wonder why they are not as a productive as you, it might be because they have not got enough autonomy to make decisions (maybe they don’t know your values so they don’t know what decisions to make on your behalf) also they might not be getting enough clarity about the desired outcomes. Most people are not founders, they are the employees and sometimes they struggle to do their best as they struggle to understand the "decision making framework" that founders use. 
+
+Now image that your company grew too quickly and it ended up not following any Agile process and instead it had departments of people per discipline. So Web devs in one department, API Devs are in another department, you get the point. Each department will have their own backlog, which means everyone has their own Lead Time, on top of that all individuals will experience disruptions (team meetings, urgent requests you know the drill) and there will be many handovers from one department to another. Work will also end up traveling backwards due to misunderstandings, some people would call this a waterfall organisation and it looks something like this: 
+
+![](img/waterfallteam.jpeg)
+
+So if a customer has requested a “Hot Feature A” they will have to wait for a long time for this work to travel through this type of organisation (system). Actual Task Time for "Hot Feature A” might be 12 hours of work in total, however given all of the Wait Time (handovers and lead times) and disruptions it might take up to 1 month before it gets shipped. So there is a big difference between 1 month Lead Time and 12 hours Task Time. However your customer will not care about the 12 hours of Task Time, they will just care that you took 1 month Lead Time. Overall in this type of organisation Lead Time for most work will be very high, fewer projects will be shipped, projects will very rarely go out on time and individuals will feel frustrated as there will be a lot of firefighting.
+
+### Optimised by work
+Now imagine that your companies founder understood importance of Lead and Cycle Time and worked to remove as much Wait, Disruption and Task Time from overall delivery process. They have decided to sit people together for a limited amount of time to deliver certain features and projects. They have done this as they want to remove handovers, the amount of project management is required, competing agendas, waiting for decisions, knowledge and organisational dependencies. They work as a team on one story at time (as much as possible) and their main job is to push that one story through the system as fast as possible. Now, that story that took 1 month to deliver, in this new system will take 12 hours or even less. This is because you have removed all of the waiting around, disruptions (team lead and product owners act as defenders) and because this team is sitting together they can actually expose the unknowns faster, tame complexity, share their experience and share the burden of the work so they can actually deliver the work faster.
+
+![](img/agileteam.jpeg)
+
+
+## Craft Production - Reducing Lead Time
+
+### Hypothesis-based mindset for everything
+...
+
+### Visualising Lead and Cycle Time
+
+To measure Lead and Cycle time we can't use average metrics, this is because they don't fall in to average (see cycle time figure) as work is skewed. This means we have to use different methods to measure Lead and Cycle Time. To bring this home take a look at this stacked bar char:
+
+![](img/leadcycletime_original.png)
+
+(X axis shows you which day work has arrived and colors represent how big item is, Y axis shows number of stories)
+
+This bar chart shows us all user stories lead time and cycle time for the past year. This team follows a 2 week Sprint pattern and as we can see majority of the work gets delivered second week of the sprint, more towards the end. Also we can see that there are user stories that drift across Sprints as they don't get finished in a single 2 week Sprint.  
+
+If you would like to measure this you are better off using quartiles. With quartiles it is possible to explain above graph by saying 25% of the work gets delivered by day 5, 50% of the work gets delivered by day 8, 75% of the work by day 10 and the last 25% by day 21. 
+
+### Reducing Cycle Time Experiments
 
 ### Story size matters, Lego game simulation 
 
@@ -199,23 +236,11 @@ The big insight here is that batch sizes need to big enough for teams to underst
 
 If you decide to repeat above experiments in your own organisation, please do share the results. 
 
-### Optimised by department
+### Reducing Lead Time Experiments
+...
 
-Imagine you are working on your own on your own start-up. You will have very little wait and disruption time. You are on our own, you can make all of the decisions. Also if you are lucky enough to work in a quiet environment you should experience very little or no disruptions. You get things done fast, your users are impressed with your company, new features just come out all the time. In this case you are in "your individual work" scenario. 
-
-However, this changes the moment you hire your first employee in your start-up. The moment you do that, you create an organisation, that means you have created a system. In the system work no longer gets done by a single individual, it gets done by many individuals. You as the founder are unlikely to feel much impact by hiring this new person (apart from knowledge transfer burden), but if you are not careful your new employee will have to wait for your decisions, knowledge and task allocation. Their Wait Time will grow as they wait for you and they will probably be disrupted by you. You will wonder why they are not as a productive as you, it might be because they have not got enough autonomy to make decisions (maybe they don’t know your values so they don’t know what decisions to make on your behalf) also they might not be getting enough clarity about the desired outcomes. Most people are not founders, they are the employees and sometimes they struggle to do their best as they struggle to understand the "decision making framework" that founders use. 
-
-Now image that your company grew too quickly and it ended up not following any Agile process and instead it had departments of people per discipline. So Web devs in one department, API Devs are in another department, you get the point. Each department will have their own backlog, which means everyone has their own Lead Time, on top of that all individuals will experience disruptions (team meetings, urgent requests you know the drill) and there will be many handovers from one department to another. Work will also end up traveling backwards due to misunderstandings, some people would call this a waterfall organisation and it looks something like this: 
-
-![](img/waterfallteam.jpeg)
-
-So if a customer has requested a “Hot Feature A” they will have to wait for a long time for this work to travel through this type of organisation (system). Actual Task Time for "Hot Feature A” might be 12 hours of work in total, however given all of the Wait Time (handovers and lead times) and disruptions it might take up to 1 month before it gets shipped. So there is a big difference between 1 month Lead Time and 12 hours Task Time. However your customer will not care about the 12 hours of Task Time, they will just care that you took 1 month Lead Time. Overall in this type of organisation Lead Time for most work will be very high, fewer projects will be shipped, projects will very rarely go out on time and individuals will feel frustrated as there will be a lot of firefighting.
-
-### Optimised by work
-Now imagine that your companies founder understood importance of Lead and Cycle Time and worked to remove as much Wait, Disruption and Task Time from overall delivery process. They have decided to sit people together for a limited amount of time to deliver certain features and projects. They have done this as they want to remove handovers, the amount of project management is required, competing agendas, waiting for decisions, knowledge and organisational dependencies. They work as a team on one story at time (as much as possible) and their main job is to push that one story through the system as fast as possible. Now, that story that took 1 month to deliver, in this new system will take 12 hours or even less. This is because you have removed all of the waiting around, disruptions (team lead and product owners act as defenders) and because this team is sitting together they can actually expose the unknowns faster, tame complexity, share their experience and share the burden of the work so they can actually deliver the work faster.
-
-![](img/agileteam.jpeg)
-
+### Visualising Lead and Cycle Time Improvements
+...
 
 ## Conclusions 
 ...
