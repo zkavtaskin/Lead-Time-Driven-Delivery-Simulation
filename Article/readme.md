@@ -282,13 +282,28 @@ What does all of this mean in practice? To reduce disruption and wait time we ne
 * If specialist teams exist then there must be a global roadmap of work so that they can get ahead of the curve be ready for just-in-time handover 
 * Just enough of roadmap and backlog planning needs to be done that is not too much or too little. Your organisation needs to find the sweet spot. 
 
-To be clear I am not saying that user stories need to be planned 6 months in advance, that they need to be broken down to a task level and allocated to a specific person with exact amount of hours they have estimated for it. This is extreme and very wasteful. However another extreme would be people not knowing what is needed of them, there are no stories and work is swapping every single moment of the day.
+To be clear I am not saying that user stories need to be planned 6 months in advance, that they need to be broken down to a task level and allocated to a specific person with exact amount of hours they have estimated for it. This is extreme and very wasteful. However another extreme would be people not knowing what is needed of them, there are no stories and work is swapping every single moment of the day and wrong software is being delivered. 
 
-A lot of people don't find above exciting, however if you work for a large organisation this orchestration is an absolute must to reduce lead time for work inflight. This section is probably going to be the most controversial one.
+A lot of people don't find above exciting, however if you work for a large organisation this orchestration is an absolute must to reduce lead time for work inflight. This section is probably going to be the most controversial one with Agile community. 
 
 ### Commit to less 
+The simplest solution to reduce Lead Time is to commit to less work so that there are less things in the queue waiting. This is the hardest thing to do as this involves saying no and creating a slack in the queue. 
 
-### Prioritise global work 
+When I say no, it means no to new work or contracts. Letting go of customers that are no longer your speciality. Saying no to features that don't seem like a right thing to do. 
+
+If it is common that your company expedites work to meet a customer demand, then maybe this should be embraced. Create space in teams schedules for urgent work of a certain size. If nothing comes well then team can pick up next thing of the backlog, otherwise there is space for it. Generally speaking it is healthy to create a bit of slack in the overall system so that teams can help each other out day to day. 
+
+By saying no, focusing and creating slack urgent work can travel through without interrupting existing commitments thus reducing or maintaining existing Lead Time.
+
+### Prioritise global work over local work
+
+
+
+![](img/noqueue.gif)
+
+(Figure 12, Bruce Almighty making way for number 1)
+
+
 
 ### Quality throughout
  There is one thing that can drastically increase Lead Time unexpectedly. This is is unplanned disruption, typically these are bugs that appear in the form of unexpected behavior in the software or bugs that in your process manifest themselves as something important being missed or something not being accounted for. Too much of unplanned disruption can erode trust and confidence in the process. So it is important to minimise unplanned disruption as much as possible so that it is exceptional. This can be achieved by putting quality in your process and putting quality in to your software.
