@@ -21,7 +21,7 @@
     * [Hypothesis-based mindset for everything]()
     * [Visualising Lead and Cycle Time]()
     * [Reducing Cycle Time]()
-        * [Get story size right](#get-story-size-right)
+        * [Get story and size right](#get-story-and-size-right)
         * [Reduce handovers](#reduce-handovers)
         * [Work needs to be planned](#work-needs-to-be-planned)
         * [Quality throughout](#quality-throughout)
@@ -218,7 +218,7 @@ If you would like to measure this you are better off using quartiles. With quart
 ### Reducing Cycle Time
 By now we know that Cycle Time is comprised of Wait, Disruption and Task Time and it all of these factors get exacerbated by departmental team work. In this section we will explore how it is possible to reduce cycle time. 
 
-#### Get story size right
+#### Get story and size right
 
 I have been fascinated by one-piece flow and small batches for a long time, this is of-course due to weird obsession with Lean Manufacturing. So one afternoon when it was almost home time I have asked few of my colleagues to participate in a game that would prove that one-piece flow is an optimal strategy for delivering software. 
 
