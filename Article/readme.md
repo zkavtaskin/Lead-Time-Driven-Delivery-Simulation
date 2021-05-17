@@ -46,13 +46,13 @@ Above problems have been witnesses by me directly and indirectly across various 
 
 ## Knowledge work is not Manufacturing
 
-Agile methodologies do borrow ideas from lean manufacturing and engineering. While some ideas such as standards, components, trunk based development, and value streams have been very useful, others such as Kanban, Theory of Constraints (ToC), Little's Law and One piece flow get applied wrongly. As a practitioner I have immersed myself in these concepts reading "Agile Management for Software Engineering" and "Phoenix Project" and for a while I was under impression that these concepts were working. Only after some reflection it became evident that these ideas did not work as expected, they actually ended up slowing delivery operations which lead towards a lot of frustration. In this section we will explore why exactly ToC, Little's Law and one-piece flow can't be applied literally as they do in Lean Manufacturing. 
+Agile methodologies do borrow ideas from lean manufacturing and engineering. While some ideas such as standards, components, trunk based development, and value streams have been very useful, others such as Kanban, Theory of Constraints (ToC), Little's Law and One piece flow get applied wrongly. As a practitioner I have immersed myself in these concepts by reading "Agile Management for Software Engineering" and "Phoenix Project" and for a while I was under impression that these concepts were working. Only after some reflection it became evident that these ideas did not work as expected, they actually ended up slowing delivery operations which lead towards a lot of frustration. In this section we will explore why exactly ToC, Little's Law and one-piece flow can't be applied literally.
 
 I am not an expert in manufacturing, so this section's examples should be taken as high level ideas that serve as a contrast to knowledge work.
 
 ### Manufacturing 
 
-Since the rise lean manufacturing majority of companies have transitioned towards one-piece flow. This is where work travels in discrete pieces from station to station where some operation is applied on to it such as:
+Since the rise of Lean Manufacturing majority of companies have transitioned towards one-piece flow. This is where work travels in discrete pieces from station to station where some specific operation is applied on to it such as:
 
 ![](img/spf.jpeg)
 (Figure 1, Image taken from https://www.kaufmanglobal.com/glossary/single-piece-flow/)
@@ -63,9 +63,9 @@ This means that factory's tend to have one assembly line down which work travels
 
 (Figure 2, Charlie Chaplin "Modern Times" 1936 movie)
 
-Car manufacturers have been doing this for decades so they have figured out ways to ensure that each station has as few issues as possible so there is very little disruption, having said that there are thousands of line stops a day and this is considered healthy. As you can imagine work is monotonous, however quality people are needed, so these assembly line workers tend to get paid well (in the UK). 
+Car manufacturers have been doing this for decades so they have figured out ways to ensure that each station has as few issues as possible so there is very little disruption. Having said that there are thousands of line stops a day and this is considered healthy and normal.
 
-Assembly lines can get very long and they might have number of inputs before the work gets merged in to a single line. This can be witnessed when car manufacturers perform "marriage", this is when they insert the chassis, transmission and engine in the body on the production line. 
+Assembly lines stages can get very long and they might have number of inputs before the work gets merged in to a single line. This can be witnessed when car manufacturers perform "marriage", this is when they insert the chassis, transmission and engine in the body on the production line. 
 
 ![](img/marriage.jpeg)
 
@@ -76,12 +76,12 @@ Lastly all of the cars are not the same. They will be built per different specif
 Now that we know some of the pertinent details we can explore why **assembly line work** is different to **knowledge work**.  
 
 ### Standard work - Assembly Line
-What gave a drastic productivity boost to assembly line is componentisation. It became possible to put things together using discrete parts. Componentisation and part integration is possible only through agreed standards. Assembly line is setup and configured to produce few models of the car, sure these models have different variants like mentioned above, however they are all standard and their **Takt time is known**. 
+What gave a drastic productivity boost to assembly line is componentisation. It became possible to put things together using discrete parts. Componentisation and part integration is possible  through agreed standards i.e. interfaces. Assembly line is setup and configured to produce similar models of the car, sure these models have different specifications like mentioned above, however they are all standard and their **Takt time is known**. 
 
 ### Non-standard work - Craft production
 Now contrast this to software engineering. Typical backlog of user stories delivers discrete piece of value, we will call them story A, B and C. Story A might take 15 days to complete by 4 people. B might take 5 days to complete by 2 people. C might take 8 days to complete by 7 people from 3 different departments! In some sense this is craft production. 
 
-Practitioner might say, well how about you break these user stories down to a smaller size so that Takt time is known? I have to counter with this, a user story needs to be a discrete piece of **real** value. If it is possible to break it down and still delivery **real value** then it should be broken down. However more often then not user story can only be broken down to a finite amount until it **loses its value** and then process becomes task break down. Breaking user stories down too far is artificial and actually leads to knowledge workers forgetting why they are doing the piece of work in the first place, this leads to poorer solutions and time waste as the Lego experiment shows.
+Practitioner might say, well how about you break these user stories down to a smaller size so that Takt time is known? I have to counter with this, a user story needs to be a discrete piece of **real** value. If it is possible to break it down and still delivery **real value** then it should be broken down. However more often then not user story can only be broken down to a finite amount until it **loses its value** and then process becomes task break down. Breaking user stories down too far is artificial and actually leads to knowledge workers forgetting why they are doing the piece of work in the first place, this leads to poorer solutions and time waste as we will later find out in the Lego experiment.
 
 Wait, what on earth is craft production?
 
@@ -94,7 +94,7 @@ Craft production segment from [Katana](https://katanamrp.com/blog/craft-producti
 
 This is not to say that there is no standard work in knowledge work world. Implementations consultants that are setting up a product for a customer are doing some standard work. Software engineers that are re-using components and connecting them to a different data source are doing some standard work. However the problem is that companies want innovation and product differentiation. Unfortunately this work falls in to craft production which is unique and not easily repeatable which makes it slower and less predictable. 
 
-Standard work in knowledge work can be automated fairly easily thus leaving us once again with craft production work. For foreseeable future there will always remain standard work that people will need to perform because it is cheaper to have people do it or it is customer friendlier. This is where existing Lean Manufacturing techniques can be applied literally. 
+Standard work in knowledge work can be automated fairly easily thus leaving us once again with craft production work. For foreseeable future there will remain standard work that people will need to perform. This is because it is cheaper to have people do it or it is customer friendlier. This is where existing Lean Manufacturing techniques can be applied literally. 
 
 The rest of the article focuses on craft production type of work only, we will see how by focusing on Lead and Cycle Time it is possible to make work more predictable, faster and more enjoyable for everyone involved.
 
@@ -216,7 +216,7 @@ If you would like to measure this you are better off using quartiles. With quart
 ### Reducing Cycle Time
 By now we know that Cycle Time is comprised of Wait, Disruption and Task Time and it all of these factors get exacerbated by departmental team work. In this section we will explore how it is possible to reduce cycle time. 
 
-#### Get story size right to maximise team engagement - Lego game simulation 
+#### Get story size right
 
 I have been fascinated by one-piece flow and small batches for a long time, this is of-course due to weird obsession with Lean Manufacturing. So one afternoon when it was almost home time I have asked few of my colleagues to participate in a game that would prove that one-piece flow is an optimal strategy for delivering software. 
 
@@ -251,7 +251,7 @@ Now dear reader, let's refer back to my earlier statement in this article "Const
 
 If you decide to repeat above experiments in your own organisation, please do share the results. 
 
-#### Reduce handovers to minimise wait and task time - Envelope game simulation
+#### Reduce handovers
 Knowledge work organisations are plagued by handovers, refer back figure 7. Handovers are normally required for 2 reasons: 
 1. People doing the work don't have the skill to perform the whole task so it needs to be handed over to the next specialist 
 2. There is separation of duties due to security, hierarchy or political.  
@@ -264,12 +264,38 @@ Handovers are very time consuming, however I was not sure if this is actually th
 
 Average time for first experiment was 42 seconds. Average time for second experiment was 12 seconds, 3.5x improvement. What was really fascinating that for first experiment teams were told to follow standard assembly line process (figure 1). For second experiment they were given only rules and were given time to figure out their optimal team setup. Most teams have converged to the model where each person performs the whole process on their own, no handovers at all. That ended up being the winning strategy. 
 
-Main insight is that handovers increase wait time and increase task time. When one person can perform the entire task from start to end it might take them longer overall then doing just one part of the process but the whole process **collectively** is much faster. This is because utilisation is increased, no one is waiting for work and task time is reduced as handovers are no longer part of the work. 
+Main insight is that handovers increase wait time and increase task time. When one person can perform the entire task from start to end it might take them longer overall then doing just one part of the process but the whole process **collectively** is much faster. This is because utilisation is increased as no one is waiting for work and task time is reduced as handovers are no longer part of the work.
 
-This is why it is important to train your staff so that they can become full stack engineers and giving everyone in your organisation ability to self-service e.g. Software Engineers can look at the production logs, perform software releases indepdently, get access to all of the relevant information, etc. 
+This is why it is important to train your staff so that they can become full stack engineers and giving everyone in your organisation ability to self-service e.g. Software Engineers can look at the production logs, perform software releases independently, get access to all of the relevant information, etc. 
+
+#### Work needs to be planned
+
+Due to volatile nature of knowledge work as normally there is no organisational queue and very little standard work. It is important that sponsors know what is currently being done, and what is going to be done next and what is the long term vision. Without this top level agreement disruption can run havoc across an organiastion as work get priotised and depriortised (work swapping). You know it is got bad when Scrum teams can't even plan a 2 week Sprint, or if they plan it and by the end of what they have delivered is different set of stories as they all got swapped. I don't know about you, but to me that is not Agile, but chaos (more on that later).
+
+For this reason, project management and planning is necessary part to get an agreement with customers, stakeholders and sponsors. Ideally you want move your organisation towards figure 8 to remove project management and planning as much as possible. However if you are working in a large organisation project management is inevitable even if your organiastion is optimised for work. Someone needs to coordinate work that is being done by many teams this is because work needs sequencing and dependencies order matters.
+
+What does all of this mean in practice? To reduce disruption and wait time:
+* Prioritsed backlog must exist (reduce wait time)
+* Dependencies must be removed as much as possible so that teams can work independently (reduce wait and disruption time)
+* In flight projects and their dependencies and everyones required contribution must be known (reduce wait and disruption time)
+* Work needs to be delivered just-in-time. If you are working on something that is not needed right now, this means other work's lead time is growing! (reduce wait time)
+* If specialist teams exist (component teams) they must prioritise global work over their local work. (reduce wait time)
+* If specialist teams exist then there must be a global roadmap of work so that they can get ahead of the curve be ready for just-in-time handover (reduce wait time)
+* Just enough of roadmap and backlog planning needs to be done that is not too much or too little. Your organisation needs to find the sweet spot. 
+
+To be clear I am not saying that user stories need to be planned 6 months in advance and that they need to be broken down to a task level and allocated to a specific person with exact amount of hours they have estimated for it. This is extreme and very wasteful. However another extreme would be people not knowing what is needed of them, there are no stories and it is pure chaos. There needs to be a balance between the two. 
+
+A lot of people don't find above exciting, however if you work for a large organisation this orchestration is an absolute must to reduce lead time for work inflight. 
+
+This section is probably going to be the most controversial one. I know this because I would have found it hard to agree with this section 5 years ago. 
+
+#### Quality throughout
 
 ### Reducing Lead Time
-...
+Reduce amount of commitments
+Reduce amount of handovers
+Deliver incrementally 
+Prioritise global work 
 
 ### Visualising Lead and Cycle Time Improvements
 Earlier we saw how it is possible to visualise and describe Lead and Cycle Time, but what do you if you want to measure improvements? Let's say you set a goal to reduce cycle time by 1 day average. How would that look like and compare to Figure 9?
