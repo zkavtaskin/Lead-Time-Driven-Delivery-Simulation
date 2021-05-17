@@ -272,30 +272,35 @@ This is why it is important to train your staff so that they can become full sta
 
 Due to volatile nature of knowledge work as normally there is no organisational queue and very little standard work. It is important that sponsors know what is currently being done, and what is going to be done next and what is the long term vision. Without this top level agreement disruption can run havoc across an organiastion as work get priotised and depriortised (work swapping). You know it is got bad when Scrum teams can't even plan a 2 week Sprint, or if they plan it and by the end of what they have delivered is different set of stories as they all got swapped. I don't know about you, but to me that is not Agile, but chaos (more on that later).
 
-For this reason, project management and planning is necessary part to get an agreement with customers, stakeholders and sponsors. Ideally you want move your organisation towards figure 8 to remove project management and planning as much as possible. However if you are working in a large organisation project management is inevitable even if your organiastion is optimised for work. Someone needs to coordinate work that is being done by many teams this is because work needs sequencing and dependencies order matters.
+For this reason, project management and planning is necessary part to get an agreement with customers, stakeholders and sponsors. Ideally you want move your organisation towards figure 8 to remove project management and planning as much as possible. However if you are working in a large organisation project management is inevitable even if your organisation is optimised for work. Someone needs to coordinate work that is being done by many teams this is because work needs sequencing and dependency order matters.
 
-What does all of this mean in practice? To reduce disruption and wait time:
-* Prioritsed backlog must exist (reduce wait time)
-* Dependencies must be removed as much as possible so that teams can work independently (reduce wait and disruption time)
-* In flight projects and their dependencies and everyones required contribution must be known (reduce wait and disruption time)
-* Work needs to be delivered just-in-time. If you are working on something that is not needed right now, this means other work's lead time is growing! (reduce wait time)
-* If specialist teams exist (component teams) they must prioritise global work over their local work. (reduce wait time)
-* If specialist teams exist then there must be a global roadmap of work so that they can get ahead of the curve be ready for just-in-time handover (reduce wait time)
+What does all of this mean in practice? To reduce disruption and wait time we need to: 
+* Prioritsed backlog must exist 
+* Dependencies must be removed as much as possible so that teams can work independently on their own backlogs and not be part of any project
+* If project is required (cross team coordination) then project's their dependencies and everyones required contribution must be known
+* Work needs to be delivered just-in-time. If you are working on something that is not needed right now, this means other work's lead time is growing! 
+* If specialist teams exist (component teams) they must prioritise global work over their local work. 
+* If specialist teams exist then there must be a global roadmap of work so that they can get ahead of the curve be ready for just-in-time handover 
 * Just enough of roadmap and backlog planning needs to be done that is not too much or too little. Your organisation needs to find the sweet spot. 
 
-To be clear I am not saying that user stories need to be planned 6 months in advance and that they need to be broken down to a task level and allocated to a specific person with exact amount of hours they have estimated for it. This is extreme and very wasteful. However another extreme would be people not knowing what is needed of them, there are no stories and it is pure chaos. There needs to be a balance between the two. 
+To be clear I am not saying that user stories need to be planned 6 months in advance, that they need to be broken down to a task level and allocated to a specific person with exact amount of hours they have estimated for it. This is extreme and very wasteful. However another extreme would be people not knowing what is needed of them, there are no stories and work is swapping every single moment of the day.
 
-A lot of people don't find above exciting, however if you work for a large organisation this orchestration is an absolute must to reduce lead time for work inflight. 
-
-This section is probably going to be the most controversial one. I know this because I would have found it hard to agree with this section 5 years ago. 
+A lot of people don't find above exciting, however if you work for a large organisation this orchestration is an absolute must to reduce lead time for work inflight. This section is probably going to be the most controversial one.
 
 #### Quality throughout
+Work is the right size, handovers reduced and work is planned. There is one thing that can drastically increase Lead Time unexpectedly. This is is unplanned disruption, typically these are bugs (unexpected behavior) in the software or bugs in your process (missed something important or did not account for something). Too much of unplanned disruption can erode trust and confidence in the process. So it is important to minimise unplanned disruption as much as possible so that it is exceptional. This can be achieved by putting quality in your process and putting quality in to your software.
+
+There are number of ways to put quality in to your process. For example Definition of Done and Ready are checklists that are used to ensure that Backlog and Sprint are in the expected state. Having a release pipeline done which your work travels and gets checked either manually or automatically is another one. 
+
+Putting quality in to your software is covered well in DevOps literature. Normally this means quality automation tests exist that cover end to end testing, unit tests, performance tests, accessibility and so on.
+
+Key thing is that your organisation iteratively invests in to quality as this is the only way to achieve long term predictable performance. 
 
 ### Reducing Lead Time
-Reduce amount of commitments
-Reduce amount of handovers
-Deliver incrementally 
-Prioritise global work 
+* Reduce amount of commitments
+* Reduce amount of handovers
+* Deliver incrementally 
+* Prioritise global work 
 
 ### Visualising Lead and Cycle Time Improvements
 Earlier we saw how it is possible to visualise and describe Lead and Cycle Time, but what do you if you want to measure improvements? Let's say you set a goal to reduce cycle time by 1 day average. How would that look like and compare to Figure 9?
