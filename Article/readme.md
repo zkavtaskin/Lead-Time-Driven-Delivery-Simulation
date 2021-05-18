@@ -25,7 +25,7 @@
     * [Work needs to be planned](#work-needs-to-be-planned)
     * [Quality throughout](#quality-throughout) 
     * [Visualising Lead and Cycle Time Improvements](#visualising-lead-and-cycle-time-improvements)
-* What does it actually mean to be Agile?
+* [What does it actually mean to be Agile?](#what-does-it-actually-mean-to-be-agile)
 * Conclusion
 * Acknowledgments
 
@@ -349,9 +349,10 @@ Issue is that Agile Manifesto "characteristics" are vague and due to this quiet 
 
 "Continuous learning and improvement, customer centricity, humility, cross-functional collaboration, evidence-based decision making, experimentation, design and course correction — to name a few — are visibly absent from the SAFe conversation. Instead, organizations adopting this way of working focus on rigid team structures, strict rituals and events and an uneven distribution of behavior change requirements depending on how high up one sits in the organization."
 
-Jeff is not the only one to say above, there is a lot of firefighting going on about this. Something is not Agile as it requires project management, future planning, dependency mapping and other larger operations artifacts. To make things worse we hear things like "we have to be more Agile" and "lets Agile this", what does that mean?
+Jeff is not the only one to say above, there is a lot of debate out there about what it means to be Agile. Problem is that this kind of debate mostly happens when people argue over vague ideas. If Agile definition was concrete there would be no argument, people would not agree with the exact definition and they would invent the new concrete thing like "Flex Manifesto". Instead we debate over what something is and it is not, it is a waste of time because the subject mater is **vague on purpose**. 
 
-So, could it be that Agile is missing something? By now you might have realized where am I going with this. What if we use Agile methods as they are, but we start measuring and caring about Lead and Cycle Time as much as companies measure and care about revenue and profit. I mean really care about it. What if you hear things like "Lets develop this iteratively so that our Lead Time is low" or "Lets create functional feature teams so that we can reduce handovers and drastically reduce our Cycle Time and overall Lead Time" and best thing of all it can be measured and visualised. It is not vague. I would love to live in the world where conversation moves away from Agile and to Lead and Cycle Time. 
+Could it be that Agile like a diamond is missing the perfect setting that would make it shine? What if we keep using Agile methodologies but we start measuring and caring about Lead and Cycle Time as much as companies measure and care about revenue and profit. I mean really care about it. What if you hear things like "Lets develop this iteratively so that our Lead Time is low" or "Lets establish project team to deliver this work so that we can reduce handovers and drastically reduce our Cycle Time and overall Lead Time". Best thing of all it can be measured and visualised. It drains all of the vagueness, making it very concrete. Would our industry benefit from moving conversation away from being Agile to reducing Lead and Cycle Time? 
+
 
 ## Conclusions 
 ...
