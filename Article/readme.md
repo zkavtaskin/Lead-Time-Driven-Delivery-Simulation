@@ -9,7 +9,7 @@
     * [Non-standard work - Craft production](#non-standard-work-craft-production)
     * [What makes up knowledge work](#what-makes-up-knowledge-work)
     * [There is no single queue](#there-is-no-single-queue)
-    * [Implications on existing best practices](#implications-on-existing-best-practices)
+    * [Implications on craft production](#implications-on-craft-production)
 * [Goals are still the same](#goals-are-still-the-same)
     * [Cycle Time](#cycle-time)
     * [Lead Time](#lead-time)    
@@ -26,8 +26,8 @@
     * [Quality throughout](#quality-throughout) 
     * [Visualising Lead and Cycle Time Improvements](#visualising-lead-and-cycle-time-improvements)
 * [What is Agile](#what-is-agile)
-* Conclusion
-* Acknowledgments
+* [Conclusion](#conclusion)
+* [Acknowledgments](#acknowledgments)
 
 ## Abstract
 ...
@@ -119,7 +119,7 @@ Domain - This is you gaining new domain knowledge (HR, Logistics, Financial Trad
 
 Assembly lines tend to be linear. Once work enters the production line it enters a queue and goes from start to the end. This is not the case with knowledge work. Work might go on to a backlog sit there for a year and then get removed. Work that once was super urgent will be deprioritised and swapped with something else. In knowledge work there is no queue as such. If you are following Scrum then normally team commits to work before a Sprint starts and very rarely should user stories in the Sprint change. This commitment is probably the only place in the whole process where there is a stable queue. 
 
-### Implications on existing best practices
+### Implications on craft production
 
 Rest of this article explores implications of the above. However few things will be pointed out at this stage:
 1. **Little's Law** assumes that queue is stable and that work has an average cycle time. This is true for standard work as work on average takes similar amount of time, this not true for craft production. This means vanilla Little's Law can't be used in software engineering. 
@@ -135,7 +135,7 @@ This means if you have a creative product owner or business analysts they can de
 
 ## Goals are still the same
 
-Your business goals are still the same as in the manufacturing. It cares about delivering quality innovative solutions to the customer. This is typically measured in Lead Time and Cycle Time. Speed is everything, so how strange is it that some businesses do not actually measure these two variables. Also, I am not talking about speed of a single department getting from point A to B either, I am talking about getting from point A (customer commitment) to Z (customer receive their functionality) i.e. work traveling through the **entire** business. In this section we will these two variables and how they can help your business. 
+Your business goals are still the same as in the manufacturing. It cares about delivering quality innovative solutions to the customer. This is typically measured in Lead Time and Cycle Time. Lead Time is a customer centric metric, while Cycle Time is a internal process metric. Lead Time is everything, so how strange is it that some businesses do not actually measure these two variables. Also, I am not talking about speed of a single department getting from point A to B either. I am talking about getting from point A (customer commitment) to Z (customer receive their functionality). That is work traveling through the **entire** business. In this section we will these two variables and how they can help your business. 
 
 ### Cycle Time
 Let's go back to the car manufacturing where I have mentioned Takt time. Cycle time is different to Takt time. Takt time tells you how much time you have to complete a discrete unit of work given amount of demand. Cycle Time tells you how much time you have used to perform a unit of work. Cycle time can be measured at every level, but what does that mean?
@@ -359,7 +359,7 @@ Could it be that Agile like a diamond is missing the perfect setting that would 
 Knowledge work in software engineering is akin to Craft Production. Lean Manufacturing methods can't be used literary when dealing with Craft Production. In Craft Production the work it self is a constraint as you can choose what you build, how big it is (Figure 5), how you build it, who builds it, how people work and how motivated they are in getting the work done. All of this impacts Lead and Cycle Time, and it is measured using quartiles. This is not the case in Manufacturing where work flow is pre-configured, machines or people are do just one thing repeatedly and work can be measured using average distribution. 
 
 Craft production Cycle and Lead Time can be drastically reduced if everyone focuses on minimising Wait, Disruption and Task Time. There are hundreds of ways that this can be done, here are just a few ideas:
-* Sizing stories right and engaging all team members in delivering one story at the time as much as possible to reduce lead time, task time and wait time
+* Product Owners sizing stories right and Software Team Leaders engaging all team members in delivering one story at the time as much as possible to reduce lead time, task time and wait time
 * Backlog, project, priority and dependency planning to reduce disruption and task time
 * Creating space for "slack" for unplanned work to reduce disruption and wait time 
 * Reducing handovers through cross skilling team members and providing them with self-service access to as many corporate systems as possible to reduce wait time and task time
@@ -372,6 +372,10 @@ Just like Manufacturing that has gone through a lean revolution, Craft Productio
 ![](img/agileteam.jpeg)
 
 (Figure 8 repeat)
+
+This article does not provide complete analysis 
+
+This article's intent is not to provide complete analysis and methodology, but to kick start a conversation and provide alternative view on knowledge work. 
 
 ## Acknowledgments
 ...
