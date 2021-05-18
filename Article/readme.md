@@ -17,13 +17,14 @@
     * [Your individual work](#your-individual-work)
     * [Optimised by department](#optimised-by-department-team-work)   
     * [Optimised by work](#optimised-by-work-team-work)  
-* [Craft Production - Speeding it up]()
+* [Craft Production - Speeding it up](#craft-production---speeding-it-up)
     * [Hypothesis-based mindset for improvements](#hypothesis-based-mindset-for-improvements)
-    * [Visualising Lead and Cycle Time]()
+    * [Visualising Lead and Cycle Time](#visualising-lead-and-cycle-time-improvements)
     * [Get story value and size right](#get-story-value-and-size-right)
     * [Reduce handovers](#reduce-handovers)
     * [Work needs to be planned](#work-needs-to-be-planned)
     * [Quality throughout](#quality-throughout) 
+    * [There is more...](#) 
     * [Visualising Lead and Cycle Time Improvements](#visualising-lead-and-cycle-time-improvements)
 * [What is Agile](#what-is-agile)
 * [Conclusion](#conclusion)
@@ -312,6 +313,14 @@ Putting quality in to your software is covered well in DevOps literature. Normal
 
 Key thing is that your organisation iteratively invests in to quality as this only one of the ways to achieve long term predictable and sustainiable performance. If you would like to read more about this topic check out my [stabilise through embedded testing](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-stabilise-and.html) article.
 
+### There is more...
+
+There are hundreds of ways that Lead and Cycle Time can be improved. This articles does not provide a complete list. However I would be remiss if I did not provide few honorable mentions:
+* Shift-left testing to reduce wait time
+* Empowering teams to make local decisions and create knowledge locally to reduce wait time 
+* Team leaders and managers that are there to resolve daily operational issues to reduce wait, disruption and task time (see [this article](http://www.zankavtaskin.com/2018/08/applied-software-delivery-hidden-impact.html))
+* Converting Craft Production to Standard work through automation, standards and component reuse to reduce task time
+* Talent retention to reduce task time 
 
 ### Visualising Lead and Cycle Time Improvements
 Earlier we saw how it is possible to visualise and describe Lead and Cycle Time, but what do you if you want to measure improvements? Let's say you set a goal to reduce cycle time by 1 day average. How would that look like and compare to Figure 9?
@@ -373,9 +382,7 @@ Just like Manufacturing that has gone through a lean revolution, Craft Productio
 
 (Figure 8 repeat)
 
-This article does not provide complete analysis 
-
-This article's intent is not to provide complete analysis and methodology, but to kick start conversation and provide some alternative thoughts on Agile practice. 
+This article's intent is not to provide complete analysis and methodology, but to kick start conversation and provide some alternative thoughts on Agile practice. If you like this article check out material that was used to create it [Lead Time Driven Delivery](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-introduction.html) Series.
 
 ## Acknowledgments
 This article has been long time in the making. Journey has officially started around 2013 when Andrew Bray gave me a copy of the Phoenix Project. MHR's leadership team has been most accommodating by allowing our software teams to experiment with various ideas and approaches throughout the years. Special thanks for that goes to  Anton Roe. Thanks to MHR's People First software development team for contributing ideas, participating in experiments and trying ideas in practice. Special thanks to Philippa Jennings and Hannah Jeacock for reviewing the article and Joe Norley for bouncing quantitate ideas off. 
