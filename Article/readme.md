@@ -13,11 +13,11 @@
 * [Goals are still the same](#goals-are-still-the-same)
     * [Cycle Time](#cycle-time)
     * [Lead Time](#lead-time)    
-* [Craft Production - Work Flow](#knowledge-work-work-flow)
+* [Craft Production - Learning to see](#knowledge-work-work-flow)
     * [Your individual work](#your-individual-work)
     * [Optimised by department](#optimised-by-department-team-work)   
     * [Optimised by work](#optimised-by-work-team-work)  
-* [Craft Production - Reducing Lead Time]()
+* [Craft Production - Speeding it up]()
     * [Hypothesis-based mindset for improvements](#hypothesis-based-mindset-for-improvements)
     * [Visualising Lead and Cycle Time]()
     * [Get story value and size right](#get-story-value-and-size-right)
@@ -25,7 +25,7 @@
     * [Work needs to be planned](#work-needs-to-be-planned)
     * [Quality throughout](#quality-throughout) 
     * [Visualising Lead and Cycle Time Improvements](#visualising-lead-and-cycle-time-improvements)
-* [What does it actually mean to be Agile?](#what-does-it-actually-mean-to-be-agile)
+* [What is Agile](#what-is-agile)
 * Conclusion
 * Acknowledgments
 
@@ -193,7 +193,7 @@ Now imagine that your companies founder understood importance of Lead and Cycle 
 
 (Figure 8)
 
-## Craft Production - Reducing Lead Time
+## Craft Production - Speeding it up
 By now we know that Lead and Cycle Time is comprised of Wait, Disruption and Task Time and it all of these factors get exacerbated by departmental team work. In this section we will explore how it is possible to reduce cycle time. 
 
 ### Hypothesis-based mindset for improvements
@@ -341,7 +341,7 @@ If you refer back to the Figure 12, we know that more work gets delivered and it
 
 If you are intereted in more detail or want to see code behind this, please check out [this](https://github.com/zkavtaskin/Lead-Time-Driven-Delivery-Simulation/blob/master/Notebook/LeadTimeDynamics.ipynb) notebook. 
 
-## What does it actually mean to be Agile?
+## What is Agile
 
 If I critically think about it, I don't fully know what Agile means. During a presentation I have asked a group of people what  does it mean to be Agile. I had many answers such as "respond to market change", "working with the customer", "software development over bureaucracy" and so on, all answers were some version of Agile Manifesto. One person even said that answer is in the Agile Manifesto. It seems that Agile is set of intangible characteristics that are defined by the Agile Manifesto. 
 
@@ -367,7 +367,7 @@ Craft production Cycle and Lead Time can be drastically reduced if everyone focu
 * Embedding quality in to the overall engineering process and product it self to reduce disruption and wait time
 * Managers motivating and protecting teams from disruption as much as possible to reduce task and disruption time
 
-Just like Manufacturing that has gone through a lean revolution, Craft Production will go through it too. It will eventually converge us to some scientifically proven non vague standard that will become accepted. It might be, that what will stop the Agile debate is putting Lead and Cycle Time at the front and center. In this world Figure 8 seems to the optimal model: 
+Just like Manufacturing that has gone through a lean revolution, Craft Production will go through it too. It will eventually converge us to some scientifically proven non vague standard that will become accepted. It might be, that what will stop the Agile debate is putting Lead and Cycle Time at the front and center of your organisation does. In this world Figure 8 seems to the optimal model: 
 
 ![](img/agileteam.jpeg)
 
