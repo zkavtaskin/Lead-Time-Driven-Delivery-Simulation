@@ -356,23 +356,24 @@ Could it be that Agile like a diamond is missing the perfect setting that would 
 
 ## Conclusions 
 
-Knowledge work in software engineering is akin to Craft Production. Lean Manufacturing methods can't be used literary when dealing with Craft Production. In Craft Production the work it self is a constraint as you can choose what you build, how big it is (Figure 5), how you build it, who builds it, how people work and how motivated they are in getting the work done. All of this impacts Lead and Cycle Time. This is not the case in Manufacturing where work flow is pre-configured, machines or people are do just one thing repeatedly and work can be measured using average distribution. 
+Knowledge work in software engineering is akin to Craft Production. Lean Manufacturing methods can't be used literary when dealing with Craft Production. In Craft Production the work it self is a constraint as you can choose what you build, how big it is (Figure 5), how you build it, who builds it, how people work and how motivated they are in getting the work done. All of this impacts Lead and Cycle Time, and it is measured using quartiles. This is not the case in Manufacturing where work flow is pre-configured, machines or people are do just one thing repeatedly and work can be measured using average distribution. 
 
-
-Craft production can see drastic Cycle and Lead Time reductions if everyone focuses on reducing Wait, Disruption and Task Time. This can be done by:
+Craft production Cycle and Lead Time can be drastically reduced if everyone focuses on minimising Wait, Disruption and Task Time. There are hundreds of ways that this can be done, here are just a few ideas:
 * Sizing stories right and engaging all team members in delivering one story at the time as much as possible to reduce lead time, task time and wait time
 * Backlog, project, priority and dependency planning to reduce disruption and task time
-* Creating and accepting "slack" for unplanned work to reduce disruption and wait time 
+* Creating space for "slack" for unplanned work to reduce disruption and wait time 
 * Reducing handovers through cross skilling team members and providing them with self-service access to as many corporate systems as possible to reduce wait time and task time
-* Getting everyone in the company to prioritise global project work over local project work to reduce global wait time
-* Embedding quality in to the overall engineering process and product it self to reduce disruption 
-* Managers to protect teams from disruption as much as possible 
+* Getting everyone in the company to prioritise global project work over local project work to reduce wait time 
+* Embedding quality in to the overall engineering process and product it self to reduce disruption and wait time
+* Managers motivating and protecting teams from disruption as much as possible to reduce task and disruption time
+
+Just like Manufacturing that has gone through a lean revolution, Craft Production will go through it too. It will eventually converge us to some scientifically proven non vague standard that will become accepted. It might be, that what will stop the Agile debate is putting Lead and Cycle Time at the front and center. In this world Figure 8 seems to the optimal model: 
 
 ![](img/agileteam.jpeg)
 
 (Figure 8 repeat)
 
-
-
 ## Acknowledgments
 ...
+
+This is abridged list.
