@@ -32,6 +32,7 @@
 
 ## Abstract
 ...
+
 ## Introduction
 
 Agile methodologies such as Scrum, Extreme Programming and DSDM have emerged in the 1990s and most of them were inspired by the lean manufacturing movement. Majority of the methodologies follow similar values but are delivered in a different way. Unfortunately Agile methodologies are experiencing the following problems:
@@ -47,7 +48,7 @@ Above problems have been witnesses by me directly and indirectly across various 
 
 ## Knowledge work is not Manufacturing
 
-Agile methodologies do borrow ideas from lean manufacturing and engineering. While some ideas such as standards, components, trunk based development, and value streams have been very useful, others such as Kanban, Theory of Constraints (ToC), Little's Law and One piece flow get applied wrongly. As a practitioner I have immersed myself in these concepts by reading "Agile Management for Software Engineering" and "Phoenix Project" and for a while I was under impression that these concepts were working. Only after some reflection it became evident that these ideas did not work as expected, they actually ended up slowing delivery operations which lead towards a lot of frustration. In this section we will explore why exactly ToC, Little's Law and one-piece flow can't be applied literally.
+Agile methodologies do borrow ideas from lean manufacturing and engineering. While some ideas such as standards, components, trunk based development, and value streams have been very useful, others such as Kanban, Theory of Constraints (ToC), Little's Law and One piece flow get applied wrongly. As a practitioner I have immersed myself in these concepts by reading "Agile Management for Software Engineering", "Phoenix Project", "DevOps handbook", "Accelerate The Science Behind DevOp" and "Learning to see value-stream mapping...", and for a while I was under impression that these concepts were working. Only after some reflection it became evident that these ideas did not work as expected, they actually ended up slowing delivery operations which lead towards a lot of frustration. In this section we will explore why exactly ToC, Little's Law and one-piece flow can't be applied literally.
 
 I am not an expert in manufacturing, so this section's examples should be taken as high level ideas that serve as a contrast to knowledge work.
 
