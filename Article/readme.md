@@ -1,7 +1,6 @@
 # Rejuvenating Agile operations by putting Lead and Cycle Time front and center
 
 ## Contents
-* [Abstract](#abstract)
 * [Introduction](#introduction)
 * [Knowledge work is not Manufacturing](#manufacturing-is-not-knowledge-work)
     * [Manufacturing](#manufacturing)
@@ -30,12 +29,9 @@
 * [Conclusion](#conclusion)
 * [Acknowledgments](#acknowledgments)
 
-## Abstract
-...
-
 ## Introduction
 
-Agile methodologies such as Scrum, Extreme Programming and DSDM have emerged in the 1990s and most of them were inspired by the lean manufacturing movement. Majority of the methodologies follow similar values but are delivered in a different way. Unfortunately Agile methodologies are experiencing the following problems:
+Agile methodologies such as Scrum, Extreme Programming and DSDM have emerged in the 1990s and most of them were inspired by the Lean Manufacturing movement. Majority of the methodologies follow similar values but are delivered in a different way. Unfortunately Agile methodologies are experiencing the following problems:
 1. They were inspired by the manufacturing industry, software engineering is not manufacturing as it follows different paradigm. This renders some of the lean techniques not as effective in knowledge work. 
 1. Multitude of key performance indicators make it hard to realise what is the "key" indicator further reinforcing entropy. Additionally KPIs usually don't provide any very much needed insight in to what needs to be done to improve operations. This is because focus is on methods and not the results. 
 1. As they are so prescriptive new practitioners have to spend a lot of time practicing Agile methods. After a lot of practice they can follow rules and understand what needs to be done, but not why they are doing it. 
@@ -44,7 +40,7 @@ Agile methodologies such as Scrum, Extreme Programming and DSDM have emerged in 
 1. Term agile is not well defined, it is hard to understand what is meant when stakeholders say "we have to be more Agile" or "we need to change our process to be more Agile".
 1. In time entropy erodes established best practice, making practitioners lose their "true north" bearings. It also makes it really difficult or not even possible to go back to "true north" if stakeholders lose faith in the existing process. 
 
-Above problems have been witnesses by me directly and indirectly across various software engineering departments and industries. In this article I will explore how above problems can be remedied by focusing on Lead and Cycle time.  
+In this article it will be explored why some of the manufacturing methods are not relevant to knowledge work  and how above problems can be remedied by focusing on Lead and Cycle time.
 
 ## Knowledge work is not Manufacturing
 
