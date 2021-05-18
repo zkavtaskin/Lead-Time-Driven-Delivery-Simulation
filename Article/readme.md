@@ -355,7 +355,24 @@ Could it be that Agile like a diamond is missing the perfect setting that would 
 
 
 ## Conclusions 
-...
+
+Knowledge work in software engineering is akin to Craft Production. Lean Manufacturing methods can't be used literary when dealing with Craft Production. In Craft Production the work it self is a constraint as you can choose what you build, how big it is (Figure 5), how you build it, who builds it, how people work and how motivated they are in getting the work done. All of this impacts Lead and Cycle Time. This is not the case in Manufacturing where work flow is pre-configured, machines or people are do just one thing repeatedly and work can be measured using average distribution. 
+
+
+Craft production can see drastic Cycle and Lead Time reductions if everyone focuses on reducing Wait, Disruption and Task Time. This can be done by:
+* Sizing stories right and engaging all team members in delivering one story at the time as much as possible to reduce lead time, task time and wait time
+* Backlog, project, priority and dependency planning to reduce disruption and task time
+* Creating and accepting "slack" for unplanned work to reduce disruption and wait time 
+* Reducing handovers through cross skilling team members and providing them with self-service access to as many corporate systems as possible to reduce wait time and task time
+* Getting everyone in the company to prioritise global project work over local project work to reduce global wait time
+* Embedding quality in to the overall engineering process and product it self to reduce disruption 
+* Managers to protect teams from disruption as much as possible 
+
+![](img/agileteam.jpeg)
+
+(Figure 8 repeat)
+
+
 
 ## Acknowledgments
 ...
