@@ -158,7 +158,7 @@ Going back to software engineering. Work gets committed normally in the Sprint s
 This inherently makes it less predicable. This is because unlike coffee that might take between 30 seconds to 1 minute and 30 seconds which makes it 1 minute average. Based on above graph ~25% of knowledge work gets delivered in 2.5 days, ~50%  7 days, ~75% 10 days and last 25% 15 days. So it seems that craft work can't be standardised in to **average** unit of time like standard work can be which means vanilla Little's Law can't be used. Given all of this, how is it possible to make craft work in software engineering more predictable, that is what we are going to explore next. 
 
 
-## Craft production - Learning to really see
+## Craft production - Learning to see
 Knowledge workers typically work together to produce some value. The moment team is formed dynamics change, and I don't mean this from personality point of view but from work **relay** point of view. 
 
 ### Your individual work
@@ -375,9 +375,7 @@ Just like Manufacturing that has gone through a lean revolution, Craft Productio
 
 This article does not provide complete analysis 
 
-This article's intent is not to provide complete analysis and methodology, but to kick start a conversation and provide alternative view on knowledge work. 
+This article's intent is not to provide complete analysis and methodology, but to kick start conversation and provide some alternative thoughts on Agile practice. 
 
 ## Acknowledgments
-...
-
-This is abridged list.
+This article has been long time in the making. Journey has officially started around 2013 when Andrew Bray gave me a copy of the Phoenix Project. MHR's leadership team has been most accommodating by allowing our software teams to experiment with various ideas and approaches throughout the years. Special thanks for that goes to  Anton Roe. Thanks to MHR's People First software development team for contributing ideas, participating in experiments and trying ideas in practice. Special thanks to Philippa Jennings and Hannah Jeacock for reviewing the article and Joe Norley for bouncing quantitate ideas off. 
