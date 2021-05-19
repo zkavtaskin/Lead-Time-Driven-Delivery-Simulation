@@ -272,60 +272,61 @@ If you decide to repeat above experiments in your own organisation, please do sh
 
 ### Work needs to be planned
 
-Due to volatile nature of knowledge work as normally there is no organisational queue and very little standard work. It is important that sponsors know what is currently being done, and what is going to be done next and what is the long term vision. Without this top level agreement disruption can run havoc across an organiastion as work get priotised and depriortised (work swapping). You know it is got bad when Scrum teams can't even plan a 2 week Sprint, or if they plan it and by the end of what they have delivered is different set of stories as they all got swapped. I don't know about you, but to me that is not Agile, but chaos (more on that later).
+Due to volatile nature of knowledge work as normally there is no "single organisational queue" and very little standard work. It is important that sponsors know what is currently being done, what is going to be done next and what is the long term vision. Without this top level agreement, disruption can run havoc across an organiastion as work get priotised and depriortised (work swapping). You know it is got bad when Scrum teams can't even plan a 2 week Sprint, or if they plan it and by the end of what they have delivered is different set of stories as they all got swapped. I don't know about you, but to me that is not Agile, but chaos, more on that later.
 
-For this reason, project management and planning is necessary part to get an agreement with customers, stakeholders and sponsors. Ideally you want move your organisation towards figure 8 to remove project management and planning as much as possible. However if you are working in a large organisation project management is inevitable even if your organisation is optimised for work. Someone needs to coordinate work that is being done by many teams this is because work needs sequencing and dependency order matters.
+For this reason, project management and planning is necessary part to get an agreement with customers, stakeholders and sponsors. Ideally you want move your organisation towards figure 8 to remove project management and planning as much as possible. However if you are working in a large organisation project management is inevitable even if your organisation is optimised for work and not departments. Someone needs to coordinate work that is being done by many teams this is because work needs sequencing and dependency mapping.
 
 What does all of this mean in practice? To reduce disruption and wait time we need to: 
 * Prioritsed backlog must exist 
 * Dependencies must be removed as much as possible so that teams can work independently on their own backlogs and not be part of any project
-* If project is required (cross team coordination) then project's their dependencies and everyones required contribution must be known
+* If project is required (cross team coordination) then project's dependencies and everyones required contribution must be known
 * Work needs to be delivered just-in-time. If you are working on something that is not needed right now, this means other work's lead time is growing! 
 * If specialist teams exist (component teams) they must prioritise global work over their local work. 
 * If specialist teams exist then there must be a global roadmap of work so that they can get ahead of the curve be ready for just-in-time handover 
 * Just enough of roadmap and backlog planning needs to be done that is not too much or too little. Your organisation needs to find the sweet spot. 
 
-To be clear I am not saying that user stories need to be planned 6 months in advance, that they need to be broken down to a task level and allocated to a specific person with exact amount of hours they have estimated for it. This is extreme and very wasteful. However another extreme would be people not knowing what is needed of them, there are no stories and work is swapping every single moment of the day and wrong software is being delivered. 
+To be clear I am not saying that user stories need to be planned 3 months in advance, that they need to be broken down to a task level and allocated to a specific person with exact amount of hours they have estimated for it. This is extreme and very wasteful. However another extreme would be people not knowing what is needed of them, there are no stories and work is swapping every single moment of the day and wrong software is being delivered. 
 
 A lot of people don't find above exciting, however if you work for a large organisation this orchestration is an absolute must to reduce lead time for work inflight. This section is probably going to be the most controversial one with Agile community. 
 
 ### Commit to less 
-The simplest solution to reduce Lead Time is to commit to less work so that there are less things in the queue waiting. This is the hardest thing to do as this involves saying no and creating a slack in the overall system. 
+The simplest solution to reduce lead time is to commit to less work so that there are less things in the queue waiting (reduce your WIP). This is the hardest thing to do as this involves saying no and creating a slack in the overall system. 
 
-When I say no, it means no to new work or contracts. Letting go of customers that are no longer your speciality. Saying no to features that don't seem like a right thing to do. 
+When I say no, it means no to new work or contracts. Letting go of customers that are no longer your speciality. Saying no to features that don't seem like a right thing to do long term.
 
 If it is common that your company expedites work to meet a customer demand, then maybe this should be embraced. Create space in teams schedules for urgent work of a certain size. If nothing comes well then team can pick up next thing of the backlog, otherwise there is space for it. Generally speaking it is healthy to create a bit of slack in the overall system so that teams can help each other out day to day. If everyone is high-strung due to over utilisation teams can't help each other and processes start to erode.  
 
-By saying no, focusing and creating slack urgent work can travel through without interrupting existing commitments thus reducing or maintaining existing Lead Time.
+By saying no, focusing and creating slack urgent work can travel through without interrupting existing commitments thus reducing or maintaining existing lead time.
 
 ### Prioritise global work over local work
 
-This section applies to specialist teams. Across the industry it is common to have Software Architects, Software Principals or a Data Scientist departments. Sometimes delivery teams that have committed to deliver something rely on some expert department to help them. It is vital that these specialist teams prioritise globally committed work over their own local commitments. To achieve this specialist teams should not make concrete commitments or create plenty of slack to avoid increasing lead time.
+This section applies to specialist teams. Across the industry it is common to have Software Architects, Software Principals or a Data Scientist departments. Sometimes delivery teams that have committed to deliver something rely on some expert department to help them. It is vital that these specialist teams prioritise globally committed work over their own local work. To achieve this specialist teams should not make concrete commitments or create plenty of slack to avoid local and global lead time increase.
 
 ![](img/noqueue.gif)
 
 (Figure 12, Bruce Almighty making way for global work over local work)
 
 ### Quality throughout
- There is one thing that can drastically increase Lead Time unexpectedly. This is is unplanned disruption, typically these are bugs that appear in the form of unexpected behavior in the software or bugs that in your process manifest themselves as something important being missed or something not being accounted for. Too much of unplanned disruption can erode trust and confidence in the process. So it is important to minimise unplanned disruption as much as possible so that it is exceptional. This can be achieved by putting quality in your process and putting quality in to your software.
+ There is one thing that can drastically increase lead time unexpectedly. This is is unplanned disruption. Typically these are bugs that appear in the form of unexpected behavior in the software or process bugs that manifest themselves as something important being missed or something not being accounted for. Too much of unplanned disruption can erode trust and confidence in the process. So it is important to minimise unplanned disruption as much as possible so that it is exceptional. This can be achieved by putting quality in your process and putting quality in to your software.
 
-There are number of ways to put quality in to your process. For example Definition of Done and Ready are checklists that are used to ensure that Backlog and Sprint are in the expected state. Having a release pipeline done which your work travels and gets checked either manually or automatically is another one. 
+There are number of ways to put quality in to your process. For example Definition of Done and Ready are checklists that are used to ensure that Backlogs and Sprints are in the expected state. Having a release pipeline down which your work travels and gets checked either manually or automatically is another one. 
 
-Putting quality in to your software is covered well in DevOps literature. Normally this means quality automation tests exist that cover end to end testing, unit tests, performance tests, accessibility and so on.
+Putting quality in to your software is covered well in DevOps literature. Normally this means quality automation tests exist that cover end to end testing, unit tests, performance tests, accessibility testing and so on.
 
-Key thing is that your organisation iteratively invests in to quality as this only one of the ways to achieve long term predictable and sustainiable performance. If you would like to read more about this topic check out my [stabilise through embedded testing](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-stabilise-and.html) article.
+Key thing is that your organisation iteratively invests in to quality as this only one of the ways to achieve long term predictable and sustainable performance. If you would like to read more about this topic check out my [stabilise through embedded testing](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-stabilise-and.html) article.
 
 ### There is more...
 
 There are hundreds of ways that Lead and Cycle Time can be improved. This articles does not provide a complete list. However I would be remiss if I did not provide few honorable mentions:
-* Shift-left testing to reduce wait time
+* "Shift-left testing" to reduce wait time
 * Empowering teams to make local decisions and create knowledge locally to reduce wait time 
-* Team leaders and managers that are there to resolve daily operational issues to reduce wait, disruption and task time (see [this article](http://www.zankavtaskin.com/2018/08/applied-software-delivery-hidden-impact.html))
-* Converting Craft Production to Standard work through automation, standards and component reuse to reduce task time
+* Team leaders and managers that are there to resolve daily operational issues to reduce wait, disruption and task time, see [this article](http://www.zankavtaskin.com/2018/08/applied-software-delivery-hidden-impact.html))
+* Converting Craft production to Standard work through automation, standards and component reuse to reduce task time
 * Talent retention to reduce task time 
+* Mocroservices for work parallelisation, wait and disruption time reduction 
 
 ### Visualising Lead and Cycle Time Improvements
-Earlier we saw how it is possible to visualise and describe Lead and Cycle Time, but what do you if you want to measure improvements? Let's say you set a goal to reduce cycle time by 1 day average. How would that look like and compare to Figure 9?
+Earlier we saw how it is possible to visualise and describe lead and cycle time, but what do you if you want to measure improvements? Let's say you set a goal to reduce cycle time by 1 day average. How would that look like and compare to Figure 9?
 Now's let imagine that your team has achieved it is goal, here is how your new distribution would look like:
 
 ![](img/leadcycletime_more.png)
@@ -334,13 +335,13 @@ Now's let imagine that your team has achieved it is goal, here is how your new d
 
 Lets take a moment and unpack what has happened. When we say we will reduce cycle time by 1 day average this means that some stories will not be reduced at all, some stories will be reduced by 1 day and some by 2 days, this will give us 1 day average. Finally, if you have shifted cycle time by 1 day average this means your team has created more space for more work. This space will get filled with more work of remaining size, above figure takes this in to account. Originally team has delivered 505 user stories in 1 year, after 1 day cycle time reduction it is forecasted that team will deliver 668 user stories. 
 
-This is all great but it is possible to get ahead of yourself and see improvements when there are none. If team happens to deliver more stories, earlier in 3 Sprints does not mean they have improved. It might just mean that is was going to happen anyway. Take a look at this visualisation:
+This is all great but it is possible to get ahead of yourself and see improvements when there are none. If team happens to deliver more stories three Sprints in a row does not mean they have improved. It might just mean that is was going to happen anyway. Take a look at this visualisation:
 
 ![](img/leadtimesampling.png)
 
 (Figure 13, X axis shows day when work was delivered, Y axis shows number of stories delivered on that day)
 
-Black line represents the actual delivery and variance around each day. Red and Blue represent lines and their variance represents what else could have happened given same stories and lead time. Red and Blue lines are randomly sampled from existing data. This means some stories are randomly chosen from available collection fo stories and then Blue and Red lines are drawn. Important thing to understand that it is exactly the same data. However if you look at the chart blue line might make the team feel that they are delivering work earlier in the Sprint and being more stable. However this is not the case, it is just random result.
+Black line represents the actual delivery and faded black variance around each day. Red and Blue lines are randomly sampled from existing data. This means some stories are randomly chosen from available collection of stories and then Blue and Red lines are drawn. Important thing to understand that it is exactly the same data. However if you look at the chart blue line might make the team feel that they are delivering work earlier in the Sprint and being more stable. However this is not the case, it is just **a random result**.
 
 Here is how actual improvement would look like:
 
@@ -348,43 +349,43 @@ Here is how actual improvement would look like:
 
 (Figure 14, X axis shows day when work was delivered, Y axis shows number of stories delivered on that day)
 
-If you refer back to the Figure 12, we know that more work gets delivered and it gets delivered earlier. Black line represents original data Figure 13, Blue and Red now show an actual improvement, but notice how similar it still is! This is because it still is similar as team has reduced Cycle Time only by 1 day. Having said that, if data is collected for 1 year (there are enough samples) and Figure 14 has emerged then some would say that it is reasonable to assume that there was improvement. 
+If you refer back to the Figure 12, we know that more work gets delivered and it gets delivered earlier. Black line represents original data Figure 13, Blue and Red now show an actual improvement, but notice how similar it still is! This is because it still is similar as team has reduced Cycle Time only by 1 day average. Having said that, if data is collected for 1 year (there are enough samples) and Figure 14 has emerged then some would say that it is reasonable to assume that there was improvement. 
 
-If you are intereted in more detail or want to see code behind this, please check out [this](https://github.com/zkavtaskin/Lead-Time-Driven-Delivery-Simulation/blob/master/Notebook/LeadTimeDynamics.ipynb) notebook. 
+If you are interested in more detail or want to see code behind this, please check out [this](https://github.com/zkavtaskin/Lead-Time-Driven-Delivery-Simulation/blob/master/Notebook/LeadTimeDynamics.ipynb) notebook. 
 
 ## What is Agile
 
-If I critically think about it, I don't fully know what Agile means. During a presentation I have asked a group of people what  does it mean to be Agile. I had many answers such as "respond to market change", "working with the customer", "software development over bureaucracy" and so on, all answers were some version of Agile Manifesto. One person even said that answer is in the Agile Manifesto. It seems that Agile is set of intangible characteristics that are defined by the Agile Manifesto. 
+If I critically think about it, I don't fully know what Agile means, before you read the rest of this section, have a think about it as well. What does it mean to be Agile? During a presentation I have asked a group of people what does it mean to be Agile. I had many answers such as "respond to market change", "working with the customer", "software development over bureaucracy" and so on, all answers were some version of Agile Manifesto. One person even said that answer is in the Agile Manifesto. So it seems that Agile is set of intangible characteristics that are defined by the Agile Manifesto. 
 
-Issue is that Agile Manifesto "characteristics" are vague and due to this quiet quickly it becomes almost a spiritual discussion of what people believe and not a business discussion of what it is. To illustrate my point, recently I have read the article by Jeff Gothelf where he said that SAFe framework is not agile because SAFe is missing: 
+Issue is that Agile Manifesto "characteristics" are vague. Due to this quiet quickly it becomes almost a spiritual discussion of what people believe and not a business discussion of what it is. To illustrate my point, recently I have read the article by Jeff Gothelf where he said that SAFe framework is not agile because SAFe is missing: 
 
 "Continuous learning and improvement, customer centricity, humility, cross-functional collaboration, evidence-based decision making, experimentation, design and course correction — to name a few — are visibly absent from the SAFe conversation. Instead, organizations adopting this way of working focus on rigid team structures, strict rituals and events and an uneven distribution of behavior change requirements depending on how high up one sits in the organization."
 
-Jeff is not the only one to say above, there is a lot of debate out there about what it means to be Agile. Problem is that this kind of debate mostly happens when people argue over vague ideas. If Agile definition was concrete there would be no argument, people would not agree with the exact definition and they would invent the new concrete thing like "Flex Manifesto". Instead we debate over what something is and it is not, it is a waste of time because the subject mater is **vague on purpose**. 
+Jeff is not the only one to say above, there is a lot of debate out there about what it means to be Agile. Problem is that this kind of debate mostly happens when people argue over vague ideas. If Agile definition was concrete there would be no argument, people would not agree with the exact definition and they would invent the new concrete thing like "Flex Manifesto". Instead we debate over what something is and is not. This is of-course a colossal waste of time because the subject mater is **vague on purpose**. 
 
-Could it be that Agile like a diamond is missing the perfect setting that would make it shine? What if we keep using Agile methodologies but we start measuring and caring about Lead and Cycle Time as much as companies measure and care about revenue and profit. I mean really care about it. What if you hear things like "Lets develop this iteratively so that our Lead Time is low" or "Lets establish project team to deliver this work so that we can reduce handovers and drastically reduce our Cycle Time and overall Lead Time". Best thing of all it can be measured and visualised. It drains all of the vagueness, making it very concrete. Would our industry benefit from moving conversation away from being Agile to reducing Lead and Cycle Time? 
+Could it be that Agile is like a diamond, and it is missing the perfect setting that would make it shine? What if we keep using Agile methodologies but we start measuring and caring about Lead and Cycle Time as much as companies measure and care about revenue and profit. I mean really care about it. What if you hear things like "Lets develop this iteratively so that our Lead Time is low" or "Lets establish work team to reduce handovers and drastically reduce our Cycle Time and overall Lead Time". Best thing of all it can be measured and visualised. It drains all of the vagueness, making it very concrete. Would our industry benefit from moving conversation away from "being Agile" to "reducing Lead and Cycle Time"? 
 
 
 ## Conclusions 
 
 Knowledge work in software engineering is akin to Craft Production. Lean Manufacturing methods can't be used literary when dealing with Craft Production. In Craft Production the work it self is a constraint as you can choose what you build, how big it is (Figure 5), how you build it, who builds it, how people work and how motivated they are in getting the work done. All of this impacts Lead and Cycle Time, and it is measured using quartiles. This is not the case in Manufacturing where work flow is pre-configured, machines or people are do just one thing repeatedly and work can be measured using average distribution. 
 
-Craft production Cycle and Lead Time can be drastically reduced if everyone focuses on minimising Wait, Disruption and Task Time. There are hundreds of ways that this can be done, here are just a few ideas:
+Craft production Cycle and Lead Time can be drastically reduced if everyone focuses on minimising wait, disruption and task time. There are hundreds of ways that this can be done, to summarise:
 * Product Owners sizing stories right and Software Team Leaders engaging all team members in delivering one story at the time as much as possible to reduce lead time, task time and wait time
 * Backlog, project, priority and dependency planning to reduce disruption and task time
-* Creating space for "slack" for unplanned work to reduce disruption and wait time 
+* Creating space for unplanned work to reduce disruption and wait time 
 * Reducing handovers through cross skilling team members and providing them with self-service access to as many corporate systems as possible to reduce wait time and task time
-* Getting everyone in the company to prioritise global project work over local project work to reduce wait time 
+* Getting everyone in the company to prioritise global work over local work to reduce wait time 
 * Embedding quality in to the overall engineering process and product it self to reduce disruption and wait time
 * Managers motivating and protecting teams from disruption as much as possible to reduce task and disruption time
 
-Just like Manufacturing that has gone through a lean revolution, Craft Production will go through it too. It will eventually converge us to some scientifically proven non vague standard that will become accepted. It might be, that what will stop the Agile debate is putting Lead and Cycle Time at the front and center of your organisation does. In this world Figure 8 seems to the optimal model: 
+Just like Manufacturing that has gone through a lean revolution, Craft Production will go through it too. It will eventually converge us to some scientifically proven non vague standard that will become accepted. It might be, that what will stop the Agile debate is putting Lead and Cycle Time at the front and center of what your organisation does. In this world Figure 8 seems to the optimal model: 
 
 ![](img/agileteam.jpeg)
 
 (Figure 8 repeat)
 
-This article's intent is not to provide complete analysis and methodology, but to kick start conversation and provide some alternative thoughts on Agile practice. If you like this article check out material that was used to create it [Lead Time Driven Delivery](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-introduction.html) Series.
+This article's intent is not to provide complete analysis and methodology, but to kick start conversation and provide some alternative thoughts on Agile practice. If you like this article then check out the less refined material that was used to create it [Lead Time Driven Delivery](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-introduction.html) Series.
 
 ## Acknowledgments
 This article has been long time in the making. Journey has officially started around 2013 when Andrew Bray gave me a copy of the Phoenix Project. MHR's leadership team has been most accommodating by allowing our software teams to experiment with various ideas and approaches throughout the years. Special thanks for that goes to  Anton Roe. Thanks to MHR's People First software development team for contributing ideas, participating in experiments and trying ideas in practice. Special thanks to Philippa Jennings and Hannah Jeacock for reviewing the article and Joe Norley for bouncing quantitative ideas off. 
