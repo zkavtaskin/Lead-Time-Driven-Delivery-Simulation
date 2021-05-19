@@ -115,7 +115,7 @@ Domain - This is you gaining new domain knowledge (HR, Logistics, Financial Trad
 
 ### There is no single queue
 
-Assembly lines tend to be linear. Once work enters the production line it enters a queue and goes from start to the end. This is not the case with knowledge work. Work might go on to a backlog sit there for a year and then get removed. Work that once was super urgent will be deprioritised and swapped with something else. In knowledge work there is no queue as such. If you are following Scrum then normally team commits to work before a Sprint starts and very rarely should user stories in the Sprint change. This commitment is probably the only place in the whole process where there is a stable queue. 
+Assembly lines tend to be linear. Once work enters the production line it enters a queue and goes from start to the end. This is not the case with knowledge work. Work might go on to a backlog sit there for a year and then get removed. Work that once was super urgent will be deprioritised and swapped with something else. In knowledge work there is no queue as such. If you are following Scrum then normally team commits to work before a Sprint starts and very rarely should user stories in the Sprint change. This commitment is probably the only place in the whole process where there is a stable queue, and these **commitments** (items that are scheduled to get done) are called **work in progress (WIP)**.
 
 ### Implications on craft production
 
@@ -142,24 +142,20 @@ Let's say you have entered a coffee shop, and you have finally reached the till 
 
 Coming back to the world of software engineering. User Story will have an overall cycle time i.e. days or hours to complete and this is measured from story activation to story completion. Individual tasks under that story will also have cycle time that are measured from activation to completion. Task cycle time is important as their cycle time will ultimately dictate the overall user story cycle time.
 
+![](img/cycletime.png)
+
+(Figure 5, X axis shows number of days it taken to complete a piece of work, Y axis shows number of stories in that group)
+
 ### Lead Time 
 This is the most confusing one when it comes to knowledge work. Lead time is how long work has taken from the moment it was committed to the queue. So the overall time. Let's go back to the coffee shop example again (standard work). When you have entered the coffee shop you have committed yourself to the queue, the overall time it takes you from walking in to that door to the moment you walk out with nice flat white is the lead time. 
 
 You might be thinking well there will be a lot of waiting around before I get served and my cycle time starts! You are right, the cool thing is that in "standard work" you can predict how long you will wait in the queue. This is because there is **average** cycle time. Let's say it takes 1 minute give or take to make a cup of joe. So if there are 4 people ahead of you, you know that you will get your coffee in about 4+1(+1 is for you) multiplied by 1 minute so 5 minutes.
 
-Going back to software engineering. Work gets committed normally in the Sprint so that is when the lead time clock actually starts. If you are using Kanban and work does not get swapped around all the time (stable queue) then lead time is measured from the moment is committed to your Kanban board. Issue is that in software engineering cycle time is heavily skewed like so:
-
-![](img/cycletime.png)
-
-(Figure 5, X axis shows number of days it taken to complete a piece of work, Y axis shows number of stories in that group)
-
-This inherently makes it less predicable. This is because unlike coffee that might take between 30 seconds to 1 minute and 30 seconds which makes it 1 minute average. Based on above graph ~25% of knowledge work gets delivered in 2.5 days, ~50%  7 days, ~75% 10 days and last 25% 15 days. So it seems that craft work can't be standardised in to **average** unit of time like standard work can be which means vanilla Little's Law can't be used. Given all of this, how is it possible to make craft work in software engineering more predictable, that is what we are going to explore next. 
+Going back to software engineering. Work gets committed normally in the Sprint so that is when the lead time clock actually starts. If you are using Kanban and work does not get swapped around all the time (stable queue) then lead time is measured from the moment is committed to your Kanban board. Issue is that in software engineering cycle time is heavily skewed, see figure 5 and this makes estimation less predicable. This is because unlike coffee that might take between 30 seconds to 1 minute and 30 seconds which makes it 1 minute average. Based on above graph ~25% of knowledge work gets delivered in 2.5 days, ~50%  7 days, ~75% 10 days and last 25% 15 days. So it seems that craft work can't be standardised in to **average** unit of time like standard work can be which means vanilla Little's Law can't be used. 
 
 ![](img/alltogether.png)
 
-(Figure 6, showing you WIP, Cycle Time and Lead Time)
-
-
+(Figure 6, showing you committed work WIP, Cycle Time and Lead Time)
 
 ## Craft production - Learning to see
 Knowledge workers typically work together to produce some value. The moment team is formed dynamics change, and I don't mean this from personality point of view but from work **relay** point of view. 
@@ -183,7 +179,7 @@ However, this changes the moment you hire your first employee in your start-up. 
 
 ![](img/teamdynamic.png)
 
-(Figure 7, showing how work dynamic and cycle time changes the moment another team member gets involved )
+(Figure 7, showing how work dynamic and cycle time changes the moment another team member gets involved)
 
 Now image that your company grew too quickly and it ended up not following any Agile process and instead it had departments of people per discipline. So Web devs in one department, API Devs are in another department, you get the point. Each department will have their own backlog, which means everyone has their own Lead Time, on top of that all individuals will experience disruptions (team meetings, urgent requests you know the drill) and there will be many handovers from one department to another. Work will also end up traveling backwards due to misunderstandings, some people would call this a waterfall organisation and it looks something like this: 
 
