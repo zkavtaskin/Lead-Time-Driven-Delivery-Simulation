@@ -155,6 +155,11 @@ Going back to software engineering. Work gets committed normally in the Sprint s
 
 This inherently makes it less predicable. This is because unlike coffee that might take between 30 seconds to 1 minute and 30 seconds which makes it 1 minute average. Based on above graph ~25% of knowledge work gets delivered in 2.5 days, ~50%  7 days, ~75% 10 days and last 25% 15 days. So it seems that craft work can't be standardised in to **average** unit of time like standard work can be which means vanilla Little's Law can't be used. Given all of this, how is it possible to make craft work in software engineering more predictable, that is what we are going to explore next. 
 
+![](img/alltogether.png)
+
+(Figure 6, showing you WIP, Cycle Time and Lead Time)
+
+
 
 ## Craft production - Learning to see
 Knowledge workers typically work together to produce some value. The moment team is formed dynamics change, and I don't mean this from personality point of view but from work **relay** point of view. 
@@ -162,9 +167,9 @@ Knowledge workers typically work together to produce some value. The moment team
 ### Your individual work
 
 Three factors that make up your **individual** work:
-* Wait Time - This is when you are waiting around for some knowledge that you don’t have, decisions that you can’t make and finally you are waiting around for someone else to complete some work before you can start yours.
-* Disruption Time - This is when you have to expedite some work, rework some work, corporate interruptions and mental health impact.
-* Task Time - Finally, this is the actual work that you are doing, pure sitting down and getting things done.
+* **Wait Time** - This is when you are waiting around for some knowledge that you don’t have, decisions that you can’t make and finally you are waiting around for someone else to complete some work before you can start yours.
+* **Disruption Time** - This is when you have to expedite some work, rework some work, corporate interruptions and mental health impact.
+* **Task Time** - Finally, this is the actual work that you are doing, pure sitting down and getting things done.
 
 ![](img/SystemThinking.jpeg)
 
@@ -175,6 +180,10 @@ Three factors that make up your **individual** work:
 Imagine you are working on your own on your own start-up. You will have very little wait and disruption time. You are on our own, you can make all of the decisions. Also if you are lucky enough to work in a quiet environment you should experience very little or no disruptions. You get things done fast, your users are impressed with your company, new features just come out all the time. In this case you are in "your individual work" scenario. 
 
 However, this changes the moment you hire your first employee in your start-up. The moment you do that, you create an organisation, that means you have created a system. In the system work no longer gets done by a single individual, it gets done by many individuals. You as the founder are unlikely to feel much impact by hiring this new person (apart from knowledge transfer burden), but if you are not careful your new employee will have to wait for your decisions, knowledge and task allocation. Their Wait Time will grow as they wait for you and they will probably be disrupted by you. You will wonder why they are not as a productive as you, it might be because they have not got enough autonomy to make decisions (maybe they don’t know your values so they don’t know what decisions to make on your behalf) also they might not be getting enough clarity about the desired outcomes. Most people are not founders, they are the employees and sometimes they struggle to do their best as they struggle to understand the "decision making framework" that founders use. 
+
+![](img/teamdynamic.png)
+
+(Figure 7, showing how work dynamic and cycle time changes the moment another team member gets involved )
 
 Now image that your company grew too quickly and it ended up not following any Agile process and instead it had departments of people per discipline. So Web devs in one department, API Devs are in another department, you get the point. Each department will have their own backlog, which means everyone has their own Lead Time, on top of that all individuals will experience disruptions (team meetings, urgent requests you know the drill) and there will be many handovers from one department to another. Work will also end up traveling backwards due to misunderstandings, some people would call this a waterfall organisation and it looks something like this: 
 
