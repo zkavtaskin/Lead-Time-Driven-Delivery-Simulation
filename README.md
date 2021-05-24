@@ -1,7 +1,5 @@
 # Lead Time Driven Delivery Simulation
 Lead Time Simulation and Optimisation using Operations Research methods.
-
- This repo is under active development, mini-series contents can be found here:
  
 [Lead Time Driven Delivery - Part 0 - Introduction](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-introduction.html)
 
