@@ -97,16 +97,16 @@ Then it can be registered in the main.ts:
 const experiments = new Array<Test>(new SmallTeamTest(), new ScrumTest(), new KanbanTest(), new ScrumPartialStackTest(), new WaterfallExperiment(), new YourTest());
 ```
 
-## Other Work
-This simulator was built to test assumptions about knowledge work lead time, if you are interested in this consider reviewing the following:
+## If you made it this far... 
+This simulator was built to test assumptions about knowledge work lead time, if you are interested in this consider checking this out:
 
-## Data Science Notebooks
+### Data Science Notebooks
 
 [Exploration of lead time dynamics in Sprint scenario](https://github.com/zkavtaskin/Lead-Time-Driven-Delivery-Simulation/blob/master/Notebook/LeadTimeDynamics.ipynb)
 
 [Lead Time minimisation through team capacity](https://github.com/zkavtaskin/Lead-Time-Driven-Delivery-Simulation/blob/master/Notebook/LeadTimeCapacityMinimisation.ipynb)
 
-## Research
+### Research
 
 [Research: Rejuvenating Agile operations by putting lead and cycle time front and centre](https://zankavtaskin.medium.com/rejuvenating-agile-operations-by-putting-lead-and-cycle-time-front-and-centre-6a6b52af0b53)
 
@@ -122,6 +122,8 @@ This simulator was built to test assumptions about knowledge work lead time, if 
 
 [Lead Time Driven Delivery - Part 5 -  Practical and closing thoughts](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-practical-and.html)
 
-If you have any questions about this repository please feel free to contact me. 
+
+
+I find this really interesting, if you have any questions about this repository please feel free to contact me. 
 
 
