@@ -1,9 +1,9 @@
-# Lead Time Driven Delivery Simulation
+# Lead time and cycle time agile optimisation simulator
  
 ## Introduction
-This repository attempts to find optimal team configuration, work size, team member capacity and backlog order to deliver work as fast as possible. This repository comes with experiments for Scrum, Scrum with less handovers, Kanban and Waterfall. 
+This repository attempts to find team configuration, work size, team member capacity and backlog order that delivers work at the lowest lead time possible. This repository comes with experiments for Scrum, Scrum with less handovers, Kanban and Waterfall. 
 
-Download, in Visual Studio Code under Run and Debug press "Run Simulation". Click on debug console, you will see the following output for all experiments:
+To run, download, load in Visual Studio Code, under Run and Debug press "Run Simulation". Click on debug console, you will greeted with the following output for all experiments:
 ```
 ##############################START###################################
 ###  Small Team Test Experiment
@@ -98,7 +98,7 @@ const experiments = new Array<Test>(new SmallTeamTest(), new ScrumTest(), new Ka
 ```
 
 ## If you made it this far... 
-This simulator was built to test assumptions about knowledge work lead time, if you are interested in this consider checking this out:
+This simulator was built to test assumptions about knowledge work / software development lead time, if you are interested in this consider checking out below.
 
 ### Data Science Notebooks
 
