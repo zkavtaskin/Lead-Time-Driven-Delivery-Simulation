@@ -95,32 +95,29 @@ export class YourTest extends SoftwareTest {
 Then it can be registered in the main.ts:
 ```
 const experiments = new Array<Test>(new SmallTeamTest(), new ScrumTest(), new KanbanTest(), new ScrumPartialStackTest(), new WaterfallExperiment(), new YourTest());
-```
+```   
+  
 
 ## If you made it this far... 
 This simulator was built to test assumptions about knowledge work / software development lead time, if you are interested in this consider checking out below.
 
-### Data Science Notebooks
+Research - [Rejuvenating Agile operations by putting lead and cycle time front and centre](https://zankavtaskin.medium.com/rejuvenating-agile-operations-by-putting-lead-and-cycle-time-front-and-centre-6a6b52af0b53)
 
-[Exploration of lead time dynamics in Sprint scenario](https://github.com/zkavtaskin/Lead-Time-Driven-Delivery-Simulation/blob/master/Notebook/LeadTimeDynamics.ipynb)
+Notebook - [Exploration of lead time dynamics in Sprint scenario](https://github.com/zkavtaskin/Lead-Time-Driven-Delivery-Simulation/blob/master/Notebook/LeadTimeDynamics.ipynb)
 
-[Lead Time minimisation through team capacity](https://github.com/zkavtaskin/Lead-Time-Driven-Delivery-Simulation/blob/master/Notebook/LeadTimeCapacityMinimisation.ipynb)
+Notebook - [Lead Time minimisation through team capacity](https://github.com/zkavtaskin/Lead-Time-Driven-Delivery-Simulation/blob/master/Notebook/LeadTimeCapacityMinimisation.ipynb)
 
-### Research
+Article - [Lead Time Driven Delivery - Part 0 - Introduction](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-introduction.html)
 
-[Research: Rejuvenating Agile operations by putting lead and cycle time front and centre](https://zankavtaskin.medium.com/rejuvenating-agile-operations-by-putting-lead-and-cycle-time-front-and-centre-6a6b52af0b53)
+Article - [Lead Time Driven Delivery - Part 1 - Learning to see](http://www.zankavtaskin.com/2020/01/applied-software-delivery-system.html)
 
-[Lead Time Driven Delivery - Part 0 - Introduction](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-introduction.html)
+Article - [Lead Time Driven Delivery - Part 2 - Learning from data](http://www.zankavtaskin.com/2020/03/lead-time-driven-delivery-metrics.html)
 
-[Lead Time Driven Delivery - Part 1 - Learning to see](http://www.zankavtaskin.com/2020/01/applied-software-delivery-system.html)
+Article - [Lead Time Driven Delivery - Part 3 - Focus on results, not methods](http://www.zankavtaskin.com/2020/08/lead-time-driven-delivery-focus-on.html)
 
-[Lead Time Driven Delivery - Part 2 - Learning from data](http://www.zankavtaskin.com/2020/03/lead-time-driven-delivery-metrics.html)
+Article - [Lead Time Driven Delivery - Part 4 - Stabilise through embedded testing](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-stabilise-and.html)
 
-[Lead Time Driven Delivery - Part 3 - Focus on results, not methods](http://www.zankavtaskin.com/2020/08/lead-time-driven-delivery-focus-on.html)
-
-[Lead Time Driven Delivery - Part 4 - Stabilise through embedded testing](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-stabilise-and.html)
-
-[Lead Time Driven Delivery - Part 5 -  Practical and closing thoughts](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-practical-and.html)
+Article -[Lead Time Driven Delivery - Part 5 -  Practical and closing thoughts](http://www.zankavtaskin.com/2020/09/lead-time-driven-delivery-practical-and.html)
 
 
 
