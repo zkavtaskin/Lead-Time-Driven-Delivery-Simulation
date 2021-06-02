@@ -1,5 +1,5 @@
 import { Test } from "./Experiment/Test";
-import {ScrumKanbanTest} from "./Experiment/ScrumKanbanTest"
+import {KanbanTest} from "./Experiment/KanbanTest"
 import {ScrumTest} from "./Experiment/ScrumTest"
 import {WaterfallExperiment} from "./Experiment/WaterfallExperiment"
 import {SmallTeamTest} from "./Experiment/SmallTeamTest"
@@ -8,7 +8,7 @@ import { Statistics } from "./Simulation/Statistics";
 import { Result } from "./Experiment/Result";
 
 
-const experiments = new Array<Test>(new SmallTeamTest(), new ScrumTest(), new ScrumKanbanTest(), new ScrumPartialStackTest(), new WaterfallExperiment());
+const experiments = new Array<Test>(new SmallTeamTest(), new ScrumTest(), new KanbanTest(), new ScrumPartialStackTest(), new WaterfallExperiment());
 
 console.log(`
 Experiments search for:

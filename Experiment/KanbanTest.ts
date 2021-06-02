@@ -4,9 +4,9 @@ import { BacklogConfig } from "../Simulation/BacklogConfig"
 import { Statistics } from "../Simulation/Statistics"
 import { SoftwareTest } from "./SoftwareTest"
 
-export class ScrumKanbanTest extends SoftwareTest {
+export class KanbanTest extends SoftwareTest {
 
-    public readonly Name: string = "Scrum Kanban";
+    public readonly Name: string = "Kanban";
 
     public readonly Description: string = `
 Simulation of a cross functional "Scrum" team working using Kanban approach with some supporting "Component" teams.
