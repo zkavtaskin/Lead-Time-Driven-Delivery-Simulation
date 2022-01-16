@@ -86,30 +86,14 @@ def unroll(workitems):
                 workitem_split.append([1, workitem[1]-i-1])
     return workitem_split
 
-def combination_matrix_to_array(matrix, x_label, y_label):
-    combination_values, combination_labels = [],[]
-    for row_index, row in enumerate(matrix):
-        for cell_index, cell in enumerate(row):
-            combination_labels.append([y_label[cell_index], x_label[row_index]])
-            combination_values.append(cell)
-
-    return np.array(combination_labels), np.array(combination_values)
-
-def combination_matrix_to_probability(matrix):
-    column_row_sum = np.dot(np.full((1,len(matrix.index)), 1), matrix.values)
-    column_row_probability = matrix.values / column_row_sum
-    column_total_sum = np.sum(column_row_sum)
-    column_probability = column_row_sum / column_total_sum
-    return column_row_probability * column_probability
-
-def run_simulation(name, mean, std, events, p):
-    number_of_workitems = np.random.normal(mean, std).astype(int)
-    combinations_indicies = np.random.choice(range(0, len(events)), number_of_workitems, p=p)
-    sprint_workitems = events[combinations_indicies]
-    name_column = np.full((len(sprint_workitems), 1), name)
-    return  np.hstack((name_column, sprint_workitems))
-
 def leadtime_trail(workitems_unrolled):
     df = pd.DataFrame(workitems_unrolled, columns=['CycleTime', 'LeadTime'])
     tail_agg = df.groupby('LeadTime').agg(Count =('LeadTime', 'count'))
     return tail_agg.values.T[0], np.array(tail_agg.index)
+
+def construct_sprint(name, mean, std, bag):
+    number_of_workitems = np.random.normal(mean, std).astype(int)
+    indexes = np.random.choice(range(0, len(bag)), number_of_workitems)
+    sprint_workitems = bag[indexes]
+    name_column = np.full((len(sprint_workitems), 1), name)
+    return np.hstack((name_column, sprint_workitems))
