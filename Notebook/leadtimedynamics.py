@@ -91,9 +91,23 @@ def leadtime_trail(workitems_unrolled):
     tail_agg = df.groupby('LeadTime').agg(Count =('LeadTime', 'count'))
     return tail_agg.values.T[0], np.array(tail_agg.index)
 
-def construct_sprint(name, mean, std, bag):
-    number_of_workitems = np.random.normal(mean, std).astype(int)
-    indexes = np.random.choice(range(0, len(bag)), number_of_workitems)
-    sprint_workitems = bag[indexes]
-    name_column = np.full((len(sprint_workitems), 1), name)
-    return np.hstack((name_column, sprint_workitems))
+def sprint_data_to_aggregate(sprint_data):
+    sprint_data_agg = []
+    df_sprint_data = pd.DataFrame(sprint_data, columns=['Sprint','CycleTime', 'LeadTime'])
+    df_sprint_data['CycleTime'] = df_sprint_data['CycleTime'].astype(int)
+    df_sprint_data['LeadTime'] = df_sprint_data['LeadTime'].astype(int)
+    for row in df_sprint_data.groupby(["Sprint", "LeadTime"]).agg({ 'LeadTime': 'count'}).itertuples():
+        sprint_data_agg.append([row.Index[0], row.Index[1], row.LeadTime])
+    df_sprint_data_agg = pd.DataFrame(sprint_data_agg, columns=['Sprint','LeadTime', 'Count'])
+    return df_sprint_data_agg
+
+def construct_random_sampled_sprints(mean, std, bag):
+    sprints = np.empty([0, 3])
+    for i in range(12):
+        number_of_workitems = np.random.normal(mean, std).astype(int)
+        indexes = np.random.choice(range(0, len(bag)), number_of_workitems)
+        sprint_workitems = bag[indexes]
+        name_column = np.full((len(sprint_workitems), 1), chr(65+i))
+        sprint = np.hstack((name_column, sprint_workitems))
+        sprints = np.vstack((sprints, sprint))
+    return sprints
